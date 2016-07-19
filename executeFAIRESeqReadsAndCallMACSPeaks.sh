@@ -112,7 +112,7 @@ echo "
 cd $NETSCR${STRAIN}
 
 #Set variable for control
-CONTROL=$CTRLPATH
+CONTROL=${CTRLPATH}
 
 # Call Peaks using MACS
 macs2 callpeak -t ${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bed -c \${CONTROL} -n ${STRAIN}_q5_sorted_dupsRemoved_noYUHet -g dm --nomodel --extsize 125
