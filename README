@@ -39,15 +39,16 @@ helping to debug if something goes wrong.
 4. Go through the bash script and change jkumar12 to your onyen. Remember in
 the home directory, you also need to modify j/k/ to the first two letters of
 your own onyen.
+	* 07.19.2016 - SLN * I've edited the script to allow skipping this
+	step. Simply change the parameters at the top to alter usernames,
+	refgenome location, etc. The script will now default to using the username of
+	the current user. Keep in mind, you can use bash expansion variables
+	like '~' to reference your home directory
 
 5. Store the bash script in your home directory. Nothing in your home directory
 gets deleted unlike your scratch directory but it does have limited space.
 This is why I store all the data in scratch and move it to my local directory
 as needed.
-
-Note: I have a further subfolder called McKayLab in my home directory and
-everything is then stored there. You can choose to do that or not. But if you
-choose not to, make sure you delete McKayLab from paths in the bash script.
 
 You don't ever have to make changes now to the script once this setup is done.
 

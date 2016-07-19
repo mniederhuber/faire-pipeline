@@ -1,16 +1,46 @@
 #!/bin/bash
 
+##############################
+# Set parameters:
+
+USR=$USER						# Don't change this unless you have a good reason to
+NETSCR=/netscr/$USR/
+REFGENEPATH=~/RefGenome/dm3
+CTRLPATH=/nas02/home/j/k/jkumar12/McKayLab/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed
+
+QUEUE=day				# BSUB Queue
+stdOUT=$NETSCR/OutputFiles/		# standard output directory
+stdERR=$NETSCR/ErrorFiles/		# standard error directory
+
+##############################
+
 STRAIN=$1
 ALIGN=$2
 PEAK=$3
+
+# This series of if statements checks that the control .bed file defined by $CTRLPATH exists 
+# and creates standard out/error directories if they don't already exist
+
+if [[ ! -f $CTRLPATH ]]; then
+	echo "Error: "$CTRLPATH" does not exist"
+	exit 1
+fi
+
+if [[ ! -d $stdOUT ]]; then
+	mkdir $stdOUT
+fi
+
+if [[ ! -d $stdERR ]]; then
+	mkdir $stdERR
+fi
 
 echo "
 
 #!/bin/bash
 
-#BSUB -q day
-#BSUB -o /netscr/jkumar12/OutputFiles/${STRAIN}_outfile.%J
-#BSUB -e /netscr/jkumar12/ErrorFiles/${STRAIN}_errorfile.%J
+#BSUB -q ${QUEUE}
+#BSUB -o ${stdOUT}${STRAIN}_outfile.%J
+#BSUB -e ${stdERR}${STRAIN}_errorfile.%J
 
 ">processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.bsub
 
@@ -24,13 +54,18 @@ echo "
 # Create a directory in your scratch directory to store all data files 
 # Then move fastq file to that directory
 
-mkdir /netscr/jkumar12/${STRAIN}
-mv /netscr/jkumar12/${STRAIN}.fastq /netscr/jkumar12/${STRAIN}
-cd /netscr/jkumar12/${STRAIN}
+################################################################
+# 				OLD:
+# mkdir /netscr/jkumar12/${STRAIN}
+# mv /netscr/jkumar12/${STRAIN}.fastq /netscr/jkumar12/${STRAIN}
+# cd /netscr/jkumar12/${STRAIN}
+################################################################
 
+mkdir ${NETSCR}${STRAIN}
+mv ${NETSCR}${STRAIN}.fastq ${NETSCR}${STRAIN}
 # Assign variable for index to reference genome
 
-REFGENOME=/nas02/home/j/k/jkumar12/McKayLab/RefGenome/dm3
+REFGENOME=${REFGENEPATH}
 
 # Execute commands
 
@@ -74,10 +109,10 @@ if [ "${PEAK}" = "CallPeaks" ]; then
 
 echo "
 # Change directory
-cd /netscr/jkumar12/${STRAIN}
+cd $NETSCR${STRAIN}
 
 #Set variable for control
-CONTROL=/nas02/home/j/k/jkumar12/McKayLab/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed
+CONTROL=$CTRLPATH
 
 # Call Peaks using MACS
 macs2 callpeak -t ${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bed -c \${CONTROL} -n ${STRAIN}_q5_sorted_dupsRemoved_noYUHet -g dm --nomodel --extsize 125
