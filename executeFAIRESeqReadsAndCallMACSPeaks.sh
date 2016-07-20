@@ -4,13 +4,13 @@
 # Set parameters:
 
 USR=$USER						# Don't change this unless you have a good reason to
-NETSCR=/netscr/$USR/
-REFGENEPATH=~/RefGenome/dm3
-CTRLPATH=/nas02/home/j/k/jkumar12/McKayLab/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed
+NETSCR=/netscr/$USR/					# Output Directory. Be sure to end path with '/' otherwise pipeline will fail.
+REFGENEPATH=~/RefGenome/dm3				# Point directly to the refgeneome file you want to use
+CTRLPATH=/nas02/home/j/k/jkumar12/McKayLab/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed # Point directly to negative control genomic DNA input
 
-QUEUE=day				# BSUB Queue
-stdOUT=$NETSCR/OutputFiles/		# standard output directory
-stdERR=$NETSCR/ErrorFiles/		# standard error directory
+QUEUE=day						# BSUB Queue
+stdOUT=$NETSCR/OutputFiles/				# standard output directory, end path with '/'
+stdERR=$NETSCR/ErrorFiles/				# standard error directory, end path with '/'
 
 ##############################
 
