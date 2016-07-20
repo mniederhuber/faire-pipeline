@@ -63,6 +63,7 @@ echo "
 
 mkdir ${NETSCR}${STRAIN}
 mv ${NETSCR}${STRAIN}.fastq ${NETSCR}${STRAIN}
+cd ${NETSCR}${STRAIN}
 # Assign variable for index to reference genome
 
 REFGENOME=${REFGENEPATH}
