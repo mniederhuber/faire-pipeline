@@ -41,7 +41,7 @@ For example, mine is in this path: /nas02/home/j/k/jkumar12/McKayLab/ControlGeno
 		* Error files and standard output files are very useful in helping to debug if something goes wrong.
 
 
-5. Store the bash script in your home directory. Nothing in your home directory
+4. Store the bash script in your home directory. Nothing in your home directory
 gets deleted unlike your scratch directory but it does have limited space.
 This is why I store all the data in scratch and move it to my local directory
 as needed.
