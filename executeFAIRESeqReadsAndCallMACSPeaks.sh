@@ -4,9 +4,12 @@
 # Set parameters:
 
 USR=$USER						# Don't change this unless you have a good reason to
-NETSCR=/netscr/$USR/					# Output Directory. Be sure to end path with '/' otherwise pipeline will fail.
+
+NETSCR=/netscr/$USR/					# Output Directory &
+							# Location of input fastq. Be sure to end path with '/' otherwise pipeline will fail.
+
 REFGENEPATH=~/RefGenome/dm3				# Point directly to the refgeneome file you want to use
-CTRLPATH=/nas02/home/j/k/jkumar12/McKayLab/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed # Point directly to negative control genomic DNA input
+CTRLPATH=ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed # Point directly to negative control genomic DNA input
 
 QUEUE=day						# BSUB Queue
 stdOUT=$NETSCR/OutputFiles/				# standard output directory, end path with '/'
@@ -20,9 +23,29 @@ PEAK=$3
 
 # This series of if statements checks that the control .bed file defined by $CTRLPATH exists 
 # and creates standard out/error directories if they don't already exist
+# Also checks wheter stdOUT, stdERR, and NETSCR end with '/', exits with errorcode 1 if so
 
 if [[ ! -f $CTRLPATH ]]; then
 	echo "Error: "$CTRLPATH" does not exist"
+	exit 1
+fi
+
+stdOUT_tester=$(echo $stdOUT | rev)
+stdERR_tester=$(echo $stdERR | rev)
+NETSCR_tester=$(echo $NETSCR | rev)
+
+if [[ ${stdOUT_tester:0:1} != "/" ]]; then
+	echo "Error: "$stdOUT" must end in /"
+	exit 1
+fi
+
+if [[ ${stdERR_tester:0:1} != "/" ]]; then
+	echo "Error: "$stdERR" must end in /"
+	exit 1
+fi
+
+if [[ ${NETSCR_tester:0:1} != "/" ]]; then
+	echo "Error: "$NETSCR_tester" must end in /"
 	exit 1
 fi
 
@@ -54,18 +77,11 @@ echo "
 # Create a directory in your scratch directory to store all data files 
 # Then move fastq file to that directory
 
-################################################################
-# 				OLD:
-# mkdir /netscr/jkumar12/${STRAIN}
-# mv /netscr/jkumar12/${STRAIN}.fastq /netscr/jkumar12/${STRAIN}
-# cd /netscr/jkumar12/${STRAIN}
-################################################################
-
 mkdir ${NETSCR}${STRAIN}
 mv ${NETSCR}${STRAIN}.fastq ${NETSCR}${STRAIN}
 cd ${NETSCR}${STRAIN}
-# Assign variable for index to reference genome
 
+# Assign variable for index to reference genome
 REFGENOME=${REFGENEPATH}
 
 # Execute commands

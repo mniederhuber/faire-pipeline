@@ -24,26 +24,22 @@ Before ever running this script, some setup is needed.
 
 1. Create a folder in your home directory called RefGenome
 and store the dm3 reference genome and index files in it. For example, mine
-are in this path: /nas02/home/j/k/jkumar12/McKayLab/RefGenome
+are in this path: /nas02/home/j/k/jkumar12/McKayLab/RefGenome (you can use bash expansion like ~/RefGenome/)
 
 2. Create a folder called ControlGenomicDNA in your home directory and store
 the file ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed in it.
-For example, mine is in this path:
-/nas02/home/j/k/jkumar12/McKayLab/ControlGenomicDNA
+For example, mine is in this path: /nas02/home/j/k/jkumar12/McKayLab/ControlGenomicDNA
+	* 07.21.2016 - SLN * This is no longer necessary. The ControlGenomicDNA directory is contained within this repository.
 
-3. Create folders in your scratch directory for error files and output files.
-I have called them ErrorFiles and OutputFiles. (/netscr/jkumar12/ErrorFiles and
-/netscr/jkumar12/OutputFiles). Error files and output files are very useful in
-helping to debug if something goes wrong.
+3. Edit executeFAIRESeqReadsAndCallMACSPeaks.sh:
+	* Under the Set parameters field, configure the variables in the comment block 
+	* Do not reconfigure the USR or NETSCR variables. They will autodetect your username and location of netscr.
+	* Point REFGENEPATH to the reference genome file from #1
+	* CTRLPATH should point to the ControlGenomicDNA folder downloaded with this repository, unless you want to use a different one
+	* QUEUE will change which queue to submit to on Killdevil. Day should be fine for our usage.
+	* stdOUT and stdERR point to the directories where the standard output and standard error will be stored (your netscr by default)
+		* Error files and standard output files are very useful in helping to debug if something goes wrong.
 
-4. Go through the bash script and change jkumar12 to your onyen. Remember in
-the home directory, you also need to modify j/k/ to the first two letters of
-your own onyen.
-	* 07.19.2016 - SLN * I've edited the script to allow skipping this
-	step. Simply change the parameters at the top to alter usernames,
-	refgenome location, etc. The script will now default to using the username of
-	the current user. Keep in mind, you can use bash expansion variables
-	like '~' to reference your home directory
 
 5. Store the bash script in your home directory. Nothing in your home directory
 gets deleted unlike your scratch directory but it does have limited space.
