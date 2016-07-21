@@ -110,7 +110,7 @@ if [ "${PEAK}" = "CallPeaks" ]; then
 
 echo "
 # Change directory
-cd $NETSCR${STRAIN}
+cd ${NETSCR}${STRAIN}
 
 #Set variable for control
 CONTROL=${CTRLPATH}
