@@ -5,25 +5,45 @@
 
 USR=$USER						# Don't change this unless you have a good reason to
 
-NETSCR=/netscr/$USR/					# Output Directory &
-							# Location of input fastq. Be sure to end path with '/' otherwise pipeline will fail.
+NETSCR=/netscr/$USR/					# Location of input fastq. Be sure to end path with '/' otherwise pipeline will fail.
 
+#NETSCR=$(pwd)/						# Uncomment to use working directory as input & output dir
+							
 REFGENEPATH=~/RefGenome/dm3				# Point directly to the refgeneome file you want to use
-CTRLPATH=ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed # Point directly to negative control genomic DNA input
+CTRLPATH=~/faire-pipeline/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed # Point directly to negative control genomic DNA input
 
 QUEUE=day						# BSUB Queue
 stdOUT=$NETSCR/OutputFiles/				# standard output directory, end path with '/'
 stdERR=$NETSCR/ErrorFiles/				# standard error directory, end path with '/'
 
 ##############################
+# Module Versions:
 
+bowtie2Ver=/2.2.8
+samtoolsVer=/1.3.1
+bedtoolsVer=/2.25.0
+picardVer=/2.2.4
+deeptoolsVer=/2.2.4
+macsVer=/2015-06-03
+
+##############################
+
+# Parses complete path to picard from version number
+picardNum=$(echo $picardVer | cut -f2 -d\ )
+picardPath=/nas02/apps/picard-$picardNum/picard-tools-$picardNum/picard.jar
+
+# Parse commandline flags
 STRAIN=$1
 ALIGN=$2
 PEAK=$3
 
+# Purge all currently loaded modules, load required modules for pipeline:
+module bash purge
+module bash load bowtie2$bowtie2Ver samtools$samtoolsVer bedtools$bedtoolsVer picard$picardVer deeptools$deeptoolsVer macs$macsVer
+
 # This series of if statements checks that the control .bed file defined by $CTRLPATH exists 
 # and creates standard out/error directories if they don't already exist
-# Also checks wheter stdOUT, stdERR, and NETSCR end with '/', exits with errorcode 1 if so
+# Also checks whether stdOUT, stdERR, and NETSCR end with '/', exits with errorcode 1 if so
 
 if [[ ! -f $CTRLPATH ]]; then
 	echo "Error: "$CTRLPATH" does not exist"
@@ -99,7 +119,7 @@ samtools view -@ 4 -bq 5 ${STRAIN}.bam > ${STRAIN}_q5.bam
 samtools sort -@ 4 -o ${STRAIN}_q5_sorted.bam ${STRAIN}_q5.bam
  
 # Mark the reads that are PCR Duplicates
-java -Xmx4g -jar /nas02/apps/picard-2.2.4/picard-tools-2.2.4/picard.jar MarkDuplicates INPUT=${STRAIN}_q5_sorted.bam OUTPUT=${STRAIN}_q5_sorted_dupsMarked.bam METRICS_FILE= PCR_duplicates REMOVE_DUPLICATES= false ASSUME_SORTED= true
+java -Xmx4g -jar ${picardPath} MarkDuplicates INPUT=${STRAIN}_q5_sorted.bam OUTPUT=${STRAIN}_q5_sorted_dupsMarked.bam METRICS_FILE= PCR_duplicates REMOVE_DUPLICATES= false ASSUME_SORTED= true
 
 # Remove the reads that are marked as pcr duplicates from the bam file using the bit flag for pcr dups
 samtools view -@ 4 -bF 0x400 ${STRAIN}_q5_sorted_dupsMarked.bam > ${STRAIN}_q5_sorted_dupsRemoved.bam
