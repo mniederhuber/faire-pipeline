@@ -101,13 +101,10 @@ mkdir ${NETSCR}${STRAIN}
 mv ${NETSCR}${STRAIN}.fastq ${NETSCR}${STRAIN}
 cd ${NETSCR}${STRAIN}
 
-# Assign variable for index to reference genome
-REFGENOME=${REFGENEPATH}
-
 # Execute commands
 
 # Run bowtie2 to align fastq files to the reference genome
-bowtie2 -x \${REFGENOME} -p 8 -U ${STRAIN}.fastq -S ${STRAIN}.sam 
+bowtie2 -x ${REFGENEPATH} -p 8 -U ${STRAIN}.fastq -S ${STRAIN}.sam 
 
 # Convert sam file to a bam file
 samtools view -@ 4 -b ${STRAIN}.sam > ${STRAIN}.bam
