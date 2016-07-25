@@ -29,7 +29,7 @@ macsVer=/2015-06-03
 ##############################
 
 # Parses complete path to picard from version number
-picardNum=$(echo $picardVer | cut -f2 -d\ )
+picardNum=$(echo $picardVer | cut -f2 -d/ )
 picardPath=/nas02/apps/picard-$picardNum/picard-tools-$picardNum/picard.jar
 
 # Parse commandline flags
