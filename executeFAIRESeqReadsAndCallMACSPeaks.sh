@@ -140,9 +140,11 @@ bamCoverage -b ${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam --numberOfProcessors 
 for BAM in $(ls */*bam | cut -d. -f1); do
 	PREFIX=$(echo ${BAM} | cut -d/ -f1)
 	echo "${BAM}: " >> ./Flagstats/${PREFIX}_flagstats.txt
-	samtools flagstat ${BAM}.bam | grep -v '^0 + 0' >> ./Flagstats/${PREFIX}_flagstats.txt;
-	echo >> ./Flagstats/${PREFIX}_flagstats.txt
+	samtools flagstat ${BAM}.bam | grep -v '^0 + 0' >> ../Flagstats/${PREFIX}_flagstats.txt;
+	echo >> ../Flagstats/${PREFIX}_flagstats.txt
 done
+
+cp Flagstats
 
 ">>processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.bsub
 fi
