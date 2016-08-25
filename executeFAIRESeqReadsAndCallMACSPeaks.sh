@@ -144,8 +144,6 @@ for BAM in $(ls */*bam | cut -d. -f1); do
 	echo >> ../Flagstats/${PREFIX}_flagstats.txt
 done
 
-cp Flagstats
-
 ">>processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.bsub
 fi
 
