@@ -136,6 +136,14 @@ bedtools bamtobed -i ${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam > ${STRAIN}_q5_
 # Bam Coverage to output bigwig file normalized to genomic coverage
 bamCoverage -b ${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam --numberOfProcessors max --normalizeTo1x 121400000 --outFileFormat bigwig --binSize 10 -e 125 -o ${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw
 
+# Create collected flagstats files
+for BAM in $(ls */*bam | cut -d. -f1); do
+	PREFIX=$(echo ${BAM} | cut -d/ -f1)
+	echo "${BAM}: " >> ./Flagstats/${PREFIX}_flagstats.txt
+	samtools flagstat ${BAM}.bam | grep -v '^0 + 0' >> ./Flagstats/${PREFIX}_flagstats.txt;
+	echo >> ./Flagstats/${PREFIX}_flagstats.txt
+done
+
 ">>processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.bsub
 fi
 
