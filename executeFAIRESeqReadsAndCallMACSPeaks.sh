@@ -137,7 +137,7 @@ bedtools bamtobed -i ${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam > ${STRAIN}_q5_
 bamCoverage -b ${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam --numberOfProcessors max --normalizeTo1x 121400000 --outFileFormat bigwig --binSize 10 -e 125 -o ${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw
 
 # Create collected flagstats files
-for BAM in $(ls *.bam | cut -d. -f1); do
+for BAM in \$(ls *.bam | cut -d. -f1); do
 	echo "${BAM}: " >> ./Flagstats/${PREFIX}_flagstats.txt
 	samtools flagstat ${BAM}.bam | grep -v '^0 + 0' >> ../Flagstats/${PREFIX}_flagstats.txt;
 	echo >> ../Flagstats/${PREFIX}_flagstats.txt
