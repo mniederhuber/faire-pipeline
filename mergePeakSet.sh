@@ -1,8 +1,10 @@
 # Merge Peak Set by CUyehara - v2.0
     # Merges peaksets for some set of files based on some fraction of overlap
+    # Merges ALL .bed files in folder (cannot input specific files (yet))
     # Assumes either/or overlap - i.e. if either peak A or peak B overlap by some fraction the peak is merged
 
-# Usage: <A.bed> <B.bed> <fractionOverlap> <newFilename>
+# To Run: Copy script into folder with bed files to be merged. 
+# Usage: <fractionOverlap> <newFilename>
 # Example: bash mergePeakSet.sh A.bed B.bed 0.7 a_b_union_pt7
 
 module bash purge
