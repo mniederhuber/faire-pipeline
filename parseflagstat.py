@@ -17,6 +17,14 @@ def getFileList():
 			statfiles.append([f, prefix])
 	return statfiles
 
+def makeMatrix(statfiles):
+	matrix = [['Name', 'Total_Reads', 'Mapped', 'Percent_Mapped', 'MapQ_Cutoff', 'Reads_MapQ>Cutoff',
+		'Percent>Cutoff', 'Duplicates', 'Percent_Duplicates','After_dup_removal', 'Mapped_to_YUHet', 'Final_Read_Count']]
+	for f in statfiles:
+		entry = getEntry(f)
+		matrix.append([entry[col] for col in matrix[0]])
+	return matrix
+
 def getEntry(f):
 	with open(f[0], 'r') as i:
 		prefix = f[1]
@@ -43,19 +51,11 @@ def getEntry(f):
 			else:
 				continue
 	entry['Percent_Mapped'] = float(entry['Mapped'])/float(entry['Total_Reads']) * 100
-	entry['Percent>Cutoff'] = float(entry['Reads_MapQ>Cutoff'])/float(entry['Total_Reads']) * 100
+	entry['Percent>Cutoff'] = float(entry['Reads_MapQ>Cutoff'])/float(entry['Mapped']) * 100
 	entry['After_dup_removal'] = int(entry['Reads_MapQ>Cutoff']) - int(entry['Duplicates'])
-	entry['Percent_Duplicates'] = float(entry['Duplicates'])/float(entry['Total_Reads']) * 100
+	entry['Percent_Duplicates'] = float(entry['Duplicates'])/float(entry['Mapped']) * 100
 	entry['Mapped_to_YUHet'] = int(entry['After_dup_removal']) - int(entry['Final_Read_Count'])
 	return entry
-
-def makeMatrix(statfiles):
-	matrix = [['Name', 'Total_Reads', 'Mapped', 'Percent_Mapped', 'MapQ_Cutoff', 'Reads_MapQ>Cutoff',
-		'Percent>Cutoff', 'Duplicates', 'Percent_Duplicates','After_dup_removal', 'Mapped_to_YUHet', 'Final_Read_Count']]
-	for f in statfiles:
-		entry = getEntry(f)
-		matrix.append([entry[col] for col in matrix[0]])
-	return matrix
 		
 def main():
 	statfiles = getFileList()
