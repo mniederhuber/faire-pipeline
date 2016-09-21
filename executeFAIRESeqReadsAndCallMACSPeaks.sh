@@ -5,12 +5,12 @@
 
 USR=$USER						# Don't change this unless you have a good reason to
 
-NETSCR=/netscr/$USR/					# Location of input fastq. Be sure to end path with '/' otherwise pipeline will fail.
+#NETSCR=/netscr/$USR/					# Location of input fastq. Be sure to end path with '/' otherwise pipeline will fail.
 
-#NETSCR=$(pwd)/						# Uncomment to use working directory as input & output dir
+NETSCR=$(pwd)/						# Uncomment to use working directory as input & output dir
 							
 REFGENEPATH=~/RefGenome/dm3				# Point directly to the refgeneome file you want to use
-CTRLPATH=~/faire-pipeline/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed # Point directly to negative control genomic DNA input
+CTRLPATH=$(pwd)/faire-pipeline/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed # Point directly to negative control genomic DNA input
 
 QUEUE=day						# BSUB Queue
 stdOUT=$NETSCR/OutputFiles/				# standard output directory, end path with '/'
@@ -42,7 +42,7 @@ module bash purge
 module bash load bowtie2$bowtie2Ver samtools$samtoolsVer bedtools$bedtoolsVer picard$picardVer deeptools$deeptoolsVer macs$macsVer
 
 # This series of if statements checks that the control .bed file defined by $CTRLPATH exists 
-# and creates standard out/error directories if they don't already exist
+# and creates standard out/error and Flagstats directories if they don't already exist
 # Also checks whether stdOUT, stdERR, and NETSCR end with '/', exits with errorcode 1 if so
 
 if [[ ! -f $CTRLPATH ]]; then
@@ -77,6 +77,10 @@ if [[ ! -d $stdERR ]]; then
 	mkdir $stdERR
 fi
 
+if [[ ! -d ./Flagstats ]]; then
+	mkdir ./Flagstats
+fi
+
 echo "
 
 #!/bin/bash
@@ -104,7 +108,7 @@ cd ${NETSCR}${STRAIN}
 # Execute commands
 
 # Run bowtie2 to align fastq files to the reference genome
-bowtie2 -x ${REFGENEPATH} -p 8 -U ${STRAIN}.fastq -S ${STRAIN}.sam 
+bowtie2 --seed 1337 -x ${REFGENEPATH} -p 8 -U ${STRAIN}.fastq -S ${STRAIN}.sam 
 
 # Convert sam file to a bam file
 samtools view -@ 4 -b ${STRAIN}.sam > ${STRAIN}.bam
