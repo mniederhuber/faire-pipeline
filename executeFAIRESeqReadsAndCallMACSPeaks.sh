@@ -108,7 +108,7 @@ cd ${NETSCR}${STRAIN}
 # Execute commands
 
 # Run bowtie2 to align fastq files to the reference genome
-bowtie2 --seed 1337 -x ${REFGENEPATH} -p 8 -U ${STRAIN}.fastq -S ${STRAIN}.sam 
+bowtie2 --seed 123 -x ${REFGENEPATH} -p 8 -U ${STRAIN}.fastq -S ${STRAIN}.sam 
 
 # Convert sam file to a bam file
 samtools view -@ 4 -b ${STRAIN}.sam > ${STRAIN}.bam
