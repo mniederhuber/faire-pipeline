@@ -142,8 +142,8 @@ bamCoverage -b ${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam --numberOfProcessors 
 
 # Create collected flagstats files
 for BAM in \$(ls *.bam | cut -d. -f1); do
-	echo "${BAM}: " >> ../Flagstats/${STRAIN}_flagstats.txt
-	samtools flagstat ${BAM}.bam | grep -v '^0 + 0' >> ../Flagstats/${STRAIN}_flagstats.txt;
+	echo "\${BAM}: " >> ../Flagstats/${STRAIN}_flagstats.txt
+	samtools flagstat \${BAM}.bam | grep -v '^0 + 0' >> ../Flagstats/${STRAIN}_flagstats.txt;
 	echo >> ../Flagstats/${STRAIN}_flagstats.txt
 done
 
