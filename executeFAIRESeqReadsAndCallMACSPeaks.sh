@@ -46,7 +46,7 @@ module bash load bowtie2$bowtie2Ver samtools$samtoolsVer bedtools$bedtoolsVer pi
 # Also checks whether stdOUT, stdERR, and NETSCR end with '/', exits with errorcode 1 if so
 
 if [[ ! -f $CTRLPATH ]]; then
-	echo "Error: "$CTRLPATH" does not exist"
+	echo "Error: "$CTRLPATH" does not exist. Is \$CTRLPATH set correctly?"
 	exit 1
 fi
 
