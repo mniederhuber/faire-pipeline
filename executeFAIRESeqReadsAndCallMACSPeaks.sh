@@ -33,7 +33,7 @@ picardNum=$(echo $picardVer | cut -f2 -d/ )
 picardPath=/nas02/apps/picard-$picardNum/picard-tools-$picardNum/picard.jar
 
 # Parse commandline flags
-STRAIN=$1
+STRAIN=${1%%.*}
 ALIGN=$2
 PEAK=$3
 
