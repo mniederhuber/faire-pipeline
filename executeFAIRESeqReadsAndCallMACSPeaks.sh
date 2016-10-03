@@ -10,7 +10,7 @@ USR=$USER						# Don't change this unless you have a good reason to
 NETSCR=$(pwd)/						# Uncomment to use working directory as input & output dir
 							
 REFGENEPATH=~/RefGenome/dm3				# Point directly to the refgeneome file you want to use
-CTRLPATH=$(pwd)/faire-pipeline/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed # Point directly to negative control genomic DNA input
+CTRLPATH=$(pwd)/src/faire-pipeline/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed # Point directly to negative control genomic DNA input
 
 QUEUE=day						# BSUB Queue
 stdOUT=$NETSCR/OutputFiles/				# standard output directory, end path with '/'
@@ -81,6 +81,14 @@ if [[ ! -d ./Flagstats ]]; then
 	mkdir ./Flagstats
 fi
 
+if [[ ! -d ./Bam ]]; then
+	mkdir ./Bam/
+	mkdir ./Sam/
+	mkdir ./Peakfiles/
+	mkdir ./bigwigs/
+	mkdir ./PCRdups/
+fi
+
 echo "
 
 #!/bin/bash
@@ -101,51 +109,52 @@ echo "
 # Create a directory in your scratch directory to store all data files 
 # Then move fastq file to that directory
 
-mkdir ${NETSCR}${STRAIN}
-mv ${NETSCR}${STRAIN}.fastq.gz ${NETSCR}${STRAIN}
-cd ${NETSCR}${STRAIN}
+#mkdir ${NETSCR}${STRAIN}
+#mv ${NETSCR}${STRAIN}.fastq.gz ${NETSCR}${STRAIN}
+#cd ${NETSCR}${STRAIN}
+
 
 # Execute commands
 
 # Run bowtie2 to align fastq files to the reference genome
-bowtie2 --seed 123 -x ${REFGENEPATH} -p 8 -U ${STRAIN}.fastq.gz -S ${STRAIN}.sam 
+bowtie2 --seed 123 -x ${REFGENEPATH} -p 8 -U ${STRAIN}.fastq.gz -S ./Sam/${STRAIN}.sam 
 
 # Convert sam file to a bam file
-samtools view -@ 4 -b ${STRAIN}.sam > ${STRAIN}.bam
+samtools view -@ 4 -b ./Sam/${STRAIN}.sam > ./Bam/${STRAIN}.bam
 
 # Only have alignments that have a mapq score greater than 5
-samtools view -@ 4 -bq 5 ${STRAIN}.bam > ${STRAIN}_q5.bam
+samtools view -@ 4 -bq 5 ./Bam/${STRAIN}.bam > ./Bam/${STRAIN}_q5.bam
 
 # Sort the bam file with mapq greater than 5
-samtools sort -@ 4 -o ${STRAIN}_q5_sorted.bam ${STRAIN}_q5.bam
+samtools sort -@ 4 -o ./Bam/${STRAIN}_q5_sorted.bam ./Bam/${STRAIN}_q5.bam
  
 # Mark the reads that are PCR Duplicates
-java -Xmx4g -jar ${picardPath} MarkDuplicates INPUT=${STRAIN}_q5_sorted.bam OUTPUT=${STRAIN}_q5_sorted_dupsMarked.bam METRICS_FILE= PCR_duplicates REMOVE_DUPLICATES= false ASSUME_SORTED= true
+java -Xmx4g -jar ${picardPath} MarkDuplicates INPUT=./Bam/${STRAIN}_q5_sorted.bam OUTPUT=./Bam/${STRAIN}_q5_sorted_dupsMarked.bam METRICS_FILE= ./PCRdups/${STRAIN}_PCR_duplicates REMOVE_DUPLICATES= false ASSUME_SORTED= true
 
 # Remove the reads that are marked as pcr duplicates from the bam file using the bit flag for pcr dups
-samtools view -@ 4 -bF 0x400 ${STRAIN}_q5_sorted_dupsMarked.bam > ${STRAIN}_q5_sorted_dupsRemoved.bam
+samtools view -@ 4 -bF 0x400 ./Bam/${STRAIN}_q5_sorted_dupsMarked.bam > ./Bam/${STRAIN}_q5_sorted_dupsRemoved.bam
 
 # Create index for bam file. This is needed for the next step to remove Chrm Y, U and Het
-samtools index ${STRAIN}_q5_sorted_dupsRemoved.bam
+samtools index ./Bam/${STRAIN}_q5_sorted_dupsRemoved.bam
 
 # Extract only reads from Chrm 2R,2L,3R,3L,4 and X
-samtools view -@ 4 -b ${STRAIN}_q5_sorted_dupsRemoved.bam chr2L chr2R chr3L chr3R chr4 chrX > ${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam
+samtools view -@ 4 -b ./Bam/${STRAIN}_q5_sorted_dupsRemoved.bam chr2L chr2R chr3L chr3R chr4 chrX > ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam
 
 # Create new index for filtered bam file. Needed to convert bam file to bed file
-samtools index ${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam
+samtools index ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam
 
 # Convert the bam file into a bed file
-bedtools bamtobed -i ${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam > ${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bed
+bedtools bamtobed -i ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam > ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bed
 
 # Bam Coverage to output bigwig file normalized to genomic coverage
-bamCoverage -b ${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam --numberOfProcessors max --normalizeTo1x 121400000 --outFileFormat bigwig --binSize 10 -e 125 -o ${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw
+bamCoverage -b ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam --numberOfProcessors max --normalizeTo1x 121400000 --outFileFormat bigwig --binSize 10 -e 125 -o ./bigwigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw
 
 # Create collected flagstats files
-for BAM in \$(ls *.bam | cut -d. -f1); do
-	echo "\${BAM}: " >> ../Flagstats/${STRAIN}_flagstats.txt
-	samtools flagstat \${BAM}.bam | grep -v '^0 + 0' >> ../Flagstats/${STRAIN}_flagstats.txt;
-	echo >> ../Flagstats/${STRAIN}_flagstats.txt
-done
+#for BAM in \$(ls *.bam | cut -d. -f1); do
+#	echo "\${BAM}: " >> ../Flagstats/${STRAIN}_flagstats.txt
+#	samtools flagstat \${BAM}.bam | grep -v '^0 + 0' >> ../Flagstats/${STRAIN}_flagstats.txt;
+#	echo >> ../Flagstats/${STRAIN}_flagstats.txt
+#done
 
 ">>processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.bsub
 fi
@@ -154,16 +163,16 @@ if [ "${PEAK}" = "CallPeaks" ]; then
 
 echo "
 # Change directory
-cd ${NETSCR}${STRAIN}
+#cd ${NETSCR}${STRAIN}
 
 #Set variable for control
 CONTROL=${CTRLPATH}
 
 # Call Peaks using MACS
-macs2 callpeak -t ${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bed -c \${CONTROL} -n ${STRAIN}_q5_sorted_dupsRemoved_noYUHet -g dm --nomodel --extsize 125 --seed 123
+macs2 callpeak -t ./Bed/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bed -c \${CONTROL} -n ./Peakfiles/${STRAIN}_q5_sorted_dupsRemoved_noYUHet -g dm --nomodel --extsize 125 --seed 123
 
 #First sort peak file by q-value in decreasing order, then cut out chromosome, start and end coordinates, peak name and q-value and take the top 5000 peaks based on q-value
-sort -n -r -k9 ${STRAIN}_q5_sorted_dupsRemoved_noYUHet_peaks.narrowPeak | cut -f1,2,3,4,9 | head -5000 > ${STRAIN}_q5_sorted_dupsRemoved_noYUHet_Top5000Peaks.bed
+#sort -n -r -k9 ${STRAIN}_q5_sorted_dupsRemoved_noYUHet_peaks.narrowPeak | cut -f1,2,3,4,9 | head -5000 > ${STRAIN}_q5_sorted_dupsRemoved_noYUHet_Top5000Peaks.bed
 
 ">>processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.bsub
 fi
