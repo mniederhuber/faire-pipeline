@@ -169,7 +169,7 @@ echo "
 CONTROL=${CTRLPATH}
 
 # Call Peaks using MACS
-macs2 callpeak -t ./Bed/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bed -c \${CONTROL} -n ./Peakfiles/${STRAIN}_q5_sorted_dupsRemoved_noYUHet -g dm --nomodel --extsize 125 --seed 123
+macs2 callpeak -t ./Bed/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bed -c \${CONTROL} -n ${STRAIN}_q5_sorted_dupsRemoved_noYUHet -g dm --nomodel --extsize 125 --seed 123 --outdir ./Peakfiles/
 
 #First sort peak file by q-value in decreasing order, then cut out chromosome, start and end coordinates, peak name and q-value and take the top 5000 peaks based on q-value
 #sort -n -r -k9 ${STRAIN}_q5_sorted_dupsRemoved_noYUHet_peaks.narrowPeak | cut -f1,2,3,4,9 | head -5000 > ${STRAIN}_q5_sorted_dupsRemoved_noYUHet_Top5000Peaks.bed
