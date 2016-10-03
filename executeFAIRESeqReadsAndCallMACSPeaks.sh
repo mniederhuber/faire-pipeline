@@ -120,7 +120,7 @@ echo "
 bowtie2 --seed 123 -x ${REFGENEPATH} -p 8 -U ${STRAIN}.fastq.gz -S ./Sam/${STRAIN}.sam 
 
 # Convert sam file to a bam file
-samtools view -@ 4 -b ./Sam/${STRAIN}.sam > ./Bam/${STRAIN}.bam
+samtools view -@ 4 -b ./Sam/${STRAIN}.sam > ./Bam/${STRAIN}.bam && rm ./Sam/${STRAIN}.sam
 
 # Only have alignments that have a mapq score greater than 5
 samtools view -@ 4 -bq 5 ./Bam/${STRAIN}.bam > ./Bam/${STRAIN}_q5.bam
@@ -150,11 +150,11 @@ bedtools bamtobed -i ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam > ./Bam/$
 bamCoverage -b ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam --numberOfProcessors max --normalizeTo1x 121400000 --outFileFormat bigwig --binSize 10 -e 125 -o ./bigwigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw
 
 # Create collected flagstats files
-#for BAM in \$(ls *.bam | cut -d. -f1); do
-#	echo "\${BAM}: " >> ../Flagstats/${STRAIN}_flagstats.txt
-#	samtools flagstat \${BAM}.bam | grep -v '^0 + 0' >> ../Flagstats/${STRAIN}_flagstats.txt;
-#	echo >> ../Flagstats/${STRAIN}_flagstats.txt
-#done
+for BAM in \$(ls ./Bam/${STRAIN}*.bam | cut -d. -f1); do
+	echo "\${BAM}: " >> ../Flagstats/${STRAIN}_flagstats.txt
+	samtools flagstat \${BAM}.bam | grep -v '^0 + 0' >> ../Flagstats/${STRAIN}_flagstats.txt;
+	echo >> ../Flagstats/${STRAIN}_flagstats.txt
+done
 
 ">>processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.bsub
 fi
