@@ -107,7 +107,7 @@ echo "
 
 if [ "${ALIGN}" = "Align" ]; then 
 
-###echo "
+echo "
 
 #BSUB -n 8
 #BSUB -R \"span[hosts=1]\"
@@ -165,7 +165,7 @@ rm ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPG
 
 # Write collected ZNorm Statfile
 zStatFiles=(ls ./Stats/*zNormStats.csv)
-cat zStatFiles[1] > collected_zNorm_statfiles.csv
+cat ${zStatFiles[1]} > collected_zNorm_statfiles.csv
 for ((i=2; i<${#zStatFiles[@]}; i++)); do
     sed -n '2,$p' < ${zStatFiles[$i]} >> collected_zNorm_statfiles.csv
 done
