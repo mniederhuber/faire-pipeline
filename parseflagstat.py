@@ -1,3 +1,10 @@
+# parseflagstat.py by cuyehara (cuyehara@email.unc.edu)
+# Version 2.0
+
+# NOTE - 10/4/16 - need to fix the directory structure to work w/ faire-pipeline
+# should be able to take any directory as an argument and use this instead of the directory it's located in
+# consider taking raw stat files to make it easier to work with
+
 import os
 import re
 import sys
@@ -7,14 +14,15 @@ namingDict = {'qual_score':'.*q([0-9]+):',
 			   'cleaned':'.*no[A-Za-z]+:',
 			   'duplicates':'.*dupsMarked:'}
 
-def getFileList():
+def getFileList(baseDir):
 	pre = re.compile('(.+)_flagstats.txt')
-	files = os.listdir()
+	files = os.listdir(baseDir)
 	statfiles = []
 	for f in files:
 		if pre.match(f):
 			prefix = pre.match(f).group(1)
-			statfiles.append([f, prefix])
+			filePath = baseDir + f
+			statfiles.append([filePath, prefix])
 	return statfiles
 
 def makeMatrix(statfiles):
@@ -58,9 +66,15 @@ def getEntry(f):
 	return entry
 		
 def main():
-	statfiles = getFileList()
+	if len(sys.argv) == 2:
+		baseDir = sys.argv[1]
+	else:
+		baseDir = os.getcwd()
+	if baseDir[-1] != '/':
+		baseDir += '/'
+	statfiles = getFileList(baseDir)
 	matrix = makeMatrix(statfiles)
-	with open('collected_statfiles.csv', 'w') as o:
+	with open(baseDir + "collected_flag_statfiles.csv", 'w') as o:
 		for m in matrix:
 			line = ','.join([str(x) for x in m])
 			o.write(line + '\n')

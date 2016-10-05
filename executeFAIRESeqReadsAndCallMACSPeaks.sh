@@ -11,6 +11,7 @@ NETSCR=$(pwd)/						# Uncomment to use working directory as input & output dir
 							
 REFGENEPATH=~/RefGenome/dm3				# Point directly to the refgeneome file you want to use
 CTRLPATH=$(pwd)/src/faire-pipeline/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed # Point directly to negative control genomic DNA input
+PIPEPATH=$(pwd)/src/faire-pipeline/
 
 QUEUE=day						# BSUB Queue
 stdOUT=$NETSCR/OutputFiles/				# standard output directory, end path with '/'
@@ -25,6 +26,7 @@ bedtoolsVer=/2.25.0
 picardVer=/2.2.4
 deeptoolsVer=/2.2.4
 macsVer=/2015-06-03
+ucscVer=/320
 
 ##############################
 
@@ -39,10 +41,10 @@ PEAK=$3
 
 # Purge all currently loaded modules, load required modules for pipeline:
 module bash purge
-module bash load bowtie2$bowtie2Ver samtools$samtoolsVer bedtools$bedtoolsVer picard$picardVer deeptools$deeptoolsVer macs$macsVer
+module bash load bowtie2$bowtie2Ver samtools$samtoolsVer bedtools$bedtoolsVer picard$picardVer deeptools$deeptoolsVer macs$macsVer ucsctools$ucscVer
 
 # This series of if statements checks that the control .bed file defined by $CTRLPATH exists 
-# and creates standard out/error and Flagstats directories if they don't already exist
+# and creates standard out/error and Stats directories if they don't already exist
 # Also checks whether stdOUT, stdERR, and NETSCR end with '/', exits with errorcode 1 if so
 
 if [[ ! -f $CTRLPATH ]]; then
@@ -50,22 +52,25 @@ if [[ ! -f $CTRLPATH ]]; then
 	exit 1
 fi
 
-stdOUT_tester=$(echo $stdOUT | rev)
-stdERR_tester=$(echo $stdERR | rev)
-NETSCR_tester=$(echo $NETSCR | rev)
+#stdOUT_tester=$(echo $stdOUT | rev)
+#stdERR_tester=$(echo $stdERR | rev)
+#NETSCR_tester=$(echo $NETSCR | rev)
 
-if [[ ${stdOUT_tester:0:1} != "/" ]]; then
+#if [[ ${stdOUT_tester:0:1} != "/" ]]; then
+if [[ ${stdOUT: -1} != "/" ]]; then
 	echo "Error: "$stdOUT" must end in /"
 	exit 1
 fi
 
-if [[ ${stdERR_tester:0:1} != "/" ]]; then
+#if [[ ${stdERR_tester:0:1} != "/" ]]; then
+if [[ ${stdERR: -1} != "/" ]]; then 
 	echo "Error: "$stdERR" must end in /"
 	exit 1
 fi
 
-if [[ ${NETSCR_tester:0:1} != "/" ]]; then
-	echo "Error: "$NETSCR_tester" must end in /"
+#if [[ ${NETSCR_tester:0:1} != "/" ]]; then
+if [[ ${NETSCR: -1} != "/" ]]
+	echo "Error: "$NETSCR" must end in /"
 	exit 1
 fi
 
@@ -77,16 +82,17 @@ if [[ ! -d $stdERR ]]; then
 	mkdir $stdERR
 fi
 
-if [[ ! -d ./Flagstats ]]; then
-	mkdir ./Flagstats
+if [[ ! -d ./Stats ]]; then
+	mkdir ./Stats
 fi
 
 if [[ ! -d ./Bam ]]; then
 	mkdir ./Bam/
 	mkdir ./Sam/
 	mkdir ./Peakfiles/
-	mkdir ./bigwigs/
+	mkdir ./Bigwigs/
 	mkdir ./PCRdups/
+    mkdir ./BigWigs/ZNormalized/
 fi
 
 echo "
@@ -101,7 +107,8 @@ echo "
 
 if [ "${ALIGN}" = "Align" ]; then 
 
-echo "
+###echo "
+
 #BSUB -n 8
 #BSUB -R \"span[hosts=1]\"
 
@@ -147,14 +154,31 @@ samtools index ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam
 bedtools bamtobed -i ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam > ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bed
 
 # Bam Coverage to output bigwig file normalized to genomic coverage
-bamCoverage -b ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam --numberOfProcessors max --normalizeTo1x 121400000 --outFileFormat bigwig --binSize 10 -e 125 -o ./bigwigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw
+bamCoverage -b ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam --numberOfProcessors max --normalizeTo1x 121400000 --outFileFormat bedgraph --binSize 10 -e 125 -o ./BigWigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.wig
+
+# Z-Normalize Bigwig Files and write stats to a stats file
+python2.7 ./${PIPEPATH}/zNormV3.py ./BigWigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.wig ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.wig > ./Stats/${STRAIN}_zNormStats.csv
+
+# Convert z-normalized wig file to bigwig and remove wig file
+wigToBigWig ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.wig ${PIPEPATH}dm3.chrom.sizes ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw
+rm ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.wig
+
+# Write collected ZNorm Statfile
+zStatFiles=(ls ./Stats/*zNormStats.csv)
+cat zStatFiles[1] > collected_zNorm_statfiles.csv
+for ((i=2; i<${#zStatFiles[@]}; i++)); do
+    sed -n '2,$p' < ${zStatFiles[$i]} >> collected_zNorm_statfiles.csv
+done
 
 # Create collected flagstats files
 for BAM in \$(ls ./Bam/${STRAIN}*.bam | cut -d. -f1); do
-	echo "\${BAM}: " >> ../Flagstats/${STRAIN}_flagstats.txt
-	samtools flagstat \${BAM}.bam | grep -v '^0 + 0' >> ../Flagstats/${STRAIN}_flagstats.txt;
-	echo >> ../Flagstats/${STRAIN}_flagstats.txt
+	echo "\${BAM}: " >> ../Stats/${STRAIN}_flagstats.txt
+	samtools flagstat \${BAM}.bam | grep -v '^0 + 0' >> ../Stats/${STRAIN}_flagstats.txt;
+	echo >> ../Stats/${STRAIN}_flagstats.txt
 done
+
+# Parse FlagStats
+python2.7 ./${PIPEPATH}parseflagstats.py ./Stats/
 
 ">>processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.bsub
 fi
