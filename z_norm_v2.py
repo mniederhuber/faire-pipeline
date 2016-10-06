@@ -9,6 +9,7 @@ import numpy as np
 
 def mean_stdev(input_file):
 	norm_dict = {}
+	print ("{},{},{},{}".format("sampleName", "chr","mean","stDev"))
 	with open(input_file, 'r') as i:
 		i.readline()
 		line = i.readline()
@@ -29,7 +30,7 @@ def mean_stdev(input_file):
 			mean = values.mean()
 			stdev = values.std()
 			norm_dict[chrom] = [mean, stdev]
-			print ("{}\t{}\t{}\t{}".format(input_file, chrom, mean, stdev))
+			print ("{},{},{},{}".format(os.path.basename(input_file), chrom, mean, stdev))
 			#print (chrom, mean, stdev, line.strip().split('\t')[0])
 			chrom = line.strip().split('\t')[0]
 			values = []
@@ -41,7 +42,7 @@ def z_score(norm_dict, input_file, output_file):
 		with open(output_file, 'w') as o:
 			line = i.readline()
 			o.write(line)
-			print (line)
+			#print (line)
 			while True:
 				line = i.readline()
 				if not line:

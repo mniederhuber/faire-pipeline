@@ -36,6 +36,7 @@ def makeMatrix(statfiles):
 def getEntry(f):
 	with open(f[0], 'r') as i:
 		prefix = f[1]
+		print (prefix)
 		entry = {}
 		while True:
 			line = i.readline()
@@ -47,6 +48,7 @@ def getEntry(f):
 				entry['Name'] = line[0:-1]
 				entry['Total_Reads'] = i.readline().strip().split()[0]
 				entry['Mapped'] = i.readline().strip().split()[0]
+				print (entry['Mapped'])
 			elif re.match(namingDict['qual_score'], line):
 				mapq_cutoff = re.match(namingDict['qual_score'], line).group(1)
 				entry['MapQ_Cutoff'] = mapq_cutoff

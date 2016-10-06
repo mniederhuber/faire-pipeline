@@ -90,7 +90,7 @@ if [[ ! -d ./Bam ]]; then
 	mkdir ./Bam/
 	mkdir ./Sam/
 	mkdir ./Peakfiles/
-	mkdir ./Bigwigs/
+	mkdir ./BigWigs/
 	mkdir ./PCRdups/
     mkdir ./BigWigs/ZNormalized/
 fi
@@ -157,28 +157,28 @@ bedtools bamtobed -i ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam > ./Bam/$
 bamCoverage -b ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam --numberOfProcessors max --normalizeTo1x 121400000 --outFileFormat bedgraph --binSize 10 -e 125 -o ./BigWigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.wig
 
 # Z-Normalize Bigwig Files and write stats to a stats file
-python2.7 ./${PIPEPATH}/zNormV3.py ./BigWigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.wig ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.wig > ./Stats/${STRAIN}_zNormStats.csv
+python2.7 ${PIPEPATH}/z_norm_v2.py ./BigWigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.wig ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.wig > ./Stats/${STRAIN}_zNormStats.csv
 
 # Convert z-normalized wig file to bigwig and remove wig file
-wigToBigWig ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.wig ${PIPEPATH}dm3.chrom.sizes ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw
+wigToBigWig ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.wig ${PIPEPATH}/dm3.chrom.sizes ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw
 rm ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.wig
 
 # Write collected ZNorm Statfile
 zStatFiles=(ls ./Stats/*zNormStats.csv)
-cat ${zStatFiles[1]} > collected_zNorm_statfiles.csv
+cat ${zStatFiles[1]} > ./Stats/collected_zNorm_statfiles.csv
 for ((i=2; i<${#zStatFiles[@]}; i++)); do
-    sed -n '2,$p' < ${zStatFiles[$i]} >> collected_zNorm_statfiles.csv
+    sed -n '2,$p' < ${zStatFiles[$i]} >>./Stats/collected_zNorm_statfiles.csv
 done
 
 # Create collected flagstats files
 for BAM in \$(ls ./Bam/${STRAIN}*.bam | cut -d. -f1); do
-	echo "\${BAM}: " >> ../Stats/${STRAIN}_flagstats.txt
-	samtools flagstat \${BAM}.bam | grep -v '^0 + 0' >> ../Stats/${STRAIN}_flagstats.txt;
-	echo >> ../Stats/${STRAIN}_flagstats.txt
+	echo "\${BAM}: " >> ./Stats/${STRAIN}_flagstats.txt
+	samtools flagstat \${BAM}.bam | grep -v '^0 + 0' >> ./Stats/${STRAIN}_flagstats.txt;
+	echo >> ./Stats/${STRAIN}_flagstats.txt
 done
 
 # Parse FlagStats
-python2.7 ./${PIPEPATH}parseflagstats.py ./Stats/
+python2.7 ${PIPEPATH}/parseflagstat.py ./Stats/
 
 ">>processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.bsub
 fi
