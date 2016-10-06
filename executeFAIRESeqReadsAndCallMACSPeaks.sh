@@ -159,6 +159,10 @@ bamCoverage -b ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam --numberOfProce
 # Z-Normalize Bigwig Files and write stats to a stats file
 python2.7 ${PIPEPATH}/z_norm_v2.py ./BigWigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.wig ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.wig > ./Stats/${STRAIN}_zNormStats.csv
 
+# Convert non-zNormalized wig file to bigwig and remove wig file
+wigToBigWig ./BigWigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.wig ${PIPEPATH}/dm3.chrom.sizes ./BigWigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw
+rm ./BigWigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.wig
+
 # Convert z-normalized wig file to bigwig and remove wig file
 wigToBigWig ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.wig ${PIPEPATH}/dm3.chrom.sizes ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw
 rm ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.wig
