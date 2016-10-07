@@ -10,8 +10,8 @@ USR=$USER						# Don't change this unless you have a good reason to
 NETSCR=$(pwd)/						# Uncomment to use working directory as input & output dir
 							
 REFGENEPATH=~/RefGenome/dm3				# Point directly to the refgeneome file you want to use
-CTRLPATH=$(pwd)/src/faire-pipeline/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed # Point directly to negative control genomic DNA input
-PIPEPATH=$(pwd)/src/faire-pipeline/
+CTRLPATH=$(pwd)/faire-pipeline/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed # Point directly to negative control genomic DNA input
+PIPEPATH=$(pwd)/faire-pipeline/
 
 QUEUE=day						# BSUB Queue
 stdOUT=$NETSCR/OutputFiles/				# standard output directory, end path with '/'
@@ -69,7 +69,7 @@ if [[ ${stdERR: -1} != "/" ]]; then
 fi
 
 #if [[ ${NETSCR_tester:0:1} != "/" ]]; then
-if [[ ${NETSCR: -1} != "/" ]]
+if [[ ${NETSCR: -1} != "/" ]]; then
 	echo "Error: "$NETSCR" must end in /"
 	exit 1
 fi
@@ -169,15 +169,16 @@ rm ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPG
 
 # Write collected ZNorm Statfile
 zStatFiles=(ls ./Stats/*zNormStats.csv)
-cat ${zStatFiles[1]} > ./Stats/collected_zNorm_statfiles.csv
-for ((i=2; i<${#zStatFiles[@]}; i++)); do
-    sed -n '2,$p' < ${zStatFiles[$i]} >>./Stats/collected_zNorm_statfiles.csv
+cat \${zStatFiles[1]} > ./Stats/collected_zNorm_statfiles.csv
+for ((i=2; i<\${#zStatFiles[@]}; i++)); do
+    sed -n '2,$ p' < \${zStatFiles[\$i]} >>./Stats/collected_zNorm_statfiles.csv
 done
 
 # Create collected flagstats files
-for BAM in \$(ls ./Bam/${STRAIN}*.bam | cut -d. -f1); do
-	echo "\${BAM}: " >> ./Stats/${STRAIN}_flagstats.txt
-	samtools flagstat \${BAM}.bam | grep -v '^0 + 0' >> ./Stats/${STRAIN}_flagstats.txt;
+for BAM in \$(ls ./Bam/${STRAIN}*.bam); do
+	NAME=\${BAM##*/}
+	echo "\${NAME%%.*}: " >> ./Stats/${STRAIN}_flagstats.txt
+	samtools flagstat \${BAM} | grep -v '^0 + 0' >> ./Stats/${STRAIN}_flagstats.txt;
 	echo >> ./Stats/${STRAIN}_flagstats.txt
 done
 
