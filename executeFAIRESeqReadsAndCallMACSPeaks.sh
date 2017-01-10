@@ -27,12 +27,8 @@ picardVer=/2.2.4
 deeptoolsVer=/2.2.4
 macsVer=/2015-06-03
 ucscVer=/320
-
+rVer=/3.3.1
 ##############################
-
-# Parses complete path to picard from version number
-picardNum=$(echo $picardVer | cut -f2 -d/ )
-picardPath=/nas02/apps/picard-$picardNum/picard-tools-$picardNum/picard.jar
 
 # Parse commandline flags
 STRAIN=${1%%.*}
@@ -40,8 +36,8 @@ ALIGN=$2
 PEAK=$3
 
 # Purge all currently loaded modules, load required modules for pipeline:
-module bash purge
-module bash load bowtie2$bowtie2Ver samtools$samtoolsVer bedtools$bedtoolsVer picard$picardVer deeptools$deeptoolsVer macs$macsVer ucsctools$ucscVer
+module purge
+module load bowtie2$bowtie2Ver samtools$samtoolsVer bedtools$bedtoolsVer picard$picardVer deeptools$deeptoolsVer macs$macsVer ucsctools$ucscVer r$rVer
 
 # This series of if statements checks that the control .bed file defined by $CTRLPATH exists 
 # and creates standard out/error and Stats directories if they don't already exist
@@ -52,23 +48,16 @@ if [[ ! -f $CTRLPATH ]]; then
 	exit 1
 fi
 
-#stdOUT_tester=$(echo $stdOUT | rev)
-#stdERR_tester=$(echo $stdERR | rev)
-#NETSCR_tester=$(echo $NETSCR | rev)
-
-#if [[ ${stdOUT_tester:0:1} != "/" ]]; then
 if [[ ${stdOUT: -1} != "/" ]]; then
 	echo "Error: "$stdOUT" must end in /"
 	exit 1
 fi
 
-#if [[ ${stdERR_tester:0:1} != "/" ]]; then
 if [[ ${stdERR: -1} != "/" ]]; then 
 	echo "Error: "$stdERR" must end in /"
 	exit 1
 fi
 
-#if [[ ${NETSCR_tester:0:1} != "/" ]]; then
 if [[ ${NETSCR: -1} != "/" ]]; then
 	echo "Error: "$NETSCR" must end in /"
 	exit 1
@@ -154,25 +143,10 @@ samtools index ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam
 bedtools bamtobed -i ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam > ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bed
 
 # Bam Coverage to output bigwig file normalized to genomic coverage
-bamCoverage -b ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam --numberOfProcessors max --normalizeTo1x 121400000 --outFileFormat bedgraph --binSize 10 -e 125 -o ./BigWigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.wig
+bamCoverage -b ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam --numberOfProcessors max --normalizeTo1x 121400000 --outFileFormat bigwig --binSize 10 -e 125 -o ./BigWigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw
 
-# Z-Normalize Bigwig Files and write stats to a stats file
-python2.7 ${PIPEPATH}/z_norm_v2.py ./BigWigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.wig ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.wig > ./Stats/${STRAIN}_zNormStats.csv
-
-# Convert non-zNormalized wig file to bigwig and remove wig file
-wigToBigWig ./BigWigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.wig ${PIPEPATH}/dm3.chrom.sizes ./BigWigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw
-rm ./BigWigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.wig
-
-# Convert z-normalized wig file to bigwig and remove wig file
-wigToBigWig ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.wig ${PIPEPATH}/dm3.chrom.sizes ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw
-rm ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.wig
-
-# Write collected ZNorm Statfile
-zStatFiles=(ls ./Stats/*zNormStats.csv)
-cat \${zStatFiles[1]} > ./Stats/collected_zNorm_statfiles.csv
-for ((i=2; i<\${#zStatFiles[@]}; i++)); do
-    sed -n '2,$ p' < \${zStatFiles[\$i]} >>./Stats/collected_zNorm_statfiles.csv
-done
+# Z-Normalize Bigwig Files
+Rscript --vanilla ${PIPEPATH}/zNorm.r ./BigWigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw 
 
 # Create collected flagstats files
 for BAM in \$(ls ./Bam/${STRAIN}*.bam); do
