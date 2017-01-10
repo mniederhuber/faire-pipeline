@@ -9,8 +9,9 @@ USR=$USER						# Don't change this unless you have a good reason to
 
 NETSCR=$(pwd)/						# Uncomment to use working directory as input & output dir
 							
-REFGENEPATH=~/RefGenome/dm3				# Point directly to the refgeneome file you want to use
-CTRLPATH=$(pwd)/faire-pipeline/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed # Point directly to negative control genomic DNA input
+REFGENEPATH=/proj/mckaylab/genomeFiles/dm3/RefGenome/dm3	# Point directly to the refgeneome file you want to use
+
+CTRLPATH=/proj/mckaylab/genomeFiles/dm3/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed # Point directly to negative control genomic DNA input
 PIPEPATH=$(pwd)/faire-pipeline/
 
 QUEUE=day						# BSUB Queue
@@ -28,7 +29,12 @@ deeptoolsVer=/2.2.4
 macsVer=/2015-06-03
 ucscVer=/320
 rVer=/3.3.1
+
 ##############################
+
+# Parses complete path to picard from version number
+picardNum=$(echo $picardVer | cut -f2 -d/ )
+picardPath=/nas02/apps/picard-$picardNum/picard-tools-$picardNum/picard.jar
 
 # Parse commandline flags
 STRAIN=${1%%.*}
