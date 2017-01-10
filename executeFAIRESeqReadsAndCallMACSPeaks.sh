@@ -12,7 +12,7 @@ NETSCR=$(pwd)/						# Uncomment to use working directory as input & output dir
 REFGENEPATH=/proj/mckaylab/genomeFiles/dm3/RefGenome/dm3	# Point directly to the refgeneome file you want to use
 
 CTRLPATH=/proj/mckaylab/genomeFiles/dm3/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed # Point directly to negative control genomic DNA input
-PIPEPATH=$(pwd)/faire-pipeline/
+PIPEPATH=$(pwd)/faire-pipeline
 
 stdOUT=$NETSCR/OutputFiles/				# standard output directory, end path with '/'
 stdERR=$NETSCR/ErrorFiles/				# standard error directory, end path with '/'
@@ -20,7 +20,8 @@ stdERR=$NETSCR/ErrorFiles/				# standard error directory, end path with '/'
 # SLURM Params:
 numThreads=8
 runTime=1:00:00
-maxMem=3072
+maxMem=8G
+group=rc_dmckay1_pi
 
 ##############################
 # Module Versions:
@@ -29,8 +30,8 @@ bowtie2Ver=/2.2.8
 samtoolsVer=/1.3.1
 bedtoolsVer=/2.25.0
 picardVer=/2.2.4
-deeptoolsVer=/2.2.4
-macsVer=/2015-06-03
+deeptoolsVer=/2.4.1
+macsVer=/2016-02-15
 ucscVer=/320
 rVer=/3.3.1
 
@@ -45,9 +46,6 @@ STRAIN=${1%%.*}
 ALIGN=$2
 PEAK=$3
 
-# Purge all currently loaded modules, load required modules for pipeline:
-module purge
-module load bowtie2$bowtie2Ver samtools$samtoolsVer bedtools$bedtoolsVer picard$picardVer deeptools$deeptoolsVer macs$macsVer ucsctools$ucscVer r$rVer
 
 # This series of if statements checks that the control .bed file defined by $CTRLPATH exists 
 # and creates standard out/error and Stats directories if they don't already exist
@@ -94,12 +92,11 @@ if [[ ! -d ./Bam ]]; then
     mkdir ./BigWigs/ZNormalized/
 fi
 
-echo "
+echo "#!/bin/bash
 
-#!/bin/bash
-
+#SBATCH -A ${group}
 #SBATCH -N 1
-#SBATCH -n numThreads
+#SBATCH -n ${numThreads}
 #SBATCH --mem ${maxMem}
 #SBATCH -o ${stdOUT}${STRAIN}_%A.stdout
 #SBATCH -e ${stdERR}${STRAIN}_%A.stderr
@@ -109,6 +106,13 @@ echo "
 if [ "${ALIGN}" = "Align" ]; then 
 
 echo "
+# Purge all currently loaded modules, load required modules for pipeline:
+
+module purge
+
+module load bowtie2${bowtie2Ver} samtools${samtoolsVer} bedtools${bedtoolsVer} picard${picardVer} \
+deeptools${deeptoolsVer} macs${macsVer} ucsctools${ucscVer} r${rVer}
+
 # Execute commands
 
 # Run bowtie2 to align fastq files to the reference genome
@@ -142,7 +146,7 @@ samtools index ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam
 bedtools bamtobed -i ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam > ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bed
 
 # Bam Coverage to output bigwig file normalized to genomic coverage
-bamCoverage -b ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam --numberOfProcessors max --normalizeTo1x 121400000 --outFileFormat bigwig --binSize 10 -e 125 -o ./BigWigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw
+bamCoverage -b ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam -p ${numThreads} --normalizeTo1x 121400000 --outFileFormat bigwig --binSize 10 -e 125 -o ./BigWigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw
 
 # Z-Normalize Bigwig Files
 Rscript --vanilla ${PIPEPATH}/zNorm.r ./BigWigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw 
@@ -176,4 +180,5 @@ macs2 callpeak -t ./Bed/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bed -c \${CONTRO
 ">>processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.sh
 fi
 
+chmod +x processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.sh
 sbatch < processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.sh
