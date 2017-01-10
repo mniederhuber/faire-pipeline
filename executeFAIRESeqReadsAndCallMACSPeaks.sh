@@ -14,9 +14,13 @@ REFGENEPATH=/proj/mckaylab/genomeFiles/dm3/RefGenome/dm3	# Point directly to the
 CTRLPATH=/proj/mckaylab/genomeFiles/dm3/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed # Point directly to negative control genomic DNA input
 PIPEPATH=$(pwd)/faire-pipeline/
 
-QUEUE=day						# BSUB Queue
 stdOUT=$NETSCR/OutputFiles/				# standard output directory, end path with '/'
 stdERR=$NETSCR/ErrorFiles/				# standard error directory, end path with '/'
+
+# SLURM Params:
+numThreads=8
+runTime=1:00:00
+maxMem=3072
 
 ##############################
 # Module Versions:
@@ -94,28 +98,17 @@ echo "
 
 #!/bin/bash
 
-#BSUB -q ${QUEUE}
-#BSUB -o ${stdOUT}${STRAIN}_outfile.%J
-#BSUB -e ${stdERR}${STRAIN}_errorfile.%J
+#SBATCH -N 1
+#SBATCH -n numThreads
+#SBATCH --mem ${maxMem}
+#SBATCH -o ${stdOUT}${STRAIN}_%A.stdout
+#SBATCH -e ${stdERR}${STRAIN}_%A.stderr
 
-">processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.bsub
+">processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.sh
 
 if [ "${ALIGN}" = "Align" ]; then 
 
 echo "
-
-#BSUB -n 8
-#BSUB -R \"span[hosts=1]\"
-
-# Change directory
-# Create a directory in your scratch directory to store all data files 
-# Then move fastq file to that directory
-
-#mkdir ${NETSCR}${STRAIN}
-#mv ${NETSCR}${STRAIN}.fastq.gz ${NETSCR}${STRAIN}
-#cd ${NETSCR}${STRAIN}
-
-
 # Execute commands
 
 # Run bowtie2 to align fastq files to the reference genome
@@ -165,15 +158,12 @@ done
 # Parse FlagStats
 python2.7 ${PIPEPATH}/parseflagstat.py ./Stats/
 
-">>processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.bsub
+">>processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.sh
 fi
 
 if [ "${PEAK}" = "CallPeaks" ]; then
 
 echo "
-# Change directory
-#cd ${NETSCR}${STRAIN}
-
 #Set variable for control
 CONTROL=${CTRLPATH}
 
@@ -183,7 +173,7 @@ macs2 callpeak -t ./Bed/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bed -c \${CONTRO
 #First sort peak file by q-value in decreasing order, then cut out chromosome, start and end coordinates, peak name and q-value and take the top 5000 peaks based on q-value
 #sort -n -r -k9 ${STRAIN}_q5_sorted_dupsRemoved_noYUHet_peaks.narrowPeak | cut -f1,2,3,4,9 | head -5000 > ${STRAIN}_q5_sorted_dupsRemoved_noYUHet_Top5000Peaks.bed
 
-">>processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.bsub
+">>processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.sh
 fi
 
-bsub < processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.bsub
+sbatch < processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.sh
