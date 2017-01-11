@@ -11,20 +11,30 @@ if (length(argv) != 2){
    stop("usage: Rscript --vanilla zNorm.r <input.bw> <output.bw>") 
 }
 
-chrKeep <- c("chr2L", "chr2R", "chr3R", "chr3L", "chr4", "chrX")
 
 bw <- import.bw(argv[1])
 
-bwFullList <- split(bw, bw@seqnames) # split by chromosome arm
-bwList <- bwFullList[chrKeep] # only keep chr2,3,4,X , no heterochromatin
+bwList <- split(bw, bw@seqnames) # split by chromosome arm
 
+# For filtering out specific regions you don't want. testing if using a blacklist file will overcome need for this.
+#chrKeep <- c("chr2L", "chr2R", "chr3R", "chr3L", "chr4", "chrX")
+#bwList <- bwList[chrKeep] # only keep chr2,3,4,X , no heterochromatin
+
+print(paste("chr", "Mean", "Sd", sep = " "))
 zScoreChrList <- endoapply(bwList, function(x){
 	# Calculate z-Score per chromosome arm:
 	# z = (x-u)/sd
+	# Mean and SD must be calculated as if from a frequency table, as deeptools will merge regions with identical scores
     chrScore <- x@elementMetadata$score
-    zMean <- mean(chrScore)
-    zSD <- sd(chrScore)
+
+    nfreq <- sum(x@ranges@width)
+    zMean <- (sum(x@ranges@width * x@elementMetadata$score)/nfreq)
+    zSD <- sqrt((sum(x@ranges@width * (x@elementMetadata$score^2)) - nfreq * (zMean)^2)/(nfreq - 1))
+
     x@elementMetadata$score <- (chrScore - zMean)/zSD
+    # Print ChrStats for report:
+    chrName <- unique(x@seqnames)
+    print(paste(chrName, zMean,zSD, sep = " "))
     return(x)
 })
 

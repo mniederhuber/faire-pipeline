@@ -3,7 +3,6 @@
 import getpass
 import os
 
-
 USR=getpass.getuser()
 DIR=os.getcwd()
 
@@ -11,8 +10,9 @@ DIR=os.getcwd()
 REFGENEPATH='/proj/mckaylab/genomeFiles/dm3/RefGenome/dm3'	# Point directly to the refgeneome file you want to use
 
 CTRLPATH='/proj/mckaylab/genomeFiles/dm3/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed' # Point directly to negative control genomic DNA input
+BLACKLIST='/proj/mckaylab/genomeFiles/dm3/dm3Blacklist.bed'
 
-#PIPEPATH=str(DIR + '/faire-pipeline')
+GENOMESIZE = 121400000 						# effective genome size for RPGC normalization, might need to change depending on assembly/what you blacklist
 PIPEPATH=str('/pine/scr/s/n/snystrom/Bitbucket/faire-pipeline')
 
 stdOUT=str(DIR + '/OutputFiles/')				# standard output directory, end path with '/'
@@ -53,8 +53,11 @@ rVer = str('r/3.3.1')
 # Also checks whether stdOUT, stdERR, and NETSCR end with '/', exits with errorcode 1 if so
 
 if os.path.exists(CTRLPATH) == False:
-	print(CTRLPATH + ' does not exist. Is CTRLPATH set correctly?')
+	print('ERROR: ' + CTRLPATH + ' does not exist. Is CTRLPATH set correctly?')
 	quit()
+
+if os.path.exists(BLACKLIST) == False:
+	print('ERROR: ' + BLACKLIST + ' does not exist. Is BLACKLIST set correctly?')
 
 if stdOUT[-1] != '/':
 	print('ERROR: stdOUT (' + stdOUT + ') must end in /')
@@ -70,30 +73,54 @@ if os.path.isdir(stdOUT) == False:
 if os.path.isdir(stdERR) == False:
 	os.mkdir(stdERR)
 
-outdirs = ['Stats', 'Bam/', 'Sam/', 'Peakfiles/', 'BigWigs/', 'PCRdups/', 'BigWigs/ZNormalized/']
-
-for d in outdirs:
-	if os.path.isdir(d) == False:
-		os.mkdir(d)
+#outdirs = ['Stats', 'Bam/', 'Sam/', 'Peakfiles/', 'BigWigs/', 'PCRdups/', 'BigWigs/ZNormalized/']
+#
+#for d in outdirs:
+#	if os.path.isdir(d) == False:
+#		os.mkdir(d)
 
 import glob
 FASTQ = glob.glob('*.fastq.gz')
-SAMPLE = FASTQ[0].split('.')[0]
+
+def getSamples(fastqList):
+	sampleList = []
+	for f in fastqList:
+		sample = f.split('.')[0]
+		sampleList.append(sample)
+	return(sampleList)
+
+SAMPLE = getSamples(FASTQ)
+
+# Parse info for peak calling
+dirID = os.getcwd().split('/')[-1] 	# get name of directory (should be sample Pool name)
+nFiles = len(SAMPLE) 			# number of files in directory should be number of biological replicates (pool technical replicats first!)
+peakDir = 'Peakfiles/' 			# be sure to include '/' 
+
+if peakDir[-1] != '/':
+	# die if peakDir set incorrectly
+	print('ERROR: peakDir (' + peakDir + ') does not end with /')
+	quit()
+
+peakOutName = expand("{dirID}_{nFiles}Reps_PooledPeaks", dirID = dirID, nFiles = nFiles)
 
 rule all:
 	input:
 		expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam", sample = SAMPLE),
 		expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam.bai", sample = SAMPLE),
 		expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bed", sample = SAMPLE),
-		expand("BigWigs/ZNormalized/{sample}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw", sample = SAMPLE)
+		expand("BigWigs/ZNormalized/{sample}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw", sample = SAMPLE),
+		touch("Peakfiles/peakCall.done")
+		#expand("{outdir}{name}{fType}", outdir = peakDir, name = peakOutName, fType = ['_peaks.narrowPeak', '_peaks.xls', '_summits.bed'])
 		
 rule align:
 	input:
-		expand("{sample}.fastq.gz", sample = SAMPLE)
+		#expand("{sample}.fastq.gz", sample = SAMPLE)
+		"{sample}.fastq.gz"
 	output:
-		temp(expand("Sam/{sample}.sam", sample = SAMPLE))
+		#temp(expand("Sam/{sample}.sam", sample = SAMPLE))
+		temp("Sam/{sample}.sam")
 	threads: 8
-	params: module = bowtie2Ver
+	params: module = bowtie2Ver, time = "1:00:00"
 	shell:
 		"""
 		module purge && module load {params.module}
@@ -145,7 +172,7 @@ rule markDups:
 	shell:
 		"""
 		module purge && module load {params.moduleVer}
-		java -Xmx4g -jar {picardPath} MarkDuplicates INPUT= {input} OUTPUT= {output.markedDups} METRICS_FILE= {output.PCRdups} REMOVE_DUPLICATES= false ASSUME_SORTED= true
+		java -Xmx8g -jar {picardPath} MarkDuplicates INPUT= {input} OUTPUT= {output.markedDups} METRICS_FILE= {output.PCRdups} REMOVE_DUPLICATES= false ASSUME_SORTED= true
 		"""
 # continue making rules here
 
@@ -201,6 +228,7 @@ rule noYUHet_idx:
 		module purge && module load {params.moduleVer}
 		samtools index {input} 
 		"""
+
 rule noYUHet_toBed:
 # Convert the bam file into a bed file
 	input:
@@ -218,15 +246,16 @@ rule noYUHet_toBed:
 rule bigWig:
 # Bam Coverage to output bigwig file normalized to genomic coverage
 	input:
-		"Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam"
+		bam = "Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam",
+		idx = "Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam.bai"
 	output:
 		"BigWigs/{sample}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw"
-	threads: 8
-	params: moduleVer = deeptoolsVer
+	threads: 8 
+	params: moduleVer = deeptoolsVer, blacklist = BLACKLIST, genomeSize = GENOMESIZE
 	shell:
 		"""
 		module purge && module load {params.moduleVer}
-		bamCoverage -b {input} -p {threads} --normalizeTo1x 121400000 --outFileFormat bigwig --binSize 10 -e 125 -o {output}
+		bamCoverage -b {input.bam} -p {threads} --blackListFileName {params.blacklist} --normalizeTo1x {params.genomeSize} --outFileFormat bigwig --binSize 10 -e 125 -o {output}
 		"""
 
 rule zNormBigWig:
@@ -242,6 +271,29 @@ rule zNormBigWig:
 		Rscript --vanilla {params.pipePath}/zNorm.r {input} {output}
 		"""
 
+if os.path.isdir == False:
+	os.mkdir('Peakfiles')
+
+rule CallPooledPeaks:
+# Call Peaks using MACS. Pools all input files first.
+	input:
+		expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bed", sample = SAMPLE)
+	params:
+		outdir = peakDir, 
+		control = CTRLPATH,
+		name = expand("{dirID}_{nFiles}Reps_PooledPeaks", dirID = dirID, nFiles = nFiles),
+		moduleVer = macsVer 
+	output:
+		touch("Peakfiles/peakCall.done")
+		#expand("{outdir}/{name}{fType}", outdir = peakDir, name = peakOutName, fType = ['_peaks.narrowPeak', '_peaks.xls', '_summits.bed'])
+	shell:
+		"""
+		module purge && module load {params.moduleVer}
+		macs2 callpeak -t {input}  -c {params.control} -n {params.name} -g dm --nomodel --extsize 125 --seed 123 --outdir {params.outdir} 
+		"""
+
+#First sort peak file by q-value in decreasing order, then cut out chromosome, start and end coordinates, peak name and q-value and take the top 5000 peaks based on q-value
+#sort -n -r -k9 ${STRAIN}_q5_sorted_dupsRemoved_noYUHet_peaks.narrowPeak | cut -f1,2,3,4,9 | head -5000 > ${STRAIN}_q5_sorted_dupsRemoved_noYUHet_Top5000Peaks.bed
 	
 
 ## Create collected flagstats files

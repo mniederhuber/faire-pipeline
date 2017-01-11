@@ -1,0 +1,31 @@
+{
+	"__default__" :
+	{
+		"account" : "rc_dmckay1_pi",
+		"time" : "30:00",
+		"threads" : "1",
+		"mem" : "8G"
+	},
+
+	"align" :
+	{
+		"time"	: "1:00:00",
+		"threads" : "8",
+		"mem" : "8G"
+	},
+
+	"markDups" :
+	{
+		"mem" : "8G"
+	},
+
+	"bigWig" :
+	{
+		"mem" : "16G",
+		"threads" : "8"
+	}
+
+}	
+	
+
+
