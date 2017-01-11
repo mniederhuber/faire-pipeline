@@ -12,7 +12,8 @@ NETSCR=$(pwd)/						# Uncomment to use working directory as input & output dir
 REFGENEPATH=/proj/mckaylab/genomeFiles/dm3/RefGenome/dm3	# Point directly to the refgeneome file you want to use
 
 CTRLPATH=/proj/mckaylab/genomeFiles/dm3/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed # Point directly to negative control genomic DNA input
-PIPEPATH=$(pwd)/faire-pipeline
+#PIPEPATH=$(pwd)/faire-pipeline
+PIPEPATH=$(pwd)/Bitbucket/faire-pipeline
 
 stdOUT=$NETSCR/OutputFiles/				# standard output directory, end path with '/'
 stdERR=$NETSCR/ErrorFiles/				# standard error directory, end path with '/'
@@ -20,7 +21,7 @@ stdERR=$NETSCR/ErrorFiles/				# standard error directory, end path with '/'
 # SLURM Params:
 numThreads=8
 runTime=1:00:00
-maxMem=8G
+maxMem=16G
 group=rc_dmckay1_pi
 
 ##############################
@@ -92,6 +93,11 @@ if [[ ! -d ./Bam ]]; then
     mkdir ./BigWigs/ZNormalized/
 fi
 
+# Purge all currently loaded modules, load required modules for pipeline:
+
+#module purge
+
+
 echo "#!/bin/bash
 
 #SBATCH -A ${group}
@@ -101,58 +107,49 @@ echo "#!/bin/bash
 #SBATCH -o ${stdOUT}${STRAIN}_%A.stdout
 #SBATCH -e ${stdERR}${STRAIN}_%A.stderr
 
-">processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.sh
-
-if [ "${ALIGN}" = "Align" ]; then 
-
-echo "
-# Purge all currently loaded modules, load required modules for pipeline:
-
-module purge
-
-module load bowtie2${bowtie2Ver} samtools${samtoolsVer} bedtools${bedtoolsVer} picard${picardVer} \
-deeptools${deeptoolsVer} macs${macsVer} ucsctools${ucscVer} r${rVer}
+module load bowtie2${bowtie2Ver} samtools${samtoolsVer} bedtools${bedtoolsVer} picard${picardVer} deeptools${deeptoolsVer} macs${macsVer} ucsctools${ucscVer} r${rVer}
 
 # Execute commands
 
 # Run bowtie2 to align fastq files to the reference genome
-bowtie2 --seed 123 -x ${REFGENEPATH} -p 8 -U ${STRAIN}.fastq.gz -S ./Sam/${STRAIN}.sam 
+srun bowtie2 --seed 123 -x ${REFGENEPATH} -p ${numThreads} -U ${STRAIN}.fastq.gz -S ./Sam/${STRAIN}.sam 
 
 # Convert sam file to a bam file
-samtools view -@ 4 -b ./Sam/${STRAIN}.sam > ./Bam/${STRAIN}.bam && rm ./Sam/${STRAIN}.sam
+srun samtools view -@ 4 -b ./Sam/${STRAIN}.sam > ./Bam/${STRAIN}.bam && rm ./Sam/${STRAIN}.sam
 
 # Only have alignments that have a mapq score greater than 5
-samtools view -@ 4 -bq 5 ./Bam/${STRAIN}.bam > ./Bam/${STRAIN}_q5.bam
+srun samtools view -@ 4 -bq 5 ./Bam/${STRAIN}.bam > ./Bam/${STRAIN}_q5.bam
 
 # Sort the bam file with mapq greater than 5
-samtools sort -@ 4 -o ./Bam/${STRAIN}_q5_sorted.bam ./Bam/${STRAIN}_q5.bam
+srun samtools sort -@ 4 -o ./Bam/${STRAIN}_q5_sorted.bam ./Bam/${STRAIN}_q5.bam
  
 # Mark the reads that are PCR Duplicates
-java -Xmx4g -jar ${picardPath} MarkDuplicates INPUT=./Bam/${STRAIN}_q5_sorted.bam OUTPUT=./Bam/${STRAIN}_q5_sorted_dupsMarked.bam METRICS_FILE= ./PCRdups/${STRAIN}_PCR_duplicates REMOVE_DUPLICATES= false ASSUME_SORTED= true
+srun java -Xmx4g -jar ${picardPath} MarkDuplicates INPUT=./Bam/${STRAIN}_q5_sorted.bam OUTPUT=./Bam/${STRAIN}_q5_sorted_dupsMarked.bam METRICS_FILE= ./PCRdups/${STRAIN}_PCR_duplicates REMOVE_DUPLICATES= false ASSUME_SORTED= true
 
 # Remove the reads that are marked as pcr duplicates from the bam file using the bit flag for pcr dups
-samtools view -@ 4 -bF 0x400 ./Bam/${STRAIN}_q5_sorted_dupsMarked.bam > ./Bam/${STRAIN}_q5_sorted_dupsRemoved.bam
+srun samtools view -@ 4 -bF 0x400 ./Bam/${STRAIN}_q5_sorted_dupsMarked.bam > ./Bam/${STRAIN}_q5_sorted_dupsRemoved.bam
 
 # Create index for bam file. This is needed for the next step to remove Chrm Y, U and Het
-samtools index ./Bam/${STRAIN}_q5_sorted_dupsRemoved.bam
+srun samtools index ./Bam/${STRAIN}_q5_sorted_dupsRemoved.bam
 
 # Extract only reads from Chrm 2R,2L,3R,3L,4 and X
-samtools view -@ 4 -b ./Bam/${STRAIN}_q5_sorted_dupsRemoved.bam chr2L chr2R chr3L chr3R chr4 chrX > ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam
+srun samtools view -@ 4 -b ./Bam/${STRAIN}_q5_sorted_dupsRemoved.bam chr2L chr2R chr3L chr3R chr4 chrX > ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam
 
 # Create new index for filtered bam file. Needed to convert bam file to bed file
-samtools index ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam
+srun samtools index ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam
 
 # Convert the bam file into a bed file
-bedtools bamtobed -i ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam > ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bed
+srun bedtools bamtobed -i ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam > ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bed
 
 # Bam Coverage to output bigwig file normalized to genomic coverage
-bamCoverage -b ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam -p ${numThreads} --normalizeTo1x 121400000 --outFileFormat bigwig --binSize 10 -e 125 -o ./BigWigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw
+
+srun bamCoverage -b ./Bam/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bam -p ${numThreads} --normalizeTo1x 121400000 --outFileFormat bigwig --binSize 10 -e 125 -o ./BigWigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw
 
 # Z-Normalize Bigwig Files
-Rscript --vanilla ${PIPEPATH}/zNorm.r ./BigWigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw 
+srun Rscript --vanilla ${PIPEPATH}/zNorm.r ./BigWigs/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw ./BigWigs/ZNormalized/${STRAIN}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw 
 
 # Create collected flagstats files
-for BAM in \$(ls ./Bam/${STRAIN}*.bam); do
+srun for BAM in \$(ls ./Bam/${STRAIN}*.bam); do
 	NAME=\${BAM##*/}
 	echo "\${NAME%%.*}: " >> ./Stats/${STRAIN}_flagstats.txt
 	samtools flagstat \${BAM} | grep -v '^0 + 0' >> ./Stats/${STRAIN}_flagstats.txt;
@@ -160,10 +157,10 @@ for BAM in \$(ls ./Bam/${STRAIN}*.bam); do
 done
 
 # Parse FlagStats
-python2.7 ${PIPEPATH}/parseflagstat.py ./Stats/
+srun python2.7 ${PIPEPATH}/parseflagstat.py ./Stats/
 
-">>processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.sh
-fi
+">processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.sh
+
 
 if [ "${PEAK}" = "CallPeaks" ]; then
 
@@ -181,4 +178,4 @@ macs2 callpeak -t ./Bed/${STRAIN}_q5_sorted_dupsRemoved_noYUHet.bed -c \${CONTRO
 fi
 
 chmod +x processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.sh
-sbatch < processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.sh
+sbatch processFAIRESeqReadsAndCallMACSPeaks_${STRAIN}.sh
