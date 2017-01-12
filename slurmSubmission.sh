@@ -10,7 +10,7 @@ pipePath="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 	# (from http://stackoverflow.com/questions/59895/getting-the-source-directory-of-a-bash-script-from-within)
 
 if [[ ! -d SlurmOut ]]; then
-	mkdir SlurmOut
+	mkdir slurmOut
 fi
 
-snakemake --snakefile $pipePath/Snakefile --cluster-config $pipePath/slurmConfig.json --cluster "sbatch -J {rule} -o SlurmOut/slurm-%j.out -N1 -n {cluster.threads} --time {cluster.time} --mem={cluster.mem} -A {cluster.account}" --jobs 100
+snakemake --snakefile $pipePath/Snakefile --cluster-config $pipePath/clusterConfig/slurmConfig.json --cluster "sbatch -J {rule} -o SlurmOut/slurm-%j.out -N1 -n {cluster.threads} --time {cluster.time} --mem={cluster.mem} -A {cluster.account}" --jobs 100

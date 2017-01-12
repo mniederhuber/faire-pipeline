@@ -20,7 +20,7 @@ bwList <- split(bw, bw@seqnames) # split by chromosome arm
 #chrKeep <- c("chr2L", "chr2R", "chr3R", "chr3L", "chr4", "chrX")
 #bwList <- bwList[chrKeep] # only keep chr2,3,4,X , no heterochromatin
 
-print(paste("chr", "Mean", "Sd", sep = " "))
+write(paste("chr", "Mean", "Sd", sep = " "), stdout())
 zScoreChrList <- endoapply(bwList, function(x){
 	# Calculate z-Score per chromosome arm:
 	# z = (x-u)/sd
