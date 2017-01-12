@@ -85,7 +85,7 @@ rule all:
 		expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam.bai", sample = SAMPLE),
 		expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bed", sample = SAMPLE),
 		expand("BigWigs/ZNormalized/{sample}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw", sample = SAMPLE),
-		touch("Peakfiles/peakCall.done")
+		touch("Peakfiles/.peakCall.done")
 		#expand("{outdir}{name}{fType}", outdir = peakDir, name = peakOutName, fType = ['_peaks.narrowPeak', '_peaks.xls', '_summits.bed'])
 		
 rule align:
@@ -94,36 +94,41 @@ rule align:
 		"{sample}.fastq.gz"
 	output:
 		#temp(expand("Sam/{sample}.sam", sample = SAMPLE))
-		temp("Sam/{sample}.sam")
+		sam = temp("Sam/{sample}.sam"),
+		logInfo = "logs/{sample}_bowtie2.txt"
 	threads: 8
-	params: module = bowtie2Ver, time = "1:00:00"
+	params: module = bowtie2Ver
 	shell:
 		"""
 		module purge && module load {params.module}
-		bowtie2 --seed 123 -x {REFGENEPATH} -p {threads} -U {input} -S {output}
+		bowtie2 --seed 123 -x {REFGENEPATH} -p {threads} -U {input} -S {output.sam} 2> {output.logInfo}
 		"""
 
 rule sam2bam:
 	input:
 		"Sam/{sample}.sam"
 	output:
-		"Bam/{sample}.bam"	
+		bam = "Bam/{sample}.bam",
+		flagstat = "logs/{sample}.flagstat"
 	params: moduleVer = samtoolsVer 
 	shell:
 		"""
 		module purge && module load {params.moduleVer}
-		samtools view -@ 4 -b {input} > {output}
+		samtools view -@ 4 -b {input} > {output.bam} &&
+		samtools flagstat {output.bam} > {output.flagstat}
 		"""
 rule qFilter:
 	input:
 		"Bam/{sample}.bam"
 	output:
-		temp("Bam/{sample}_q5.bam")
+		bam = temp("Bam/{sample}_q5.bam"),
+		flagstat = "logs/{sample}_q5.flagstat"
 	params: moduleVer = samtoolsVer 
 	shell:
 		"""
 		module purge && module load {params.moduleVer}
-		samtools view -@ 4 -bq 5 {input} > {output}
+		samtools view -@ 4 -bq 5 {input} > {output.bam} &&
+		samtools flagstat {output.bam} > {output.flagstat}
 		"""
 rule bamSort:
 	input:
@@ -157,13 +162,15 @@ rule removeDups:
 	input:
 		"Bam/{sample}_q5_sorted_dupsMarked.bam"
 	output:
-		temp("Bam/{sample}_q5_sorted_dupsRemoved.bam")
+		bam = temp("Bam/{sample}_q5_sorted_dupsRemoved.bam"),
+		flagstat = "logs/{sample}_q5_sorted_dupsRemoved.flagstat"
 	params: moduleVer = samtoolsVer
 
 	shell:
 		"""
 		module purge && module load {params.moduleVer}
-		samtools view -@ 4 -bF 0x400 {input} > {output} 
+		samtools view -@ 4 -bF 0x400 {input} > {output} &&
+		samtools flagstats {output.bam} > {output.flagstat}
 		"""
 
 rule idxNoDups:
@@ -184,12 +191,14 @@ rule noYUHet:
 		bam = "Bam/{sample}_q5_sorted_dupsRemoved.bam",
 		idx = "Bam/{sample}_q5_sorted_dupsRemoved.bam.bai"
 	output:
-		"Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam"
+		bam = "Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam",
+		flagstat =  "logs/{sample}_q5_sorted_dupsRemoved_noYUHet.flagstat"
 	params: moduleVer = samtoolsVer
 	shell:
 		"""
 		module purge && module load {params.moduleVer}
-		samtools view -@ 4 -b {input.bam} chr2L chr2R chr3L chr3R chr4 chrX > {output} 
+		samtools view -@ 4 -b {input.bam} chr2L chr2R chr3L chr3R chr4 chrX > {output} &&
+		samtools flagstat {output.bam} > {output.flagstat}
 		"""
 
 rule noYUHet_idx:
@@ -255,7 +264,6 @@ rule CallPooledPeaks:
 # Because macs2 outputs multiple files and parsing it is annoying, 
 # snakemake will just create a hidden file ('Peakfiles/.peakCall.done')
 # at the end, which is requested by rule all
-
 	input:
 		expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bed", sample = SAMPLE)
 	params:
