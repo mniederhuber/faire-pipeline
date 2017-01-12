@@ -2,6 +2,7 @@
 
 import getpass
 import os
+import glob
 
 USR=getpass.getuser()
 DIR=os.getcwd()
@@ -42,11 +43,6 @@ rVer = str('r/3.3.1')
 ##############################
 
 
-# Parse commandline flags
-#STRAIN=${1%%.*}
-#ALIGN=$2
-#PEAK=$3
-
 
 # This series of if statements checks that the control .bed file defined by $CTRLPATH exists 
 # and creates standard out/error and Stats directories if they don't already exist
@@ -59,27 +55,7 @@ if os.path.exists(CTRLPATH) == False:
 if os.path.exists(BLACKLIST) == False:
 	print('ERROR: ' + BLACKLIST + ' does not exist. Is BLACKLIST set correctly?')
 
-if stdOUT[-1] != '/':
-	print('ERROR: stdOUT (' + stdOUT + ') must end in /')
-	quit()
 
-if stdERR[-1] != '/':
-	print('ERROR: stdERR (' + stdERR + ') must end in /')
-	quit()
-
-if os.path.isdir(stdOUT) == False:
-	os.mkdir(stdOUT)
-
-if os.path.isdir(stdERR) == False:
-	os.mkdir(stdERR)
-
-#outdirs = ['Stats', 'Bam/', 'Sam/', 'Peakfiles/', 'BigWigs/', 'PCRdups/', 'BigWigs/ZNormalized/']
-#
-#for d in outdirs:
-#	if os.path.isdir(d) == False:
-#		os.mkdir(d)
-
-import glob
 FASTQ = glob.glob('*.fastq.gz')
 
 def getSamples(fastqList):
@@ -276,6 +252,10 @@ if os.path.isdir == False:
 
 rule CallPooledPeaks:
 # Call Peaks using MACS. Pools all input files first.
+# Because macs2 outputs multiple files and parsing it is annoying, 
+# snakemake will just create a hidden file ('Peakfiles/.peakCall.done')
+# at the end, which is requested by rule all
+
 	input:
 		expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bed", sample = SAMPLE)
 	params:
@@ -284,7 +264,7 @@ rule CallPooledPeaks:
 		name = expand("{dirID}_{nFiles}Reps_PooledPeaks", dirID = dirID, nFiles = nFiles),
 		moduleVer = macsVer 
 	output:
-		touch("Peakfiles/peakCall.done")
+		touch("Peakfiles/.peakCall.done")
 		#expand("{outdir}/{name}{fType}", outdir = peakDir, name = peakOutName, fType = ['_peaks.narrowPeak', '_peaks.xls', '_summits.bed'])
 	shell:
 		"""

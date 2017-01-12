@@ -1,1 +1,0 @@
-snakemake --snakefile ../faire-pipeline/Snakefile.py --cluster-config ../faire-pipeline/cluster.json --cluster sbatch -J {rule} -N1 -n {cluster.threads} --time {cluster.time} --mem={cluster.mem} -A {cluster.account} --jobs 100
