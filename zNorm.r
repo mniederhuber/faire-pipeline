@@ -34,7 +34,7 @@ zScoreChrList <- endoapply(bwList, function(x){
     x@elementMetadata$score <- (chrScore - zMean)/zSD
     # Print ChrStats for report:
     chrName <- unique(x@seqnames)
-    print(paste(chrName, zMean,zSD, sep = " "))
+    write(paste(chrName, zMean,zSD, sep = " "), stdout())
     return(x)
 })
 

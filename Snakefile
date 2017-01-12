@@ -169,8 +169,8 @@ rule removeDups:
 	shell:
 		"""
 		module purge && module load {params.moduleVer}
-		samtools view -@ 4 -bF 0x400 {input} > {output} &&
-		samtools flagstats {output.bam} > {output.flagstat}
+		samtools view -@ 4 -bF 0x400 {input} > {output.bam} &&
+		samtools flagstat {output.bam} > {output.flagstat}
 		"""
 
 rule idxNoDups:
@@ -197,7 +197,7 @@ rule noYUHet:
 	shell:
 		"""
 		module purge && module load {params.moduleVer}
-		samtools view -@ 4 -b {input.bam} chr2L chr2R chr3L chr3R chr4 chrX > {output} &&
+		samtools view -@ 4 -b {input.bam} chr2L chr2R chr3L chr3R chr4 chrX > {output.bam} &&
 		samtools flagstat {output.bam} > {output.flagstat}
 		"""
 
@@ -248,12 +248,13 @@ rule zNormBigWig:
 	input:
 		"BigWigs/{sample}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw"
 	output:
-		"BigWigs/ZNormalized/{sample}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw"
+		zNorm = "BigWigs/ZNormalized/{sample}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw",
+		zStats = "logs/{sample}.zNorm"
 	params: pipePath = PIPEPATH, moduleVer = rVer
 	shell:
 		"""
 		module purge && module load {params.moduleVer}
-		Rscript --vanilla {params.pipePath}/zNorm.r {input} {output}
+		Rscript --vanilla {params.pipePath}/zNorm.r {input} {output.zNorm} > {output.zStats}
 		"""
 
 if os.path.isdir == False:
