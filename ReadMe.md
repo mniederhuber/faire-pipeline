@@ -4,7 +4,7 @@
 
 ### Description
 #### Pipeline Steps:
-![]('docs/dag.png')
+![](docs/dag.png)
 
 
 ### Usage:
