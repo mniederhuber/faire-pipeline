@@ -3,6 +3,8 @@
 ## Date: 2016-01-12
 
 ### Description
+#### Pipeline Steps:
+![]('docs/dag.png')
 
 
 ### Usage:
