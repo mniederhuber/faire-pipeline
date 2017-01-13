@@ -53,27 +53,17 @@ BLACKLIST=str('/proj/mckaylab/genomeFiles/'+ GenomeAssembly + '/' + GenomeAssemb
 # effective genome size for RPGC normalization, might need to change depending on assembly/what you blacklist
 GENOMESIZE = effectiveGenomeSizes[GenomeAssembly]
 
-#if os.path.isdir(REFGENEPATH) == False:
-#	print('ERROR: REFGENEPATH (' + REFGENEPATH + ') is not a directory.')
-#	quit()
+if os.path.exists(glob.glob(REFGENEPATH + '*')[0]) == False:
+	print('ERROR: REFGENEPATH (' + REFGENEPATH + ') does not contain bowtie genome files.')
+	quit()
 
 if os.path.exists(BLACKLIST) == False:
 	print('ERROR: BLACKLIST (' + BLACKLIST + ') does not exist.')
 	quit()
 
-
-
-
-# This series of if statements checks that the control .bed file defined by $CTRLPATH exists 
-# and creates standard out/error and Stats directories if they don't already exist
-# Also checks whether stdOUT, stdERR, and NETSCR end with '/', exits with errorcode 1 if so
-
 if os.path.exists(CTRLPATH) == False:
 	print('ERROR: ' + CTRLPATH + ' does not exist. Is CTRLPATH set correctly?')
 	quit()
-
-if os.path.exists(BLACKLIST) == False:
-	print('ERROR: ' + BLACKLIST + ' does not exist. Is BLACKLIST set correctly?')
 
 
 FASTQ = glob.glob('*.fastq.gz')
@@ -318,11 +308,11 @@ rule qcReport:
 		expand("PCRdups/{sample}_PCR_duplicates", sample = SAMPLE)
 	output:
 		"multiqc_report.html"
-	params: moduleVer = python3Ver 	
+	params: moduleVer = python3Ver , reportName = dirID
 	shell:
 		"""
 		module purge && module load {params.moduleVer}
-		multiqc . -f -x *.out -x *.err
+		multiqc . -f -x *.out -x *.err --filename {params.dirID}_report
 		"""
 
 
