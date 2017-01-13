@@ -38,6 +38,8 @@ Project_Dir
 1. Inside each sample directory run: ` sh ../src/faire-pipeline/slurmSubmission.sh ` 
 	- To manage job submission in background run ` nohup sh ../src/faire-pipeline/slurmSubmission.sh & disown`. Not recommended.
 
+**NOTE**: If not using submission script, you *must* provide the path to the snakefile as the first call to snakemake:
+`snakemake --snakefile <path/to/Snakefile>`
 
 ### Requirements:
 	- pysam (python2.7)
