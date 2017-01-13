@@ -186,17 +186,6 @@ rule removeDups:
 		samtools index {output.bam}
 		"""
 
-#rule idxNoDups:
-#	input:
-#		"Bam/{sample}_q5_sorted_dupsRemoved.bam"
-#	output:
-#		temp("Bam/{sample}_q5_sorted_dupsRemoved.bam.bai")
-#	params: moduleVer = samtoolsVer
-#	shell:
-#		"""
-#		module purge && module load {params.moduleVer}
-#		samtools index {input}
-#		"""
 rule noYUHet:
 # Extract only reads from Chrm 2R,2L,3R,3L,4 and X
 # Create new index for filtered bam file. Needed to convert bam file to bed file
@@ -215,18 +204,6 @@ rule noYUHet:
 		samtools flagstat {output.bam} > {output.flagstat} &&
 		samtools index {output.bam}
 		"""
-
-#rule noYUHet_idx:
-#	input:
-#		"Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam"
-#	output:
-#		"Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam.bai"
-#	params: moduleVer = samtoolsVer
-#	shell:
-#		"""
-#		module purge && module load {params.moduleVer}
-#		samtools index {input} 
-#		"""
 
 rule noYUHet_toBed:
 # Convert the bam file into a bed file
