@@ -24,9 +24,9 @@ BLACKLIST=str('/proj/mckaylab/genomeFiles/'+ GenomeAssembly + '/' + GenomeAssemb
 # effective genome size for RPGC normalization, might need to change depending on assembly/what you blacklist
 GENOMESIZE = effectiveGenomeSizes[GenomeAssembly]
 
-if os.path.isdir(REFGENEPATH) == False:
-	print('ERROR: REFGENEPATH (' + REFGENEPATH + ') is not a directory.')
-	quit()
+#if os.path.isdir(REFGENEPATH) == False:
+#	print('ERROR: REFGENEPATH (' + REFGENEPATH + ') is not a directory.')
+#	quit()
 
 if os.path.exists(BLACKLIST) == False:
 	print('ERROR: BLACKLIST (' + BLACKLIST + ') does not exist.')
@@ -97,15 +97,13 @@ peakOutName = expand("{dirID}_{nFiles}Reps_PooledPeaks", dirID = dirID, nFiles =
 
 rule all:
 	input:
-		expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam", sample = SAMPLE),
-		expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam.bai", sample = SAMPLE),
-		expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bed", sample = SAMPLE),
+		#expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam", sample = SAMPLE),
+		#expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam.bai", sample = SAMPLE),
+		#expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bed", sample = SAMPLE),
 		expand("BigWigs/ZNormalized/{sample}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw", sample = SAMPLE),
 		"Peakfiles/.peakCall.done",
 		"multiqc_report.html"
 	
-		#expand("{outdir}{name}{fType}", outdir = peakDir, name = peakOutName, fType = ['_peaks.narrowPeak', '_peaks.xls', '_summits.bed'])
-		
 rule align:
 	input:
 		#expand("{sample}.fastq.gz", sample = SAMPLE)
@@ -308,7 +306,8 @@ rule qcReport:
 # The idea here is that any logs we want information on will be explicitly asked for by the 
 # pipeline itself and stored in the 'logs/' directory or elsewhere as appropriate
 	input:
-		"Peakfiles/.peakCall.done"
+		expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.{ext}", sample = SAMPLE, ext = ['bam', 'bam.bai', 'bed']),
+		expand("PCRdups/{sample}_PCR_duplicates", sample = SAMPLE)
 	output:
 		"multiqc_report.html"
 	params: moduleVer = python3Ver 	
