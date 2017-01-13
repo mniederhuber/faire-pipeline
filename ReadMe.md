@@ -22,10 +22,12 @@ Project_Dir
 
 1. Make project directory
 1. Clone repository into src/
-1. configure Snakefile
+1. edit `PIPEPATH` variable in Snakefile to reflect location of pipeline (will fix in later versions)
+1. change `GenomeAssembly` if necessary (default = 'dm3')
 1. Create directories for each sample
 	* Copy or symlink fastq.gz files (pool technical replicate fastq.gz or do read trimming first)
 1. Inside each sample directory run: ` sh ../src/faire-pipeline/slurmSubmission.sh ` 
+	- To manage job submission in background run ` nohup sh ../src/faire-pipeline/slurmSubmission.sh & disown`. Not recommended.
 
 
 ### Requirements:
@@ -36,13 +38,14 @@ Project_Dir
 	- rtracklayer (r, bioconductor)	
 **Note**: 
 
-On longleaf python pacakges can be installed locally with ` pip install --user <pacakgeName> ` (use pip3 for python3 modules)
+On longleaf python packages can be installed locally with ` pip install --user <packageName> ` (use pip3 for python3 modules)
 
 rtracklayer is preinstalled on longleaf
 
 
 # ToDo:
-	- Run QC after Rule All (as shell:)
+	- Detect PIPEPATH inside Snakefile (Use --lock flag to prevent alterations with each round of submission)
+		- Alternately, write path to hidden file/pickle then source the file each time
 	- Generate pooled BigWigs
 	- Call range of peaks for QC analysis
 		- Ideally, perhaps another pipeline for determining optimal number of peaks
