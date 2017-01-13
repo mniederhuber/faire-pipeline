@@ -4,6 +4,7 @@
 
 ### Description
 **Pipeline Steps:**
+
 ![](docs/dag.png)
 
 
@@ -16,17 +17,17 @@ Project_Dir
 │   └── <sample>_rep2.fastq.gz
 └── src
     └──	faire-pipeline/
-	├── clusterConfig
-	│   └── slurmConfig.json
-	├── docs
-	│   └── dag.png
-	├── ReadMe.md
-	├── slurmSubmission.sh
-	├── Snakefile
-	├── tester.py
-	├── Tester_sub.sh
-	├── zNorm.r
-	└── z_norm_v2.py
+		├── clusterConfig
+		│   └── slurmConfig.json
+		├── docs
+		│   └── dag.png
+		├── ReadMe.md
+		├── slurmSubmission.sh
+		├── Snakefile
+		├── tester.py
+		├── Tester_sub.sh
+		├── zNorm.r
+		└── z_norm_v2.py
   
 ```
 
