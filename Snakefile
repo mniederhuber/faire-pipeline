@@ -179,60 +179,64 @@ rule markDups:
 
 rule removeDups:
 # Remove the reads that are marked as pcr duplicates from the bam file using the bit flag for pcr dups
+# Create index for bam file. This is needed for the next step to remove Chrm Y, U and Het
 	input:
 		"Bam/{sample}_q5_sorted_dupsMarked.bam"
 	output:
 		bam = temp("Bam/{sample}_q5_sorted_dupsRemoved.bam"),
-		flagstat = "logs/{sample}_q5_sorted_dupsRemoved.flagstat"
+		flagstat = "logs/{sample}_q5_sorted_dupsRemoved.flagstat",
+		idx = temp("Bam/{sample}_q5_sorted_dupsRemoved.bam.bai")
 	params: moduleVer = samtoolsVer
 
 	shell:
 		"""
 		module purge && module load {params.moduleVer}
 		samtools view -@ 4 -bF 0x400 {input} > {output.bam} &&
-		samtools flagstat {output.bam} > {output.flagstat}
+		samtools flagstat {output.bam} > {output.flagstat} &&
+		samtools index {output.bam}
 		"""
 
-rule idxNoDups:
-# Create index for bam file. This is needed for the next step to remove Chrm Y, U and Het
-	input:
-		"Bam/{sample}_q5_sorted_dupsRemoved.bam"
-	output:
-		temp("Bam/{sample}_q5_sorted_dupsRemoved.bam.bai")
-	params: moduleVer = samtoolsVer
-	shell:
-		"""
-		module purge && module load {params.moduleVer}
-		samtools index {input}
-		"""
+#rule idxNoDups:
+#	input:
+#		"Bam/{sample}_q5_sorted_dupsRemoved.bam"
+#	output:
+#		temp("Bam/{sample}_q5_sorted_dupsRemoved.bam.bai")
+#	params: moduleVer = samtoolsVer
+#	shell:
+#		"""
+#		module purge && module load {params.moduleVer}
+#		samtools index {input}
+#		"""
 rule noYUHet:
 # Extract only reads from Chrm 2R,2L,3R,3L,4 and X
+# Create new index for filtered bam file. Needed to convert bam file to bed file
 	input:
 		bam = "Bam/{sample}_q5_sorted_dupsRemoved.bam",
 		idx = "Bam/{sample}_q5_sorted_dupsRemoved.bam.bai"
 	output:
 		bam = "Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam",
-		flagstat =  "logs/{sample}_q5_sorted_dupsRemoved_noYUHet.flagstat"
+		flagstat =  "logs/{sample}_q5_sorted_dupsRemoved_noYUHet.flagstat",
+		idx = "Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam.bai"
 	params: moduleVer = samtoolsVer
 	shell:
 		"""
 		module purge && module load {params.moduleVer}
 		samtools view -@ 4 -b {input.bam} chr2L chr2R chr3L chr3R chr4 chrX > {output.bam} &&
-		samtools flagstat {output.bam} > {output.flagstat}
+		samtools flagstat {output.bam} > {output.flagstat} &&
+		samtools index {output.bam}
 		"""
 
-rule noYUHet_idx:
-# Create new index for filtered bam file. Needed to convert bam file to bed file
-	input:
-		"Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam"
-	output:
-		"Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam.bai"
-	params: moduleVer = samtoolsVer
-	shell:
-		"""
-		module purge && module load {params.moduleVer}
-		samtools index {input} 
-		"""
+#rule noYUHet_idx:
+#	input:
+#		"Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam"
+#	output:
+#		"Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam.bai"
+#	params: moduleVer = samtoolsVer
+#	shell:
+#		"""
+#		module purge && module load {params.moduleVer}
+#		samtools index {input} 
+#		"""
 
 rule noYUHet_toBed:
 # Convert the bam file into a bed file
