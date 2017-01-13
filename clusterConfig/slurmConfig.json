@@ -24,12 +24,24 @@
 		"mem" : "16G",
 		"threads" : "8"
 	},
+	
+	"mergeBigWig" :
+	{
+		"mem" : "16G",
+		"threads" : "8"
+	},
 
 	"qcReport" :
 	{
 		"mem" : "1G",
 		"threads" : "1",
 		"time" : "10:00"
+	},
+	
+	"mergeBams" :
+	{
+		"time" : "45:00",
+		"mem" : "16G"
 	}
 
 }	

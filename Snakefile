@@ -93,6 +93,7 @@ rule all:
 		#expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam.bai", sample = SAMPLE),
 		#expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bed", sample = SAMPLE),
 		expand("BigWigs/ZNormalized/{sample}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw", sample = SAMPLE),
+		expand("BigWigs/ZNormalized/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw", dirID = dirID, nFiles = nFiles),
 		"Peakfiles/.peakCall.done",
 		"multiqc_report.html"
 	
@@ -240,8 +241,6 @@ rule zNormBigWig:
 		zNorm = "BigWigs/ZNormalized/{sample}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw",
 		zStats = "logs/{sample}.zNorm"
 	params: pipePath = '.faire-pipeline', moduleVer = rVer
-#	script:
-#		"zNorm_from_Snakemake.R"
 	shell:
 		"""
 		module purge && module load {params.moduleVer}
@@ -269,6 +268,48 @@ rule CallPooledPeaks:
 		"""
 		module purge && module load {params.moduleVer}
 		macs2 callpeak -t {input}  -c {params.control} -n {params.name} -g dm --nomodel --extsize 125 --seed 123 --outdir {params.outdir} 
+		"""
+
+rule mergeBams:
+	input:
+		expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam", sample = SAMPLE)
+	params: moduleVer = samtoolsVer
+	output:
+		bam = expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bam", dirID = dirID, nFiles = nFiles),
+		idx = expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.idx", dirID = dirID, nFiles = nFiles)
+	shell:
+		"""
+		module purge && module load {params.moduleVer}
+		samtools merge {output.bam} {input} &&
+		samtools index {output.bam}
+		"""
+rule mergeBigWig:
+# Bam Coverage to output bigwig file normalized to genomic coverage
+	input:
+		bam = expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bam", dirID = dirID, nFiles = nFiles),
+		idx = expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.idx", dirID = dirID, nFiles = nFiles)
+	output:
+		expand("BigWigs/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw", dirID = dirID, nFiles = nFiles)
+	threads: 8 
+	params: moduleVer = deeptoolsVer, blacklist = BLACKLIST, genomeSize = GENOMESIZE
+	shell:
+		"""
+		module purge && module load {params.moduleVer}
+		bamCoverage -b {input.bam} -p {threads} --blackListFileName {params.blacklist} --normalizeTo1x {params.genomeSize} --outFileFormat bigwig --binSize 10 -e 125 -o {output}
+		"""
+
+rule mergeZNormBigWig:
+# Z-Normalize Bigwig Files
+	input:
+		bw = expand("BigWigs/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw", dirID = dirID, nFiles = nFiles)
+	output:
+		zNorm = expand("BigWigs/ZNormalized/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw", dirID = dirID, nFiles = nFiles),
+		zStats = expand("logs/{dirID}_{nFiles}Reps_POOLED.zNorm", dirID = dirID, nFiles = nFiles)
+	params: pipePath = '.faire-pipeline', moduleVer = rVer
+	shell:
+		"""
+		module purge && module load {params.moduleVer}
+		Rscript --vanilla {params.pipePath}/zNorm.r {input.bw} {output.zNorm} > {output.zStats}
 		"""
 
 rule qcReport:

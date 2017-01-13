@@ -56,8 +56,6 @@ rtracklayer is preinstalled on longleaf
 
 
 # ToDo:
-	- Detect PIPEPATH inside Snakefile (Use --lock flag to prevent alterations with each round of submission)
-		- Alternately, write path to hidden file/pickle then source the file each time
 	- Generate pooled BigWigs
 	- Call range of peaks for QC analysis
 		- Ideally, perhaps another pipeline for determining optimal number of peaks
