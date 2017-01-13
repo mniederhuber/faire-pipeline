@@ -87,8 +87,6 @@ if peakDir[-1] != '/':
 	print('ERROR: peakDir (' + peakDir + ') does not end with /')
 	quit()
 
-peakOutName = expand("{dirID}_{nFiles}Reps_PooledPeaks", dirID = dirID, nFiles = nFiles)
-
 rule all:
 	input:
 		#expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam", sample = SAMPLE),
@@ -263,11 +261,10 @@ rule CallPooledPeaks:
 	params:
 		outdir = peakDir, 
 		control = CTRLPATH,
-		name = expand("{dirID}_{nFiles}Reps_PooledPeaks", dirID = dirID, nFiles = nFiles),
+		name = expand("{dirID}_{nFiles}Reps_FAIRE_PooledPeaks", dirID = dirID, nFiles = nFiles),
 		moduleVer = macsVer 
 	output:
 		touch("Peakfiles/.peakCall.done")
-		#expand("{outdir}/{name}{fType}", outdir = peakDir, name = peakOutName, fType = ['_peaks.narrowPeak', '_peaks.xls', '_summits.bed'])
 	shell:
 		"""
 		module purge && module load {params.moduleVer}
