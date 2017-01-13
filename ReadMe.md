@@ -3,7 +3,7 @@
 ## Date: 2016-01-12
 
 ### Description
-#### Pipeline Steps:
+**Pipeline Steps:**
 ![](docs/dag.png)
 
 
@@ -11,18 +11,27 @@
 **Ideal Directory Structure**
 ```{bash}
 Project_Dir
-|
-|--<genotype>-<time>-<tissue>/
-|	|-<sample>_rep1.fastq.gz
-|	|-<sample>_rep2.fastq.gz
-|--src/
-	|
-	|-faire-pipeline	
+├── <genotype>-<time>-<tissue> 
+│   ├── <sample>_rep1.fastq.gz
+│   └── <sample>_rep2.fastq.gz
+└── src
+    └──	faire-pipeline/
+	├── clusterConfig
+	│   └── slurmConfig.json
+	├── docs
+	│   └── dag.png
+	├── ReadMe.md
+	├── slurmSubmission.sh
+	├── Snakefile
+	├── tester.py
+	├── Tester_sub.sh
+	├── zNorm.r
+	└── z_norm_v2.py
+  
 ```
 
 1. Make project directory
 1. Clone repository into src/
-1. edit `PIPEPATH` variable in Snakefile to reflect location of pipeline (will fix in later versions)
 1. change `GenomeAssembly` if necessary (default = 'dm3')
 1. Create directories for each sample
 	* Copy or symlink fastq.gz files (pool technical replicate fastq.gz or do read trimming first)

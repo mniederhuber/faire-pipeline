@@ -3,15 +3,44 @@
 import os
 import glob
 
-
 GenomeAssembly = 'dm3'
-PIPEPATH = '/pine/scr/s/n/snystrom/Bitbucket/faire-pipeline'
 
+##############################
+# Module Versions:
+
+bowtie2Ver = str('bowtie2/2.2.8')
+samtoolsVer = str('samtools/1.3.1')
+bedtoolsVer = str('bedtools/2.25.0')
+
+picardVer = str('2.2.4')
+picardPath = str('/nas02/apps/picard-' + picardVer + '/picard-tools-' + picardVer + '/picard.jar')
+
+deeptoolsVer = str('deeptools/2.4.1')
+macsVer = str('macs/2016-02-15')
+ucscVer = str('ucsctools/320')
+rVer = str('r/3.3.1')
+
+python3Ver = str('python/3.5.1')
+
+##############################
 
 # Dictionary of effective genome sizes. 
 # Used as lookup table later for RPGC adjustments 
 # based on GenomeAssembly
 effectiveGenomeSizes = {'dm3':121400000}
+
+# Symlink to pipeline path for calling scripts with commandline arguments (zNorm.r for example)
+# Requires that snakemake call be structured as `snakemake --snakefile <path/to/snakefile>`
+PIPEPATH = os.path.dirname(os.path.abspath(sys.argv[2]))
+symLink = str(os.getcwd() + '/.faire-pipeline')
+
+if os.path.isdir(symLink) == False:
+	os.symlink(PIPEPATH, symLink) 
+
+if os.path.exists(symLink + '/Snakefile') == False:
+	print('ERROR: no Snakefile in .faire-pipeline. Ensure --snakefile <path/to/snakefile> is 3rd argument of snakemake call.')
+	quit()
+
 
 							
 REFGENEPATH=str('/proj/mckaylab/genomeFiles/' + GenomeAssembly + '/RefGenome/' + GenomeAssembly)	# Point directly to the refgeneome file you want to use
@@ -32,31 +61,6 @@ if os.path.exists(BLACKLIST) == False:
 	print('ERROR: BLACKLIST (' + BLACKLIST + ') does not exist.')
 	quit()
 
-if os.path.isdir(PIPEPATH) == False:
-	print('ERROR: PIPEPATH (' + PIPEPATH + ') is not a directory.')
-	quit()
-
-if os.path.exists(PIPEPATH + '/Snakefile') == False:
-	print('ERROR: no Snakefile in PIPEPATH (' + PIPEPATH + ')')
-	quit()
-
-##############################
-# Module Versions:
-
-bowtie2Ver = str('bowtie2/2.2.8')
-samtoolsVer = str('samtools/1.3.1')
-bedtoolsVer = str('bedtools/2.25.0')
-
-picardVer = str('2.2.4')
-picardPath = str('/nas02/apps/picard-' + picardVer + '/picard-tools-' + picardVer + '/picard.jar')
-
-deeptoolsVer = str('deeptools/2.4.1')
-macsVer = str('macs/2016-02-15')
-ucscVer = str('ucsctools/320')
-rVer = str('r/3.3.1')
-
-python3Ver = str('python/3.5.1')
-##############################
 
 
 
@@ -266,7 +270,7 @@ rule zNormBigWig:
 	output:
 		zNorm = "BigWigs/ZNormalized/{sample}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw",
 		zStats = "logs/{sample}.zNorm"
-	params: pipePath = PIPEPATH, moduleVer = rVer
+	params: pipePath = '.faire-pipeline', moduleVer = rVer
 #	script:
 #		"zNorm_from_Snakemake.R"
 	shell:
