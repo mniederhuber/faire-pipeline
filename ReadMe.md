@@ -8,7 +8,24 @@
 
 
 ### Usage:
+**Ideal Directory Structure**
+```{bash}
+Project_Dir
+|
+|--<genotype>-<time>-<tissue>/
+|	|-<sample>_rep1.fastq.gz
+|	|-<sample>_rep2.fastq.gz
+|--src/
+	|
+	|-faire-pipeline	
+```
 
+1. Make project directory
+1. Clone repository into src/
+1. configure Snakefile
+1. Create directories for each sample
+	* Copy or symlink fastq.gz files (pool technical replicate fastq.gz or do read trimming first)
+1. Inside each sample directory run: ` sh ../src/faire-pipeline/slurmSubmission.sh ` 
 
 
 ### Requirements:
@@ -25,6 +42,7 @@ rtracklayer is preinstalled on longleaf
 
 
 # ToDo:
+	- Run QC after Rule All (as shell:)
 	- Generate pooled BigWigs
 	- Call range of peaks for QC analysis
 		- Ideally, perhaps another pipeline for determining optimal number of peaks

@@ -8,7 +8,8 @@ GenomeAssembly = 'dm3'
 PIPEPATH = '/pine/scr/s/n/snystrom/Bitbucket/faire-pipeline'
 
 
-# Dictionary of effective genome sizes. Used as lookup table later for RPGC adjustments 
+# Dictionary of effective genome sizes. 
+# Used as lookup table later for RPGC adjustments 
 # based on GenomeAssembly
 effectiveGenomeSizes = {'dm3':121400000}
 
@@ -23,6 +24,13 @@ BLACKLIST=str('/proj/mckaylab/genomeFiles/'+ GenomeAssembly + '/' + GenomeAssemb
 # effective genome size for RPGC normalization, might need to change depending on assembly/what you blacklist
 GENOMESIZE = effectiveGenomeSizes[GenomeAssembly]
 
+if os.path.isdir(REFGENEPATH) == False:
+	print('ERROR: REFGENEPATH (' + REFGENEPATH + ') is not a directory.')
+	quit()
+
+if os.path.exists(BLACKLIST) == False:
+	print('ERROR: BLACKLIST (' + BLACKLIST + ') does not exist.')
+	quit()
 
 if os.path.isdir(PIPEPATH) == False:
 	print('ERROR: PIPEPATH (' + PIPEPATH + ') is not a directory.')
