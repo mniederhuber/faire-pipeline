@@ -276,7 +276,7 @@ rule mergeBams:
 	params: moduleVer = samtoolsVer
 	output:
 		bam = expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bam", dirID = dirID, nFiles = nFiles),
-		idx = expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.idx", dirID = dirID, nFiles = nFiles)
+		idx = expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bam.bai", dirID = dirID, nFiles = nFiles)
 	shell:
 		"""
 		module purge && module load {params.moduleVer}
@@ -287,7 +287,7 @@ rule mergeBigWig:
 # Bam Coverage to output bigwig file normalized to genomic coverage
 	input:
 		bam = expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bam", dirID = dirID, nFiles = nFiles),
-		idx = expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.idx", dirID = dirID, nFiles = nFiles)
+		idx = expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bam.bai", dirID = dirID, nFiles = nFiles)
 	output:
 		expand("BigWigs/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw", dirID = dirID, nFiles = nFiles)
 	threads: 8 
