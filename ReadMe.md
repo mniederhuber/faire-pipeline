@@ -66,6 +66,7 @@ rtracklayer is preinstalled on longleaf
 
 
 # ToDo:
+	- Update DAG to reflect new changes & dynamic filenumber detection
 	- Call range of peaks for QC analysis
 		- Ideally, perhaps another pipeline for determining optimal number of peaks
 			as determined by the sample with lowest ideal peak # in a set of peaks that will be compared

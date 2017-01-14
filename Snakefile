@@ -336,7 +336,7 @@ rule qcReport:
 # The idea here is that any logs we want information on will be explicitly asked for by the 
 # pipeline itself and stored in the 'logs/' directory or elsewhere as appropriate
 	input:
-		expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.{ext}", sample = SAMPLE, ext = ['bam', 'bam.bai', 'bed']),
+		expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.{ext}", sample = SAMPLE, ext = ['bam', 'bam.bai']),
 		expand("PCRdups/{sample}_PCR_duplicates", sample = SAMPLE)
 	output:
 		expand("{dirID}_report.html", dirID = dirID)
