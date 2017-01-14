@@ -41,9 +41,5 @@ zScoreChrList <- endoapply(bwList, function(x){
 
 zScoreBw <- unlist(zScoreChrList) # recombine into Granges object
 
-zScoreCSV <- data.frame(zScoreBw)
-write.csv(zScoreCSV, "./zScoreCSV.csv", row.names = F)
-
 export.bw(con = argv[2], object = zScoreBw) # write bigwig
-
 

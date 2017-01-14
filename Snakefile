@@ -66,7 +66,6 @@ if os.path.exists(CTRLPATH) == False:
 	quit()
 
 
-FASTQ = glob.glob('*.fastq.gz')
 
 def getSamples(fastqList):
 	sampleList = []
@@ -74,6 +73,8 @@ def getSamples(fastqList):
 		sample = f.split('.')[0]
 		sampleList.append(sample)
 	return(sampleList)
+
+FASTQ = glob.glob('*.fastq.gz')
 
 SAMPLE = getSamples(FASTQ)
 
@@ -88,15 +89,19 @@ if peakDir[-1] != '/':
 	quit()
 
 rule all:
-	input:
-		#expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam", sample = SAMPLE),
-		#expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam.bai", sample = SAMPLE),
-		#expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bed", sample = SAMPLE),
+# Only creates pooled files if there are files to pool.
+	input: 
 		expand("BigWigs/ZNormalized/{sample}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw", sample = SAMPLE),
 		expand("BigWigs/ZNormalized/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw", dirID = dirID, nFiles = nFiles),
-		"Peakfiles/.peakCall.done",
-		"multiqc_report.html"
-	
+		expand("Peakfiles/.{nFiles}Reps_peakCall.done", nFiles = nFiles),
+		expand("Peakfiles/.{nFiles}Reps_peakSort.done", nFiles = nFiles),
+		expand("{dirID}_report.html", dirID = dirID) 
+		if nFiles > 1 else
+		expand("BigWigs/ZNormalized/{sample}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw", sample = SAMPLE),
+		expand("BigWigs/ZNormalized/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw", dirID = dirID, nFiles = nFiles),
+		expand("Peakfiles/.{nFiles}Reps_peakCall.done", nFiles = nFiles),
+		expand("Peakfiles/.{nFiles}Reps_peakSort.done", nFiles = nFiles),
+		expand("{dirID}_report.html", dirID = dirID)
 rule align:
 	input:
 		#expand("{sample}.fastq.gz", sample = SAMPLE)
@@ -252,23 +257,35 @@ if os.path.isdir == False:
 
 rule CallPooledPeaks:
 # Call Peaks using MACS. Pools all input files first.
+# Then sort peak file by q-value in decreasing order, then output chromosome, start and end coordinates, peak name and q-value to bedfile (for subsetting into top x# peaks) 
 # Because macs2 outputs multiple files and parsing it is annoying, 
-# snakemake will just create a hidden file ('Peakfiles/.peakCall.done')
-# at the end, which is requested by rule all
+# snakemake will just create a hidden file ('Peakfiles/.{nFiles}Reps_peakCall.done')
+# at the end, which is requested by rule all. nFiles is included to allow recalling when more samples are added to directory upon rerunning pipeline.
 	input:
 		expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bed", sample = SAMPLE)
 	params:
 		outdir = peakDir, 
 		control = CTRLPATH,
-		name = expand("{dirID}_{nFiles}Reps_FAIRE_PooledPeaks", dirID = dirID, nFiles = nFiles),
+		name = expand("{dirID}_{nFiles}Reps_FAIRE_PooledPeaks", dirID = dirID, nFiles = nFiles) if nFiles > 1 else expand("{sample}_FAIRE", sample = SAMPLE),
 		moduleVer = macsVer 
 	output:
-		touch("Peakfiles/.peakCall.done")
+		touch(expand("Peakfiles/.{nFiles}Reps_peakCall.done", nFiles = nFiles))
 	shell:
 		"""
 		module purge && module load {params.moduleVer}
-		macs2 callpeak -t {input}  -c {params.control} -n {params.name} -g dm --nomodel --extsize 125 --seed 123 --outdir {params.outdir} 
+		macs2 callpeak -t {input}  -c {params.control} -n {params.name} -g dm --nomodel --extsize 125 --seed 123 --outdir {params.outdir}
 		"""
+rule sortPooledPeaks:
+	input:
+		expand("Peakfiles/.{nFiles}Reps_peakCall.done", nFiles = nFiles)
+	output:
+		touch(expand("Peakfiles/.{nFiles}Reps_peakSort.done", nFiles = nFiles)),
+		name = expand("Peakfiles/{dirID}_{nFiles}Reps_FAIRE_PooledPeaks_peaks_qSorted.bed", dirID = dirID, nFiles = nFiles) if nFiles > 1 else expand("{sample}_FAIRE", sample = SAMPLE),
+	params:
+		name = expand("Peakfiles/{dirID}_{nFiles}Reps_FAIRE_PooledPeaks_peaks.narrowPeak", dirID = dirID, nFiles = nFiles)
+	shell:
+		"sort -n -r -k9 {params.name} | cut -f1,2,3,4,9 > {output.name}"
+		
 
 rule mergeBams:
 	input:
@@ -322,16 +339,14 @@ rule qcReport:
 		expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.{ext}", sample = SAMPLE, ext = ['bam', 'bam.bai', 'bed']),
 		expand("PCRdups/{sample}_PCR_duplicates", sample = SAMPLE)
 	output:
-		"multiqc_report.html"
+		expand("{dirID}_report.html", dirID = dirID)
 	params: moduleVer = python3Ver , reportName = dirID
 	shell:
 		"""
 		module purge && module load {params.moduleVer}
-		multiqc . -f -x *.out -x *.err --filename {params.dirID}_report
+		multiqc . -f -x *.out -x *.err --filename {params.reportName}_report
 		"""
 
 
-#First sort peak file by q-value in decreasing order, then cut out chromosome, start and end coordinates, peak name and q-value and take the top 5000 peaks based on q-value
-#sort -n -r -k9 ${STRAIN}_q5_sorted_dupsRemoved_noYUHet_peaks.narrowPeak | cut -f1,2,3,4,9 | head -5000 > ${STRAIN}_q5_sorted_dupsRemoved_noYUHet_Top5000Peaks.bed
 	
 
