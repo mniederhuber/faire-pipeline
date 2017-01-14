@@ -39,7 +39,7 @@ Project_Dir
 
 1. Make project directory
 1. Clone repository into src/
-1. change `GenomeAssembly` if necessary (default = 'dm3')
+1. change `GenomeAssembly` if necessary (Currently only supports dm3)
 1. Create directories for each sample
 	* Copy or symlink fastq.gz files (pool technical replicate fastq.gz or do read trimming first)
 1. Inside each sample directory run: ` sh ../src/faire-pipeline/slurmSubmission.sh ` 
@@ -70,3 +70,5 @@ rtracklayer is preinstalled on longleaf
 	- Call range of peaks for QC analysis
 		- Ideally, perhaps another pipeline for determining optimal number of peaks
 			as determined by the sample with lowest ideal peak # in a set of peaks that will be compared
+	- Add support for dm6
+	- symlink to .faire-pipeline could cause problems if force rerunning pipeline and want to force recreation. Need to think of a robust solution to this.
