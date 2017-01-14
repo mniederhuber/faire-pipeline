@@ -104,10 +104,8 @@ rule all:
 		expand("{dirID}_report.html", dirID = dirID)
 rule align:
 	input:
-		#expand("{sample}.fastq.gz", sample = SAMPLE)
 		"{sample}.fastq.gz"
 	output:
-		#temp(expand("Sam/{sample}.sam", sample = SAMPLE))
 		sam = temp("Sam/{sample}.sam"),
 		logInfo = "logs/{sample}_bowtie2.txt"
 	threads: 8
@@ -169,7 +167,6 @@ rule markDups:
 		module purge && module load {params.moduleVer}
 		java -Xmx8g -jar {picardPath} MarkDuplicates INPUT= {input} OUTPUT= {output.markedDups} METRICS_FILE= {output.PCRdups} REMOVE_DUPLICATES= false ASSUME_SORTED= true
 		"""
-# continue making rules here
 
 rule removeDups:
 # Remove the reads that are marked as pcr duplicates from the bam file using the bit flag for pcr dups
