@@ -17,7 +17,15 @@
 	- Will **NOT** pool peaks or create pooled files if there are no files to pool.
 
 ### Usage:
-**Ideal Directory Structure**
+
+Each experiment should have its own directory with 1 fastq.gz file per biological replicate. Technical replicates should be pooled prior to running the pipeline. The name of the experiment directory will
+be used to name pooled files (pooled bigwigs, peak calls, etc.), so do carefully consider your directory names (ex. 'OR-0APF-Leg-FAIRE', or 'E93RNAi-24APF-Wing-FAIRE').
+
+**NOTE:** Do not use spaces in file or directory names
+
+The pipeline itself can be stored anywhere, however, by convention it should be stored in `src/` as a subdirectory of the project directory.
+
+**Example Directory Structure**
 ```{bash}
 Project_Dir
 ├── <genotype>-<time>-<tissue>-FAIRE
@@ -36,13 +44,13 @@ Project_Dir
 		└── z_norm_v2.py
   
 ```
-
+### General Workflow:
 1. Make project directory
 1. Clone repository into src/
-1. change `GenomeAssembly` if necessary (Currently only supports dm3)
-1. Create directories for each sample
-	* Copy or symlink fastq.gz files (pool technical replicate fastq.gz or do read trimming first)
-1. Inside each sample directory run: ` sh ../src/faire-pipeline/slurmSubmission.sh ` 
+1. change `GenomeAssembly` if necessary (Currently only supports dm3, so this is unnecessary)
+1. Create directories for each experiment 
+	* Copy or symlink fastq.gz files (pool technical replicate fastq.gz and do read trimming first if necessary)
+1. Inside each experiment directory run: ` sh ../src/faire-pipeline/slurmSubmission.sh ` 
 	- Job progress will be reported by snakemake. Progress can further be monitored by running `watch -n1 sacct -S now` in a separate terminal.
 	- To manage job submission in background run ` nohup sh ../src/faire-pipeline/slurmSubmission.sh & disown`
 	- To run on multiple directories (with 'FAIRE' in the names, in this example) at once, run: `for d in *FAIRE*; do cd $d ; nohup sh ../src/faire-pipeline/slurmSubmission.sh & disown ; cd .. ; done`
@@ -66,7 +74,6 @@ rtracklayer is preinstalled on longleaf
 
 
 # ToDo:
-	- Update DAG to reflect new changes & dynamic filenumber detection
 	- Call range of peaks for QC analysis
 		- Ideally, perhaps another pipeline for determining optimal number of peaks
 			as determined by the sample with lowest ideal peak # in a set of peaks that will be compared
