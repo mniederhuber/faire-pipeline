@@ -60,7 +60,7 @@ Project_Dir
 	- rtracklayer (r, bioconductor)	
 **Note**: 
 
-On longleaf python packages can be installed locally with ` pip install --user <packageName> ` (use pip3 for python3 modules)
+Run `InstallPythonModules_longleaf.sh` to install required packages
 
 rtracklayer is preinstalled on longleaf
 
