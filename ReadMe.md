@@ -20,7 +20,7 @@
 
 Each experiment should have its own directory with 1 fastq.gz file per biological replicate. Technical replicates should be pooled prior to running the pipeline. The name of the experiment directory will
 be used to name pooled files (pooled bigwigs, peak calls, etc.). For example, a directory named 'OR-24APF-Wing-FAIRE' containing two fastq.gz files will produce a Pooled Bigwig named:
-'BigWigs/OR-24APF-Wing-FAIRE_2Reps_POOLED_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw', where 'OR-24APF-Wing-FAIRE' is detected from the directory name, and '2Reps' 
+'BigWigs/OR-24APF-Wing-FAIRE_2Reps_POOLED_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw', where 'OR-24APF-Wing-FAIRE' is detected from the experiment directory name, and '2Reps' 
 is detected by counting the number of fastq files in the directory.
 
 
