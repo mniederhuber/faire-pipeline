@@ -14,4 +14,18 @@ if [[ ! -d slurmOut ]]; then
 	mkdir slurmOut
 fi
 
+while getopts ":f" opt; do
+	case $opt in
+		f)
+
+		rm $(snakemake --snakefile ../faire-pipeline/Snakefile --summary | tail -n+2 | cut -f1)
+		;;
+		\?)
+		echo "Invalid flag: -$OPTARG" >&2
+		exit
+		;;
+	esac
+done
+
 snakemake --snakefile $pipePath/Snakefile --cluster-config $pipePath/clusterConfig/slurmConfig.json --cluster "sbatch -J {rule} -o slurmOut/slurm-%j.out -N1 -n {cluster.threads} --time {cluster.time} --mem={cluster.mem} -A {cluster.account}" --jobs 100
+

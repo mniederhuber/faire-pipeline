@@ -23,10 +23,13 @@ be used to name pooled files (pooled bigwigs, peak calls, etc.). For example, a 
 'BigWigs/OR-24APF-Wing-FAIRE_2Reps_POOLED_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw', where 'OR-24APF-Wing-FAIRE' is detected from the directory name, and '2Reps' 
 is detected by counting the number of fastq files in the directory.
 
-
 **NOTE:** Do not use spaces in file or directory names
 
-The pipeline itself can be stored anywhere, however, by convention it should be stored in `src/` as a subdirectory of the project directory.
+
+
+
+
+The pipeline itself can be stored anywhere, however, by convention it should be stored in `src/` as a subdirectory of the project directory, for example:
 
 **Example Directory Structure**
 ```{bash}
@@ -59,6 +62,7 @@ Project_Dir
 	- To run on multiple directories (with 'FAIRE' in the names, in this example) at once, run: `for d in *FAIRE*; do cd $d ; nohup sh ../src/faire-pipeline/slurmSubmission.sh & disown ; cd .. ; done`
 		- Snakemake output will be appended to nohup.out in each directory.
 		- If you choose to run the pipeline this way, it is highly recommended you monitor job progress with `watch -n1 sacct -S <time you ran the pipeline>` to check for FAILED jobs.
+	- To force the pipeline to rerun, pass the `-f` flag to the submission script: `sh ../src/faire-pipeline/slurmSubmission.sh -f`
 
 **NOTE**: If not using submission script, you *must* provide the path to the snakefile as the first call to snakemake:
 `snakemake --snakefile <path/to/Snakefile>`
