@@ -101,7 +101,9 @@ rule all:
 		expand("BigWigs/ZNormalized/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw", dirID = dirID, nFiles = nFiles),
 		expand("Peakfiles/.{nFiles}Reps_peakCall.done", nFiles = nFiles),
 		expand("Peakfiles/.{nFiles}Reps_peakSort.done", nFiles = nFiles),
-		expand("{dirID}_report.html", dirID = dirID)
+		expand("{dirID}_report.html", dirID = dirID),
+		expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bed", dirID = dirID, nFiles = nFiles)
+
 rule align:
 	input:
 		"{sample}.fastq.gz"
@@ -297,6 +299,20 @@ rule mergeBams:
 		samtools merge {output.bam} {input} &&
 		samtools index {output.bam}
 		"""
+rule mergeBamtoBed:
+# Convert the bam file into a bed file
+	input:
+		bam = expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bam", dirID = dirID, nFiles = nFiles),
+		idx = expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bam.bai", dirID = dirID, nFiles = nFiles)
+	output:
+		expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bed", dirID = dirID, nFiles = nFiles),
+	params: moduleVer = bedtoolsVer
+	shell:
+		"""
+		module purge && module load {params.moduleVer}
+		bedtools bamtobed -i {input.bam} > {output}
+		"""
+
 rule mergeBigWig:
 # Bam Coverage to output bigwig file normalized to genomic coverage
 	input:

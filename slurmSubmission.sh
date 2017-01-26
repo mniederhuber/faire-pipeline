@@ -14,12 +14,16 @@ if [[ ! -d slurmOut ]]; then
 	mkdir slurmOut
 fi
 
-while getopts ":f" opt; do
+while getopts ":f:u" opt; do
 	case $opt in
 		f)
 
-		rm $(snakemake --snakefile ../faire-pipeline/Snakefile --summary | tail -n+2 | cut -f1)
-		snakemake --snakefile $pipePath/Snakefile --cluster-config $pipePath/clusterConfig/slurmConfig.json -R all --cluster "sbatch -J {rule} -o slurmOut/slurm-%j.out -N1 -n {cluster.threads} --time {cluster.time} --mem={cluster.mem} -A {cluster.account}" --jobs 100
+		rm $(snakemake --snakefile $pipePath/Snakefile --summary | tail -n+2 | cut -f1)
+		snakemake --snakefile $pipePath/Snakefile --cluster-config $pipePath/clusterConfig/slurmConfig.json -R all --cluster "sbatch -J {rule} -o slurmOut/slurm-%j.out -N1 -n {cluster.threads} --time {cluster.time} --mem={cluster.mem} -A {cluster.account}" --jobs 100 
+		exit
+		;;
+		u)
+		snakemake --snakefile $pipePath/Snakefile --unlock
 		exit
 		;;
 		\?)
