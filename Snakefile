@@ -45,8 +45,13 @@ if os.path.exists(symLink + '/Snakefile') == False:
 							
 REFGENEPATH=str('/proj/mckaylab/genomeFiles/' + GenomeAssembly + '/RefGenome/' + GenomeAssembly)	# Point directly to the refgeneome file you want to use
 
-# Point directly to negative control genomic DNA input
-CTRLPATH=str('/proj/mckaylab/genomeFiles/' + GenomeAssembly + '/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed') 
+# Point directly to negative control genomic DNA input unless ctrlPath variable is set in config
+if 'ctrlPath' in config:
+	# set with --config ctrlPath="path/to/file"
+	CTRLPATH = config["ctrlPath"]
+else:
+	CTRLPATH = str('/proj/mckaylab/genomeFiles/' + GenomeAssembly + '/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed') 
+	
 
 BLACKLIST=str('/proj/mckaylab/genomeFiles/'+ GenomeAssembly + '/' + GenomeAssembly + 'Blacklist.bed')
 
