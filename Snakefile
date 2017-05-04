@@ -48,7 +48,14 @@ REFGENEPATH=str('/proj/mckaylab/genomeFiles/' + GenomeAssembly + '/RefGenome/' +
 # Point directly to negative control genomic DNA input unless ctrlPath variable is set in config
 if 'ctrlPath' in config:
 	# set with --config ctrlPath="path/to/file"
-	CTRLPATH = config["ctrlPath"]
+	# Takes working directory, adds path to config as relative to entire filestructure.
+	# I should actually change this back to being a relative path thing,
+	# Because I fixed the error in the submission script
+	rootPath = os.getcwd().split('/')[0:-1]
+	rootPath.append(config["ctrlPath"])
+
+	CTRLPATH = '/'.join(rootPath)
+
 else:
 	CTRLPATH = str('/proj/mckaylab/genomeFiles/' + GenomeAssembly + '/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed') 
 	

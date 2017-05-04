@@ -27,7 +27,7 @@ while getopts ":f:u:C" opt; do
 		;;
 		C)
 		# take input from file named 'config' in cwd
-		echo snakemake --snakefile $pipePath/Snakefile --config $(cat config) --cluster-config $pipePath/clusterConfig/slurmConfig.json --cluster "sbatch -J {rule} -o slurmOut/slurm-%j.out -N1 -n {cluster.threads} --time {cluster.time} --mem={cluster.mem} -A {cluster.account}" --jobs 100
+		snakemake --snakefile $pipePath/Snakefile --config $(cat config) --cluster-config $pipePath/clusterConfig/slurmConfig.json --cluster "sbatch -J {rule} -o slurmOut/slurm-%j.out -N1 -n {cluster.threads} --time {cluster.time} --mem={cluster.mem} -A {cluster.account}" --jobs 100
 		exit
 		;;
 		\?)
