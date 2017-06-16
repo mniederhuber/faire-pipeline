@@ -37,7 +37,7 @@ zScoreChrList <- lapply(bwList, function(x){
     chrName <- unique(x@seqnames)
     write(paste(chrName, zMean,zSD, sep = " "), stdout())
     #return(x)
-    if (is.na(unique(mcols(x)$score))) {
+    if (all(is.na(mcols(x)$score))) {
         # Chromosomes with no reads will have NaN score for whole chromosome
         return(NULL)
     } else {
