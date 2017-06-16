@@ -2,6 +2,7 @@
 
 # Author: Spencer Nystrom (snystrom@email.unc.edu)
 # Z-normalizes input bigwig file by chromosome arm
+# Usage: Rscript --vanilla zNorm.r <input.bw> <output.bw>
 
 library(rtracklayer)
 
@@ -21,7 +22,7 @@ bwList <- split(bw, bw@seqnames) # split by chromosome arm
 #bwList <- bwList[chrKeep] # only keep chr2,3,4,X , no heterochromatin
 
 write(paste("chr", "Mean", "Sd", sep = " "), stdout())
-zScoreChrList <- endoapply(bwList, function(x){
+zScoreChrList <- lapply(bwList, function(x){
 	# Calculate z-Score per chromosome arm:
 	# z = (x-u)/sd
 	# Mean and SD must be calculated as if from a frequency table, as deeptools will merge regions with identical scores
@@ -35,11 +36,18 @@ zScoreChrList <- endoapply(bwList, function(x){
     # Print ChrStats for report:
     chrName <- unique(x@seqnames)
     write(paste(chrName, zMean,zSD, sep = " "), stdout())
-    return(x)
+    #return(x)
+    if (all(is.na(mcols(x)$score))) {
+        # Chromosomes with no reads will have NaN score for whole chromosome
+        return(NULL)
+    } else {
+        return(x)
+    }
 })
 
-
-zScoreBw <- unlist(zScoreChrList) # recombine into Granges object
+zScoreChrList_noNull <- Filter(Negate(is.null), zScoreChrList) 
+zScoreChrList_noNull <- GRangesList(zScoreChrList_noNull)
+zScoreBw <- unlist(zScoreChrList_noNull) # recombine into Granges object
 
 export.bw(con = argv[2], object = zScoreBw) # write bigwig
 
