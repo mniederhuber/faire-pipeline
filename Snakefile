@@ -302,7 +302,7 @@ rule CallRepPeaks:
     shell:
             """
             module purge && module load {params.moduleVer}
-            macs2 callpeak -t {input} -c {params.control} -n {params.name} -g -dm --nomodel --extsize 125 --seed 123 --outdir {params.outdir}
+            macs2 callpeak -t {input} -c {params.control} -n {params.name} -g dm --nomodel --extsize 125 --seed 123 --outdir {params.outdir}
             """
 rule sortPooledPeaks:
 	input:
