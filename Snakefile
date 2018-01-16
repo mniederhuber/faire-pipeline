@@ -291,7 +291,7 @@ rule CallPooledPeaks:
 
 rule CallRepPeaks:
     input:
-            "Bam/{sample}_q5_sorted_noYUHet.bed"
+            "Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bed"
     params:
             outidr = peakDir,
             control = CTRLPATH,
