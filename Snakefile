@@ -295,7 +295,7 @@ rule CallRepPeaks:
     params:
             outdir = peakDir,
             control = CTRLPATH,
-            name = "{sample}_ATAC_Peaks",
+            name = "{sample}_FAIRE_Peaks",
             moduleVer = macsVer
     output:
             touch("Peakfiles/.{sample}_peakCall.done")
