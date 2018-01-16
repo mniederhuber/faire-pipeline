@@ -293,7 +293,7 @@ rule CallRepPeaks:
     input:
             "Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bed"
     params:
-            outidr = peakDir,
+            outdir = peakDir,
             control = CTRLPATH,
             name = "{sample}_ATAC_Peaks",
             moduleVer = macsVer
