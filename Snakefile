@@ -114,7 +114,7 @@ rule all:
 		expand("BigWigs/ZNormalized/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw", dirID = dirID, nFiles = nFiles),
 		expand("Peakfiles/.{nFiles}Reps_peakCall.done", nFiles = nFiles),
 		expand("Peakfiles/.{nFiles}Reps_peakSort.done", nFiles = nFiles),
-                expand("Peakfiles/.{sample}_peakCall.done", sample = SAMPLE)
+                expand("Peakfiles/.{sample}_peakCall.done", sample = SAMPLE),
 		expand("{dirID}_report.html", dirID = dirID),
 		expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bed", dirID = dirID, nFiles = nFiles)
 
