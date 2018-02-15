@@ -13,7 +13,8 @@ samtoolsVer = str('samtools/1.3.1')
 bedtoolsVer = str('bedtools/2.25.0')
 
 picardVer = str('2.2.4')
-picardPath = str('/nas02/apps/picard-' + picardVer + '/picard-tools-' + picardVer + '/picard.jar')
+#picardPath = str('/nas02/apps/picard-' + picardVer + '/picard-tools-' + picardVer + '/picard.jar')
+picardPath = str('/nas/longleaf/apps/picard/' + picardVer + '/picard-tools-' + picardVer + '/picard.jar')
 
 deeptoolsVer = str('deeptools/2.4.1')
 macsVer = str('macs/2016-02-15')
