@@ -39,11 +39,11 @@ normTypeList = ['rpgcNorm']
 
 sampleInfo, sampleSheet = pre.makeSampleSheets(file_info_path, basename_columns, "-", fileDelimiter = config['sampleInfoDelimiter'])
 # add pool name column
-sampleSheet = pre.addBaseName(sampleSheet, pool_basename_columns, config['sampleInfoDelimiter'], "poolBaseName")
+sampleSheet = pre.addBaseName(sampleSheet, pool_basename_columns, "-", "poolBaseName")
 # Create Pooled Sample Sheet
 ## leveraging the fact that sampleSheet is already cleaned
 poolSampleSheet = sampleSheet[pool_basename_columns].copy()
-poolSampleSheet = pre.addBaseName(poolSampleSheet, pool_basename_columns, config['sampleInfoDelimiter']).drop_duplicates()
+poolSampleSheet = pre.addBaseName(poolSampleSheet, pool_basename_columns, "-").drop_duplicates()
 
 sampleSheet['fastq_trim_r1'] = expand("Fastq/{sample}_R{num}_trim.fastq.gz", sample = sampleSheet.baseName, num = ['1'])
 # TODO: add support for paired end
