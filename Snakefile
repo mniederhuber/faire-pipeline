@@ -267,10 +267,10 @@ rule align:
 # bowtie2 --flags 2> {log} | samtools view -@ 4 -b - > {output.bam} && {flagstat_command}
 rule sam2bam:
 	input:
-		"Sam/{sample}.sam"
+		"Sam/{sample}_{species}.sam"
 	output:
-		bam = "Bam/{sample}.bam",
-		flagstat = "logs/{sample}.flagstat"
+		bam = "Bam/{sample}_{species}.bam",
+		flagstat = "logs/{sample}_{species}.flagstat"
 	envmodules:
 		modules['samtoolsVer']
 	shell:
@@ -379,7 +379,7 @@ rule zNormBigWig:
 		bw = "BigWigs/{sample}_{species}_trim_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw"
 	output:
 		zNorm = "BigWigs/ZNormalized/{sample}_{species}_trim_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw",
-		zStats = "logs/{sample}.zNorm"
+		zStats = "logs/{sample}_{species}.zNorm"
 	envmodules:
 		modules['rVer']
 	shell:
@@ -418,7 +418,7 @@ rule CallRepPeaks:
     output:
 	"Peaks/{sample}_{species}_trim_q5_dupsRemoved_peaks.narrowPeak"
     params:
-	prefix = "Peaks/{sample}_{species}_trim_q5_dupsRemoved_peaks",
+    	prefix = "Peaks/{sample}_{species}_trim_q5_dupsRemoved_peaks",
 	control = controlDNAPath
     envmodules:
         modules['bedtoolsVer']
