@@ -292,7 +292,7 @@ rule CallRepPeaks:
     	prefix = "Peaks/{sample}_{species}_trim_q5_dupsRemoved_peaks",
 	control = controlDNAPath
     envmodules:
-        modules['bedtoolsVer']
+        modules['macsVer']
     shell:
     	"""
 	macs2 callpeak -t {input} -c {params.control} -n {params.prefix} -g dm --nomodel --extsize 125 --seed 123
