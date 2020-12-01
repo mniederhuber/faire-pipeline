@@ -37,7 +37,7 @@ Set desired reference and spike-in genome in `config.json` ([see below](#config)
 }
 ```
 
-Edit `slurmConfig.json` to configure default parameters if necessary.
+Edit `clusterConfig/slurmConfig.json` to configure default parameters if necessary.
 
 Deploy submission with `sh slurmSubmission.sh`
 
