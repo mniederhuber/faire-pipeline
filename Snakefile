@@ -387,9 +387,6 @@ rule zNormBigWig:
 		Rscript --vanilla scripts/zNorm.r {input} {output.zNorm} > {output.zStats}
 		"""
 
-if os.path.isdir == False:
-	os.mkdir('Peakfiles')
-
 #TODO: fix names & nFiles crap here0
 rule CallPooledPeaks:
 # Call Peaks using MACS. Pools all input files first.
@@ -402,14 +399,13 @@ rule CallPooledPeaks:
 	output:
 		"Peaks/{sample}_{species}_trim_q5_dupsRemoved_peaks_POOL.narrowPeak"
 	params:
-		outdir = peakDir, 
 		control = CTRLPATH,
-		name = expand("{dirID}_{nFiles}Reps_FAIRE_PooledPeaks", dirID = dirID, nFiles = nFiles) if nFiles > 1 else expand("{sample}_FAIRE", sample = SAMPLE)
+		name = "Peaks/{sample}_{species}_trim_q5_dupsRemoved_peaks_POOL"
 	envmodules:
 		modules['macsVer']
 	shell:
 		"""
-		macs2 callpeak -t {input}  -c {params.control} -n {params.name} -g dm --nomodel --extsize 125 --seed 123 --outdir {params.outdir}
+		macs2 callpeak -t {input}  -c {params.control} -n {params.name} -g dm --nomodel --extsize 125 --seed 123
 		"""
 
 rule CallRepPeaks:
