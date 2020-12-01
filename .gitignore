@@ -1,3 +1,5 @@
 Module_List.md
 *.swp
 slurmSub.sh
+/.snakemake/
+/__pycache__/

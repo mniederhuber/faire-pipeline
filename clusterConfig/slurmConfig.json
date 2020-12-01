@@ -7,6 +7,13 @@
 		"mem" : "8G"
 	},
 
+	"trim_adapter" :
+	{
+		"time"	: "1:00:00",
+		"threads" : "8",
+		"mem" : "8G"
+	},
+
 	"align" :
 	{
 		"time"	: "1:00:00",
@@ -14,8 +21,9 @@
 		"mem" : "8G"
 	},
 
-	"markDups" :
+	"removeDups" :
 	{
+		"time" : "45:00",
 		"mem" : "8G"
 	},
 
@@ -33,9 +41,9 @@
 
 	"qcReport" :
 	{
-		"mem" : "1G",
+		"mem" : "8G",
 		"threads" : "1",
-		"time" : "10:00"
+		"time" : "30:00"
 	},
 	
 	"mergeBams" :
