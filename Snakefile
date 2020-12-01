@@ -53,7 +53,7 @@ sampleSheet['peaks']         = expand("Peaks/{sample}_{species}_trim_q5_sorted_d
 sampleSheet['bed']           = expand('Bed/{sample}_{species}_trim_q5_sorted_dupsRemoved.bed', sample = sampleSheet.baseName, species = REFGENOME)
 
 poolSampleSheet['bam']           = expand("Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved_POOLED.{ftype}", sample = poolSampleSheet.baseName, species = REFGENOME, ftype = {"bam"})
-poolSampleSheet['peaks']         = expand("Peaks/{sample}_{species}_trim_q5_sorted_dupsRemoved_peaks_POOLED.narrowPeak", sample = poolSampleSheet.baseName, species = REFGENOME)
+poolSampleSheet['peaks']         = expand("Peaks/{sample}_{species}_trim_q5_sorted_dupsRemoved_POOLED_peaks.narrowPeak", sample = poolSampleSheet.baseName, species = REFGENOME)
 poolSampleSheet['bed']           = expand('Bed/{sample}_{species}_trim_q5_sorted_dupsRemoved_POOLED.bed', sample = poolSampleSheet.baseName, species = REFGENOME)
 
 for norm in normTypeList:
@@ -289,14 +289,14 @@ rule CallRepPeaks:
     output:
     	"Peaks/{sample}_{species}_trim_q5_sorted_dupsRemoved_peaks.narrowPeak"
     params:
-    	prefix = "Peaks/{sample}_{species}_trim_q5_dupsRemoved_peaks",
+    	prefix = "Peaks/{sample}_{species}_trim_q5_sorted_dupsRemoved",
 	control = controlDNAPath
     envmodules:
         modules['macsVer']
     shell:
     	"""
-	macs2 callpeak -t {input} -c {params.control} -n {params.prefix} -g dm --nomodel --extsize 125 --seed 123
-	"""
+			macs2 callpeak -t {input} -c {params.control} -n {params.prefix} -g dm --nomodel --extsize 125 --seed 123
+			"""
 
 rule CallPooledPeaks:
 # Call Peaks using MACS. Pools all input files first.
@@ -307,10 +307,10 @@ rule CallPooledPeaks:
 	input:
 		"Bed/{samplePool}_{species}_trim_q5_sorted_dupsRemoved_POOLED.bed"
 	output:
-		"Peaks/{samplePool}_{species}_trim_q5_sorted_dupsRemoved_peaks_POOLED.narrowPeak"
+		"Peaks/{samplePool}_{species}_trim_q5_sorted_dupsRemoved_POOLED_peaks.narrowPeak"
 	params:
 		control = controlDNAPath,
-		name = "Peaks/{samplePool}_{species}_trim_q5_dupsRemoved_peaks_POOLED"
+		name = "Peaks/{samplePool}_{species}_trim_q5_sorted_dupsRemoved_POOLED"
 	envmodules:
 		modules['macsVer']
 	shell:
@@ -321,9 +321,9 @@ rule CallPooledPeaks:
 
 rule sortPooledPeaks:
 	input:
-		"Peaks/{sample}_{species}_trim_q5_dupsRemoved_peaks_POOLED.narrowPeak"
+		"Peaks/{sample}_{species}_trim_q5_dupsRemoved_POOLED_peaks.narrowPeak"
 	output:
-		"Peaks/{sample}_{species}_trim_q5_dupsRemoved_peaks_POOLED_qSorted.narrowPeak"
+		"Peaks/{sample}_{species}_trim_q5_dupsRemoved_POOLED_peaks_qSorted.narrowPeak"
 	shell:
 		"sort -n -r -k9 {input} | cut -f1,2,3,4,9 > {output}"
 		
