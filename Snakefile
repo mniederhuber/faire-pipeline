@@ -395,7 +395,7 @@ rule CallPooledPeaks:
 # snakemake will just create a hidden file ('Peakfiles/.{nFiles}Reps_peakCall.done')
 # at the end, which is requested by rule all. nFiles is included to allow recalling when more samples are added to directory upon rerunning pipeline.
 	input:
-		expand("Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved_noYUHet.bed", sample = SAMPLE)
+		expand("Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved_noYUHet.bed", sample = poolSampleSheet.baseName)
 	output:
 		"Peaks/{sample}_{species}_trim_q5_dupsRemoved_peaks_POOL.narrowPeak"
 	params:
@@ -425,22 +425,19 @@ rule CallRepPeaks:
 
 rule sortPooledPeaks:
 	input:
-		expand("Peakfiles/.{nFiles}Reps_peakCall.done", nFiles = nFiles)
+		"Peaks/{sample}_{species}_trim_q5_dupsRemoved_peaks_POOL.narrowPeak"
 	output:
-		touch(expand("Peakfiles/.{nFiles}Reps_peakSort.done", nFiles = nFiles)),
-		name = expand("Peakfiles/{dirID}_{nFiles}Reps_FAIRE_PooledPeaks_peaks_qSorted.bed", dirID = dirID, nFiles = nFiles) if nFiles > 1 else expand("{sample}_{species}_FAIRE", sample = SAMPLE),
-	params:
-		name = expand("Peakfiles/{dirID}_{nFiles}Reps_FAIRE_PooledPeaks_peaks.narrowPeak", dirID = dirID, nFiles = nFiles)
+		"Peaks/{sample}_{species}_trim_q5_dupsRemoved_peaks_POOL_qSorted.narrowPeak"
 	shell:
-		"sort -n -r -k9 {params.name} | cut -f1,2,3,4,9 > {output.name}"
+		"sort -n -r -k9 {input} | cut -f1,2,3,4,9 > {output}"
 		
 
 rule mergeBams:
 	input:
-		expand("Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved_noYUHet.bam", sample = SAMPLE)
+		expand("Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved_noYUHet.bam", sample = sampleSheet.baseName)
 	output:
-		bam = expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bam", dirID = dirID, nFiles = nFiles),
-		idx = expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bam.bai", dirID = dirID, nFiles = nFiles)
+		bam = expand("Bam/{samplePool}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bam", samplePool = poolSampleSheet.baseName, nFiles = nFiles),
+		idx = expand("Bam/{samplePool}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bam.bai", samplePool = poolSampleSheet.baseName, nFiles = nFiles)
 	envmodules:
 		modules['samtoolsVer']
 	shell:
@@ -451,10 +448,10 @@ rule mergeBams:
 rule mergeBamtoBed:
 # Convert the bam file into a bed file
 	input:
-		bam = expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bam", dirID = dirID, nFiles = nFiles),
-		idx = expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bam.bai", dirID = dirID, nFiles = nFiles)
+		bam = expand("Bam/{samplePool}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bam", samplePool = poolSampleSheet.baseName, nFiles = nFiles),
+		idx = expand("Bam/{samplePool}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bam.bai", samplePool = poolSampleSheet.baseName, nFiles = nFiles)
 	output:
-		expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bed", dirID = dirID, nFiles = nFiles),
+		"Bam/{samplePool}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bed"
 	envmodules:
 		modules['bedtoolsVer']
 	shell:
