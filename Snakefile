@@ -252,8 +252,8 @@ rule align:
 	input:
 		"{sample}_R1_trim.fastq.gz"
 	output:
-		sam = "Sam/{sample}_{species}.sam",
-		logInfo = "logs/{sample}_bowtie2.txt"
+		sam = "Sam/{sample}_{species}_{species}.sam",
+		logInfo = "logs/{sample}_{species}_bowtie2.txt"
 	threads: 8
 	params:
 		refgenome = lambda wildcards: indexDict[wildcards.species]
@@ -280,57 +280,45 @@ rule sam2bam:
 		"""
 rule qFilter:
 	input:
-		"Bam/{sample}.bam"
+		"Bam/{sample}_{species}.bam"
 	output:
-		bam = temp("Bam/{sample}_q5.bam"),
-		flagstat = "logs/{sample}_q5.flagstat"
-	params: moduleVer = samtoolsVer 
+		bam = "Bam/{sample}_{species}_trim_q5.bam",
+		flagstat = "logs/{sample}_{species}_trim_q5.flagstat"
+	envmodules:
+		modules['samtoolsVer']
 	shell:
 		"""
-		module purge && module load {params.moduleVer}
 		samtools view -@ 4 -bq 5 {input} > {output.bam} &&
 		samtools flagstat {output.bam} > {output.flagstat}
 		"""
 rule bamSort:
 	input:
-		"Bam/{sample}_q5.bam"
+		"Bam/{sample}_{species}_trim_q5.bam"
 	output:
-		temp("Bam/{sample}_q5_sorted.bam")
-	params: moduleVer = samtoolsVer 
+		"Bam/{sample}_{species}_trim_q5_sorted.bam"
+	envmodules:
+		modules['samtoolsVer']
 	shell:
 		"""
-		module purge && module load {params.moduleVer}
 		samtools sort -@ 4 -o {output} {input}
 		"""
-rule markDups:
-	input:
-		"Bam/{sample}_q5_sorted.bam"
-
-	output:
-		markedDups = temp("Bam/{sample}_q5_sorted_dupsMarked.bam"),
-		PCRdups = "PCRdups/{sample}_PCR_duplicates"
-	params: moduleVer = str('picard/' + picardVer)
-
-	shell:
-		"""
-		module purge && module load {params.moduleVer}
-		java -Xmx8g -jar {picardPath} MarkDuplicates INPUT= {input} OUTPUT= {output.markedDups} METRICS_FILE= {output.PCRdups} REMOVE_DUPLICATES= false ASSUME_SORTED= true
-		"""
-
 rule removeDups:
 # Remove the reads that are marked as pcr duplicates from the bam file using the bit flag for pcr dups
 # Create index for bam file. This is needed for the next step to remove Chrm Y, U and Het
 	input:
-		"Bam/{sample}_q5_sorted_dupsMarked.bam"
+		"Bam/{sample}_{species}_trim_q5_sorted.bam"
 	output:
-		bam = temp("Bam/{sample}_q5_sorted_dupsRemoved.bam"),
-		flagstat = "logs/{sample}_q5_sorted_dupsRemoved.flagstat",
-		idx = temp("Bam/{sample}_q5_sorted_dupsRemoved.bam.bai")
-	params: moduleVer = samtoolsVer
-
+		markedDups = "Bam/{sample}_{species}_trim_q5_sorted_dupsMarked.bam",
+		PCRdups = "PCRdups/{sample}_{species}_PCR_duplicates",
+		bam = "Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved.bam",
+		flagstat = "logs/{sample}_{species}_trim_q5_sorted_dupsRemoved.flagstat",
+		idx = "Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved.bam.bai"
+	params: picardPath = modules['picardPath']
+	envmodules:
+		modules['picardVer']
 	shell:
 		"""
-		module purge && module load {params.moduleVer}
+		java -Xmx8g -jar {params.picardPath} MarkDuplicates INPUT= {input} OUTPUT= {output.markedDups} METRICS_FILE= {output.PCRdups} REMOVE_DUPLICATES= false ASSUME_SORTED= true &&
 		samtools view -@ 4 -bF 0x400 {input} > {output.bam} &&
 		samtools flagstat {output.bam} > {output.flagstat} &&
 		samtools index {output.bam}
@@ -340,16 +328,16 @@ rule noYUHet:
 # Extract only reads from Chrm 2R,2L,3R,3L,4 and X
 # Create new index for filtered bam file. Needed to convert bam file to bed file
 	input:
-		bam = "Bam/{sample}_q5_sorted_dupsRemoved.bam",
-		idx = "Bam/{sample}_q5_sorted_dupsRemoved.bam.bai"
+		bam = "Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved.bam",
+		idx = "Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved.bam.bai"
 	output:
-		bam = "Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam",
-		flagstat =  "logs/{sample}_q5_sorted_dupsRemoved_noYUHet.flagstat",
-		idx = "Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam.bai"
-	params: moduleVer = samtoolsVer
+		bam = "Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved_noYUHet.bam",
+		flagstat =  "logs/{sample}_{species}_trim_q5_sorted_dupsRemoved_noYUHet.flagstat",
+		idx = "Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved_noYUHet.bam.bai"
+	envmodules:
+		modules['samtoolsVer']
 	shell:
 		"""
-		module purge && module load {params.moduleVer}
 		samtools view -@ 4 -b {input.bam} chr2L chr2R chr3L chr3R chr4 chrX > {output.bam} &&
 		samtools flagstat {output.bam} > {output.flagstat} &&
 		samtools index {output.bam}
@@ -358,49 +346,51 @@ rule noYUHet:
 rule noYUHet_toBed:
 # Convert the bam file into a bed file
 	input:
-		bam = "Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam",
-		idx = "Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam.bai"
+		bam = "Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved_noYUHet.bam",
+		idx = "Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved_noYUHet.bam.bai"
 	output:
-		"Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bed"
-	params: moduleVer = bedtoolsVer
+		"Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved_noYUHet.bed"
+	envmodules:
+		modules['bedtoolsVer']
 	shell:
 		"""
-		module purge && module load {params.moduleVer}
 		bedtools bamtobed -i {input.bam} > {output}
 		"""
 
 rule bigWig:
 # Bam Coverage to output bigwig file normalized to genomic coverage
 	input:
-		bam = "Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam",
-		idx = "Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam.bai"
+		bam = "Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved_noYUHet.bam",
+		idx = "Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved_noYUHet.bam.bai"
 	output:
-		"BigWigs/{sample}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw"
+		"BigWigs/{sample}_{species}_trim_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw"
 	threads: 8 
-	params: moduleVer = deeptoolsVer, blacklist = BLACKLIST, genomeSize = GENOMESIZE
+	params: genomeSize = GENOMESIZE
+	envmodules:
+		modules['deeptoolsVer']
 	shell:
 		"""
-		module purge && module load {params.moduleVer}
-		bamCoverage -b {input.bam} -p {threads} --blackListFileName {params.blacklist} --normalizeTo1x {params.genomeSize} --outFileFormat bigwig --binSize 10 -e 125 -o {output}
+		bamCoverage -b {input.bam} -p {threads} --normalizeTo1x {params.genomeSize} --outFileFormat bigwig --binSize 10 -e 125 -o {output}
 		"""
-
+# TODO: fix names
 rule zNormBigWig:
 # Z-Normalize Bigwig Files
 	input:
-		bw = "BigWigs/{sample}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw"
+		bw = "BigWigs/{sample}_{species}_trim_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw"
 	output:
-		zNorm = "BigWigs/ZNormalized/{sample}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw",
+		zNorm = "BigWigs/ZNormalized/{sample}_{species}_trim_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw",
 		zStats = "logs/{sample}.zNorm"
-	params: pipePath = '.faire-pipeline', moduleVer = rVer
+	envmodules:
+		modules['rVer']
 	shell:
 		"""
-		module purge && module load {params.moduleVer}
-		Rscript --vanilla {params.pipePath}/zNorm.r {input} {output.zNorm} > {output.zStats}
+		Rscript --vanilla scripts/zNorm.r {input} {output.zNorm} > {output.zStats}
 		"""
 
 if os.path.isdir == False:
 	os.mkdir('Peakfiles')
 
+#TODO: fix names & nFiles crap here0
 rule CallPooledPeaks:
 # Call Peaks using MACS. Pools all input files first.
 # Then sort peak file by q-value in decreasing order, then output chromosome, start and end coordinates, peak name and q-value to bedfile (for subsetting into top x# peaks) 
@@ -408,41 +398,41 @@ rule CallPooledPeaks:
 # snakemake will just create a hidden file ('Peakfiles/.{nFiles}Reps_peakCall.done')
 # at the end, which is requested by rule all. nFiles is included to allow recalling when more samples are added to directory upon rerunning pipeline.
 	input:
-		expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bed", sample = SAMPLE)
+		expand("Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved_noYUHet.bed", sample = SAMPLE)
+	output:
+		"Peaks/{sample}_{species}_trim_q5_dupsRemoved_peaks_POOL.narrowPeak"
 	params:
 		outdir = peakDir, 
 		control = CTRLPATH,
-		name = expand("{dirID}_{nFiles}Reps_FAIRE_PooledPeaks", dirID = dirID, nFiles = nFiles) if nFiles > 1 else expand("{sample}_FAIRE", sample = SAMPLE),
-		moduleVer = macsVer 
-	output:
-		touch(expand("Peakfiles/.{nFiles}Reps_peakCall.done", nFiles = nFiles))
+		name = expand("{dirID}_{nFiles}Reps_FAIRE_PooledPeaks", dirID = dirID, nFiles = nFiles) if nFiles > 1 else expand("{sample}_FAIRE", sample = SAMPLE)
+	envmodules:
+		modules['macsVer']
 	shell:
 		"""
-		module purge && module load {params.moduleVer}
 		macs2 callpeak -t {input}  -c {params.control} -n {params.name} -g dm --nomodel --extsize 125 --seed 123 --outdir {params.outdir}
 		"""
 
 rule CallRepPeaks:
     input:
-            "Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bed"
-    params:
-            outdir = peakDir,
-            control = CTRLPATH,
-            name = "{sample}_FAIRE_Peaks",
-            moduleVer = macsVer
+	"Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved_noYUHet.bed"
     output:
-            touch("Peakfiles/.{sample}_peakCall.done")
+	"Peaks/{sample}_{species}_trim_q5_dupsRemoved_peaks.narrowPeak"
+    params:
+	prefix = "Peaks/{sample}_{species}_trim_q5_dupsRemoved_peaks",
+	control = controlDNAPath
+    envmodules:
+        modules['bedtoolsVer']
     shell:
-            """
-            module purge && module load {params.moduleVer}
-            macs2 callpeak -t {input} -c {params.control} -n {params.name} -g dm --nomodel --extsize 125 --seed 123 --outdir {params.outdir}
-            """
+    	"""
+	macs2 callpeak -t {input} -c {params.control} -n {params.prefix} -g dm --nomodel --extsize 125 --seed 123
+	"""
+
 rule sortPooledPeaks:
 	input:
 		expand("Peakfiles/.{nFiles}Reps_peakCall.done", nFiles = nFiles)
 	output:
 		touch(expand("Peakfiles/.{nFiles}Reps_peakSort.done", nFiles = nFiles)),
-		name = expand("Peakfiles/{dirID}_{nFiles}Reps_FAIRE_PooledPeaks_peaks_qSorted.bed", dirID = dirID, nFiles = nFiles) if nFiles > 1 else expand("{sample}_FAIRE", sample = SAMPLE),
+		name = expand("Peakfiles/{dirID}_{nFiles}Reps_FAIRE_PooledPeaks_peaks_qSorted.bed", dirID = dirID, nFiles = nFiles) if nFiles > 1 else expand("{sample}_{species}_FAIRE", sample = SAMPLE),
 	params:
 		name = expand("Peakfiles/{dirID}_{nFiles}Reps_FAIRE_PooledPeaks_peaks.narrowPeak", dirID = dirID, nFiles = nFiles)
 	shell:
@@ -451,14 +441,14 @@ rule sortPooledPeaks:
 
 rule mergeBams:
 	input:
-		expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.bam", sample = SAMPLE)
-	params: moduleVer = samtoolsVer
+		expand("Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved_noYUHet.bam", sample = SAMPLE)
 	output:
 		bam = expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bam", dirID = dirID, nFiles = nFiles),
 		idx = expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bam.bai", dirID = dirID, nFiles = nFiles)
+	envmodules:
+		modules['samtoolsVer']
 	shell:
 		"""
-		module purge && module load {params.moduleVer}
 		samtools merge {output.bam} {input} &&
 		samtools index {output.bam}
 		"""
@@ -469,10 +459,10 @@ rule mergeBamtoBed:
 		idx = expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bam.bai", dirID = dirID, nFiles = nFiles)
 	output:
 		expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bed", dirID = dirID, nFiles = nFiles),
-	params: moduleVer = bedtoolsVer
+	envmodules:
+		modules['bedtoolsVer']
 	shell:
 		"""
-		module purge && module load {params.moduleVer}
 		bedtools bamtobed -i {input.bam} > {output}
 		"""
 
@@ -484,10 +474,11 @@ rule mergeBigWig:
 	output:
 		expand("BigWigs/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC.bw", dirID = dirID, nFiles = nFiles)
 	threads: 8 
-	params: moduleVer = deeptoolsVer, blacklist = BLACKLIST, genomeSize = GENOMESIZE
+	params: genomeSize = GENOMESIZE
+	envmodules:
+		modules['deeptoolsVer']
 	shell:
 		"""
-		module purge && module load {params.moduleVer}
 		bamCoverage -b {input.bam} -p {threads} --blackListFileName {params.blacklist} --normalizeTo1x {params.genomeSize} --outFileFormat bigwig --binSize 10 -e 125 -o {output}
 		"""
 
@@ -498,11 +489,11 @@ rule mergeZNormBigWig:
 	output:
 		zNorm = expand("BigWigs/ZNormalized/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw", dirID = dirID, nFiles = nFiles),
 		zStats = expand("logs/{dirID}_{nFiles}Reps_POOLED.zNorm", dirID = dirID, nFiles = nFiles)
-	params: pipePath = '.faire-pipeline', moduleVer = rVer
+	envmodules:
+		modules['rVer']
 	shell:
 		"""
-		module purge && module load {params.moduleVer}
-		Rscript --vanilla {params.pipePath}/zNorm.r {input.bw} {output.zNorm} > {output.zStats}
+		Rscript --vanilla scripts/zNorm.r {input.bw} {output.zNorm} > {output.zStats}
 		"""
 
 rule qcReport:
@@ -512,15 +503,16 @@ rule qcReport:
 # The idea here is that any logs we want information on will be explicitly asked for by the 
 # pipeline itself and stored in the 'logs/' directory or elsewhere as appropriate
 	input:
-		expand("Bam/{sample}_q5_sorted_dupsRemoved_noYUHet.{ext}", sample = SAMPLE, ext = ['bam', 'bam.bai']),
-		expand("PCRdups/{sample}_PCR_duplicates", sample = SAMPLE)
+		expand("Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved_noYUHet.{ext}", sample = SAMPLE, ext = ['bam', 'bam.bai']),
+		expand("PCRdups/{sample}_{species}_PCR_duplicates", sample = SAMPLE)
 	output:
-		expand("{dirID}_report.html", dirID = dirID)
-	params: moduleVer = python3Ver , reportName = dirID
+		expand("multiqc_report.html", dirID = dirID)
+	envmodules:
+		modules['pythonVer']
 	shell:
 		"""
 		module purge && module load {params.moduleVer}
-		multiqc . -f -x *.out -x *.err --filename {params.reportName}_report
+		multiqc . -f -x *.out -x *.err
 		"""
 
 
