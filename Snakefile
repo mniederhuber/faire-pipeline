@@ -1,148 +1,280 @@
 #!/usr/bin/python3
+import pandas as pd
+import preProcessSampleConfig as pre
 
-import os
-import glob
+configfile: 'config.json'
 
-GenomeAssembly = 'dm3'
+file_info_path = config['sampleInfo']
+basename_columns = config['baseNameColumns']
+pool_basename_columns = config['poolBaseNameColumns']
+is_paired_end = config['pairedEnd']
 
-##############################
-# Module Versions:
+REFGENOME = config['refGenome']
+SPIKEGENOME = config['spikeGenome']
+REFGENOMEPATH = config['genome'][REFGENOME]['bowtie']
+SPIKEGENOMEPATH = config['genome'][SPIKEGENOME]['bowtie']
+controlDNAPath  = config['genome'][REFGENOME]['controlDNAPath']
+chromSize_Path  = config['genome'][REFGENOME]['chrSize']
 
-bowtie2Ver = str('bowtie2/2.2.8')
-samtoolsVer = str('samtools/1.3.1')
-bedtoolsVer = str('bedtools/2.25.0')
+GENOMESIZE = config['genome'][REFGENOME]['genomeSize']
+readLen = config['readLen']
 
-picardVer = str('2.2.4')
-#picardPath = str('/nas02/apps/picard-' + picardVer + '/picard-tools-' + picardVer + '/picard.jar')
-picardPath = str('/nas/longleaf/apps/picard/' + picardVer + '/picard-tools-' + picardVer + '/picard.jar')
+modules = config['module']
+#########
+# Validation
 
-deeptoolsVer = str('deeptools/2.4.1')
-macsVer = str('macs/2016-02-15')
-ucscVer = str('ucsctools/320')
-rVer = str('r/3.3.1')
+if is_paired_end:
+	sys.exit("paired end mode is not fully supported yet")
 
-python3Ver = str('python/3.5.1')
+if os.path.exists(file_info_path) == False:
+	print('Error: {name} does not exist. Be sure to set `sampleInfo` in config.json.'.format(name = file_info_path))
 
-##############################
+#########
+# Generating sampleSheet outputs
 
-# Dictionary of effective genome sizes. 
-# Used as lookup table later for RPGC adjustments 
-# based on GenomeAssembly
-effectiveGenomeSizes = {'dm3':121400000}
+speciesList  = [REFGENOME, SPIKEGENOME]
+indexDict    = {REFGENOME: REFGENOMEPATH, SPIKEGENOME: SPIKEGENOMEPATH}
 
-# Symlink to pipeline path for calling scripts with commandline arguments (zNorm.r for example)
-# Requires that snakemake call be structured as `snakemake --snakefile <path/to/snakefile>`
-PIPEPATH = os.path.dirname(os.path.abspath(sys.argv[2]))
-symLink = str(os.getcwd() + '/.faire-pipeline')
+normTypeList = ['unNorm', 'rpgcNorm']
 
-if os.path.isdir(symLink) == False:
-	os.symlink(PIPEPATH, symLink) 
+sampleInfo, sampleSheet = pre.makeSampleSheets(file_info_path, basename_columns, "-", fileDelimiter = config['sampleInfoDelimiter'])
+# Create Pooled Sample Sheet
+## leveraging the fact that sampleSheet is already cleaned
+poolSampleSheet = sampleSheet[pool_basename_columns].copy()
+poolSampleSheet = pre.addBaseName(poolSampleSheet, pool_basename_columns, config['sampleInfoDelimiter']).drop_duplicates()
 
-if os.path.exists(symLink + '/Snakefile') == False:
-	print('ERROR: no Snakefile in .faire-pipeline. Ensure --snakefile <path/to/snakefile> is 3rd argument of snakemake call.')
-	quit()
+sampleSheet['fastq_trim_r1'] = expand("Fastq/{sample}_R{num}_trim.fastq.gz", sample = sampleSheet.baseName, num = ['1'])
+# TODO: add support for paired end
+#sampleSheet['fastq_trim_r2'] = expand("Fastq/{sample}_R{num}_trim.fastq.gz", sample = sampleSheet.baseName, num = ['2'])
+sampleSheet['bam']           = expand("Bam/{sample}_{species}_trim_q5_dupsRemoved.{ftype}", sample = sampleSheet.baseName, species = REFGENOME, ftype = {"bam"})
+sampleSheet['peaks']         = expand("Peaks/{sample}_{species}_trim_q5_dupsRemoved_peaks.narrowPeak", sample = sampleSheet.baseName, species = REFGENOME)
+sampleSheet['bed']           = expand('Bed/{sample}_{species}_trim_q5_dupsRemoved.bed', sample = sampleSheet.baseName, species = REFGENOME)
 
+poolSampleSheet['bam']           = expand("Bam/{sample}_{species}_trim_q5_dupsRemoved_POOL.{ftype}", sample = poolSampleSheet.baseName, species = REFGENOME, ftype = {"bam"})
+poolSampleSheet['peaks']         = expand("Peaks/{sample}_{species}_trim_q5_dupsRemoved_peaks_POOL.narrowPeak", sample = poolSampleSheet.baseName, species = REFGENOME)
+poolSampleSheet['bed']           = expand('Bed/{sample}_{species}_trim_q5_dupsRemoved_POOL.bed', sample = poolSampleSheet.baseName, species = REFGENOME)
 
-							
-REFGENEPATH=str('/proj/mckaylab/genomeFiles/' + GenomeAssembly + '/RefGenome/' + GenomeAssembly)	# Point directly to the refgeneome file you want to use
+for norm in normTypeList:
 
-# Point directly to negative control genomic DNA input unless ctrlPath variable is set in config
-if 'ctrlPath' in config:
-	# set with --config ctrlPath="path/to/file"
-	# Takes working directory, adds path to config as relative to entire filestructure.
-	# I should actually change this back to being a relative path thing,
-	# Because I fixed the error in the submission script
-	rootPath = os.getcwd().split('/')[0:-1]
-	rootPath.append(config["ctrlPath"])
+	# Add column per bigwig
+	bw_colName = 'bigwig_{norm}'.format(norm = norm)
+	sampleSheet[bw_colName] = expand("BigWig/{sample}_{species}_trim_q5_dupsRemoved_{norm}.bw", sample = sampleSheet.baseName, species = REFGENOME, norm = norm)
+	poolSampleSheet[bw_colName] = expand("BigWig/{sample}_{species}_trim_q5_dupsRemoved_POOL_{norm}.bw", sample = poolSampleSheet.baseName, species = REFGENOME, norm = norm)
 
-	CTRLPATH = '/'.join(rootPath)
+	# Add column per zNorm bigwig
+	bw_colName = 'bigwig_{norm}_zNorm'.format(norm = norm)
+	sampleSheet[bw_colName] = expand("BigWig/{sample}_{species}_trim_q5_dupsRemoved_{norm}_zNorm.bw", sample = sampleSheet.baseName, species = REFGENOME, norm = norm)
+	poolSampleSheet[bw_colName] = expand("BigWig/{sample}_{species}_trim_q5_dupsRemoved_POOL_{norm}_zNorm.bw", sample = poolSampleSheet.baseName, species = REFGENOME, norm = norm)
 
-else:
-	CTRLPATH = str('/proj/mckaylab/genomeFiles/' + GenomeAssembly + '/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed') 
-	
+sampleSheet.to_csv('sampleSheet.tsv', sep = "\t", index = False)
+poolSampleSheet.to_csv('sampleSheetPooled.tsv', sep = "\t", index = False)
 
-BLACKLIST=str('/proj/mckaylab/genomeFiles/'+ GenomeAssembly + '/' + GenomeAssembly + 'Blacklist.bed')
+#################################################
+# OLD SECTION
+##################################################
+#import os
+#import glob
+#
+#GenomeAssembly = 'dm3'
+#
+###############################
+## Module Versions:
+#
+#bowtie2Ver = str('bowtie2/2.2.8')
+#samtoolsVer = str('samtools/1.3.1')
+#bedtoolsVer = str('bedtools/2.25.0')
+#
+#picardVer = str('2.2.4')
+##picardPath = str('/nas02/apps/picard-' + picardVer + '/picard-tools-' + picardVer + '/picard.jar')
+#picardPath = str('/nas/longleaf/apps/picard/' + picardVer + '/picard-tools-' + picardVer + '/picard.jar')
+#
+#deeptoolsVer = str('deeptools/2.4.1')
+#macsVer = str('macs/2016-02-15')
+#ucscVer = str('ucsctools/320')
+#rVer = str('r/3.3.1')
+#
+#python3Ver = str('python/3.5.1')
+#
+###############################
+#
+## Dictionary of effective genome sizes.
+## Used as lookup table later for RPGC adjustments
+## based on GenomeAssembly
+#effectiveGenomeSizes = {'dm3':121400000}
+#
+## Symlink to pipeline path for calling scripts with commandline arguments (zNorm.r for example)
+## Requires that snakemake call be structured as `snakemake --snakefile <path/to/snakefile>`
+#PIPEPATH = os.path.dirname(os.path.abspath(sys.argv[2]))
+#symLink = str(os.getcwd() + '/.faire-pipeline')
+#
+#if os.path.isdir(symLink) == False:
+#	os.symlink(PIPEPATH, symLink)
+#
+#if os.path.exists(symLink + '/Snakefile') == False:
+#	print('ERROR: no Snakefile in .faire-pipeline. Ensure --snakefile <path/to/snakefile> is 3rd argument of snakemake call.')
+#	quit()
+#
+#
+#
+#REFGENEPATH=str('/proj/mckaylab/genomeFiles/' + GenomeAssembly + '/RefGenome/' + GenomeAssembly)	# Point directly to the refgeneome file you want to use
+#
+## Point directly to negative control genomic DNA input unless ctrlPath variable is set in config
+#if 'ctrlPath' in config:
+#	# set with --config ctrlPath="path/to/file"
+#	# Takes working directory, adds path to config as relative to entire filestructure.
+#	# I should actually change this back to being a relative path thing,
+#	# Because I fixed the error in the submission script
+#	rootPath = os.getcwd().split('/')[0:-1]
+#	rootPath.append(config["ctrlPath"])
+#
+#	CTRLPATH = '/'.join(rootPath)
+#
+#else:
+#	CTRLPATH = str('/proj/mckaylab/genomeFiles/' + GenomeAssembly + '/ControlGenomicDNA/ControlGenomicDNA_q5_sorted_dupsRemoved_noYUHet.bed')
+#
+#
+#BLACKLIST=str('/proj/mckaylab/genomeFiles/'+ GenomeAssembly + '/' + GenomeAssembly + 'Blacklist.bed')
+#
+## effective genome size for RPGC normalization, might need to change depending on assembly/what you blacklist
+#GENOMESIZE = effectiveGenomeSizes[GenomeAssembly]
+#
+#if os.path.exists(glob.glob(REFGENEPATH + '*')[0]) == False:
+#	print('ERROR: REFGENEPATH (' + REFGENEPATH + ') does not contain bowtie genome files.')
+#	quit()
+#
+#if os.path.exists(BLACKLIST) == False:
+#	print('ERROR: BLACKLIST (' + BLACKLIST + ') does not exist.')
+#	quit()
+#
+#if os.path.exists(CTRLPATH) == False:
+#	print('ERROR: ' + CTRLPATH + ' does not exist. Is CTRLPATH set correctly?')
+#	quit()
+#
+#
+#
+#def getSamples(fastqList):
+#	sampleList = []
+#	for f in fastqList:
+#		sample = f.split('.')[0]
+#		sampleList.append(sample)
+#	return(sampleList)
+#
+#FASTQ = glob.glob('*.fastq.gz')
+#
+#SAMPLE = getSamples(FASTQ)
+#
+## Parse info for peak calling
+#dirID = os.getcwd().split('/')[-1] 	# get name of directory (should be sample Pool name)
+#nFiles = len(SAMPLE) 			# number of files in directory should be number of biological replicates (pool technical replicats first!)
+#peakDir = 'Peakfiles/' 			# be sure to include '/'
+#
+#if peakDir[-1] != '/':
+#	# die if peakDir set incorrectly
+#	print('ERROR: peakDir (' + peakDir + ') does not end with /')
+#	quit()
 
-# effective genome size for RPGC normalization, might need to change depending on assembly/what you blacklist
-GENOMESIZE = effectiveGenomeSizes[GenomeAssembly]
+#################################################
+# END OLD SECTION
+#################################################
 
-if os.path.exists(glob.glob(REFGENEPATH + '*')[0]) == False:
-	print('ERROR: REFGENEPATH (' + REFGENEPATH + ') does not contain bowtie genome files.')
-	quit()
+output_files = []
+output_files.append(sampleSheet['fastq_trim_r1'])
+output_files.append(sampleSheet['bam'])
+output_files.append(sampleSheet['peaks'])
+output_files.append(sampleSheet['bed'])
+output_files.append(sampleSheet['bigwig_unNorm_zNorm'])
+output_files.append(sampleSheet['bigwig_rpgcNorm_zNorm'])
+output_files.append(poolSampleSheet['bam'])
+output_files.append(poolSampleSheet['peaks'])
+output_files.append(poolSampleSheet['bed'])
+output_files.append(poolSampleSheet['bigwig_unNorm_zNorm'])
+output_files.append(poolSampleSheet['bigwig_rpgcNorm_zNorm'])
+output_files.append("multiqc_report.html")
 
-if os.path.exists(BLACKLIST) == False:
-	print('ERROR: BLACKLIST (' + BLACKLIST + ') does not exist.')
-	quit()
-
-if os.path.exists(CTRLPATH) == False:
-	print('ERROR: ' + CTRLPATH + ' does not exist. Is CTRLPATH set correctly?')
-	quit()
-
-
-
-def getSamples(fastqList):
-	sampleList = []
-	for f in fastqList:
-		sample = f.split('.')[0]
-		sampleList.append(sample)
-	return(sampleList)
-
-FASTQ = glob.glob('*.fastq.gz')
-
-SAMPLE = getSamples(FASTQ)
-
-# Parse info for peak calling
-dirID = os.getcwd().split('/')[-1] 	# get name of directory (should be sample Pool name)
-nFiles = len(SAMPLE) 			# number of files in directory should be number of biological replicates (pool technical replicats first!)
-peakDir = 'Peakfiles/' 			# be sure to include '/' 
-
-if peakDir[-1] != '/':
-	# die if peakDir set incorrectly
-	print('ERROR: peakDir (' + peakDir + ') does not end with /')
-	quit()
 
 rule all:
-# Only creates pooled files if there are files to pool.
-	input: 
-		expand("BigWigs/ZNormalized/{sample}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw", sample = SAMPLE),
-		expand("BigWigs/ZNormalized/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw", dirID = dirID, nFiles = nFiles),
-		expand("Peakfiles/.{nFiles}Reps_peakCall.done", nFiles = nFiles),
-		expand("Peakfiles/.{nFiles}Reps_peakSort.done", nFiles = nFiles),
-                expand("Peakfiles/.{sample}_peakCall.done", sample = SAMPLE),
-		expand("{dirID}_report.html", dirID = dirID)
-		if nFiles > 1 else
-		expand("BigWigs/ZNormalized/{sample}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw", sample = SAMPLE),
-		expand("BigWigs/ZNormalized/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw", dirID = dirID, nFiles = nFiles),
-		expand("Peakfiles/.{nFiles}Reps_peakCall.done", nFiles = nFiles),
-		expand("Peakfiles/.{nFiles}Reps_peakSort.done", nFiles = nFiles),
-                expand("Peakfiles/.{sample}_peakCall.done", sample = SAMPLE),
-		expand("{dirID}_report.html", dirID = dirID),
-		expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bed", dirID = dirID, nFiles = nFiles)
+    input: output_files
+
+
+
+#rule all:
+## Only creates pooled files if there are files to pool.
+#	input:
+#		expand("BigWigs/ZNormalized/{sample}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw", sample = SAMPLE),
+#		expand("BigWigs/ZNormalized/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw", dirID = dirID, nFiles = nFiles),
+#		expand("Peakfiles/.{nFiles}Reps_peakCall.done", nFiles = nFiles),
+#		expand("Peakfiles/.{nFiles}Reps_peakSort.done", nFiles = nFiles),
+#                expand("Peakfiles/.{sample}_peakCall.done", sample = SAMPLE),
+#		expand("{dirID}_report.html", dirID = dirID)
+#		if nFiles > 1 else
+#		expand("BigWigs/ZNormalized/{sample}_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw", sample = SAMPLE),
+#		expand("BigWigs/ZNormalized/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet_normalizedToRPGC_zNorm.bw", dirID = dirID, nFiles = nFiles),
+#		expand("Peakfiles/.{nFiles}Reps_peakCall.done", nFiles = nFiles),
+#		expand("Peakfiles/.{nFiles}Reps_peakSort.done", nFiles = nFiles),
+#                expand("Peakfiles/.{sample}_peakCall.done", sample = SAMPLE),
+#		expand("{dirID}_report.html", dirID = dirID),
+#		expand("Bam/{dirID}_{nFiles}Reps_POOLED_q5_sorted_dupsRemoved_noYUHet.bed", dirID = dirID, nFiles = nFiles)
+
+# TODO: get this working for paired-end mode
+rule combine_technical_reps:
+	input:
+		#r1 = lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1,
+		#r2 = lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r2
+		#if is_paired_end else:
+		r1 = lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1,
+	output:
+		#r1 = 'Fastq/{sample}_R1.fastq.gz',
+		#r2 = 'Fastq/{sample}_R2.fastq.gz'
+		#if is_paired_end else:
+		r1 = 'Fastq/{sample}_R1.fastq.gz'
+	run:
+		if is_paired_end:
+			shell("cat {input.r1} > {output.r1} && cat {input.r2} > {output.r2}")
+		else:
+			shell("cat {input.r1} > {output.r1}")
+
+rule trim_adapter:
+	input:
+		r1 = "Fastq/{sample}_R1.fastq.gz"
+	output:
+		r1 = "Fastq/{sample}_R1_trim.fastq.gz"
+	log:
+		adapterStats = 'Logs/{sample}_adapterStats',
+		trimStats = 'Logs/{sample}_trimStats'
+	envmodules:
+		modules['bbmapVer']
+	shell:
+		"""
+		bbduk.sh in={input.r1} out={output.r1} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}
+		"""
 
 rule align:
 	input:
-		"{sample}.fastq.gz"
+		"{sample}_R1_trim.fastq.gz"
 	output:
-		sam = temp("Sam/{sample}.sam"),
+		sam = "Sam/{sample}_{species}.sam",
 		logInfo = "logs/{sample}_bowtie2.txt"
 	threads: 8
-	params: module = bowtie2Ver
+	params:
+		refgenome = lambda wildcards: indexDict[wildcards.species]
+	envmodules:
+		modules['bowtie2Ver']
 	shell:
 		"""
-		module purge && module load {params.module}
-		bowtie2 --seed 123 -x {REFGENEPATH} -p {threads} -U {input} -S {output.sam} 2> {output.logInfo}
+		bowtie2 --seed 123 -x {params.refgenome} -p {threads} -U {input} -S {output.sam} 2> {output.logInfo}
 		"""
-
+# TODO: combine w/ alignment step:
+# bowtie2 --flags 2> {log} | samtools view -@ 4 -b - > {output.bam} && {flagstat_command}
 rule sam2bam:
 	input:
 		"Sam/{sample}.sam"
 	output:
 		bam = "Bam/{sample}.bam",
 		flagstat = "logs/{sample}.flagstat"
-	params: moduleVer = samtoolsVer 
+	envmodules:
+		modules['samtoolsVer']
 	shell:
 		"""
-		module purge && module load {params.moduleVer}
 		samtools view -@ 4 -b {input} > {output.bam} &&
 		samtools flagstat {output.bam} > {output.flagstat}
 		"""
