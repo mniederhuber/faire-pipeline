@@ -201,7 +201,8 @@ rule removeDups:
 		idx = "Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved.bam.bai"
 	params: picardPath = modules['picardPath']
 	envmodules:
-		modules['picardVer']
+		modules['picardVer'],
+		modules['samtoolsVer']
 	shell:
 		"""
 		java -Xmx8g -jar {params.picardPath} MarkDuplicates INPUT= {input} OUTPUT= {output.markedDups} METRICS_FILE= {output.PCRdups} REMOVE_DUPLICATES= false ASSUME_SORTED= true &&
