@@ -3,9 +3,16 @@
 
 ## Quick Start:
 
+### Latest Stable Version
 Clone pipeline (Current stable version: v4.0.0)
 ```
 git clone https://github.com/snystrom/faire-pipeline.git --branch v4.0.0 --depth 1 && cd faire-pipeline/ && rm -rf .git
+```
+
+### Latest Development Version
+Clone pipeline
+```
+git clone https://github.com/snystrom/faire-pipeline.git --depth 1 && cd faire-pipeline/ && rm -rf .git
 ```
 
 Create `sampleInfo.tsv` ([see below](#sampleInfo)) with descriptive columns of data.
