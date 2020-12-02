@@ -86,19 +86,11 @@ output_files.append(poolSampleSheet['bigwig_rpgcNorm_zNorm'])
 output_files = [item for sublist in output_files for item in sublist]
 # Add additional files not from data.frame
 output_files.append("multiqc_report.html")
-print(output_files)
+#print(output_files)
 
 rule all:
 	input:
     		output_files
-	#	expand("Bam/{sample}_{species}_trim_q5_dupsRemoved.{ftype}", sample = sampleSheet.baseName, species = REFGENOME, ftype = {"bam"}),
-	#	expand("Peaks/{sample}_{species}_trim_q5_dupsRemoved_peaks.narrowPeak", sample = sampleSheet.baseName, species = REFGENOME),
-	#	expand('Bed/{sample}_{species}_trim_q5_dupsRemoved.bed', sample = sampleSheet.baseName, species = REFGENOME),
-	#	expand("BigWig/{sample}_{species}_trim_q5_dupsRemoved_{norm}_zNorm.bw", sample = sampleSheet.baseName, species = REFGENOME, norm = normTypeList),
-	#	expand("Bam/{sample}_{species}_trim_q5_dupsRemoved_POOL.{ftype}", sample = poolSampleSheet.baseName, species = REFGENOME, ftype = {"bam"}),
-	#	expand("Peaks/{sample}_{species}_trim_q5_dupsRemoved_peaks_POOL.narrowPeak", sample = poolSampleSheet.baseName, species = REFGENOME),
-	#	expand('Bed/{sample}_{species}_trim_q5_dupsRemoved_POOL.bed', sample = poolSampleSheet.baseName, species = REFGENOME),
-	#	expand("BigWig/{sample}_{species}_trim_q5_dupsRemoved_POOL_{norm}_zNorm.bw", sample = poolSampleSheet.baseName, species = REFGENOME, norm = normTypeList)
 
 # TODO: get this working for paired-end mode
 rule combine_technical_reps:
@@ -240,7 +232,7 @@ rule bigWig:
 		"""
 		bamCoverage -b {input.bam} -p {threads} --normalizeTo1x {params.genomeSize} --outFileFormat bigwig --binSize 10 -e 125 -o {output}
 		"""
-# TODO: fix names
+
 rule zNormBigWig:
 # Z-Normalize Bigwig Files
 	input:
@@ -257,10 +249,10 @@ rule zNormBigWig:
 
 rule mergeBams:
 	input:
-		expand("Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved.bam", sample = sampleSheet.baseName, species = REFGENOME)
+		lambda wildcards: ["Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved.bam".format(sample = s, species = REFGENOME) for s in sampleSheet[sampleSheet.poolBaseName == wildcards.samplePool].baseName]
 	output:
-		bam = expand("Bam/{samplePool}_{species}_trim_q5_sorted_dupsRemoved_POOLED.bam", samplePool = poolSampleSheet.baseName, species = REFGENOME),
-		idx = expand("Bam/{samplePool}_{species}_trim_q5_sorted_dupsRemoved_POOLED.bam.bai", samplePool = poolSampleSheet.baseName, species = REFGENOME)
+		bam = "Bam/{samplePool}_{species}_trim_q5_sorted_dupsRemoved_POOLED.bam",
+		idx = "Bam/{samplePool}_{species}_trim_q5_sorted_dupsRemoved_POOLED.bam.bai"
 	envmodules:
 		modules['samtoolsVer']
 	shell:
@@ -321,9 +313,9 @@ rule CallPooledPeaks:
 
 rule sortPooledPeaks:
 	input:
-		"Peaks/{sample}_{species}_trim_q5_dupsRemoved_POOLED_peaks.narrowPeak"
+		"Peaks/{samplePool}_{species}_trim_q5_dupsRemoved_POOLED_peaks.narrowPeak"
 	output:
-		"Peaks/{sample}_{species}_trim_q5_dupsRemoved_POOLED_peaks_qSorted.narrowPeak"
+		"Peaks/{samplePool}_{species}_trim_q5_dupsRemoved_POOLED_peaks_qSorted.narrowPeak"
 	shell:
 		"sort -n -r -k9 {input} | cut -f1,2,3,4,9 > {output}"
 		
@@ -331,10 +323,10 @@ rule sortPooledPeaks:
 rule mergeBigWig:
 # Bam Coverage to output bigwig file normalized to genomic coverage
 	input:
-		bam = "Bam/{samplePool}_trim_q5_sorted_dupsRemoved_POOLED.bam",
-		idx = "Bam/{samplePool}_trim_q5_sorted_dupsRemoved_POOLED.bam.bai"
+		bam = "Bam/{samplePool}_{species}_trim_q5_sorted_dupsRemoved_POOLED.bam",
+		idx = "Bam/{samplePool}_{species}_trim_q5_sorted_dupsRemoved_POOLED.bam.bai"
 	output:
-		"BigWig/{samplePool}trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm.bw"
+		"BigWig/{samplePool}_{species}_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm.bw"
 	threads: 8 
 	params: genomeSize = GENOMESIZE
 	envmodules:
@@ -347,10 +339,10 @@ rule mergeBigWig:
 rule mergeZNormBigWig:
 # Z-Normalize Bigwig Files
 	input:
-		bw = "BigWig/{samplePool}trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm.bw"
+		bw = "BigWig/{samplePool}_{species}_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm.bw"
 	output:
-		zNorm = "BigWig/{samplePool}_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm_zNorm.bw",
-		zStats = "logs/{samplePool}_POOLED_rpgcNorm.zNorm"
+		zNorm = "BigWig/{samplePool}_{species}_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm_zNorm.bw",
+		zStats = "logs/{samplePool}_{species}_POOLED_rpgcNorm.zNorm"
 	envmodules:
 		modules['rVer']
 	shell:
@@ -370,7 +362,7 @@ rule qcReport:
 	output:
 		"multiqc_report.html"
 	envmodules:
-		modules['pythonVer']
+		modules['multiqcVer']
 	shell:
 		"""
 		multiqc . -f -x *.out -x *.err
