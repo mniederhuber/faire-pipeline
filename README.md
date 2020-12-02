@@ -1,12 +1,12 @@
-# FAIRE-seq Pipeline v4.0.0
+# FAIRE-seq Pipeline v4.1.0
 ## Author: Spencer Nystrom, Chris Uyehara, Jayashree Kumar
 
 ## Quick Start:
 
 ### Latest Stable Version
-Clone pipeline (Current stable version: v4.0.0)
+Clone pipeline (Current stable version: v4.1.0)
 ```
-git clone https://github.com/snystrom/faire-pipeline.git --branch v4.0.0 --depth 1 && cd faire-pipeline/ && rm -rf .git
+git clone https://github.com/snystrom/faire-pipeline.git --branch v4.1.0 --depth 1 && cd faire-pipeline/ && rm -rf .git
 ```
 
 ### Latest Development Version
