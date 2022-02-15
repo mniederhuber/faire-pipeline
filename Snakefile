@@ -23,8 +23,8 @@ modules = config['module']
 #########
 # Validation
 
-if is_paired_end:
-	sys.exit("paired end mode is not fully supported yet")
+#if is_paired_end:
+#	sys.exit("paired end mode is not fully supported yet")
 
 if os.path.exists(file_info_path) == False:
 	print('Error: {name} does not exist. Be sure to set `sampleInfo` in config.json.'.format(name = file_info_path))
