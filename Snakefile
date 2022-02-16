@@ -47,7 +47,7 @@ poolSampleSheet = pre.addBaseName(poolSampleSheet, pool_basename_columns, "-").d
 
 sampleSheet['fastq_trim_r1'] = expand("Fastq/{sample}_R{num}_trim.fastq.gz", sample = sampleSheet.baseName, num = ['1'])
 # TODO: add support for paired end
-#sampleSheet['fastq_trim_r2'] = expand("Fastq/{sample}_R{num}_trim.fastq.gz", sample = sampleSheet.baseName, num = ['2'])
+sampleSheet['fastq_trim_r2'] = expand("Fastq/{sample}_R{num}_trim.fastq.gz", sample = sampleSheet.baseName, num = ['2'])
 sampleSheet['bam']           = expand("Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved.{ftype}", sample = sampleSheet.baseName, species = REFGENOME, ftype = {"bam"})
 sampleSheet['peaks']         = expand("Peaks/{sample}_{species}_trim_q5_sorted_dupsRemoved_peaks.narrowPeak", sample = sampleSheet.baseName, species = REFGENOME)
 sampleSheet['bed']           = expand('Bed/{sample}_{species}_trim_q5_sorted_dupsRemoved.bed', sample = sampleSheet.baseName, species = REFGENOME)
@@ -73,6 +73,7 @@ poolSampleSheet.to_csv('sampleSheetPooled.tsv', sep = "\t", index = False)
 
 output_files = []
 output_files.append(sampleSheet['fastq_trim_r1'])
+output_files.append(sampleSheet['fastq_trim_r2'])
 output_files.append(sampleSheet['bam'])
 output_files.append(sampleSheet['peaks'])
 output_files.append(sampleSheet['bed'])
@@ -95,41 +96,43 @@ rule all:
 # TODO: get this working for paired-end mode
 rule combine_technical_reps:
 	input:
-		#r1 = lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1,
-		#r2 = lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r2
-		#if is_paired_end else:
-		r1 = lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1,
+		r1 = lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1, 
+		r2 = lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r2 
 	output:
-		#r1 = 'Fastq/{sample}_R1.fastq.gz',
-		#r2 = 'Fastq/{sample}_R2.fastq.gz'
-		#if is_paired_end else:
-		r1 = 'Fastq/{sample}_R1.fastq.gz'
-	shell:
-		"""
-		cat {input.r1} > {output.r1}
-		"""
+		r1 = 'Fastq/{sample}_R1.fastq.gz',
+		r2 = 'Fastq/{sample}_R2.fastq.gz' 
+	run:
+		if is_paired_end:
+			shell("cat {input.r1} > {output.r1} && cat {input.r2} > {output.r2}")
+		else:
+			shell("cat {input.r1} > {output.r1}")
 
 rule trim_adapter:
 	input:
-		r1 = "Fastq/{sample}_R1.fastq.gz"
+		r1 = "Fastq/{sample}_R1.fastq.gz",
+		r2 = "Fastq/{sample}_R2.fastq.gz"
 	output:
-		r1 = "Fastq/{sample}_R1_trim.fastq.gz"
+		r1 = "Fastq/{sample}_R1_trim.fastq.gz",
+		r2 = "Fastq/{sample}_R2_trim.fastq.gz"
 	log:
 		adapterStats = 'Logs/{sample}_adapterStats',
 		trimStats = 'Logs/{sample}_trimStats'
-	envmodules:
-		modules['bbmapVer']
-	shell:
-		"""
-		bbduk.sh in={input.r1} out={output.r1} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}
-		"""
+	params:
+		module = modules['bbmapVer']
+#	envmodules:
+#		modules['bbmapVer']
+	run:
+		if is_paired_end:
+			shell("module purge && module load {module} && bbduk.sh in1={input.r1} in2={input.r2} out1={output.r1} out2={output.r2} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}")
+		else:
+			shell("module purge && module load {module} && bbduk.sh in={input.r1} out={output.r1} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}")
 
-rule align:
+rule align_se:
 	input:
 		"Fastq/{sample}_R1_trim.fastq.gz"
 	output:
-		sam = "Sam/{sample}_{species}_trim.sam",
-		logInfo = "logs/{sample}_{species}_trim_bowtie2.txt"
+		sam = "Sam/{sample}_{species}_trim_se.sam",
+		logInfo = "logs/{sample}_{species}_trim_se_bowtie2.txt"
 	threads: 8
 	params:
 		refgenome = lambda wildcards: indexDict[wildcards.species]
@@ -139,11 +142,31 @@ rule align:
 		"""
 		bowtie2 --seed 123 -x {params.refgenome} -p {threads} -U {input} -S {output.sam} 2> {output.logInfo}
 		"""
+
+rule align_pe:
+	input:
+		r1 = "Fastq/{sample}_R1_trim.fastq.gz",
+		r2 = "Fastq/{sample}_R2_trim.fastq.gz"
+	output:
+		sam = "Sam/{sample}_{species}_trim_pe.sam",
+		logInfo = "logs/{sample}_{species}_trim_pe_bowtie2.txt"
+	threads: 8
+	params:
+		refgenome = lambda wildcards: indexDict[wildcards.species]
+	envmodules:
+		modules['bowtie2Ver']
+	shell:
+		"""
+		bowtie2 --seed 123 -x {params.refgenome} -p {threads} -1 {input.r1} -2 {input.r2} -S {output.sam} 2> {output.logInfo}
+		"""
+
+
 # TODO: combine w/ alignment step:
 # bowtie2 --flags 2> {log} | samtools view -@ 4 -b - > {output.bam} && {flagstat_command}
+
 rule sam2bam:
 	input:
-		"Sam/{sample}_{species}_trim.sam"
+		"Sam/{sample}_{species}_trim_pe.sam" if is_paired_end else "Sam/{sample}_{species}_trim_se.sam"
 	output:
 		bam = "Bam/{sample}_{species}_trim.bam",
 		flagstat = "logs/{sample}_{species}_trim.flagstat"
