@@ -46,7 +46,6 @@ poolSampleSheet = sampleSheet[pool_basename_columns].copy()
 poolSampleSheet = pre.addBaseName(poolSampleSheet, pool_basename_columns, "-").drop_duplicates()
 
 sampleSheet['fastq_trim_r1'] = expand("Fastq/{sample}_R{num}_trim.fastq.gz", sample = sampleSheet.baseName, num = ['1'])
-# TODO: add support for paired end
 sampleSheet['fastq_trim_r2'] = expand("Fastq/{sample}_R{num}_trim.fastq.gz", sample = sampleSheet.baseName, num = ['2'])
 sampleSheet['bam']           = expand("Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved.{ftype}", sample = sampleSheet.baseName, species = REFGENOME, ftype = {"bam"})
 sampleSheet['peaks']         = expand("Peaks/{sample}_{species}_trim_q5_sorted_dupsRemoved_peaks.narrowPeak", sample = sampleSheet.baseName, species = REFGENOME)
@@ -93,19 +92,34 @@ rule all:
 	input:
     		output_files
 
-# TODO: get this working for paired-end mode
+def testy(wildcards):
+	print(wildcards.sample)
+	print(wildcards.n)
+	if wildcards.n == 1:
+		return sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1
+	elif wildcards.n == 2:
+		return [sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1,sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r2]
+
 rule combine_technical_reps:
 	input:
-		r1 = lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1, 
-		r2 = lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r2 
+		testy
 	output:
-		r1 = 'Fastq/{sample}_R1.fastq.gz',
-		r2 = 'Fastq/{sample}_R2.fastq.gz' 
-	run:
-		if is_paired_end:
-			shell("cat {input.r1} > {output.r1} && cat {input.r2} > {output.r2}")
-		else:
-			shell("cat {input.r1} > {output.r1}")
+		"{sample}_R{n}.fastq.gz"
+	shell:
+		"cat {input} > {output}"
+
+#rule combine_technical_reps:
+#	input:
+#		r1 = lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1, 
+#		r2 = lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r2 
+#	output:
+#		r1 = 'Fastq/{sample}_R1.fastq.gz',
+#		r2 = 'Fastq/{sample}_R2.fastq.gz' 
+#	run:
+#		if is_paired_end:
+#			shell("cat {input.r1} > {output.r1} && cat {input.r2} > {output.r2}")
+#		else:
+#			shell("cat {input.r1} > {output.r1}")
 
 rule trim_adapter:
 	input:
