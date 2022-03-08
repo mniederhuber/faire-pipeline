@@ -9,6 +9,7 @@ basename_columns = config['baseNameColumns']
 pool_basename_columns = config['poolBaseNameColumns']
 is_paired_end = config['pairedEnd']
 
+
 REFGENOME = config['refGenome']
 SPIKEGENOME = config['spikeGenome']
 REFGENOMEPATH = config['genome'][REFGENOME]['bowtie']
@@ -92,19 +93,22 @@ rule all:
 	input:
     		output_files
 
-def testy(wildcards):
-	print(wildcards.sample)
-	print(wildcards.n)
-	if wildcards.n == 1:
-		return sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1
-	elif wildcards.n == 2:
-		return [sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1,sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r2]
+def testy(x):
+	if is_paired_end:
+		#lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1 
+#		print(expand("{sample}_R{num}.fastq.gz", sample = wildcards.sample, num = [1,2]))
+		return expand("{sample}_R{num}.fastq.gz", sample = wildcards.sample, num = [1,2])
+	else:
+		r1 = lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1 
+		print(r1(x)
+		return(r1)
+		#return expand("{sample}_R{num}.fastq.gz", sample = wildcards.sample, num = [1])
 
 rule combine_technical_reps:
 	input:
 		testy
 	output:
-		"{sample}_R{n}.fastq.gz"
+		"Fastq/{sample}_R1.fastq.gz"
 	shell:
 		"cat {input} > {output}"
 

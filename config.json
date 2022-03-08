@@ -6,7 +6,7 @@
 	"refGenome" : "dm6",
 	"spikeGenome" : "sacCer3",
 	"readLen" : 50,
-	"pairedEnd" : true,
+	"pairedEnd" : false,
 	"genome" : {
 		"dm3" : { 
 			"bowtie" : "/proj/mckaylab/genomeFiles/dm3/RefGenome/dm3",
