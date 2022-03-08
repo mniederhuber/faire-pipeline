@@ -8,7 +8,7 @@ file_info_path = config['sampleInfo']
 basename_columns = config['baseNameColumns']
 pool_basename_columns = config['poolBaseNameColumns']
 is_paired_end = config['pairedEnd']
-
+READS = ['1','2'] if is_paired_end else ['1']
 
 REFGENOME = config['refGenome']
 SPIKEGENOME = config['spikeGenome']
@@ -47,7 +47,7 @@ poolSampleSheet = sampleSheet[pool_basename_columns].copy()
 poolSampleSheet = pre.addBaseName(poolSampleSheet, pool_basename_columns, "-").drop_duplicates()
 
 sampleSheet['fastq_trim_r1'] = expand("Fastq/{sample}_R{num}_trim.fastq.gz", sample = sampleSheet.baseName, num = ['1'])
-sampleSheet['fastq_trim_r2'] = expand("Fastq/{sample}_R{num}_trim.fastq.gz", sample = sampleSheet.baseName, num = ['2'])
+if is_paired_end: sampleSheet['fastq_trim_r2'] = expand("Fastq/{sample}_R{num}_trim.fastq.gz", sample = sampleSheet.baseName, num = ['2']) 
 sampleSheet['bam']           = expand("Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved.{ftype}", sample = sampleSheet.baseName, species = REFGENOME, ftype = {"bam"})
 sampleSheet['peaks']         = expand("Peaks/{sample}_{species}_trim_q5_sorted_dupsRemoved_peaks.narrowPeak", sample = sampleSheet.baseName, species = REFGENOME)
 sampleSheet['bed']           = expand('Bed/{sample}_{species}_trim_q5_sorted_dupsRemoved.bed', sample = sampleSheet.baseName, species = REFGENOME)
@@ -73,7 +73,7 @@ poolSampleSheet.to_csv('sampleSheetPooled.tsv', sep = "\t", index = False)
 
 output_files = []
 output_files.append(sampleSheet['fastq_trim_r1'])
-output_files.append(sampleSheet['fastq_trim_r2'])
+if is_paired_end: output_files.append(sampleSheet['fastq_trim_r2'])
 output_files.append(sampleSheet['bam'])
 output_files.append(sampleSheet['peaks'])
 output_files.append(sampleSheet['bed'])
@@ -91,64 +91,55 @@ output_files.append("multiqc_report.html")
 
 rule all:
 	input:
-    		output_files
+    		output_files,
+#				expand("Fastq/{sample}_R{num}.fastq.gz", sample = sampleSheet.baseName, num = READS)
 
-def testy(wildcards):
-	prefix = ''
+#constraing the num wildcard for identifying R1, R2 
+# was running into ambigious wildcard issues between combine_tech_reps and trim ruls that I wasn't able to resolve -MN
+wildcard_constraints:
+	num = "[0-9]"
+
+#function to get the /proj/HTSF paths for either r1 or r1+r2 
+def getFastq(wildcards):
 	if is_paired_end:
-		#lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1 
-#		print(expand("{sample}_R{num}.fastq.gz", sample = wildcards.sample, num = [1,2]))
-		r1= sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1.loc[0]
-		r2= sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r2.loc[0]
-		print([r1, r2])
+		r1 = sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1.iloc[0]
+		r2 = sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r2.iloc[0]
 		return [r1, r2]
 	else:
-		return sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1
+		r1 = sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1.iloc[0]
+		return [r1]
 
+#passes getFastq function as input -- either 1 or 2 reads depending on is_paired_end
 rule combine_technical_reps:
 	input:
-		testy
+		getFastq
 	output:
-		"Fastq/{sample}_R1.fastq.gz"
+		expand("Fastq/{{sample}}_R{num}.fastq.gz", num = READS)
 	run:
 		if is_paired_end:
 			shell("cat {input[0]} > {output[0]} && cat {input[1]} > {output[1]}")
 		else:
 			shell("cat {input[0]} > {output[0]}")
 
-#rule combine_technical_reps:
-#	input:
-#		r1 = lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1, 
-#		r2 = lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r2 
-#	output:
-#		r1 = 'Fastq/{sample}_R1.fastq.gz',
-#		r2 = 'Fastq/{sample}_R2.fastq.gz' 
-#	run:
-#		if is_paired_end:
-#			shell("cat {input.r1} > {output.r1} && cat {input.r2} > {output.r2}")
-#		else:
-#			shell("cat {input.r1} > {output.r1}")
-
+#R{num} should correctly propogate either 1 or [1,2] after combine_tech_reps
+#using conditional run to trim either PE or SE reads
 rule trim_adapter:
 	input:
-		r1 = "Fastq/{sample}_R1.fastq.gz",
-		r2 = "Fastq/{sample}_R2.fastq.gz"
+		"Fastq/{sample}_R{num}.fastq.gz",
 	output:
-		r1 = "Fastq/{sample}_R1_trim.fastq.gz",
-		r2 = "Fastq/{sample}_R2_trim.fastq.gz"
+		"Fastq/{sample}_R{num}_trim.fastq.gz",
 	log:
-		adapterStats = 'Logs/{sample}_adapterStats',
-		trimStats = 'Logs/{sample}_trimStats'
+		adapterStats = 'Logs/{sample}_R{num}_adapterStats',
+		trimStats = 'Logs/{sample}_R{num}_trimStats'
 	params:
 		module = modules['bbmapVer']
-#	envmodules:
-#		modules['bbmapVer']
 	run:
 		if is_paired_end:
-			shell("module purge && module load {module} && bbduk.sh in1={input.r1} in2={input.r2} out1={output.r1} out2={output.r2} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}")
+			shell("module purge && module load {module} && bbduk.sh in1={input[0]} in2={input[1]} out1={output[0]} out2={output[1]} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}")
 		else:
-			shell("module purge && module load {module} && bbduk.sh in={input.r1} out={output.r1} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}")
+			shell("module purge && module load {module} && bbduk.sh in={input} out={output} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}")
 
+#will only run if is_paired_end == false - as determined by input called for by sam2bam
 rule align_se:
 	input:
 		"Fastq/{sample}_R1_trim.fastq.gz"
@@ -165,6 +156,7 @@ rule align_se:
 		bowtie2 --seed 123 -x {params.refgenome} -p {threads} -U {input} -S {output.sam} 2> {output.logInfo}
 		"""
 
+#will only run if is_paired_end == true - as determined by input called for by sam2bam
 rule align_pe:
 	input:
 		r1 = "Fastq/{sample}_R1_trim.fastq.gz",
