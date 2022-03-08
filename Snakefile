@@ -94,22 +94,27 @@ rule all:
     		output_files
 
 def testy(wildcards):
+	prefix = ''
 	if is_paired_end:
 		#lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1 
 #		print(expand("{sample}_R{num}.fastq.gz", sample = wildcards.sample, num = [1,2]))
-		return expand("{sample}_R{num}.fastq.gz", sample = wildcards.sample, num = [1,2])
+		r1= sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1.loc[0]
+		r2= sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r2.loc[0]
+		print([r1, r2])
+		return [r1, r2]
 	else:
-		r1 = lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1 
-		print(r1(wildcards))
-		return(r1)
+		return sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1
 
 rule combine_technical_reps:
 	input:
 		testy
 	output:
 		"Fastq/{sample}_R1.fastq.gz"
-	shell:
-		"cat {input} > {output}"
+	run:
+		if is_paired_end:
+			shell("cat {input[0]} > {output[0]} && cat {input[1]} > {output[1]}")
+		else:
+			shell("cat {input[0]} > {output[0]}")
 
 #rule combine_technical_reps:
 #	input:
