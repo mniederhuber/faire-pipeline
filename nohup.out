@@ -1,0 +1,322 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 100
+Job counts:
+	count	jobs
+	2	CallPooledPeaks
+	4	CallRepPeaks
+	4	align_pe
+	1	all
+	4	bamSort
+	4	bamToBed
+	4	bigWig
+	4	combine_technical_reps
+	2	mergeBams
+	2	mergeBamtoBed
+	2	mergeBigWig
+	2	mergeZNormBigWig
+	4	qFilter
+	1	qcReport
+	4	removeDups
+	4	sam2bam
+	8	trim_adapter
+	4	zNormBigWig
+	60
+
+[Tue Mar  8 15:38:54 2022]
+rule combine_technical_reps:
+    input: /proj/mckaylab/HTSF/220214_UNC51-VH00562_31_AAAWH2FM5/MJN02_U40-nub-30h-wing-gfpKD-FAIRE-rep2_CGGACAAC-TCCGGATT_S4_L001_R1_001.fastq.gz, /proj/mckaylab/HTSF/220214_UNC51-VH00562_31_AAAWH2FM5/MJN02_U40-nub-30h-wing-gfpKD-FAIRE-rep2_CGGACAAC-TCCGGATT_S4_L001_R2_001.fastq.gz
+    output: Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R1.fastq.gz, Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R2.fastq.gz
+    jobid: 8
+    wildcards: sample=nub_30h_gfpRNAi_FAIRE-Rep2
+
+Submitted job 8 with external jobid 'Submitted batch job 39599734'.
+
+[Tue Mar  8 15:38:54 2022]
+rule combine_technical_reps:
+    input: /proj/mckaylab/HTSF/220214_UNC51-VH00562_31_AAAWH2FM5/MJN02_U37-nub-30h-wing-domKD-FAIRE-rep1_TCGTAGTG-AGACTTGG_S1_L001_R1_001.fastq.gz, /proj/mckaylab/HTSF/220214_UNC51-VH00562_31_AAAWH2FM5/MJN02_U37-nub-30h-wing-domKD-FAIRE-rep1_TCGTAGTG-AGACTTGG_S1_L001_R2_001.fastq.gz
+    output: Fastq/nub_30h_domRNAi_FAIRE-Rep1_R1.fastq.gz, Fastq/nub_30h_domRNAi_FAIRE-Rep1_R2.fastq.gz
+    jobid: 2
+    wildcards: sample=nub_30h_domRNAi_FAIRE-Rep1
+
+Submitted job 2 with external jobid 'Submitted batch job 39599735'.
+
+[Tue Mar  8 15:38:54 2022]
+rule combine_technical_reps:
+    input: /proj/mckaylab/HTSF/220214_UNC51-VH00562_31_AAAWH2FM5/MJN02_U38-nub-30h-wing-domKD-FAIRE-rep2_CTACGACA-GAGTCCAA_S2_L001_R1_001.fastq.gz, /proj/mckaylab/HTSF/220214_UNC51-VH00562_31_AAAWH2FM5/MJN02_U38-nub-30h-wing-domKD-FAIRE-rep2_CTACGACA-GAGTCCAA_S2_L001_R2_001.fastq.gz
+    output: Fastq/nub_30h_domRNAi_FAIRE-Rep2_R1.fastq.gz, Fastq/nub_30h_domRNAi_FAIRE-Rep2_R2.fastq.gz
+    jobid: 4
+    wildcards: sample=nub_30h_domRNAi_FAIRE-Rep2
+
+Submitted job 4 with external jobid 'Submitted batch job 39599736'.
+
+[Tue Mar  8 15:38:54 2022]
+rule combine_technical_reps:
+    input: /proj/mckaylab/HTSF/220214_UNC51-VH00562_31_AAAWH2FM5/MJN02_U39-nub-30h-wing-gfpKD-FAIRE-rep1_TAAGTGGT-CTTAAGCC_S3_L001_R1_001.fastq.gz, /proj/mckaylab/HTSF/220214_UNC51-VH00562_31_AAAWH2FM5/MJN02_U39-nub-30h-wing-gfpKD-FAIRE-rep1_TAAGTGGT-CTTAAGCC_S3_L001_R2_001.fastq.gz
+    output: Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R1.fastq.gz, Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R2.fastq.gz
+    jobid: 6
+    wildcards: sample=nub_30h_gfpRNAi_FAIRE-Rep1
+
+Submitted job 6 with external jobid 'Submitted batch job 39599737'.
+[Tue Mar  8 15:39:04 2022]
+Finished job 4.
+1 of 60 steps (2%) done
+
+[Tue Mar  8 15:39:04 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_domRNAi_FAIRE-Rep2_R2.fastq.gz
+    output: Fastq/nub_30h_domRNAi_FAIRE-Rep2_R2_trim.fastq.gz
+    log: Logs/nub_30h_domRNAi_FAIRE-Rep2_R2_adapterStats, Logs/nub_30h_domRNAi_FAIRE-Rep2_R2_trimStats
+    jobid: 10
+    wildcards: sample=nub_30h_domRNAi_FAIRE-Rep2, num=2
+
+Submitted job 10 with external jobid 'Submitted batch job 39599749'.
+
+[Tue Mar  8 15:39:05 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_domRNAi_FAIRE-Rep2_R1.fastq.gz
+    output: Fastq/nub_30h_domRNAi_FAIRE-Rep2_R1_trim.fastq.gz
+    log: Logs/nub_30h_domRNAi_FAIRE-Rep2_R1_adapterStats, Logs/nub_30h_domRNAi_FAIRE-Rep2_R1_trimStats
+    jobid: 3
+    wildcards: sample=nub_30h_domRNAi_FAIRE-Rep2, num=1
+
+Submitted job 3 with external jobid 'Submitted batch job 39599750'.
+[Tue Mar  8 15:39:15 2022]
+Finished job 8.
+2 of 60 steps (3%) done
+
+[Tue Mar  8 15:39:15 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R2.fastq.gz
+    output: Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R2_trim.fastq.gz
+    log: Logs/nub_30h_gfpRNAi_FAIRE-Rep2_R2_adapterStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep2_R2_trimStats
+    jobid: 12
+    wildcards: sample=nub_30h_gfpRNAi_FAIRE-Rep2, num=2
+
+[Tue Mar  8 15:39:15 2022]
+Finished job 2.
+3 of 60 steps (5%) done
+[Tue Mar  8 15:39:15 2022]
+Finished job 6.
+4 of 60 steps (7%) done
+Submitted job 12 with external jobid 'Submitted batch job 39599753'.
+
+[Tue Mar  8 15:39:15 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R1.fastq.gz
+    output: Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R1_trim.fastq.gz
+    log: Logs/nub_30h_gfpRNAi_FAIRE-Rep2_R1_adapterStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep2_R1_trimStats
+    jobid: 7
+    wildcards: sample=nub_30h_gfpRNAi_FAIRE-Rep2, num=1
+
+Submitted job 7 with external jobid 'Submitted batch job 39599754'.
+
+[Tue Mar  8 15:39:15 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_domRNAi_FAIRE-Rep1_R2.fastq.gz
+    output: Fastq/nub_30h_domRNAi_FAIRE-Rep1_R2_trim.fastq.gz
+    log: Logs/nub_30h_domRNAi_FAIRE-Rep1_R2_adapterStats, Logs/nub_30h_domRNAi_FAIRE-Rep1_R2_trimStats
+    jobid: 9
+    wildcards: sample=nub_30h_domRNAi_FAIRE-Rep1, num=2
+
+Submitted job 9 with external jobid 'Submitted batch job 39599755'.
+
+[Tue Mar  8 15:39:15 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R2.fastq.gz
+    output: Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R2_trim.fastq.gz
+    log: Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R2_adapterStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R2_trimStats
+    jobid: 11
+    wildcards: sample=nub_30h_gfpRNAi_FAIRE-Rep1, num=2
+
+Submitted job 11 with external jobid 'Submitted batch job 39599756'.
+
+[Tue Mar  8 15:39:15 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_domRNAi_FAIRE-Rep1_R1.fastq.gz
+    output: Fastq/nub_30h_domRNAi_FAIRE-Rep1_R1_trim.fastq.gz
+    log: Logs/nub_30h_domRNAi_FAIRE-Rep1_R1_adapterStats, Logs/nub_30h_domRNAi_FAIRE-Rep1_R1_trimStats
+    jobid: 1
+    wildcards: sample=nub_30h_domRNAi_FAIRE-Rep1, num=1
+
+Submitted job 1 with external jobid 'Submitted batch job 39599757'.
+
+[Tue Mar  8 15:39:15 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R1.fastq.gz
+    output: Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R1_trim.fastq.gz
+    log: Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R1_adapterStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R1_trimStats
+    jobid: 5
+    wildcards: sample=nub_30h_gfpRNAi_FAIRE-Rep1, num=1
+
+Submitted job 5 with external jobid 'Submitted batch job 39599758'.
+[Tue Mar  8 15:39:25 2022]
+Error in rule trim_adapter:
+    jobid: 10
+    output: Fastq/nub_30h_domRNAi_FAIRE-Rep2_R2_trim.fastq.gz
+    log: Logs/nub_30h_domRNAi_FAIRE-Rep2_R2_adapterStats, Logs/nub_30h_domRNAi_FAIRE-Rep2_R2_trimStats (check log file(s) for error message)
+    cluster_jobid: Submitted batch job 39599749
+
+Error executing rule trim_adapter on cluster (jobid: 10, external: Submitted batch job 39599749, jobscript: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/tmp.c7xsjs0z/snakejob.trim_adapter.10.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Tue Mar  8 15:39:25 2022]
+Error in rule trim_adapter:
+    jobid: 3
+    output: Fastq/nub_30h_domRNAi_FAIRE-Rep2_R1_trim.fastq.gz
+    log: Logs/nub_30h_domRNAi_FAIRE-Rep2_R1_adapterStats, Logs/nub_30h_domRNAi_FAIRE-Rep2_R1_trimStats (check log file(s) for error message)
+    cluster_jobid: Submitted batch job 39599750
+
+Error executing rule trim_adapter on cluster (jobid: 3, external: Submitted batch job 39599750, jobscript: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/tmp.c7xsjs0z/snakejob.trim_adapter.3.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Tue Mar  8 15:39:25 2022]
+Error in rule trim_adapter:
+    jobid: 12
+    output: Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R2_trim.fastq.gz
+    log: Logs/nub_30h_gfpRNAi_FAIRE-Rep2_R2_adapterStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep2_R2_trimStats (check log file(s) for error message)
+    cluster_jobid: Submitted batch job 39599753
+
+Error executing rule trim_adapter on cluster (jobid: 12, external: Submitted batch job 39599753, jobscript: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/tmp.c7xsjs0z/snakejob.trim_adapter.12.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Tue Mar  8 15:39:25 2022]
+Error in rule trim_adapter:
+    jobid: 7
+    output: Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R1_trim.fastq.gz
+    log: Logs/nub_30h_gfpRNAi_FAIRE-Rep2_R1_adapterStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep2_R1_trimStats (check log file(s) for error message)
+    cluster_jobid: Submitted batch job 39599754
+
+Error executing rule trim_adapter on cluster (jobid: 7, external: Submitted batch job 39599754, jobscript: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/tmp.c7xsjs0z/snakejob.trim_adapter.7.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Tue Mar  8 15:39:45 2022]
+Error in rule trim_adapter:
+    jobid: 9
+    output: Fastq/nub_30h_domRNAi_FAIRE-Rep1_R2_trim.fastq.gz
+    log: Logs/nub_30h_domRNAi_FAIRE-Rep1_R2_adapterStats, Logs/nub_30h_domRNAi_FAIRE-Rep1_R2_trimStats (check log file(s) for error message)
+    cluster_jobid: Submitted batch job 39599755
+
+Error executing rule trim_adapter on cluster (jobid: 9, external: Submitted batch job 39599755, jobscript: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/tmp.c7xsjs0z/snakejob.trim_adapter.9.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Tue Mar  8 15:39:45 2022]
+Error in rule trim_adapter:
+    jobid: 11
+    output: Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R2_trim.fastq.gz
+    log: Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R2_adapterStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R2_trimStats (check log file(s) for error message)
+    cluster_jobid: Submitted batch job 39599756
+
+Error executing rule trim_adapter on cluster (jobid: 11, external: Submitted batch job 39599756, jobscript: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/tmp.c7xsjs0z/snakejob.trim_adapter.11.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Tue Mar  8 15:39:45 2022]
+Error in rule trim_adapter:
+    jobid: 1
+    output: Fastq/nub_30h_domRNAi_FAIRE-Rep1_R1_trim.fastq.gz
+    log: Logs/nub_30h_domRNAi_FAIRE-Rep1_R1_adapterStats, Logs/nub_30h_domRNAi_FAIRE-Rep1_R1_trimStats (check log file(s) for error message)
+    cluster_jobid: Submitted batch job 39599757
+
+Error executing rule trim_adapter on cluster (jobid: 1, external: Submitted batch job 39599757, jobscript: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/tmp.c7xsjs0z/snakejob.trim_adapter.1.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Tue Mar  8 15:39:45 2022]
+Error in rule trim_adapter:
+    jobid: 5
+    output: Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R1_trim.fastq.gz
+    log: Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R1_adapterStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R1_trimStats (check log file(s) for error message)
+    cluster_jobid: Submitted batch job 39599758
+
+Error executing rule trim_adapter on cluster (jobid: 5, external: Submitted batch job 39599758, jobscript: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/tmp.c7xsjs0z/snakejob.trim_adapter.5.sh). For error details see the cluster log and the log files of the involved rule(s).
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/log/2022-03-08T153854.117755.snakemake.log
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 100
+Job counts:
+	count	jobs
+	2	CallPooledPeaks
+	4	CallRepPeaks
+	4	align_pe
+	1	all
+	4	bamSort
+	4	bamToBed
+	4	bigWig
+	2	mergeBams
+	2	mergeBamtoBed
+	2	mergeBigWig
+	2	mergeZNormBigWig
+	4	qFilter
+	1	qcReport
+	4	removeDups
+	4	sam2bam
+	8	trim_adapter
+	4	zNormBigWig
+	56
+
+[Tue Mar  8 15:50:19 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_domRNAi_FAIRE-Rep1_R2.fastq.gz
+    output: Fastq/nub_30h_domRNAi_FAIRE-Rep1_R2_trim.fastq.gz
+    log: Logs/nub_30h_domRNAi_FAIRE-Rep1_R2_adapterStats, Logs/nub_30h_domRNAi_FAIRE-Rep1_R2_trimStats
+    jobid: 9
+    wildcards: sample=nub_30h_domRNAi_FAIRE-Rep1, num=2
+
+Submitted job 9 with external jobid 'Submitted batch job 39600169'.
+
+[Tue Mar  8 15:50:19 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R2.fastq.gz
+    output: Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R2_trim.fastq.gz
+    log: Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R2_adapterStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R2_trimStats
+    jobid: 11
+    wildcards: sample=nub_30h_gfpRNAi_FAIRE-Rep1, num=2
+
+Submitted job 11 with external jobid 'Submitted batch job 39600170'.
+
+[Tue Mar  8 15:50:19 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_domRNAi_FAIRE-Rep1_R1.fastq.gz
+    output: Fastq/nub_30h_domRNAi_FAIRE-Rep1_R1_trim.fastq.gz
+    log: Logs/nub_30h_domRNAi_FAIRE-Rep1_R1_adapterStats, Logs/nub_30h_domRNAi_FAIRE-Rep1_R1_trimStats
+    jobid: 1
+    wildcards: sample=nub_30h_domRNAi_FAIRE-Rep1, num=1
+
+Submitted job 1 with external jobid 'Submitted batch job 39600171'.
+
+[Tue Mar  8 15:50:19 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_domRNAi_FAIRE-Rep2_R1.fastq.gz
+    output: Fastq/nub_30h_domRNAi_FAIRE-Rep2_R1_trim.fastq.gz
+    log: Logs/nub_30h_domRNAi_FAIRE-Rep2_R1_adapterStats, Logs/nub_30h_domRNAi_FAIRE-Rep2_R1_trimStats
+    jobid: 3
+    wildcards: sample=nub_30h_domRNAi_FAIRE-Rep2, num=1
+
+Submitted job 3 with external jobid 'Submitted batch job 39600172'.
+
+[Tue Mar  8 15:50:19 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R1.fastq.gz
+    output: Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R1_trim.fastq.gz
+    log: Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R1_adapterStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R1_trimStats
+    jobid: 5
+    wildcards: sample=nub_30h_gfpRNAi_FAIRE-Rep1, num=1
+
+Submitted job 5 with external jobid 'Submitted batch job 39600173'.
+
+[Tue Mar  8 15:50:19 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R1.fastq.gz
+    output: Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R1_trim.fastq.gz
+    log: Logs/nub_30h_gfpRNAi_FAIRE-Rep2_R1_adapterStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep2_R1_trimStats
+    jobid: 7
+    wildcards: sample=nub_30h_gfpRNAi_FAIRE-Rep2, num=1
+
+Submitted job 7 with external jobid 'Submitted batch job 39600174'.
+
+[Tue Mar  8 15:50:19 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_domRNAi_FAIRE-Rep2_R2.fastq.gz
+    output: Fastq/nub_30h_domRNAi_FAIRE-Rep2_R2_trim.fastq.gz
+    log: Logs/nub_30h_domRNAi_FAIRE-Rep2_R2_adapterStats, Logs/nub_30h_domRNAi_FAIRE-Rep2_R2_trimStats
+    jobid: 10
+    wildcards: sample=nub_30h_domRNAi_FAIRE-Rep2, num=2
+
+Submitted job 10 with external jobid 'Submitted batch job 39600175'.
+
+[Tue Mar  8 15:50:19 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R2.fastq.gz
+    output: Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R2_trim.fastq.gz
+    log: Logs/nub_30h_gfpRNAi_FAIRE-Rep2_R2_adapterStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep2_R2_trimStats
+    jobid: 12
+    wildcards: sample=nub_30h_gfpRNAi_FAIRE-Rep2, num=2
+
+Submitted job 12 with external jobid 'Submitted batch job 39600176'.

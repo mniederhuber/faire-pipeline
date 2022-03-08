@@ -132,12 +132,18 @@ rule trim_adapter:
 		adapterStats = 'Logs/{sample}_R{num}_adapterStats',
 		trimStats = 'Logs/{sample}_R{num}_trimStats'
 	params:
-		module = modules['bbmapVer']
-	run:
-		if is_paired_end:
-			shell("module purge && module load {module} && bbduk.sh in1={input[0]} in2={input[1]} out1={output[0]} out2={output[1]} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}")
-		else:
-			shell("module purge && module load {module} && bbduk.sh in={input} out={output} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}")
+		bbmap = modules['bbmapVer']
+	envmodules:
+		modules['bbmapVer']
+	shell:
+		"""
+		bbduk.sh in={input} out={output} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}
+		"""
+#	run:
+#		if is_paired_end:
+#			shell("module purge && module load {params.bbmap} && bbduk.sh in1={input[0]} in2={input[1]} out1={output[0]} out2={output[1]} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}")
+#		else:
+#			shell("module purge && module load {params.bbmap} && bbduk.sh in={input} out={output} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}")
 
 #will only run if is_paired_end == false - as determined by input called for by sam2bam
 rule align_se:

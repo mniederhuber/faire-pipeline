@@ -4,3 +4,4 @@ slurmSub.sh
 /.snakemake/
 /__pycache__/
 sampleSheet.tsv
+Fastq/

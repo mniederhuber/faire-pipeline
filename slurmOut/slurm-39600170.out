@@ -1,0 +1,32 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	trim_adapter
+	1
+
+[Tue Mar  8 15:50:26 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R2.fastq.gz
+    output: Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R2_trim.fastq.gz
+    log: Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R2_adapterStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R2_trimStats
+    jobid: 0
+    wildcards: sample=nub_30h_gfpRNAi_FAIRE-Rep1, num=2
+
+Activating environment modules: bbmap/38.71
+java -ea -Xmx3235m -Xms3235m -cp /nas/longleaf/apps/bbmap/38.71/bbmap/current/ jgi.BBDuk in=Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R2.fastq.gz out=Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R2_trim.fastq.gz ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats=Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R2_adapterStats
+Executing jgi.BBDuk [in=Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R2.fastq.gz, out=Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R2_trim.fastq.gz, ktrim=r, ref=adapters, rcomp=t, tpe=t, tbo=t, hdist=1, mink=11, stats=Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R2_adapterStats]
+Version 38.71
+
+maskMiddle was disabled because useShortKmers=true
+0.030 seconds.
+Initial:
+Memory: max=3252m, total=3252m, free=3184m, used=68m
+
+Added 288411 kmers; time: 	0.166 seconds.
+Memory: max=3252m, total=3252m, free=3065m, used=187m
+
+Input is being processed as unpaired
+Started output streams:	0.126 seconds.
