@@ -93,16 +93,15 @@ rule all:
 	input:
     		output_files
 
-def testy(x):
+def testy(wildcards):
 	if is_paired_end:
 		#lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1 
 #		print(expand("{sample}_R{num}.fastq.gz", sample = wildcards.sample, num = [1,2]))
 		return expand("{sample}_R{num}.fastq.gz", sample = wildcards.sample, num = [1,2])
 	else:
 		r1 = lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1 
-		print(r1(x)
+		print(r1(wildcards))
 		return(r1)
-		#return expand("{sample}_R{num}.fastq.gz", sample = wildcards.sample, num = [1])
 
 rule combine_technical_reps:
 	input:
