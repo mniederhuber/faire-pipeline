@@ -3,3 +3,4 @@ Module_List.md
 slurmSub.sh
 /.snakemake/
 /__pycache__/
+sampleSheet.tsv
