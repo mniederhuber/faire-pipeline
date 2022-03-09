@@ -14,7 +14,14 @@
 		"mem" : "8G"
 	},
 
-	"align" :
+	"align_se" :
+	{
+		"time"	: "1:00:00",
+		"threads" : "8",
+		"mem" : "8G"
+	},
+
+	"align_pe" :
 	{
 		"time"	: "1:00:00",
 		"threads" : "8",

@@ -30,3 +30,17 @@ Memory: max=3252m, total=3252m, free=3065m, used=187m
 
 Input is being processed as unpaired
 Started output streams:	0.180 seconds.
+Processing time:   		219.776 seconds.
+
+Input:                  	10480571 reads 		796523396 bases.
+KTrimmed:               	1233595 reads (11.77%) 	25731150 bases (3.23%)
+Trimmed by overlap:     	0 reads (0.00%) 	0 bases (0.00%)
+Total Removed:          	190 reads (0.00%) 	25731150 bases (3.23%)
+Result:                 	10480381 reads (100.00%) 	770792246 bases (96.77%)
+
+Time:                         	220.155 seconds.
+Reads Processed:      10480k 	47.61k reads/sec
+Bases Processed:        796m 	3.62m bases/sec
+[Tue Mar  8 15:54:08 2022]
+Finished job 0.
+1 of 1 steps (100%) done
