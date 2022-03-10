@@ -26,7 +26,9 @@ edit `config.json` and set `baseNameColumns` to each column of `sampleInfo.tsv` 
 Set desired reference and spike-in genome in `config.json` ([see below](#config)).
 
 With version 4.2.0 both single-end and paired-end data is now supported.
+
 `sampleSheet.tsv` requires at least `fastq_r1` to run SE processing, and `fastq_r2` to run PE. 
+
 `sampleSheet.tsv` can have both `fastq_r1` and `fastq_r2` columns with paths and still run SE. 
 
 To designate Single vs Paired-End processining - set `pairedEnd` to `true` or `false` in `config.json`
