@@ -8,6 +8,7 @@ file_info_path = config['sampleInfo']
 basename_columns = config['baseNameColumns']
 pool_basename_columns = config['poolBaseNameColumns']
 is_paired_end = config['pairedEnd']
+READS = ['1','2'] if is_paired_end else ['1']
 
 REFGENOME = config['refGenome']
 SPIKEGENOME = config['spikeGenome']
@@ -23,8 +24,8 @@ modules = config['module']
 #########
 # Validation
 
-if is_paired_end:
-	sys.exit("paired end mode is not fully supported yet")
+#if is_paired_end:
+#	sys.exit("paired end mode is not fully supported yet")
 
 if os.path.exists(file_info_path) == False:
 	print('Error: {name} does not exist. Be sure to set `sampleInfo` in config.json.'.format(name = file_info_path))
@@ -46,8 +47,7 @@ poolSampleSheet = sampleSheet[pool_basename_columns].copy()
 poolSampleSheet = pre.addBaseName(poolSampleSheet, pool_basename_columns, "-").drop_duplicates()
 
 sampleSheet['fastq_trim_r1'] = expand("Fastq/{sample}_R{num}_trim.fastq.gz", sample = sampleSheet.baseName, num = ['1'])
-# TODO: add support for paired end
-#sampleSheet['fastq_trim_r2'] = expand("Fastq/{sample}_R{num}_trim.fastq.gz", sample = sampleSheet.baseName, num = ['2'])
+if is_paired_end: sampleSheet['fastq_trim_r2'] = expand("Fastq/{sample}_R{num}_trim.fastq.gz", sample = sampleSheet.baseName, num = ['2']) 
 sampleSheet['bam']           = expand("Bam/{sample}_{species}_trim_q5_sorted_dupsRemoved.{ftype}", sample = sampleSheet.baseName, species = REFGENOME, ftype = {"bam"})
 sampleSheet['peaks']         = expand("Peaks/{sample}_{species}_trim_q5_sorted_dupsRemoved_peaks.narrowPeak", sample = sampleSheet.baseName, species = REFGENOME)
 sampleSheet['bed']           = expand('Bed/{sample}_{species}_trim_q5_sorted_dupsRemoved.bed', sample = sampleSheet.baseName, species = REFGENOME)
@@ -73,6 +73,7 @@ poolSampleSheet.to_csv('sampleSheetPooled.tsv', sep = "\t", index = False)
 
 output_files = []
 output_files.append(sampleSheet['fastq_trim_r1'])
+if is_paired_end: output_files.append(sampleSheet['fastq_trim_r2'])
 output_files.append(sampleSheet['bam'])
 output_files.append(sampleSheet['peaks'])
 output_files.append(sampleSheet['bed'])
@@ -90,46 +91,62 @@ output_files.append("multiqc_report.html")
 
 rule all:
 	input:
-    		output_files
+    		output_files,
+#				expand("Fastq/{sample}_R{num}.fastq.gz", sample = sampleSheet.baseName, num = READS)
 
-# TODO: get this working for paired-end mode
+#constraing the num wildcard for identifying R1, R2 
+# was running into ambigious wildcard issues between combine_tech_reps and trim ruls that I wasn't able to resolve -MN
+wildcard_constraints:
+	num = "[0-9]"
+
+#function to get the /proj/HTSF paths for either r1 or r1+r2 
+def getFastq(wildcards):
+	if is_paired_end:
+		r1 = sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1.iloc[0]
+		r2 = sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r2.iloc[0]
+		return [r1, r2]
+	else:
+		r1 = sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1.iloc[0]
+		return [r1]
+
+#passes getFastq function as input -- either 1 or 2 reads depending on is_paired_end
 rule combine_technical_reps:
 	input:
-		#r1 = lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1,
-		#r2 = lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r2
-		#if is_paired_end else:
-		r1 = lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1,
+		getFastq
 	output:
-		#r1 = 'Fastq/{sample}_R1.fastq.gz',
-		#r2 = 'Fastq/{sample}_R2.fastq.gz'
-		#if is_paired_end else:
-		r1 = 'Fastq/{sample}_R1.fastq.gz'
-	shell:
-		"""
-		cat {input.r1} > {output.r1}
-		"""
+		expand("Fastq/{{sample}}_R{num}.fastq.gz", num = READS)
+	run:
+		if is_paired_end:
+			shell("cat {input[0]} > {output[0]} && cat {input[1]} > {output[1]}")
+		else:
+			shell("cat {input[0]} > {output[0]}")
 
+#using conditional run to trim either PE or SE reads
+#paired-end reads contained in separate files (which they are in our normal case) must be trimmed together 
+#pairs are either kept or tossed, and never separated, otherwise you end up with unequal read numbers between reads and alignment fails
 rule trim_adapter:
 	input:
-		r1 = "Fastq/{sample}_R1.fastq.gz"
+		expand("Fastq/{{sample}}_R{num}.fastq.gz", num = READS)
 	output:
-		r1 = "Fastq/{sample}_R1_trim.fastq.gz"
+		expand("Fastq/{{sample}}_R{num}_trim.fastq.gz", num = READS)
 	log:
 		adapterStats = 'Logs/{sample}_adapterStats',
 		trimStats = 'Logs/{sample}_trimStats'
-	envmodules:
-		modules['bbmapVer']
-	shell:
-		"""
-		bbduk.sh in={input.r1} out={output.r1} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}
-		"""
+	params:
+		bbmap = modules['bbmapVer']
+	run:
+		if is_paired_end:
+			shell("module purge && module load {params.bbmap} && bbduk.sh in1={input[0]} in2={input[1]} out1={output[0]} out2={output[1]} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}")
+		else:
+			shell("module purge && module load {params.bbmap} && bbduk.sh in={input} out={output} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}")
 
-rule align:
+#will only run if is_paired_end == false - as determined by input called for by sam2bam
+rule align_se:
 	input:
 		"Fastq/{sample}_R1_trim.fastq.gz"
 	output:
-		sam = "Sam/{sample}_{species}_trim.sam",
-		logInfo = "logs/{sample}_{species}_trim_bowtie2.txt"
+		sam = "Sam/{sample}_{species}_trim_se.sam",
+		logInfo = "logs/{sample}_{species}_trim_se_bowtie2.txt"
 	threads: 8
 	params:
 		refgenome = lambda wildcards: indexDict[wildcards.species]
@@ -139,11 +156,32 @@ rule align:
 		"""
 		bowtie2 --seed 123 -x {params.refgenome} -p {threads} -U {input} -S {output.sam} 2> {output.logInfo}
 		"""
+
+#will only run if is_paired_end == true - as determined by input called for by sam2bam
+rule align_pe:
+	input:
+		r1 = "Fastq/{sample}_R1_trim.fastq.gz",
+		r2 = "Fastq/{sample}_R2_trim.fastq.gz"
+	output:
+		sam = "Sam/{sample}_{species}_trim_pe.sam",
+		logInfo = "logs/{sample}_{species}_trim_pe_bowtie2.txt"
+	threads: 8
+	params:
+		refgenome = lambda wildcards: indexDict[wildcards.species]
+	envmodules:
+		modules['bowtie2Ver']
+	shell:
+		"""
+		bowtie2 --seed 123 -x {params.refgenome} -p {threads} -1 {input.r1} -2 {input.r2} -S {output.sam} 2> {output.logInfo}
+		"""
+
+
 # TODO: combine w/ alignment step:
 # bowtie2 --flags 2> {log} | samtools view -@ 4 -b - > {output.bam} && {flagstat_command}
+
 rule sam2bam:
 	input:
-		"Sam/{sample}_{species}_trim.sam"
+		"Sam/{sample}_{species}_trim_pe.sam" if is_paired_end else "Sam/{sample}_{species}_trim_se.sam"
 	output:
 		bam = "Bam/{sample}_{species}_trim.bam",
 		flagstat = "logs/{sample}_{species}_trim.flagstat"

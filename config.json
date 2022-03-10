@@ -5,7 +5,7 @@
 	"poolBaseNameColumns" : ["sample"],
 	"refGenome" : "dm6",
 	"spikeGenome" : "sacCer3",
-	"readLen" : 50,
+	"readLen" : 75,
 	"pairedEnd" : false,
 	"genome" : {
 		"dm3" : { 
