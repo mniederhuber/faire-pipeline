@@ -121,7 +121,6 @@ rule combine_technical_reps:
 		else:
 			shell("cat {input[0]} > {output[0]}")
 
-#R{num} should correctly propogate either 1 or [1,2] after combine_tech_reps
 #using conditional run to trim either PE or SE reads
 #paired-end reads contained in separate files (which they are in our normal case) must be trimmed together 
 #pairs are either kept or tossed, and never separated, otherwise you end up with unequal read numbers between reads and alignment fails
@@ -135,12 +134,6 @@ rule trim_adapter:
 		trimStats = 'Logs/{sample}_trimStats'
 	params:
 		bbmap = modules['bbmapVer']
-#	envmodules:
-#		modules['bbmapVer']
-#	shell:
-#		"""
-#		bbduk.sh in={input} out={output} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}
-#		"""
 	run:
 		if is_paired_end:
 			shell("module purge && module load {params.bbmap} && bbduk.sh in1={input[0]} in2={input[1]} out1={output[0]} out2={output[1]} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}")

@@ -1,10 +1,10 @@
-# FAIRE-seq Pipeline v4.1.0
+# FAIRE-seq Pipeline v4.2.0
 ## Author: Spencer Nystrom, Chris Uyehara, Jayashree Kumar
 
 ## Quick Start:
 
 ### Latest Stable Version
-Clone pipeline (Current stable version: v4.1.0)
+Clone pipeline (Current stable version: v4.2.0)
 ```
 git clone https://github.com/snystrom/faire-pipeline.git --branch v4.1.0 --depth 1 && cd faire-pipeline/ && rm -rf .git
 ```
@@ -16,16 +16,19 @@ git clone https://github.com/snystrom/faire-pipeline.git --depth 1 && cd faire-p
 ```
 
 Create `sampleInfo.tsv` ([see below](#sampleInfo)) with descriptive columns of data.
-**Note:** `fastq_r1` column is required (paired-end FAIRE-seq is not yet supported).
 ```
-sample	rep	fastq_r1
-mySample	Rep1	path/to/mySample_R1.fastq.gz
+sample	rep	fastq_r1	fastq_r2
+mySample	Rep1	path/to/mySample_R1.fastq.gz	path/to/mySample_R1.fastq.gz
 ```
+With version 4.2.0 both single-end and paired-end data is now supported.
+`sampleSheet.tsv` requires at least `fastq_r1` to run SE processing, and `fastq_r2` to run PE. 
+`sampleSheet.tsv` can have both `fastq_r1` and `fastq_r2` columns with paths and still run SE.  
 
 edit `config.json` and set `baseNameColumns` to each column of `sampleInfo.tsv` which describes individual replicates (pipeline will automatically pool technical replicates).
 
 Set desired reference and spike-in genome in `config.json` ([see below](#config)).
 
+To designate Single vs Paired-End processining - set `pairedEnd` to `true` or `false` in `config.json`
 ```
 {
 	"sampleInfo" : "sampleInfo.tsv",
@@ -33,7 +36,8 @@ Set desired reference and spike-in genome in `config.json` ([see below](#config)
 	"baseNameColumns" : ["sample", "rep"],
 	"refGenome" : "dm6",
 	"spikeGenome" : "sacCer3",
-	"readLen" : 75
+	"readLen" : 75,
+	"pairedEnd" : false,
 }
 ```
 
@@ -88,8 +92,6 @@ mySample	Rep1	path/to/mySample_R1.fastq.gz	path/to/mySample_R2.fastq.gz
 The `fastq_r1` and `fastq_r2` columns point to the location of one pair of
 fastq files for a sample described on that row. Technical replicates (i.e.
 deeper sequencing of the same library) should be added as their own row with the same column values except for the fastq file paths.
-
-**Note: paired-end sequencing is currently not supported by this pipeline, so only include the fastq_r1 column**
 
 **Note:** The current version of this pipeline only works with the `.fastq.gz` file format. 
 
