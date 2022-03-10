@@ -123,27 +123,29 @@ rule combine_technical_reps:
 
 #R{num} should correctly propogate either 1 or [1,2] after combine_tech_reps
 #using conditional run to trim either PE or SE reads
+#paired-end reads contained in separate files (which they are in our normal case) must be trimmed together 
+#pairs are either kept or tossed, and never separated, otherwise you end up with unequal read numbers between reads and alignment fails
 rule trim_adapter:
 	input:
-		"Fastq/{sample}_R{num}.fastq.gz",
+		expand("Fastq/{{sample}}_R{num}.fastq.gz", num = READS)
 	output:
-		"Fastq/{sample}_R{num}_trim.fastq.gz",
+		expand("Fastq/{{sample}}_R{num}_trim.fastq.gz", num = READS)
 	log:
-		adapterStats = 'Logs/{sample}_R{num}_adapterStats',
-		trimStats = 'Logs/{sample}_R{num}_trimStats'
+		adapterStats = 'Logs/{sample}_adapterStats',
+		trimStats = 'Logs/{sample}_trimStats'
 	params:
 		bbmap = modules['bbmapVer']
-	envmodules:
-		modules['bbmapVer']
-	shell:
-		"""
-		bbduk.sh in={input} out={output} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}
-		"""
-#	run:
-#		if is_paired_end:
-#			shell("module purge && module load {params.bbmap} && bbduk.sh in1={input[0]} in2={input[1]} out1={output[0]} out2={output[1]} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}")
-#		else:
-#			shell("module purge && module load {params.bbmap} && bbduk.sh in={input} out={output} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}")
+#	envmodules:
+#		modules['bbmapVer']
+#	shell:
+#		"""
+#		bbduk.sh in={input} out={output} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}
+#		"""
+	run:
+		if is_paired_end:
+			shell("module purge && module load {params.bbmap} && bbduk.sh in1={input[0]} in2={input[1]} out1={output[0]} out2={output[1]} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}")
+		else:
+			shell("module purge && module load {params.bbmap} && bbduk.sh in={input} out={output} ktrim=r ref=adapters rcomp=t tpe=t tbo=t hdist=1 mink=11 stats={log.adapterStats} > {log.trimStats}")
 
 #will only run if is_paired_end == false - as determined by input called for by sam2bam
 rule align_se:

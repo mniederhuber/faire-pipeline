@@ -1,0 +1,4 @@
+     Genome indexes for use with BOWTIE2 are available
+       in /proj/seq/data .
+     bwa/bowtie/bowtie2 indexes are located in "Sequence" directory
+       under the top level genome directory with name in CAPS, e.g. MM9_UCSC

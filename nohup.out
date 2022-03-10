@@ -384,3 +384,549 @@ rule align_pe:
     threads: 8
 
 Submitted job 32 with external jobid 'Submitted batch job 39600353'.
+Building DAG of jobs...
+IncompleteFilesException:
+The files below seem to be incomplete. If you are sure that certain files are not incomplete, mark them as complete with
+
+    snakemake --cleanup-metadata <filenames>
+
+To re-generate the files rerun your command with the --rerun-incomplete flag.
+Incomplete files:
+Sam/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim_pe.sam
+logs/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim_pe_bowtie2.txt
+Sam/nub_30h_domRNAi_FAIRE-Rep2_dm6_trim_pe.sam
+logs/nub_30h_domRNAi_FAIRE-Rep2_dm6_trim_pe_bowtie2.txt
+Sam/nub_30h_gfpRNAi_FAIRE-Rep1_dm6_trim_pe.sam
+logs/nub_30h_gfpRNAi_FAIRE-Rep1_dm6_trim_pe_bowtie2.txt
+Sam/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim_pe.sam
+logs/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim_pe_bowtie2.txt
+Building DAG of jobs...
+Error: Directory cannot be locked. Please make sure that no other Snakemake process is trying to create the same files in the following directory:
+/pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline
+If you are sure that no other instances of snakemake are running on this directory, the remaining lock was likely caused by a kill signal or a power loss. It can be removed with the --unlock argument.
+Unlocking working directory.
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 100
+Job counts:
+	count	jobs
+	2	CallPooledPeaks
+	4	CallRepPeaks
+	4	align_pe
+	1	all
+	4	bamSort
+	4	bamToBed
+	4	bigWig
+	2	mergeBams
+	2	mergeBamtoBed
+	2	mergeBigWig
+	2	mergeZNormBigWig
+	4	qFilter
+	1	qcReport
+	4	removeDups
+	4	sam2bam
+	4	zNormBigWig
+	48
+
+[Tue Mar  8 21:32:04 2022]
+rule align_pe:
+    input: Fastq/nub_30h_domRNAi_FAIRE-Rep2_R1_trim.fastq.gz, Fastq/nub_30h_domRNAi_FAIRE-Rep2_R2_trim.fastq.gz
+    output: Sam/nub_30h_domRNAi_FAIRE-Rep2_dm6_trim_pe.sam, logs/nub_30h_domRNAi_FAIRE-Rep2_dm6_trim_pe_bowtie2.txt
+    jobid: 22
+    wildcards: sample=nub_30h_domRNAi_FAIRE-Rep2, species=dm6
+    threads: 8
+
+Submitted job 22 with external jobid 'Submitted batch job 39622920'.
+
+[Tue Mar  8 21:32:04 2022]
+rule align_pe:
+    input: Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R1_trim.fastq.gz, Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R2_trim.fastq.gz
+    output: Sam/nub_30h_gfpRNAi_FAIRE-Rep1_dm6_trim_pe.sam, logs/nub_30h_gfpRNAi_FAIRE-Rep1_dm6_trim_pe_bowtie2.txt
+    jobid: 27
+    wildcards: sample=nub_30h_gfpRNAi_FAIRE-Rep1, species=dm6
+    threads: 8
+
+Submitted job 27 with external jobid 'Submitted batch job 39622921'.
+
+[Tue Mar  8 21:32:04 2022]
+rule align_pe:
+    input: Fastq/nub_30h_domRNAi_FAIRE-Rep1_R1_trim.fastq.gz, Fastq/nub_30h_domRNAi_FAIRE-Rep1_R2_trim.fastq.gz
+    output: Sam/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim_pe.sam, logs/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim_pe_bowtie2.txt
+    jobid: 17
+    wildcards: sample=nub_30h_domRNAi_FAIRE-Rep1, species=dm6
+    threads: 8
+
+Submitted job 17 with external jobid 'Submitted batch job 39622922'.
+
+[Tue Mar  8 21:32:04 2022]
+rule align_pe:
+    input: Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R1_trim.fastq.gz, Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R2_trim.fastq.gz
+    output: Sam/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim_pe.sam, logs/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim_pe_bowtie2.txt
+    jobid: 32
+    wildcards: sample=nub_30h_gfpRNAi_FAIRE-Rep2, species=dm6
+    threads: 8
+
+Submitted job 32 with external jobid 'Submitted batch job 39622923'.
+[Tue Mar  8 22:06:36 2022]
+Error in rule align_pe:
+    jobid: 17
+    output: Sam/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim_pe.sam, logs/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim_pe_bowtie2.txt
+    shell:
+        
+		bowtie2 --seed 123 -x /proj/mckaylab/genomeFiles/dm6/Bowtie2Index/genome -p 8 -1 Fastq/nub_30h_domRNAi_FAIRE-Rep1_R1_trim.fastq.gz -2 Fastq/nub_30h_domRNAi_FAIRE-Rep1_R2_trim.fastq.gz -S Sam/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim_pe.sam 2> logs/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim_pe_bowtie2.txt
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 39622922
+
+Error executing rule align_pe on cluster (jobid: 17, external: Submitted batch job 39622922, jobscript: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/tmp._8m8s4pr/snakejob.align_pe.17.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Tue Mar  8 22:12:46 2022]
+Error in rule align_pe:
+    jobid: 22
+    output: Sam/nub_30h_domRNAi_FAIRE-Rep2_dm6_trim_pe.sam, logs/nub_30h_domRNAi_FAIRE-Rep2_dm6_trim_pe_bowtie2.txt
+    shell:
+        
+		bowtie2 --seed 123 -x /proj/mckaylab/genomeFiles/dm6/Bowtie2Index/genome -p 8 -1 Fastq/nub_30h_domRNAi_FAIRE-Rep2_R1_trim.fastq.gz -2 Fastq/nub_30h_domRNAi_FAIRE-Rep2_R2_trim.fastq.gz -S Sam/nub_30h_domRNAi_FAIRE-Rep2_dm6_trim_pe.sam 2> logs/nub_30h_domRNAi_FAIRE-Rep2_dm6_trim_pe_bowtie2.txt
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 39622920
+
+Error executing rule align_pe on cluster (jobid: 22, external: Submitted batch job 39622920, jobscript: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/tmp._8m8s4pr/snakejob.align_pe.22.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Tue Mar  8 22:16:37 2022]
+Error in rule align_pe:
+    jobid: 27
+    output: Sam/nub_30h_gfpRNAi_FAIRE-Rep1_dm6_trim_pe.sam, logs/nub_30h_gfpRNAi_FAIRE-Rep1_dm6_trim_pe_bowtie2.txt
+    shell:
+        
+		bowtie2 --seed 123 -x /proj/mckaylab/genomeFiles/dm6/Bowtie2Index/genome -p 8 -1 Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R1_trim.fastq.gz -2 Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R2_trim.fastq.gz -S Sam/nub_30h_gfpRNAi_FAIRE-Rep1_dm6_trim_pe.sam 2> logs/nub_30h_gfpRNAi_FAIRE-Rep1_dm6_trim_pe_bowtie2.txt
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 39622921
+
+Error executing rule align_pe on cluster (jobid: 27, external: Submitted batch job 39622921, jobscript: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/tmp._8m8s4pr/snakejob.align_pe.27.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Tue Mar  8 22:27:27 2022]
+Error in rule align_pe:
+    jobid: 32
+    output: Sam/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim_pe.sam, logs/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim_pe_bowtie2.txt
+    shell:
+        
+		bowtie2 --seed 123 -x /proj/mckaylab/genomeFiles/dm6/Bowtie2Index/genome -p 8 -1 Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R1_trim.fastq.gz -2 Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R2_trim.fastq.gz -S Sam/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim_pe.sam 2> logs/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim_pe_bowtie2.txt
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 39622923
+
+Error executing rule align_pe on cluster (jobid: 32, external: Submitted batch job 39622923, jobscript: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/tmp._8m8s4pr/snakejob.align_pe.32.sh). For error details see the cluster log and the log files of the involved rule(s).
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/log/2022-03-08T213203.652527.snakemake.log
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 100
+Job counts:
+	count	jobs
+	2	CallPooledPeaks
+	4	CallRepPeaks
+	4	align_pe
+	1	all
+	4	bamSort
+	4	bamToBed
+	4	bigWig
+	2	mergeBams
+	2	mergeBamtoBed
+	2	mergeBigWig
+	2	mergeZNormBigWig
+	4	qFilter
+	1	qcReport
+	4	removeDups
+	4	sam2bam
+	4	zNormBigWig
+	48
+
+[Wed Mar  9 09:26:59 2022]
+rule align_pe:
+    input: Fastq/nub_30h_domRNAi_FAIRE-Rep2_R1_trim.fastq.gz, Fastq/nub_30h_domRNAi_FAIRE-Rep2_R2_trim.fastq.gz
+    output: Sam/nub_30h_domRNAi_FAIRE-Rep2_dm6_trim_pe.sam, logs/nub_30h_domRNAi_FAIRE-Rep2_dm6_trim_pe_bowtie2.txt
+    jobid: 22
+    wildcards: sample=nub_30h_domRNAi_FAIRE-Rep2, species=dm6
+    threads: 8
+
+Submitted job 22 with external jobid 'Submitted batch job 39640974'.
+
+[Wed Mar  9 09:26:59 2022]
+rule align_pe:
+    input: Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R1_trim.fastq.gz, Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R2_trim.fastq.gz
+    output: Sam/nub_30h_gfpRNAi_FAIRE-Rep1_dm6_trim_pe.sam, logs/nub_30h_gfpRNAi_FAIRE-Rep1_dm6_trim_pe_bowtie2.txt
+    jobid: 27
+    wildcards: sample=nub_30h_gfpRNAi_FAIRE-Rep1, species=dm6
+    threads: 8
+
+Submitted job 27 with external jobid 'Submitted batch job 39640975'.
+
+[Wed Mar  9 09:26:59 2022]
+rule align_pe:
+    input: Fastq/nub_30h_domRNAi_FAIRE-Rep1_R1_trim.fastq.gz, Fastq/nub_30h_domRNAi_FAIRE-Rep1_R2_trim.fastq.gz
+    output: Sam/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim_pe.sam, logs/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim_pe_bowtie2.txt
+    jobid: 17
+    wildcards: sample=nub_30h_domRNAi_FAIRE-Rep1, species=dm6
+    threads: 8
+
+Submitted job 17 with external jobid 'Submitted batch job 39640976'.
+
+[Wed Mar  9 09:26:59 2022]
+rule align_pe:
+    input: Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R1_trim.fastq.gz, Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R2_trim.fastq.gz
+    output: Sam/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim_pe.sam, logs/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim_pe_bowtie2.txt
+    jobid: 32
+    wildcards: sample=nub_30h_gfpRNAi_FAIRE-Rep2, species=dm6
+    threads: 8
+
+Submitted job 32 with external jobid 'Submitted batch job 39640977'.
+[Wed Mar  9 09:54:41 2022]
+Error in rule align_pe:
+    jobid: 17
+    output: Sam/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim_pe.sam, logs/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim_pe_bowtie2.txt
+    shell:
+        
+		bowtie2 --seed 123 -x /proj/mckaylab/genomeFiles/dm6/Bowtie2Index/genome -p 8 -1 Fastq/nub_30h_domRNAi_FAIRE-Rep1_R1_trim.fastq.gz -2 Fastq/nub_30h_domRNAi_FAIRE-Rep1_R2_trim.fastq.gz -S Sam/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim_pe.sam 2> logs/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim_pe_bowtie2.txt
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 39640976
+
+Error executing rule align_pe on cluster (jobid: 17, external: Submitted batch job 39640976, jobscript: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/tmp.eg2a65eh/snakejob.align_pe.17.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Wed Mar  9 09:59:21 2022]
+Error in rule align_pe:
+    jobid: 22
+    output: Sam/nub_30h_domRNAi_FAIRE-Rep2_dm6_trim_pe.sam, logs/nub_30h_domRNAi_FAIRE-Rep2_dm6_trim_pe_bowtie2.txt
+    shell:
+        
+		bowtie2 --seed 123 -x /proj/mckaylab/genomeFiles/dm6/Bowtie2Index/genome -p 8 -1 Fastq/nub_30h_domRNAi_FAIRE-Rep2_R1_trim.fastq.gz -2 Fastq/nub_30h_domRNAi_FAIRE-Rep2_R2_trim.fastq.gz -S Sam/nub_30h_domRNAi_FAIRE-Rep2_dm6_trim_pe.sam 2> logs/nub_30h_domRNAi_FAIRE-Rep2_dm6_trim_pe_bowtie2.txt
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 39640974
+
+Error executing rule align_pe on cluster (jobid: 22, external: Submitted batch job 39640974, jobscript: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/tmp.eg2a65eh/snakejob.align_pe.22.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Wed Mar  9 10:04:51 2022]
+Error in rule align_pe:
+    jobid: 27
+    output: Sam/nub_30h_gfpRNAi_FAIRE-Rep1_dm6_trim_pe.sam, logs/nub_30h_gfpRNAi_FAIRE-Rep1_dm6_trim_pe_bowtie2.txt
+    shell:
+        
+		bowtie2 --seed 123 -x /proj/mckaylab/genomeFiles/dm6/Bowtie2Index/genome -p 8 -1 Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R1_trim.fastq.gz -2 Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R2_trim.fastq.gz -S Sam/nub_30h_gfpRNAi_FAIRE-Rep1_dm6_trim_pe.sam 2> logs/nub_30h_gfpRNAi_FAIRE-Rep1_dm6_trim_pe_bowtie2.txt
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 39640975
+
+Error executing rule align_pe on cluster (jobid: 27, external: Submitted batch job 39640975, jobscript: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/tmp.eg2a65eh/snakejob.align_pe.27.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Wed Mar  9 10:09:02 2022]
+Error in rule align_pe:
+    jobid: 32
+    output: Sam/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim_pe.sam, logs/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim_pe_bowtie2.txt
+    shell:
+        
+		bowtie2 --seed 123 -x /proj/mckaylab/genomeFiles/dm6/Bowtie2Index/genome -p 8 -1 Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R1_trim.fastq.gz -2 Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R2_trim.fastq.gz -S Sam/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim_pe.sam 2> logs/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim_pe_bowtie2.txt
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 39640977
+
+Error executing rule align_pe on cluster (jobid: 32, external: Submitted batch job 39640977, jobscript: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/tmp.eg2a65eh/snakejob.align_pe.32.sh). For error details see the cluster log and the log files of the involved rule(s).
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/log/2022-03-09T092658.897033.snakemake.log
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 100
+Job counts:
+	count	jobs
+	2	CallPooledPeaks
+	4	CallRepPeaks
+	2	align_pe
+	1	all
+	4	bamSort
+	4	bamToBed
+	4	bigWig
+	2	mergeBams
+	2	mergeBamtoBed
+	2	mergeBigWig
+	2	mergeZNormBigWig
+	4	qFilter
+	1	qcReport
+	4	removeDups
+	4	sam2bam
+	4	zNormBigWig
+	46
+
+[Wed Mar  9 20:58:22 2022]
+rule align_pe:
+    input: Fastq/nub_30h_domRNAi_FAIRE-Rep2_R1_trim.fastq.gz, Fastq/nub_30h_domRNAi_FAIRE-Rep2_R2_trim.fastq.gz
+    output: Sam/nub_30h_domRNAi_FAIRE-Rep2_dm6_trim_pe.sam, logs/nub_30h_domRNAi_FAIRE-Rep2_dm6_trim_pe_bowtie2.txt
+    jobid: 22
+    wildcards: sample=nub_30h_domRNAi_FAIRE-Rep2, species=dm6
+    threads: 8
+
+Submitted job 22 with external jobid 'Submitted batch job 39698012'.
+
+[Wed Mar  9 20:58:22 2022]
+rule sam2bam:
+    input: Sam/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim_pe.sam
+    output: Bam/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim.bam, logs/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim.flagstat
+    jobid: 16
+    wildcards: sample=nub_30h_domRNAi_FAIRE-Rep1, species=dm6
+
+Submitted job 16 with external jobid 'Submitted batch job 39698013'.
+
+[Wed Mar  9 20:58:22 2022]
+rule align_pe:
+    input: Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R1_trim.fastq.gz, Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R2_trim.fastq.gz
+    output: Sam/nub_30h_gfpRNAi_FAIRE-Rep1_dm6_trim_pe.sam, logs/nub_30h_gfpRNAi_FAIRE-Rep1_dm6_trim_pe_bowtie2.txt
+    jobid: 27
+    wildcards: sample=nub_30h_gfpRNAi_FAIRE-Rep1, species=dm6
+    threads: 8
+
+Submitted job 27 with external jobid 'Submitted batch job 39698014'.
+
+[Wed Mar  9 20:58:22 2022]
+rule sam2bam:
+    input: Sam/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim_pe.sam
+    output: Bam/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim.bam, logs/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim.flagstat
+    jobid: 31
+    wildcards: sample=nub_30h_gfpRNAi_FAIRE-Rep2, species=dm6
+
+Submitted job 31 with external jobid 'Submitted batch job 39698015'.
+[Wed Mar  9 20:59:42 2022]
+Error in rule sam2bam:
+    jobid: 16
+    output: Bam/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim.bam, logs/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim.flagstat
+    shell:
+        
+		samtools view -@ 4 -b Sam/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim_pe.sam > Bam/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim.bam &&
+		samtools flagstat Bam/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim.bam > logs/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim.flagstat
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 39698013
+
+Error executing rule sam2bam on cluster (jobid: 16, external: Submitted batch job 39698013, jobscript: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/tmp.8a077wau/snakejob.sam2bam.16.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Wed Mar  9 21:00:12 2022]
+Error in rule sam2bam:
+    jobid: 31
+    output: Bam/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim.bam, logs/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim.flagstat
+    shell:
+        
+		samtools view -@ 4 -b Sam/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim_pe.sam > Bam/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim.bam &&
+		samtools flagstat Bam/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim.bam > logs/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim.flagstat
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 39698015
+
+Error executing rule sam2bam on cluster (jobid: 31, external: Submitted batch job 39698015, jobscript: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/tmp.8a077wau/snakejob.sam2bam.31.sh). For error details see the cluster log and the log files of the involved rule(s).
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 100
+Job counts:
+	count	jobs
+	2	CallPooledPeaks
+	4	CallRepPeaks
+	4	align_pe
+	1	all
+	4	bamSort
+	4	bamToBed
+	4	bigWig
+	2	mergeBams
+	2	mergeBamtoBed
+	2	mergeBigWig
+	2	mergeZNormBigWig
+	4	qFilter
+	1	qcReport
+	4	removeDups
+	4	sam2bam
+	4	trim_adapter
+	4	zNormBigWig
+	52
+
+[Thu Mar 10 09:58:20 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R1.fastq.gz, Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R2.fastq.gz
+    output: Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R1_trim.fastq.gz, Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R2_trim.fastq.gz
+    log: Logs/nub_30h_gfpRNAi_FAIRE-Rep2_R1_adapterStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep2_R2_adapterStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep2_R1_trimStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep2_R2_trimStats
+    jobid: 7
+    wildcards: sample=nub_30h_gfpRNAi_FAIRE-Rep2
+
+Submitted job 7 with external jobid 'Submitted batch job 39762993'.
+
+[Thu Mar 10 09:58:21 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_domRNAi_FAIRE-Rep1_R1.fastq.gz, Fastq/nub_30h_domRNAi_FAIRE-Rep1_R2.fastq.gz
+    output: Fastq/nub_30h_domRNAi_FAIRE-Rep1_R1_trim.fastq.gz, Fastq/nub_30h_domRNAi_FAIRE-Rep1_R2_trim.fastq.gz
+    log: Logs/nub_30h_domRNAi_FAIRE-Rep1_R1_adapterStats, Logs/nub_30h_domRNAi_FAIRE-Rep1_R2_adapterStats, Logs/nub_30h_domRNAi_FAIRE-Rep1_R1_trimStats, Logs/nub_30h_domRNAi_FAIRE-Rep1_R2_trimStats
+    jobid: 1
+    wildcards: sample=nub_30h_domRNAi_FAIRE-Rep1
+
+Submitted job 1 with external jobid 'Submitted batch job 39762994'.
+
+[Thu Mar 10 09:58:21 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_domRNAi_FAIRE-Rep2_R1.fastq.gz, Fastq/nub_30h_domRNAi_FAIRE-Rep2_R2.fastq.gz
+    output: Fastq/nub_30h_domRNAi_FAIRE-Rep2_R1_trim.fastq.gz, Fastq/nub_30h_domRNAi_FAIRE-Rep2_R2_trim.fastq.gz
+    log: Logs/nub_30h_domRNAi_FAIRE-Rep2_R1_adapterStats, Logs/nub_30h_domRNAi_FAIRE-Rep2_R2_adapterStats, Logs/nub_30h_domRNAi_FAIRE-Rep2_R1_trimStats, Logs/nub_30h_domRNAi_FAIRE-Rep2_R2_trimStats
+    jobid: 3
+    wildcards: sample=nub_30h_domRNAi_FAIRE-Rep2
+
+Submitted job 3 with external jobid 'Submitted batch job 39762995'.
+
+[Thu Mar 10 09:58:21 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R1.fastq.gz, Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R2.fastq.gz
+    output: Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R1_trim.fastq.gz, Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R2_trim.fastq.gz
+    log: Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R1_adapterStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R2_adapterStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R1_trimStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R2_trimStats
+    jobid: 5
+    wildcards: sample=nub_30h_gfpRNAi_FAIRE-Rep1
+
+Submitted job 5 with external jobid 'Submitted batch job 39762996'.
+[Thu Mar 10 09:58:30 2022]
+Error in rule trim_adapter:
+    jobid: 7
+    output: Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R1_trim.fastq.gz, Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R2_trim.fastq.gz
+    log: Logs/nub_30h_gfpRNAi_FAIRE-Rep2_R1_adapterStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep2_R2_adapterStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep2_R1_trimStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep2_R2_trimStats (check log file(s) for error message)
+    cluster_jobid: Submitted batch job 39762993
+
+Error executing rule trim_adapter on cluster (jobid: 7, external: Submitted batch job 39762993, jobscript: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/tmp.axu32p2r/snakejob.trim_adapter.7.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Thu Mar 10 09:58:30 2022]
+Error in rule trim_adapter:
+    jobid: 1
+    output: Fastq/nub_30h_domRNAi_FAIRE-Rep1_R1_trim.fastq.gz, Fastq/nub_30h_domRNAi_FAIRE-Rep1_R2_trim.fastq.gz
+    log: Logs/nub_30h_domRNAi_FAIRE-Rep1_R1_adapterStats, Logs/nub_30h_domRNAi_FAIRE-Rep1_R2_adapterStats, Logs/nub_30h_domRNAi_FAIRE-Rep1_R1_trimStats, Logs/nub_30h_domRNAi_FAIRE-Rep1_R2_trimStats (check log file(s) for error message)
+    cluster_jobid: Submitted batch job 39762994
+
+Error executing rule trim_adapter on cluster (jobid: 1, external: Submitted batch job 39762994, jobscript: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/tmp.axu32p2r/snakejob.trim_adapter.1.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Thu Mar 10 09:58:30 2022]
+Error in rule trim_adapter:
+    jobid: 3
+    output: Fastq/nub_30h_domRNAi_FAIRE-Rep2_R1_trim.fastq.gz, Fastq/nub_30h_domRNAi_FAIRE-Rep2_R2_trim.fastq.gz
+    log: Logs/nub_30h_domRNAi_FAIRE-Rep2_R1_adapterStats, Logs/nub_30h_domRNAi_FAIRE-Rep2_R2_adapterStats, Logs/nub_30h_domRNAi_FAIRE-Rep2_R1_trimStats, Logs/nub_30h_domRNAi_FAIRE-Rep2_R2_trimStats (check log file(s) for error message)
+    cluster_jobid: Submitted batch job 39762995
+
+Error executing rule trim_adapter on cluster (jobid: 3, external: Submitted batch job 39762995, jobscript: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/tmp.axu32p2r/snakejob.trim_adapter.3.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Thu Mar 10 09:58:30 2022]
+Error in rule trim_adapter:
+    jobid: 5
+    output: Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R1_trim.fastq.gz, Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R2_trim.fastq.gz
+    log: Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R1_adapterStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R2_adapterStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R1_trimStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep1_R2_trimStats (check log file(s) for error message)
+    cluster_jobid: Submitted batch job 39762996
+
+Error executing rule trim_adapter on cluster (jobid: 5, external: Submitted batch job 39762996, jobscript: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/tmp.axu32p2r/snakejob.trim_adapter.5.sh). For error details see the cluster log and the log files of the involved rule(s).
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /pine/scr/m/j/mjn15/faire-pipeline/faire-pipeline/.snakemake/log/2022-03-10T095819.259033.snakemake.log
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 100
+Job counts:
+	count	jobs
+	2	CallPooledPeaks
+	4	CallRepPeaks
+	4	align_pe
+	1	all
+	4	bamSort
+	4	bamToBed
+	4	bigWig
+	2	mergeBams
+	2	mergeBamtoBed
+	2	mergeBigWig
+	2	mergeZNormBigWig
+	4	qFilter
+	1	qcReport
+	4	removeDups
+	4	sam2bam
+	4	trim_adapter
+	4	zNormBigWig
+	52
+
+[Thu Mar 10 10:06:30 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R1.fastq.gz, Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R2.fastq.gz
+    output: Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R1_trim.fastq.gz, Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R2_trim.fastq.gz
+    log: Logs/nub_30h_gfpRNAi_FAIRE-Rep2_adapterStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep2_trimStats
+    jobid: 7
+    wildcards: sample=nub_30h_gfpRNAi_FAIRE-Rep2
+
+Submitted job 7 with external jobid 'Submitted batch job 39763212'.
+
+[Thu Mar 10 10:06:31 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_domRNAi_FAIRE-Rep1_R1.fastq.gz, Fastq/nub_30h_domRNAi_FAIRE-Rep1_R2.fastq.gz
+    output: Fastq/nub_30h_domRNAi_FAIRE-Rep1_R1_trim.fastq.gz, Fastq/nub_30h_domRNAi_FAIRE-Rep1_R2_trim.fastq.gz
+    log: Logs/nub_30h_domRNAi_FAIRE-Rep1_adapterStats, Logs/nub_30h_domRNAi_FAIRE-Rep1_trimStats
+    jobid: 1
+    wildcards: sample=nub_30h_domRNAi_FAIRE-Rep1
+
+Submitted job 1 with external jobid 'Submitted batch job 39763213'.
+
+[Thu Mar 10 10:06:31 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_domRNAi_FAIRE-Rep2_R1.fastq.gz, Fastq/nub_30h_domRNAi_FAIRE-Rep2_R2.fastq.gz
+    output: Fastq/nub_30h_domRNAi_FAIRE-Rep2_R1_trim.fastq.gz, Fastq/nub_30h_domRNAi_FAIRE-Rep2_R2_trim.fastq.gz
+    log: Logs/nub_30h_domRNAi_FAIRE-Rep2_adapterStats, Logs/nub_30h_domRNAi_FAIRE-Rep2_trimStats
+    jobid: 3
+    wildcards: sample=nub_30h_domRNAi_FAIRE-Rep2
+
+Submitted job 3 with external jobid 'Submitted batch job 39763214'.
+
+[Thu Mar 10 10:06:31 2022]
+rule trim_adapter:
+    input: Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R1.fastq.gz, Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R2.fastq.gz
+    output: Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R1_trim.fastq.gz, Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R2_trim.fastq.gz
+    log: Logs/nub_30h_gfpRNAi_FAIRE-Rep1_adapterStats, Logs/nub_30h_gfpRNAi_FAIRE-Rep1_trimStats
+    jobid: 5
+    wildcards: sample=nub_30h_gfpRNAi_FAIRE-Rep1
+
+Submitted job 5 with external jobid 'Submitted batch job 39763215'.
+[Thu Mar 10 10:10:20 2022]
+Finished job 5.
+1 of 52 steps (2%) done
+
+[Thu Mar 10 10:10:20 2022]
+rule align_pe:
+    input: Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R1_trim.fastq.gz, Fastq/nub_30h_gfpRNAi_FAIRE-Rep1_R2_trim.fastq.gz
+    output: Sam/nub_30h_gfpRNAi_FAIRE-Rep1_dm6_trim_pe.sam, logs/nub_30h_gfpRNAi_FAIRE-Rep1_dm6_trim_pe_bowtie2.txt
+    jobid: 23
+    wildcards: sample=nub_30h_gfpRNAi_FAIRE-Rep1, species=dm6
+    threads: 8
+
+Submitted job 23 with external jobid 'Submitted batch job 39763327'.
+[Thu Mar 10 10:10:50 2022]
+Finished job 3.
+2 of 52 steps (4%) done
+
+[Thu Mar 10 10:10:50 2022]
+rule align_pe:
+    input: Fastq/nub_30h_domRNAi_FAIRE-Rep2_R1_trim.fastq.gz, Fastq/nub_30h_domRNAi_FAIRE-Rep2_R2_trim.fastq.gz
+    output: Sam/nub_30h_domRNAi_FAIRE-Rep2_dm6_trim_pe.sam, logs/nub_30h_domRNAi_FAIRE-Rep2_dm6_trim_pe_bowtie2.txt
+    jobid: 18
+    wildcards: sample=nub_30h_domRNAi_FAIRE-Rep2, species=dm6
+    threads: 8
+
+Submitted job 18 with external jobid 'Submitted batch job 39763328'.
+[Thu Mar 10 10:11:00 2022]
+Finished job 1.
+3 of 52 steps (6%) done
+
+[Thu Mar 10 10:11:00 2022]
+rule align_pe:
+    input: Fastq/nub_30h_domRNAi_FAIRE-Rep1_R1_trim.fastq.gz, Fastq/nub_30h_domRNAi_FAIRE-Rep1_R2_trim.fastq.gz
+    output: Sam/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim_pe.sam, logs/nub_30h_domRNAi_FAIRE-Rep1_dm6_trim_pe_bowtie2.txt
+    jobid: 13
+    wildcards: sample=nub_30h_domRNAi_FAIRE-Rep1, species=dm6
+    threads: 8
+
+Submitted job 13 with external jobid 'Submitted batch job 39763329'.
+[Thu Mar 10 10:11:30 2022]
+Finished job 7.
+4 of 52 steps (8%) done
+
+[Thu Mar 10 10:11:30 2022]
+rule align_pe:
+    input: Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R1_trim.fastq.gz, Fastq/nub_30h_gfpRNAi_FAIRE-Rep2_R2_trim.fastq.gz
+    output: Sam/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim_pe.sam, logs/nub_30h_gfpRNAi_FAIRE-Rep2_dm6_trim_pe_bowtie2.txt
+    jobid: 28
+    wildcards: sample=nub_30h_gfpRNAi_FAIRE-Rep2, species=dm6
+    threads: 8
+
+Submitted job 28 with external jobid 'Submitted batch job 39763334'.
