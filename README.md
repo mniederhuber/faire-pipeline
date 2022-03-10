@@ -18,7 +18,7 @@ git clone https://github.com/snystrom/faire-pipeline.git --depth 1 && cd faire-p
 Create `sampleInfo.tsv` ([see below](#sampleInfo)) with descriptive columns of data.
 ```
 sample	rep	fastq_r1	fastq_r2
-mySample	Rep1	path/to/mySample_R1.fastq.gz	path/to/mySample_R1.fastq.gz
+mySample	Rep1	path/to/mySample_R1.fastq.gz	path/to/mySample_R2.fastq.gz
 ```
 With version 4.2.0 both single-end and paired-end data is now supported.
 `sampleSheet.tsv` requires at least `fastq_r1` to run SE processing, and `fastq_r2` to run PE. 
