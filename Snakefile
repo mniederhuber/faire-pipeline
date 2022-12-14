@@ -236,7 +236,7 @@ rule removeDups:
 	shell:
 		"""
 		java -Xmx8g -jar {params.picardPath} MarkDuplicates INPUT= {input} OUTPUT= {output.markedDups} METRICS_FILE= {output.PCRdups} REMOVE_DUPLICATES= false ASSUME_SORTED= true &&
-		samtools view -bF 0x400 {input} > {output.bam} &&
+		samtools view -bF 0x400 {output.markedDups} > {output.bam} &&
 		samtools flagstat {output.bam} > {output.flagstat} &&
 		samtools index {output.bam}
 		"""
