@@ -1,21 +1,25 @@
 Module	Section	Sample Name	Source
-Picard	DuplicationMetrics	osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5_sorted	/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/PCRdups/osaGFP_deGrad_control_faire-Rep1_dm6_PCR_duplicates
-Picard	DuplicationMetrics	osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted	/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/PCRdups/osaGFP_deGrad_control_faire-Rep2_dm6_PCR_duplicates
-Picard	DuplicationMetrics	osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5_sorted	/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/PCRdups/osaGFP_deGrad_nubG4_faire-Rep2_dm6_PCR_duplicates
-Picard	DuplicationMetrics	osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted	/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/PCRdups/osaGFP_deGrad_nubG4_faire-Rep1_dm6_PCR_duplicates
-Samtools	flagstat	osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim	/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/logs/osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim.flagstat
-Samtools	flagstat	osaGFP_deGrad_control_faire-Rep1_dm6_trim	/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/logs/osaGFP_deGrad_control_faire-Rep1_dm6_trim.flagstat
-Samtools	flagstat	osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved	/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/logs/osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved.flagstat
-Samtools	flagstat	osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5	/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/logs/osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5.flagstat
-Samtools	flagstat	osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5	/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/logs/osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5.flagstat
-Samtools	flagstat	osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved	/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/logs/osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved.flagstat
-Samtools	flagstat	osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved	/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/logs/osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved.flagstat
-Samtools	flagstat	osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5	/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/logs/osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5.flagstat
-Samtools	flagstat	osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim	/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/logs/osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim.flagstat
-Samtools	flagstat	osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved	/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/logs/osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved.flagstat
-Samtools	flagstat	osaGFP_deGrad_control_faire-Rep2_dm6_trim	/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/logs/osaGFP_deGrad_control_faire-Rep2_dm6_trim.flagstat
-Samtools	flagstat	osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5	/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/logs/osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5.flagstat
-Bowtie 2	all_sections	osaGFP_deGrad_control_faire-Rep2_dm6_trim_pe_bowtie2	/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/logs/osaGFP_deGrad_control_faire-Rep2_dm6_trim_pe_bowtie2.txt
-Bowtie 2	all_sections	osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_pe_bowtie2	/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/logs/osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_pe_bowtie2.txt
-Bowtie 2	all_sections	osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_pe_bowtie2	/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/logs/osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_pe_bowtie2.txt
-Bowtie 2	all_sections	osaGFP_deGrad_control_faire-Rep1_dm6_trim_pe_bowtie2	/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/logs/osaGFP_deGrad_control_faire-Rep1_dm6_trim_pe_bowtie2.txt
+Picard	DuplicationMetrics	osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5_sorted	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/PCRdups/osaGFP_deGrad_control_faire-Rep1_dm6_PCR_duplicates
+Picard	DuplicationMetrics	osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/PCRdups/osaGFP_deGrad_control_faire-Rep2_dm6_PCR_duplicates
+Picard	DuplicationMetrics	osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5_sorted	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/PCRdups/osaGFP_deGrad_nubG4_faire-Rep2_dm6_PCR_duplicates
+Picard	DuplicationMetrics	osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/PCRdups/osaGFP_deGrad_nubG4_faire-Rep1_dm6_PCR_duplicates
+Samtools	flagstat	osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/logs/osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim.flagstat
+Samtools	flagstat	osaGFP_deGrad_control_faire-Rep1_dm6_trim	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/logs/osaGFP_deGrad_control_faire-Rep1_dm6_trim.flagstat
+Samtools	flagstat	osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/logs/osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved.flagstat
+Samtools	flagstat	osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/logs/osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5.flagstat
+Samtools	flagstat	osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/logs/osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5.flagstat
+Samtools	flagstat	osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/logs/osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved.flagstat
+Samtools	flagstat	osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/logs/osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved.flagstat
+Samtools	flagstat	osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/logs/osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5.flagstat
+Samtools	flagstat	osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/logs/osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim.flagstat
+Samtools	flagstat	osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/logs/osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved.flagstat
+Samtools	flagstat	osaGFP_deGrad_control_faire-Rep2_dm6_trim	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/logs/osaGFP_deGrad_control_faire-Rep2_dm6_trim.flagstat
+Samtools	flagstat	osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/logs/osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5.flagstat
+Bowtie 2	all_sections	osaGFP_deGrad_control_faire-Rep2_dm6_trim_pe_bowtie2	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/logs/osaGFP_deGrad_control_faire-Rep2_dm6_trim_pe_bowtie2.txt
+Bowtie 2	all_sections	osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_pe_bowtie2	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/logs/osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_pe_bowtie2.txt
+Bowtie 2	all_sections	osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_pe_bowtie2	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/logs/osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_pe_bowtie2.txt
+Bowtie 2	all_sections	osaGFP_deGrad_control_faire-Rep1_dm6_trim_pe_bowtie2	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/logs/osaGFP_deGrad_control_faire-Rep1_dm6_trim_pe_bowtie2.txt
+BBTools	all_sections	osaGFP_deGrad_control_faire-Rep2_adapterStats	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/Logs/osaGFP_deGrad_control_faire-Rep2_adapterStats
+BBTools	all_sections	osaGFP_deGrad_control_faire-Rep1_adapterStats	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/Logs/osaGFP_deGrad_control_faire-Rep1_adapterStats
+BBTools	all_sections	osaGFP_deGrad_nubG4_faire-Rep1_adapterStats	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/Logs/osaGFP_deGrad_nubG4_faire-Rep1_adapterStats
+BBTools	all_sections	osaGFP_deGrad_nubG4_faire-Rep2_adapterStats	/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/Logs/osaGFP_deGrad_nubG4_faire-Rep2_adapterStats

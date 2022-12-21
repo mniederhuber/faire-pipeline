@@ -10,3 +10,9 @@ Logs/
 logs/
 slurmOut/*
 nohup.out/*
+Bam/
+Bed/
+BigWig/
+PCRdups/
+Peaks/
+nohup.out

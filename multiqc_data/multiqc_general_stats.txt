@@ -9,12 +9,11 @@ osaGFP_deGrad_control_faire-Rep2_dm6_trim_pe_bowtie2		39.44
 osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5	7487129					
 osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted			0.514966			
 osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved	3631513			0.06	125.0	0.0
-osaGFP_deGrad_control_faire_dm6_trim_q5_sorted_dupsRemoved_POOLED				0.08	125.0	0.0
 osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim	5483411					
 osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_pe_bowtie2		31.01				
 osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5	4221064					
 osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted			0.5385			
-osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved	1948020			0.05	125.0	0.0
+osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved	1948020					
 osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim	10374639					
 osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_pe_bowtie2		42.69				
 osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5	9046401					

@@ -1,5 +1,3 @@
 Sample	control_fragments_total	treatment_redundant_rate	treatment_max_duplicates	treatment_fragments_after_filtering	control_max_duplicates	control_redundant_rate	fragment_size	control_fragments_after_filtering	treatment_fragments_total	d
 osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved	10595298.0	0.06	1.0	1483441.0	1.0	0.0	72.0	10595298.0	1574525.0	125.0
 osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved	10595298.0	0.06	1.0	3422150.0	1.0	0.0	68.0	10595298.0	3631513.0	125.0
-osaGFP_deGrad_control_faire_dm6_trim_q5_sorted_dupsRemoved_POOLED	10595298.0	0.08	1.0	4813046.0	1.0	0.0	68.0	10595298.0	5206038.0	125.0
-osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved	10595298.0	0.05	1.0	1860182.0	1.0	0.0	66.0	10595298.0	1948020.0	125.0

@@ -1,154 +1,161 @@
-[2022-12-08 08:12:11,475] multiqc                                            [DEBUG  ]  No MultiQC config found: /nas/longleaf/apps/multiqc/1.7/lib/python2.7/site-packages/multiqc-1.7-py2.7.egg/multiqc_config.yaml
-[2022-12-08 08:12:11,476] multiqc                                            [DEBUG  ]  No MultiQC config found: /nas/longleaf/home/mjn15/.multiqc_config.yaml
-[2022-12-08 08:12:11,477] multiqc                                            [DEBUG  ]  No MultiQC config found: multiqc_config.yaml
-[2022-12-08 08:12:11,477] multiqc                                            [DEBUG  ]  Command used: /nas/longleaf/apps/multiqc/1.7/bin/multiqc . -f -x nohup.out -x *.err
-[2022-12-08 08:12:12,160] multiqc                                            [WARNING]  MultiQC Version v1.13 now available!
-[2022-12-08 08:12:12,160] multiqc                                            [INFO   ]  This is MultiQC v1.7
-[2022-12-08 08:12:12,160] multiqc                                            [DEBUG  ]  Command     : /nas/longleaf/apps/multiqc/1.7/bin/multiqc . -f -x nohup.out -x *.err
-[2022-12-08 08:12:12,161] multiqc                                            [DEBUG  ]  Working dir : /pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS
-[2022-12-08 08:12:12,161] multiqc                                            [INFO   ]  Template    : default
-[2022-12-08 08:12:12,161] multiqc                                            [DEBUG  ]  Ignoring files, directories and paths that match: nohup.out, *.err
-[2022-12-08 08:12:12,161] multiqc                                            [INFO   ]  Searching '.'
-[2022-12-08 08:12:12,162] multiqc                                            [DEBUG  ]  Analysing modules: custom_content, conpair, peddy, methylQA, phantompeakqualtools, qualimap, preseq, quast, qorts, rna_seqc, rsem, rseqc, busco, goleft_indexcov, disambiguate, supernova, deeptools, sargasso, verifybamid, mirtrace, happy, homer, macs2, theta2, snpeff, gatk, htseq, bcftools, featureCounts, dedup, damageprofiler, picard, prokka, samblaster, samtools, bamtools, jellyfish, vcftools, longranger, stacks, bbmap, bismark, biscuit, hicexplorer, hicup, hicpro, salmon, kallisto, slamdunk, star, hisat2, tophat, bowtie2, bowtie1, kat, leehom, adapterRemoval, clipandmerge, cutadapt, flexbar, trimmomatic, skewer, sortmerna, biobloomtools, fastq_screen, afterqc, fastp, fastqc, minionqc, clusterflow, bcl2fastq, interop, flash
-[2022-12-08 08:12:12,162] multiqc                                            [DEBUG  ]  Using temporary directory for creating report: /tmp/tmp9VbMw9
-[2022-12-08 08:12:12,881] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: nohup.out
-[2022-12-08 08:12:12,958] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted.bam
-[2022-12-08 08:12:12,959] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5.bam
-[2022-12-08 08:12:12,961] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam
-[2022-12-08 08:12:12,961] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5.bam
-[2022-12-08 08:12:12,962] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_dm6_trim.bam
-[2022-12-08 08:12:12,962] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim.bam
-[2022-12-08 08:12:12,962] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5.bam
-[2022-12-08 08:12:12,962] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted_dupsMarked.bam
-[2022-12-08 08:12:12,962] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5_sorted_dupsMarked.bam
-[2022-12-08 08:12:12,963] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted_dupsMarked.bam
-[2022-12-08 08:12:12,963] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam
-[2022-12-08 08:12:12,963] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5.bam
-[2022-12-08 08:12:12,963] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam
-[2022-12-08 08:12:12,963] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai
-[2022-12-08 08:12:12,964] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted.bam
-[2022-12-08 08:12:12,964] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai
-[2022-12-08 08:12:12,964] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai
-[2022-12-08 08:12:12,964] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam
-[2022-12-08 08:12:12,964] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5_sorted.bam
-[2022-12-08 08:12:12,965] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam.bai
-[2022-12-08 08:12:12,965] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_dm6_trim.bam
-[2022-12-08 08:12:12,965] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam
-[2022-12-08 08:12:12,965] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim.bam
-[2022-12-08 08:12:12,965] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5_sorted.bam
-[2022-12-08 08:12:12,966] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam
-[2022-12-08 08:12:12,966] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5_sorted_dupsMarked.bam
-[2022-12-08 08:12:12,966] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai
-[2022-12-08 08:12:14,038] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_pe.sam
-[2022-12-08 08:12:14,038] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_pe.sam
-[2022-12-08 08:12:14,039] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_dm6_trim_pe.sam
-[2022-12-08 08:12:14,039] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_dm6_trim_pe.sam
-[2022-12-08 08:12:17,606] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved.bed
-[2022-12-08 08:12:17,607] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire_dm6_trim_q5_sorted_dupsRemoved_POOLED.bed
-[2022-12-08 08:12:17,607] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved.bed
-[2022-12-08 08:12:17,607] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved.bed
-[2022-12-08 08:12:17,607] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved.bed
-[2022-12-08 08:12:17,607] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_R1_trim.fastq.gz
-[2022-12-08 08:12:17,608] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_R2.fastq.gz
-[2022-12-08 08:12:17,608] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_R1_trim.fastq.gz
-[2022-12-08 08:12:17,608] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_R1_trim.fastq.gz
-[2022-12-08 08:12:17,608] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_R2_trim.fastq.gz
-[2022-12-08 08:12:17,609] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_R2.fastq.gz
-[2022-12-08 08:12:17,609] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_R1_trim.fastq.gz
-[2022-12-08 08:12:17,609] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_R2.fastq.gz
-[2022-12-08 08:12:17,609] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_R1.fastq.gz
-[2022-12-08 08:12:17,609] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_R1.fastq.gz
-[2022-12-08 08:12:17,610] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_R1.fastq.gz
-[2022-12-08 08:12:17,610] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_R2_trim.fastq.gz
-[2022-12-08 08:12:17,610] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_R2_trim.fastq.gz
-[2022-12-08 08:12:17,610] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_R2_trim.fastq.gz
-[2022-12-08 08:12:17,610] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_R1.fastq.gz
-[2022-12-08 08:12:17,611] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_R2.fastq.gz
-[2022-12-08 08:12:17,666] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved_summits.bed
-[2022-12-08 08:12:20,738] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved_summits.bed
-[2022-12-08 08:12:20,761] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire_dm6_trim_q5_sorted_dupsRemoved_POOLED_summits.bed
-[2022-12-08 08:12:20,763] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved_summits.bed
-[2022-12-08 08:12:41,659] multiqc                                            [DEBUG  ]  No samples found: custom_content
-[2022-12-08 08:12:41,689] multiqc                                            [DEBUG  ]  No samples found: conpair
-[2022-12-08 08:12:41,714] multiqc                                            [DEBUG  ]  No samples found: peddy
-[2022-12-08 08:12:41,738] multiqc                                            [DEBUG  ]  No samples found: methylQA
-[2022-12-08 08:12:41,772] multiqc                                            [DEBUG  ]  No samples found: phantompeakqualtools
-[2022-12-08 08:12:41,815] multiqc                                            [DEBUG  ]  No samples found: qualimap
-[2022-12-08 08:12:41,840] multiqc                                            [DEBUG  ]  No samples found: preseq
-[2022-12-08 08:12:41,874] multiqc                                            [DEBUG  ]  No samples found: quast
-[2022-12-08 08:12:41,908] multiqc                                            [DEBUG  ]  No samples found: qorts
-[2022-12-08 08:12:41,934] multiqc                                            [DEBUG  ]  No samples found: rna_seqc
-[2022-12-08 08:12:41,960] multiqc                                            [DEBUG  ]  No samples found: rsem
-[2022-12-08 08:12:42,038] multiqc                                            [DEBUG  ]  No samples found: rseqc
-[2022-12-08 08:12:42,073] multiqc                                            [DEBUG  ]  No samples found: busco
-[2022-12-08 08:12:42,097] multiqc                                            [DEBUG  ]  No samples found: goleft_indexcov
-[2022-12-08 08:12:42,118] multiqc                                            [DEBUG  ]  No samples found: disambiguate
-[2022-12-08 08:12:42,145] multiqc                                            [DEBUG  ]  No samples found: supernova
-[2022-12-08 08:12:42,215] multiqc                                            [DEBUG  ]  No samples found: deeptools
-[2022-12-08 08:12:42,241] multiqc                                            [DEBUG  ]  No samples found: sargasso
-[2022-12-08 08:12:42,268] multiqc                                            [DEBUG  ]  No samples found: verifybamid
-[2022-12-08 08:12:42,301] multiqc                                            [DEBUG  ]  No samples found: mirtrace
-[2022-12-08 08:12:42,345] multiqc                                            [DEBUG  ]  No samples found: happy
-[2022-12-08 08:12:42,405] multiqc                                            [DEBUG  ]  No samples found: homer
-[2022-12-08 08:12:42,464] multiqc.modules.macs2.macs2                        [INFO   ]  Found 4 logs
-[2022-12-08 08:12:42,495] multiqc                                            [DEBUG  ]  No samples found: theta2
-[2022-12-08 08:12:42,521] multiqc                                            [DEBUG  ]  No samples found: snpeff
-[2022-12-08 08:12:42,565] multiqc                                            [DEBUG  ]  No samples found: gatk
-[2022-12-08 08:12:42,594] multiqc                                            [DEBUG  ]  No samples found: htseq
-[2022-12-08 08:12:42,642] multiqc                                            [DEBUG  ]  No samples found: bcftools
-[2022-12-08 08:12:42,667] multiqc                                            [DEBUG  ]  No samples found: featureCounts
-[2022-12-08 08:12:42,697] multiqc                                            [DEBUG  ]  No samples found: dedup
-[2022-12-08 08:12:42,729] multiqc                                            [DEBUG  ]  No samples found: damageprofiler
-[2022-12-08 08:12:42,839] multiqc.modules.picard.picard                      [INFO   ]  Found 4 MarkDuplicates reports
-[2022-12-08 08:12:42,866] multiqc                                            [DEBUG  ]  No samples found: prokka
-[2022-12-08 08:12:42,894] multiqc                                            [DEBUG  ]  No samples found: samblaster
-[2022-12-08 08:12:42,991] multiqc.modules.samtools.samtools                  [INFO   ]  Found 12 flagstat reports
-[2022-12-08 08:12:43,026] multiqc                                            [DEBUG  ]  No samples found: bamtools
-[2022-12-08 08:12:43,047] multiqc                                            [DEBUG  ]  No samples found: jellyfish
-[2022-12-08 08:12:43,096] multiqc                                            [DEBUG  ]  No samples found: vcftools
-[2022-12-08 08:12:43,130] multiqc                                            [DEBUG  ]  No samples found: longranger
-[2022-12-08 08:12:43,174] multiqc                                            [DEBUG  ]  No samples found: stacks
-[2022-12-08 08:12:43,299] multiqc                                            [DEBUG  ]  No samples found: bbmap
-[2022-12-08 08:12:43,333] multiqc                                            [DEBUG  ]  No samples found: bismark
-[2022-12-08 08:12:43,364] multiqc                                            [DEBUG  ]  No samples found: biscuit
-[2022-12-08 08:12:43,398] multiqc                                            [DEBUG  ]  No samples found: hicexplorer
-[2022-12-08 08:12:43,436] multiqc                                            [DEBUG  ]  No samples found: hicup
-[2022-12-08 08:12:43,479] multiqc                                            [DEBUG  ]  No samples found: hicpro
-[2022-12-08 08:12:43,548] multiqc                                            [DEBUG  ]  No samples found: salmon
-[2022-12-08 08:12:43,604] multiqc                                            [DEBUG  ]  No samples found: kallisto
-[2022-12-08 08:12:43,631] multiqc                                            [DEBUG  ]  No samples found: slamdunk
-[2022-12-08 08:12:43,660] multiqc                                            [DEBUG  ]  No samples found: star
-[2022-12-08 08:12:43,690] multiqc                                            [DEBUG  ]  No samples found: hisat2
-[2022-12-08 08:12:43,729] multiqc                                            [DEBUG  ]  No samples found: tophat
-[2022-12-08 08:12:43,763] multiqc.modules.bowtie2.bowtie2                    [INFO   ]  Found 4 reports
-[2022-12-08 08:12:43,814] multiqc                                            [DEBUG  ]  No samples found: bowtie1
-[2022-12-08 08:12:43,846] multiqc                                            [DEBUG  ]  No samples found: kat
-[2022-12-08 08:12:43,870] multiqc                                            [DEBUG  ]  No samples found: leehom
-[2022-12-08 08:12:43,912] multiqc                                            [DEBUG  ]  No samples found: adapterRemoval
-[2022-12-08 08:12:44,001] multiqc                                            [DEBUG  ]  No samples found: clipandmerge
-[2022-12-08 08:12:44,035] multiqc                                            [DEBUG  ]  No samples found: cutadapt
-[2022-12-08 08:12:44,079] multiqc                                            [DEBUG  ]  No samples found: flexbar
-[2022-12-08 08:12:44,118] multiqc                                            [DEBUG  ]  No samples found: trimmomatic
-[2022-12-08 08:12:44,153] multiqc                                            [DEBUG  ]  No samples found: skewer
-[2022-12-08 08:12:44,206] multiqc                                            [DEBUG  ]  No samples found: sortmerna
-[2022-12-08 08:12:44,237] multiqc                                            [DEBUG  ]  No samples found: biobloomtools
-[2022-12-08 08:12:44,268] multiqc                                            [DEBUG  ]  No samples found: fastq_screen
-[2022-12-08 08:12:44,291] multiqc                                            [DEBUG  ]  No samples found: afterqc
-[2022-12-08 08:12:44,317] multiqc                                            [DEBUG  ]  No samples found: fastp
-[2022-12-08 08:12:44,355] multiqc                                            [DEBUG  ]  No samples found: fastqc
-[2022-12-08 08:12:44,388] multiqc                                            [DEBUG  ]  No samples found: minionqc
-[2022-12-08 08:12:44,425] multiqc                                            [DEBUG  ]  No samples found: clusterflow
-[2022-12-08 08:12:44,455] multiqc                                            [DEBUG  ]  No samples found: bcl2fastq
-[2022-12-08 08:12:44,485] multiqc                                            [DEBUG  ]  No samples found: interop
-[2022-12-08 08:12:44,515] multiqc                                            [DEBUG  ]  No samples found: flash
-[2022-12-08 08:12:44,538] multiqc                                            [INFO   ]  Compressing plot data
-[2022-12-08 08:12:44,674] multiqc                                            [INFO   ]  Report      : multiqc_report.html
-[2022-12-08 08:12:44,674] multiqc                                            [INFO   ]  Data        : multiqc_data
-[2022-12-08 08:12:44,681] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmp9VbMw9/multiqc_data/multiqc_macs.txt' to '/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/multiqc_data'
-[2022-12-08 08:12:44,684] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmp9VbMw9/multiqc_data/multiqc_picard_dups.txt' to '/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/multiqc_data'
-[2022-12-08 08:12:44,687] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmp9VbMw9/multiqc_data/multiqc_samtools_flagstat.txt' to '/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/multiqc_data'
-[2022-12-08 08:12:44,690] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmp9VbMw9/multiqc_data/multiqc_bowtie2.txt' to '/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/multiqc_data'
-[2022-12-08 08:12:44,692] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmp9VbMw9/multiqc_data/multiqc_general_stats.txt' to '/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/multiqc_data'
-[2022-12-08 08:12:44,695] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmp9VbMw9/multiqc_data/multiqc_sources.txt' to '/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/multiqc_data'
-[2022-12-08 08:12:44,698] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmp9VbMw9/multiqc_data/multiqc_data.json' to '/pine/scr/m/j/mjn15/osaDeGrad/repeat/faire-pipeline-VS/multiqc_data'
-[2022-12-08 08:12:45,099] multiqc                                            [INFO   ]  MultiQC complete
+[2022-12-21 13:53:07,146] multiqc                                            [DEBUG  ]  No MultiQC config found: /nas/longleaf/apps/multiqc/1.7/lib/python2.7/site-packages/multiqc-1.7-py2.7.egg/multiqc_config.yaml
+[2022-12-21 13:53:07,146] multiqc                                            [DEBUG  ]  No MultiQC config found: /nas/longleaf/home/mjn15/.multiqc_config.yaml
+[2022-12-21 13:53:07,147] multiqc                                            [DEBUG  ]  No MultiQC config found: multiqc_config.yaml
+[2022-12-21 13:53:07,147] multiqc                                            [DEBUG  ]  Command used: /nas/longleaf/apps/multiqc/1.7/bin/multiqc . -f -x nohup.out -x *.err
+[2022-12-21 13:53:07,811] multiqc                                            [WARNING]  MultiQC Version v1.13 now available!
+[2022-12-21 13:53:07,811] multiqc                                            [INFO   ]  This is MultiQC v1.7
+[2022-12-21 13:53:07,812] multiqc                                            [DEBUG  ]  Command     : /nas/longleaf/apps/multiqc/1.7/bin/multiqc . -f -x nohup.out -x *.err
+[2022-12-21 13:53:07,812] multiqc                                            [DEBUG  ]  Working dir : /pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline
+[2022-12-21 13:53:07,812] multiqc                                            [INFO   ]  Template    : default
+[2022-12-21 13:53:07,812] multiqc                                            [DEBUG  ]  Ignoring files, directories and paths that match: nohup.out, *.err
+[2022-12-21 13:53:07,812] multiqc                                            [INFO   ]  Searching '.'
+[2022-12-21 13:53:07,813] multiqc                                            [DEBUG  ]  Analysing modules: custom_content, conpair, peddy, methylQA, phantompeakqualtools, qualimap, preseq, quast, qorts, rna_seqc, rsem, rseqc, busco, goleft_indexcov, disambiguate, supernova, deeptools, sargasso, verifybamid, mirtrace, happy, homer, macs2, theta2, snpeff, gatk, htseq, bcftools, featureCounts, dedup, damageprofiler, picard, prokka, samblaster, samtools, bamtools, jellyfish, vcftools, longranger, stacks, bbmap, bismark, biscuit, hicexplorer, hicup, hicpro, salmon, kallisto, slamdunk, star, hisat2, tophat, bowtie2, bowtie1, kat, leehom, adapterRemoval, clipandmerge, cutadapt, flexbar, trimmomatic, skewer, sortmerna, biobloomtools, fastq_screen, afterqc, fastp, fastqc, minionqc, clusterflow, bcl2fastq, interop, flash
+[2022-12-21 13:53:07,813] multiqc                                            [DEBUG  ]  Using temporary directory for creating report: /tmp/tmpl55J0R
+[2022-12-21 13:53:08,816] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: nohup.out
+[2022-12-21 13:53:08,891] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted.bam
+[2022-12-21 13:53:08,892] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5.bam
+[2022-12-21 13:53:08,894] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam
+[2022-12-21 13:53:08,894] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5.bam
+[2022-12-21 13:53:08,894] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_dm6_trim.bam
+[2022-12-21 13:53:08,895] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim.bam
+[2022-12-21 13:53:08,895] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5.bam
+[2022-12-21 13:53:08,895] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted_dupsMarked.bam
+[2022-12-21 13:53:08,895] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5_sorted_dupsMarked.bam
+[2022-12-21 13:53:08,895] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted_dupsMarked.bam
+[2022-12-21 13:53:08,896] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam
+[2022-12-21 13:53:08,896] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5.bam
+[2022-12-21 13:53:08,896] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam
+[2022-12-21 13:53:08,896] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+[2022-12-21 13:53:08,896] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted.bam
+[2022-12-21 13:53:08,897] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+[2022-12-21 13:53:08,897] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+[2022-12-21 13:53:08,897] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam
+[2022-12-21 13:53:08,897] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5_sorted.bam
+[2022-12-21 13:53:08,898] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam.bai
+[2022-12-21 13:53:08,898] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_dm6_trim.bam
+[2022-12-21 13:53:08,898] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam
+[2022-12-21 13:53:08,898] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim.bam
+[2022-12-21 13:53:08,898] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5_sorted.bam
+[2022-12-21 13:53:08,899] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam
+[2022-12-21 13:53:08,899] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5_sorted_dupsMarked.bam
+[2022-12-21 13:53:08,899] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+[2022-12-21 13:53:10,362] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_pe.sam
+[2022-12-21 13:53:10,362] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_pe.sam
+[2022-12-21 13:53:10,362] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_dm6_trim_pe.sam
+[2022-12-21 13:53:10,362] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_dm6_trim_pe.sam
+[2022-12-21 13:53:14,188] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved.bed
+[2022-12-21 13:53:14,189] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire_dm6_trim_q5_sorted_dupsRemoved_POOLED.bed
+[2022-12-21 13:53:14,189] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved.bed
+[2022-12-21 13:53:14,190] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved.bed
+[2022-12-21 13:53:14,191] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved.bed
+[2022-12-21 13:53:14,191] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_R1_trim.fastq.gz
+[2022-12-21 13:53:14,191] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_R2.fastq.gz
+[2022-12-21 13:53:14,191] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_R1_trim.fastq.gz
+[2022-12-21 13:53:14,192] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_R1_trim.fastq.gz
+[2022-12-21 13:53:14,192] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_R2_trim.fastq.gz
+[2022-12-21 13:53:14,192] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_R2.fastq.gz
+[2022-12-21 13:53:14,192] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_R1_trim.fastq.gz
+[2022-12-21 13:53:14,192] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_R2.fastq.gz
+[2022-12-21 13:53:14,193] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_R1.fastq.gz
+[2022-12-21 13:53:14,193] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_R1.fastq.gz
+[2022-12-21 13:53:14,193] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_R1.fastq.gz
+[2022-12-21 13:53:14,193] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep1_R2_trim.fastq.gz
+[2022-12-21 13:53:14,193] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_R2_trim.fastq.gz
+[2022-12-21 13:53:14,194] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_nubG4_faire-Rep2_R2_trim.fastq.gz
+[2022-12-21 13:53:14,194] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_R1.fastq.gz
+[2022-12-21 13:53:14,194] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_R2.fastq.gz
+[2022-12-21 13:53:18,935] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved_summits.bed
+[2022-12-21 13:53:18,960] multiqc                                            [DEBUG  ]  Ignoring file as matched an ignore pattern: osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved_summits.bed
+[2022-12-21 13:53:30,190] multiqc                                            [DEBUG  ]  No samples found: custom_content
+[2022-12-21 13:53:30,215] multiqc                                            [DEBUG  ]  No samples found: conpair
+[2022-12-21 13:53:30,244] multiqc                                            [DEBUG  ]  No samples found: peddy
+[2022-12-21 13:53:30,277] multiqc                                            [DEBUG  ]  No samples found: methylQA
+[2022-12-21 13:53:30,304] multiqc                                            [DEBUG  ]  No samples found: phantompeakqualtools
+[2022-12-21 13:53:30,341] multiqc                                            [DEBUG  ]  No samples found: qualimap
+[2022-12-21 13:53:30,368] multiqc                                            [DEBUG  ]  No samples found: preseq
+[2022-12-21 13:53:30,395] multiqc                                            [DEBUG  ]  No samples found: quast
+[2022-12-21 13:53:30,419] multiqc                                            [DEBUG  ]  No samples found: qorts
+[2022-12-21 13:53:30,442] multiqc                                            [DEBUG  ]  No samples found: rna_seqc
+[2022-12-21 13:53:30,465] multiqc                                            [DEBUG  ]  No samples found: rsem
+[2022-12-21 13:53:30,527] multiqc                                            [DEBUG  ]  No samples found: rseqc
+[2022-12-21 13:53:30,555] multiqc                                            [DEBUG  ]  No samples found: busco
+[2022-12-21 13:53:30,576] multiqc                                            [DEBUG  ]  No samples found: goleft_indexcov
+[2022-12-21 13:53:30,598] multiqc                                            [DEBUG  ]  No samples found: disambiguate
+[2022-12-21 13:53:30,629] multiqc                                            [DEBUG  ]  No samples found: supernova
+[2022-12-21 13:53:30,694] multiqc                                            [DEBUG  ]  No samples found: deeptools
+[2022-12-21 13:53:30,718] multiqc                                            [DEBUG  ]  No samples found: sargasso
+[2022-12-21 13:53:30,744] multiqc                                            [DEBUG  ]  No samples found: verifybamid
+[2022-12-21 13:53:30,778] multiqc                                            [DEBUG  ]  No samples found: mirtrace
+[2022-12-21 13:53:30,812] multiqc                                            [DEBUG  ]  No samples found: happy
+[2022-12-21 13:53:30,853] multiqc                                            [DEBUG  ]  No samples found: homer
+[2022-12-21 13:53:30,899] multiqc.modules.macs2.macs2                        [INFO   ]  Found 2 logs
+[2022-12-21 13:53:30,929] multiqc                                            [DEBUG  ]  No samples found: theta2
+[2022-12-21 13:53:30,952] multiqc                                            [DEBUG  ]  No samples found: snpeff
+[2022-12-21 13:53:30,981] multiqc                                            [DEBUG  ]  No samples found: gatk
+[2022-12-21 13:53:31,003] multiqc                                            [DEBUG  ]  No samples found: htseq
+[2022-12-21 13:53:31,028] multiqc                                            [DEBUG  ]  No samples found: bcftools
+[2022-12-21 13:53:31,053] multiqc                                            [DEBUG  ]  No samples found: featureCounts
+[2022-12-21 13:53:31,077] multiqc                                            [DEBUG  ]  No samples found: dedup
+[2022-12-21 13:53:31,101] multiqc                                            [DEBUG  ]  No samples found: damageprofiler
+[2022-12-21 13:53:31,193] multiqc.modules.picard.picard                      [INFO   ]  Found 4 MarkDuplicates reports
+[2022-12-21 13:53:31,218] multiqc                                            [DEBUG  ]  No samples found: prokka
+[2022-12-21 13:53:31,246] multiqc                                            [DEBUG  ]  No samples found: samblaster
+[2022-12-21 13:53:31,328] multiqc.modules.samtools.samtools                  [INFO   ]  Found 12 flagstat reports
+[2022-12-21 13:53:31,355] multiqc                                            [DEBUG  ]  No samples found: bamtools
+[2022-12-21 13:53:31,380] multiqc                                            [DEBUG  ]  No samples found: jellyfish
+[2022-12-21 13:53:31,428] multiqc                                            [DEBUG  ]  No samples found: vcftools
+[2022-12-21 13:53:31,463] multiqc                                            [DEBUG  ]  No samples found: longranger
+[2022-12-21 13:53:31,498] multiqc                                            [DEBUG  ]  No samples found: stacks
+[2022-12-21 13:53:31,575] multiqc.modules.bbmap.bbmap                        [DEBUG  ]  Parsing ./Logs/osaGFP_deGrad_control_faire-Rep2_adapterStats
+[2022-12-21 13:53:31,576] multiqc.modules.bbmap.bbmap                        [DEBUG  ]  Found stats output for sample osaGFP_deGrad_control_faire-Rep2_adapterStats with 40 rows
+[2022-12-21 13:53:31,577] multiqc.modules.bbmap.bbmap                        [DEBUG  ]  Parsing ./Logs/osaGFP_deGrad_nubG4_faire-Rep2_adapterStats
+[2022-12-21 13:53:31,578] multiqc.modules.bbmap.bbmap                        [DEBUG  ]  Found stats output for sample osaGFP_deGrad_nubG4_faire-Rep2_adapterStats with 42 rows
+[2022-12-21 13:53:31,579] multiqc.modules.bbmap.bbmap                        [DEBUG  ]  Parsing ./Logs/osaGFP_deGrad_nubG4_faire-Rep1_adapterStats
+[2022-12-21 13:53:31,580] multiqc.modules.bbmap.bbmap                        [DEBUG  ]  Found stats output for sample osaGFP_deGrad_nubG4_faire-Rep1_adapterStats with 34 rows
+[2022-12-21 13:53:31,580] multiqc.modules.bbmap.bbmap                        [DEBUG  ]  Parsing ./Logs/osaGFP_deGrad_control_faire-Rep1_adapterStats
+[2022-12-21 13:53:31,581] multiqc.modules.bbmap.bbmap                        [DEBUG  ]  Found stats output for sample osaGFP_deGrad_control_faire-Rep1_adapterStats with 42 rows
+[2022-12-21 13:53:31,582] multiqc.modules.bbmap.bbmap                        [INFO   ]  Found 4 reports
+[2022-12-21 13:53:31,582] multiqc.modules.bbmap.bbmap                        [DEBUG  ]  section stats has 4 entries
+[2022-12-21 13:53:31,619] multiqc                                            [DEBUG  ]  No samples found: bismark
+[2022-12-21 13:53:31,648] multiqc                                            [DEBUG  ]  No samples found: biscuit
+[2022-12-21 13:53:31,670] multiqc                                            [DEBUG  ]  No samples found: hicexplorer
+[2022-12-21 13:53:31,692] multiqc                                            [DEBUG  ]  No samples found: hicup
+[2022-12-21 13:53:31,716] multiqc                                            [DEBUG  ]  No samples found: hicpro
+[2022-12-21 13:53:31,742] multiqc                                            [DEBUG  ]  No samples found: salmon
+[2022-12-21 13:53:31,768] multiqc                                            [DEBUG  ]  No samples found: kallisto
+[2022-12-21 13:53:31,794] multiqc                                            [DEBUG  ]  No samples found: slamdunk
+[2022-12-21 13:53:31,819] multiqc                                            [DEBUG  ]  No samples found: star
+[2022-12-21 13:53:31,845] multiqc                                            [DEBUG  ]  No samples found: hisat2
+[2022-12-21 13:53:31,871] multiqc                                            [DEBUG  ]  No samples found: tophat
+[2022-12-21 13:53:31,900] multiqc.modules.bowtie2.bowtie2                    [INFO   ]  Found 4 reports
+[2022-12-21 13:53:31,930] multiqc                                            [DEBUG  ]  No samples found: bowtie1
+[2022-12-21 13:53:31,953] multiqc                                            [DEBUG  ]  No samples found: kat
+[2022-12-21 13:53:31,974] multiqc                                            [DEBUG  ]  No samples found: leehom
+[2022-12-21 13:53:31,996] multiqc                                            [DEBUG  ]  No samples found: adapterRemoval
+[2022-12-21 13:53:32,020] multiqc                                            [DEBUG  ]  No samples found: clipandmerge
+[2022-12-21 13:53:32,043] multiqc                                            [DEBUG  ]  No samples found: cutadapt
+[2022-12-21 13:53:32,065] multiqc                                            [DEBUG  ]  No samples found: flexbar
+[2022-12-21 13:53:32,088] multiqc                                            [DEBUG  ]  No samples found: trimmomatic
+[2022-12-21 13:53:32,111] multiqc                                            [DEBUG  ]  No samples found: skewer
+[2022-12-21 13:53:32,136] multiqc                                            [DEBUG  ]  No samples found: sortmerna
+[2022-12-21 13:53:32,157] multiqc                                            [DEBUG  ]  No samples found: biobloomtools
+[2022-12-21 13:53:32,183] multiqc                                            [DEBUG  ]  No samples found: fastq_screen
+[2022-12-21 13:53:32,207] multiqc                                            [DEBUG  ]  No samples found: afterqc
+[2022-12-21 13:53:32,230] multiqc                                            [DEBUG  ]  No samples found: fastp
+[2022-12-21 13:53:32,260] multiqc                                            [DEBUG  ]  No samples found: fastqc
+[2022-12-21 13:53:32,287] multiqc                                            [DEBUG  ]  No samples found: minionqc
+[2022-12-21 13:53:32,317] multiqc                                            [DEBUG  ]  No samples found: clusterflow
+[2022-12-21 13:53:32,344] multiqc                                            [DEBUG  ]  No samples found: bcl2fastq
+[2022-12-21 13:53:32,371] multiqc                                            [DEBUG  ]  No samples found: interop
+[2022-12-21 13:53:32,397] multiqc                                            [DEBUG  ]  No samples found: flash
+[2022-12-21 13:53:32,418] multiqc                                            [INFO   ]  Compressing plot data
+[2022-12-21 13:53:32,554] multiqc                                            [INFO   ]  Report      : multiqc_report.html
+[2022-12-21 13:53:32,555] multiqc                                            [INFO   ]  Data        : multiqc_data
+[2022-12-21 13:53:32,559] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmpl55J0R/multiqc_data/multiqc_macs.txt' to '/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/multiqc_data'
+[2022-12-21 13:53:32,561] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmpl55J0R/multiqc_data/multiqc_picard_dups.txt' to '/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/multiqc_data'
+[2022-12-21 13:53:32,562] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmpl55J0R/multiqc_data/multiqc_samtools_flagstat.txt' to '/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/multiqc_data'
+[2022-12-21 13:53:32,563] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmpl55J0R/multiqc_data/multiqc_bowtie2.txt' to '/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/multiqc_data'
+[2022-12-21 13:53:32,564] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmpl55J0R/multiqc_data/multiqc_general_stats.txt' to '/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/multiqc_data'
+[2022-12-21 13:53:32,565] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmpl55J0R/multiqc_data/multiqc_sources.txt' to '/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/multiqc_data'
+[2022-12-21 13:53:32,566] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmpl55J0R/multiqc_data/multiqc_data.json' to '/pine/scr/m/j/mjn15/osaDeGrad/FINAL/faire-pipeline/multiqc_data'
+[2022-12-21 13:53:32,910] multiqc                                            [INFO   ]  MultiQC complete
