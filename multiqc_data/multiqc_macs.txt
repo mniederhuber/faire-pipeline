@@ -1,0 +1,12 @@
+Sample	control_fragments_total	treatment_redundant_rate	treatment_max_duplicates	treatment_fragments_after_filtering	control_max_duplicates	control_redundant_rate	fragment_size	control_fragments_after_filtering	treatment_fragments_total	d
+wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved	10595298.0	0.0	1.0	5732635.0	1.0	0.0	50.0	10595298.0	5732635.0	125.0
+wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved	10595298.0	0.0	1.0	6112607.0	1.0	0.0	50.0	10595298.0	6112607.0	125.0
+wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved	10595298.0	0.0	1.0	3102225.0	1.0	0.0	50.0	10595298.0	3102225.0	125.0
+wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved	10595298.0	0.0	1.0	1756857.0	1.0	0.0	50.0	10595298.0	1756857.0	125.0
+wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved	10595298.0	0.0	1.0	1500091.0	1.0	0.0	50.0	10595298.0	1500091.0	125.0
+wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved	10595298.0	0.0	1.0	2424838.0	1.0	0.0	50.0	10595298.0	2424838.0	125.0
+wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved	10595298.0	0.0	1.0	2269829.0	1.0	0.0	50.0	10595298.0	2269829.0	125.0
+wt_44h_dm6_trim_q5_sorted_dupsRemoved_POOLED	10595298.0	0.05	1.0	5877518.0	1.0	0.0	50.0	10595298.0	6194758.0	125.0
+wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved	10595298.0	0.0	1.0	1477209.0	1.0	0.0	50.0	10595298.0	1477209.0	125.0
+wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved	10595298.0	0.0	1.0	682811.0	1.0	0.0	50.0	10595298.0	682811.0	125.0
+wt_6h-Rep3_dm6_trim_q5_sorted_dupsRemoved	10595298.0	0.0	1.0	5094970.0	1.0	0.0	50.0	10595298.0	5094970.0	125.0

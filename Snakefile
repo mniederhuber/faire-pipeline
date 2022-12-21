@@ -13,6 +13,7 @@ READS = ['1','2'] if is_paired_end else ['1']
 REFGENOME = config['refGenome']
 SPIKEGENOME = config['spikeGenome']
 REFGENOMEPATH = config['genome'][REFGENOME]['bowtie']
+BLACKLISTPATH = config['genome'][REFGENOME]['blacklistPath']
 SPIKEGENOMEPATH = config['genome'][SPIKEGENOME]['bowtie']
 controlDNAPath  = config['genome'][REFGENOME]['controlDNAPath']
 chromSize_Path  = config['genome'][REFGENOME]['chrSize']
@@ -154,7 +155,7 @@ rule align_se:
 		modules['bowtie2Ver']
 	shell:
 		"""
-		bowtie2 --seed 123 -x {params.refgenome} -p {threads} -U {input} -S {output.sam} 2> {output.logInfo}
+		bowtie2 --seed 123 --very-sensitive -x {params.refgenome} -p {threads} -U {input} -S {output.sam} 2> {output.logInfo}
 		"""
 
 #will only run if is_paired_end == true - as determined by input called for by sam2bam
@@ -185,11 +186,14 @@ rule sam2bam:
 	output:
 		bam = "Bam/{sample}_{species}_trim.bam",
 		flagstat = "logs/{sample}_{species}_trim.flagstat"
+	params:
+		blklist = BLACKLISTPATH
 	envmodules:
 		modules['samtoolsVer']
+		modules['bedtoolsVer']
 	shell:
 		"""
-		samtools view -@ 4 -b {input} > {output.bam} &&
+		samtools view -@ 4 -b {input} | bedtools intersect -a stdin -b {params.blklist} -v > {output.bam} &&
 		samtools flagstat {output.bam} > {output.flagstat}
 		"""
 rule qFilter:
