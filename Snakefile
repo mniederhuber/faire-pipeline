@@ -90,6 +90,7 @@ output_files = [item for sublist in output_files for item in sublist]
 output_files.append("multiqc_report.html")
 #print(output_files)
 
+
 rule all:
 	input:
     		output_files,
@@ -101,9 +102,13 @@ wildcard_constraints:
 	num = "[0-9]"
 
 #function to get the /proj/HTSF paths for either r1 or r1+r2 
+### busted
 def getFastq(wildcards):
 	if is_paired_end:
+                print(wildcards)
+                print(sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1)
 		r1 = sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1.iloc[0]
+		#r1 = list(sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1)
 		r2 = sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r2.iloc[0]
 		return [r1, r2]
 	else:
@@ -113,14 +118,21 @@ def getFastq(wildcards):
 #passes getFastq function as input -- either 1 or 2 reads depending on is_paired_end
 rule combine_technical_reps:
 	input:
-		getFastq
+		#getFastq
+		r1 = lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r1,
+		r2 = lambda wildcards : sampleInfo[sampleInfo.baseName == wildcards.sample].fastq_r2
 	output:
 		expand("Fastq/{{sample}}_R{num}.fastq.gz", num = READS)
-	run:
-		if is_paired_end:
-			shell("cat {input[0]} > {output[0]} && cat {input[1]} > {output[1]}")
-		else:
-			shell("cat {input[0]} > {output[0]}")
+	shell:
+		"""
+                cat {input.r1} > {output[0]} &&
+                cat {input.r2} > {output[1]}
+		"""
+	#run:
+	#	if is_paired_end:
+	#		shell("cat {input[0]} > {output[0]} && cat {input[1]} > {output[1]}")
+	#	else:
+	#		shell("cat {input[0]} > {output[0]}")
 
 #using conditional run to trim either PE or SE reads
 #paired-end reads contained in separate files (which they are in our normal case) must be trimmed together 
@@ -155,7 +167,7 @@ rule align_se:
 		modules['bowtie2Ver']
 	shell:
 		"""
-		bowtie2 --seed 123 --very-sensitive -x {params.refgenome} -p {threads} -U {input} -S {output.sam} 2> {output.logInfo}
+		bowtie2 --seed 123 -x {params.refgenome} -p {threads} -U {input} -S {output.sam} 2> {output.logInfo}
 		"""
 
 #will only run if is_paired_end == true - as determined by input called for by sam2bam
@@ -173,7 +185,7 @@ rule align_pe:
 		modules['bowtie2Ver']
 	shell:
 		"""
-		bowtie2 --seed 123 -x {params.refgenome} -p {threads} -1 {input.r1} -2 {input.r2} -S {output.sam} 2> {output.logInfo}
+		bowtie2 --seed 123 -p {threads} -q --very-sensitive --no-unal --no-mixed --no-discordant --phred33 -I 10 -X 700 -x {params.refgenome} -1 {input.r1} -2 {input.r2} -S {output.sam} 2> {output.logInfo}
 		"""
 
 
@@ -189,7 +201,7 @@ rule sam2bam:
 	params:
 		blklist = BLACKLISTPATH
 	envmodules:
-		modules['samtoolsVer']
+		modules['samtoolsVer'],
 		modules['bedtoolsVer']
 	shell:
 		"""
@@ -272,7 +284,7 @@ rule bigWig:
 		modules['deeptoolsVer']
 	shell:
 		"""
-		bamCoverage -b {input.bam} -p {threads} --normalizeTo1x {params.genomeSize} --outFileFormat bigwig --binSize 10 -e 125 -o {output}
+		bamCoverage -b {input.bam} -p {threads} --normalizeTo1x {params.genomeSize} --outFileFormat bigwig --binSize 10 --extendReads -o {output}
 		"""
 
 rule zNormBigWig:

@@ -1,62 +1,22 @@
-Sample	Samtools Flagstat_mqc-generalstats-samtools_flagstat-mapped_passed	Picard_mqc-generalstats-picard-PERCENT_DUPLICATION	MACS2_mqc-generalstats-macs2-treatment_redundant_rate	MACS2_mqc-generalstats-macs2-d	MACS2_mqc-generalstats-macs2-control_redundant_rate	Bowtie 2_mqc-generalstats-bowtie_2-overall_alignment_rate
-wt_24h-Rep1_dm6_trim	6966973					
-wt_24h-Rep1_dm6_trim_q5	6373406					
-wt_24h-Rep1_dm6_trim_q5_sorted		0.100538				
-wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved	5732635		0.0	125.0	0.0	
-wt_24h-Rep1_dm6_trim_se_bowtie2						93.38
-wt_24h-Rep2_dm6_trim	10116367					
-wt_24h-Rep2_dm6_trim_q5	9364286					
-wt_24h-Rep2_dm6_trim_q5_sorted		0.1233				
-wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved	8209666					
-wt_24h-Rep2_dm6_trim_se_bowtie2						93.83
-wt_24h-Rep3_dm6_trim	7766573					
-wt_24h-Rep3_dm6_trim_q5	7164934					
-wt_24h-Rep3_dm6_trim_q5_sorted		0.146872				
-wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved	6112607		0.0	125.0	0.0	
-wt_24h-Rep3_dm6_trim_se_bowtie2						93.74
-wt_3LW-Rep1_dm6_trim	3714764					
-wt_3LW-Rep1_dm6_trim_q5	3288337					
-wt_3LW-Rep1_dm6_trim_q5_sorted		0.056598				
-wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved	3102225		0.0	125.0	0.0	
-wt_3LW-Rep1_dm6_trim_se_bowtie2						38.67
-wt_3LW-Rep2_dm6_trim	2108376					
-wt_3LW-Rep2_dm6_trim_q5	1826897					
-wt_3LW-Rep2_dm6_trim_q5_sorted		0.038338				
-wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved	1756857		0.0	125.0	0.0	
-wt_3LW-Rep2_dm6_trim_se_bowtie2						22.4
-wt_3LW-Rep3_dm6_trim	7403418					
-wt_3LW-Rep3_dm6_trim_q5	6128307					
-wt_3LW-Rep3_dm6_trim_q5_sorted		0.097555				
-wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved	5530457					
-wt_3LW-Rep3_dm6_trim_se_bowtie2						72.36
-wt_44h-Rep1_dm6_trim	1716622					
-wt_44h-Rep1_dm6_trim_q5	1574226					
-wt_44h-Rep1_dm6_trim_q5_sorted		0.047093				
-wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved	1500091		0.0	125.0	0.0	
-wt_44h-Rep1_dm6_trim_se_bowtie2						66.37
-wt_44h-Rep2_dm6_trim	2807244					
-wt_44h-Rep2_dm6_trim_q5	2575318					
-wt_44h-Rep2_dm6_trim_q5_sorted		0.058432				
-wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved	2424838		0.0	125.0	0.0	
-wt_44h-Rep2_dm6_trim_se_bowtie2						94.44
-wt_44h-Rep3_dm6_trim	2633133					
-wt_44h-Rep3_dm6_trim_q5	2403161					
-wt_44h-Rep3_dm6_trim_q5_sorted		0.055482				
-wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved	2269829		0.0	125.0	0.0	
-wt_44h-Rep3_dm6_trim_se_bowtie2						93.25
-wt_44h_dm6_trim_q5_sorted_dupsRemoved_POOLED			0.05	125.0	0.0	
-wt_6h-Rep1_dm6_trim	1760606					
-wt_6h-Rep1_dm6_trim_q5	1620914					
-wt_6h-Rep1_dm6_trim_q5_sorted		0.088657				
-wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved	1477209		0.0	125.0	0.0	
-wt_6h-Rep1_dm6_trim_se_bowtie2						17.58
-wt_6h-Rep2_dm6_trim	783735					
-wt_6h-Rep2_dm6_trim_q5	717300					
-wt_6h-Rep2_dm6_trim_q5_sorted		0.048082				
-wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved	682811		0.0	125.0	0.0	
-wt_6h-Rep2_dm6_trim_se_bowtie2						7.68
-wt_6h-Rep3_dm6_trim	7529635					
-wt_6h-Rep3_dm6_trim_q5	6752204					
-wt_6h-Rep3_dm6_trim_q5_sorted		0.245436				
-wt_6h-Rep3_dm6_trim_q5_sorted_dupsRemoved	5094970		0.0	125.0	0.0	
-wt_6h-Rep3_dm6_trim_se_bowtie2						93.78
+Sample	Samtools Flagstat_mqc-generalstats-samtools_flagstat-mapped_passed	Bowtie 2_mqc-generalstats-bowtie_2-overall_alignment_rate	Picard_mqc-generalstats-picard-PERCENT_DUPLICATION	MACS2_mqc-generalstats-macs2-treatment_redundant_rate	MACS2_mqc-generalstats-macs2-d	MACS2_mqc-generalstats-macs2-control_redundant_rate
+osaGFP_deGrad_control_faire-Rep1_dm6_trim	4335252					
+osaGFP_deGrad_control_faire-Rep1_dm6_trim_pe_bowtie2		35.74				
+osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5	2915011					
+osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5_sorted			0.459856			
+osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved	1574525			0.06	125.0	0.0
+osaGFP_deGrad_control_faire-Rep2_dm6_trim	8880983					
+osaGFP_deGrad_control_faire-Rep2_dm6_trim_pe_bowtie2		39.44				
+osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5	7487129					
+osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted			0.514966			
+osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved	3631513			0.06	125.0	0.0
+osaGFP_deGrad_control_faire_dm6_trim_q5_sorted_dupsRemoved_POOLED				0.08	125.0	0.0
+osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim	5483411					
+osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_pe_bowtie2		31.01				
+osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5	4221064					
+osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted			0.5385			
+osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted_dupsRemoved	1948020			0.05	125.0	0.0
+osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim	10374639					
+osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_pe_bowtie2		42.69				
+osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5	9046401					
+osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5_sorted			0.462283			
+osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5_sorted_dupsRemoved	4864403					

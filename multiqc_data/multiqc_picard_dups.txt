@@ -1,13 +1,5 @@
 Sample	UNMAPPED_READS	ESTIMATED_LIBRARY_SIZE	READ_PAIR_OPTICAL_DUPLICATES	READ_PAIRS_EXAMINED	UNPAIRED_READS_EXAMINED	PERCENT_DUPLICATION	LIBRARY	READ_PAIR_DUPLICATES	UNPAIRED_READ_DUPLICATES	SECONDARY_OR_SUPPLEMENTARY_RDS
-wt_24h-Rep1_dm6_trim_q5_sorted	0.0		0.0	0.0	6373406.0	0.100538	Unknown Library	0.0	640771.0	0.0
-wt_24h-Rep2_dm6_trim_q5_sorted	0.0		0.0	0.0	9364286.0	0.1233	Unknown Library	0.0	1154620.0	0.0
-wt_24h-Rep3_dm6_trim_q5_sorted	0.0		0.0	0.0	7164934.0	0.146872	Unknown Library	0.0	1052327.0	0.0
-wt_3LW-Rep1_dm6_trim_q5_sorted	0.0		0.0	0.0	3288337.0	0.056598	Unknown Library	0.0	186112.0	0.0
-wt_3LW-Rep2_dm6_trim_q5_sorted	0.0		0.0	0.0	1826897.0	0.038338	Unknown Library	0.0	70040.0	0.0
-wt_3LW-Rep3_dm6_trim_q5_sorted	0.0		0.0	0.0	6128307.0	0.097555	Unknown Library	0.0	597850.0	0.0
-wt_44h-Rep1_dm6_trim_q5_sorted	0.0		0.0	0.0	1574226.0	0.047093	Unknown Library	0.0	74135.0	0.0
-wt_44h-Rep2_dm6_trim_q5_sorted	0.0		0.0	0.0	2575318.0	0.058432	Unknown Library	0.0	150480.0	0.0
-wt_44h-Rep3_dm6_trim_q5_sorted	0.0		0.0	0.0	2403161.0	0.055482	Unknown Library	0.0	133332.0	0.0
-wt_6h-Rep1_dm6_trim_q5_sorted	0.0		0.0	0.0	1620914.0	0.088657	Unknown Library	0.0	143705.0	0.0
-wt_6h-Rep2_dm6_trim_q5_sorted	0.0		0.0	0.0	717300.0	0.048082	Unknown Library	0.0	34489.0	0.0
-wt_6h-Rep3_dm6_trim_q5_sorted	0.0		0.0	0.0	6752204.0	0.245436	Unknown Library	0.0	1657234.0	0.0
+osaGFP_deGrad_control_faire-Rep1_dm6_trim_q5_sorted	0.0	1061423.0	20710.0	1457505.0	0.0	0.459856	Unknown Library	670243.0	0.0	0.0
+osaGFP_deGrad_control_faire-Rep2_dm6_trim_q5_sorted	0.0	2262265.0	72674.0	3743564.0	0.0	0.514966	Unknown Library	1927808.0	0.0	0.0
+osaGFP_deGrad_nubG4_faire-Rep1_dm6_trim_q5_sorted	0.0	1176610.0	40688.0	2110532.0	0.0	0.5385	Unknown Library	1136522.0	0.0	0.0
+osaGFP_deGrad_nubG4_faire-Rep2_dm6_trim_q5_sorted	0.0	3281435.0	87680.0	4523200.0	0.0	0.462283	Unknown Library	2090999.0	0.0	0.0
