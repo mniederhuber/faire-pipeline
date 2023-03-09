@@ -189,7 +189,7 @@ rule sam2bam:
 	params:
 		blklist = BLACKLISTPATH
 	envmodules:
-		modules['samtoolsVer']
+		modules['samtoolsVer'],
 		modules['bedtoolsVer']
 	shell:
 		"""

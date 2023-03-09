@@ -1,73 +1,109 @@
 Module	Section	Sample Name	Source
-Picard	DuplicationMetrics	wt_6h-Rep3_dm6_trim_q5_sorted	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/PCRdups/wt_6h-Rep3_dm6_PCR_duplicates
-Picard	DuplicationMetrics	wt_24h-Rep1_dm6_trim_q5_sorted	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/PCRdups/wt_24h-Rep1_dm6_PCR_duplicates
-Picard	DuplicationMetrics	wt_6h-Rep2_dm6_trim_q5_sorted	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/PCRdups/wt_6h-Rep2_dm6_PCR_duplicates
-Picard	DuplicationMetrics	wt_44h-Rep3_dm6_trim_q5_sorted	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/PCRdups/wt_44h-Rep3_dm6_PCR_duplicates
-Picard	DuplicationMetrics	wt_24h-Rep3_dm6_trim_q5_sorted	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/PCRdups/wt_24h-Rep3_dm6_PCR_duplicates
-Picard	DuplicationMetrics	wt_3LW-Rep3_dm6_trim_q5_sorted	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/PCRdups/wt_3LW-Rep3_dm6_PCR_duplicates
-Picard	DuplicationMetrics	wt_44h-Rep2_dm6_trim_q5_sorted	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/PCRdups/wt_44h-Rep2_dm6_PCR_duplicates
-Picard	DuplicationMetrics	wt_6h-Rep1_dm6_trim_q5_sorted	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/PCRdups/wt_6h-Rep1_dm6_PCR_duplicates
-Picard	DuplicationMetrics	wt_44h-Rep1_dm6_trim_q5_sorted	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/PCRdups/wt_44h-Rep1_dm6_PCR_duplicates
-Picard	DuplicationMetrics	wt_24h-Rep2_dm6_trim_q5_sorted	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/PCRdups/wt_24h-Rep2_dm6_PCR_duplicates
-Picard	DuplicationMetrics	wt_3LW-Rep2_dm6_trim_q5_sorted	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/PCRdups/wt_3LW-Rep2_dm6_PCR_duplicates
-Picard	DuplicationMetrics	wt_3LW-Rep1_dm6_trim_q5_sorted	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/PCRdups/wt_3LW-Rep1_dm6_PCR_duplicates
-Samtools	flagstat	wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved.flagstat
-Samtools	flagstat	wt_44h-Rep1_dm6_trim	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_44h-Rep1_dm6_trim.flagstat
-Samtools	flagstat	wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved.flagstat
-Samtools	flagstat	wt_3LW-Rep3_dm6_trim	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_3LW-Rep3_dm6_trim.flagstat
-Samtools	flagstat	wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved.flagstat
-Samtools	flagstat	wt_24h-Rep1_dm6_trim_q5	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_24h-Rep1_dm6_trim_q5.flagstat
-Samtools	flagstat	wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved.flagstat
-Samtools	flagstat	wt_3LW-Rep3_dm6_trim_q5	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_3LW-Rep3_dm6_trim_q5.flagstat
-Samtools	flagstat	wt_3LW-Rep2_dm6_trim_q5	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_3LW-Rep2_dm6_trim_q5.flagstat
-Samtools	flagstat	wt_3LW-Rep1_dm6_trim	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_3LW-Rep1_dm6_trim.flagstat
-Samtools	flagstat	wt_24h-Rep2_dm6_trim_q5	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_24h-Rep2_dm6_trim_q5.flagstat
-Samtools	flagstat	wt_6h-Rep1_dm6_trim	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_6h-Rep1_dm6_trim.flagstat
-Samtools	flagstat	wt_44h-Rep2_dm6_trim	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_44h-Rep2_dm6_trim.flagstat
-Samtools	flagstat	wt_44h-Rep3_dm6_trim_q5	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_44h-Rep3_dm6_trim_q5.flagstat
-Samtools	flagstat	wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved.flagstat
-Samtools	flagstat	wt_24h-Rep3_dm6_trim_q5	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_24h-Rep3_dm6_trim_q5.flagstat
-Samtools	flagstat	wt_3LW-Rep2_dm6_trim	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_3LW-Rep2_dm6_trim.flagstat
-Samtools	flagstat	wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved.flagstat
-Samtools	flagstat	wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved.flagstat
-Samtools	flagstat	wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved.flagstat
-Samtools	flagstat	wt_6h-Rep1_dm6_trim_q5	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_6h-Rep1_dm6_trim_q5.flagstat
-Samtools	flagstat	wt_6h-Rep3_dm6_trim	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_6h-Rep3_dm6_trim.flagstat
-Samtools	flagstat	wt_44h-Rep3_dm6_trim	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_44h-Rep3_dm6_trim.flagstat
-Samtools	flagstat	wt_6h-Rep2_dm6_trim_q5	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_6h-Rep2_dm6_trim_q5.flagstat
-Samtools	flagstat	wt_6h-Rep3_dm6_trim_q5	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_6h-Rep3_dm6_trim_q5.flagstat
-Samtools	flagstat	wt_44h-Rep2_dm6_trim_q5	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_44h-Rep2_dm6_trim_q5.flagstat
-Samtools	flagstat	wt_44h-Rep1_dm6_trim_q5	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_44h-Rep1_dm6_trim_q5.flagstat
-Samtools	flagstat	wt_24h-Rep2_dm6_trim	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_24h-Rep2_dm6_trim.flagstat
-Samtools	flagstat	wt_6h-Rep2_dm6_trim	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_6h-Rep2_dm6_trim.flagstat
-Samtools	flagstat	wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved.flagstat
-Samtools	flagstat	wt_24h-Rep1_dm6_trim	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_24h-Rep1_dm6_trim.flagstat
-Samtools	flagstat	wt_6h-Rep3_dm6_trim_q5_sorted_dupsRemoved	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_6h-Rep3_dm6_trim_q5_sorted_dupsRemoved.flagstat
-Samtools	flagstat	wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved.flagstat
-Samtools	flagstat	wt_3LW-Rep1_dm6_trim_q5	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_3LW-Rep1_dm6_trim_q5.flagstat
-Samtools	flagstat	wt_24h-Rep3_dm6_trim	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_24h-Rep3_dm6_trim.flagstat
-Samtools	flagstat	wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved.flagstat
-Bowtie 2	all_sections	wt_44h-Rep3_dm6_trim_se_bowtie2	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_44h-Rep3_dm6_trim_se_bowtie2.txt
-Bowtie 2	all_sections	wt_24h-Rep1_dm6_trim_se_bowtie2	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_24h-Rep1_dm6_trim_se_bowtie2.txt
-Bowtie 2	all_sections	wt_3LW-Rep1_dm6_trim_se_bowtie2	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_3LW-Rep1_dm6_trim_se_bowtie2.txt
-Bowtie 2	all_sections	wt_6h-Rep1_dm6_trim_se_bowtie2	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_6h-Rep1_dm6_trim_se_bowtie2.txt
-Bowtie 2	all_sections	wt_44h-Rep2_dm6_trim_se_bowtie2	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_44h-Rep2_dm6_trim_se_bowtie2.txt
-Bowtie 2	all_sections	wt_3LW-Rep3_dm6_trim_se_bowtie2	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_3LW-Rep3_dm6_trim_se_bowtie2.txt
-Bowtie 2	all_sections	wt_6h-Rep3_dm6_trim_se_bowtie2	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_6h-Rep3_dm6_trim_se_bowtie2.txt
-Bowtie 2	all_sections	wt_3LW-Rep2_dm6_trim_se_bowtie2	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_3LW-Rep2_dm6_trim_se_bowtie2.txt
-Bowtie 2	all_sections	wt_24h-Rep2_dm6_trim_se_bowtie2	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_24h-Rep2_dm6_trim_se_bowtie2.txt
-Bowtie 2	all_sections	wt_44h-Rep1_dm6_trim_se_bowtie2	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_44h-Rep1_dm6_trim_se_bowtie2.txt
-Bowtie 2	all_sections	wt_6h-Rep2_dm6_trim_se_bowtie2	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_6h-Rep2_dm6_trim_se_bowtie2.txt
-Bowtie 2	all_sections	wt_24h-Rep3_dm6_trim_se_bowtie2	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/logs/wt_24h-Rep3_dm6_trim_se_bowtie2.txt
-BBTools	all_sections	wt_44h-Rep2_adapterStats	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/Logs/wt_44h-Rep2_adapterStats
-BBTools	all_sections	wt_24h-Rep1_adapterStats	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/Logs/wt_24h-Rep1_adapterStats
-BBTools	all_sections	wt_44h-Rep3_adapterStats	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/Logs/wt_44h-Rep3_adapterStats
-BBTools	all_sections	wt_6h-Rep3_adapterStats	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/Logs/wt_6h-Rep3_adapterStats
-BBTools	all_sections	wt_3LW-Rep1_adapterStats	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/Logs/wt_3LW-Rep1_adapterStats
-BBTools	all_sections	wt_24h-Rep2_adapterStats	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/Logs/wt_24h-Rep2_adapterStats
-BBTools	all_sections	wt_44h-Rep1_adapterStats	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/Logs/wt_44h-Rep1_adapterStats
-BBTools	all_sections	wt_24h-Rep3_adapterStats	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/Logs/wt_24h-Rep3_adapterStats
-BBTools	all_sections	wt_3LW-Rep2_adapterStats	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/Logs/wt_3LW-Rep2_adapterStats
-BBTools	all_sections	wt_6h-Rep2_adapterStats	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/Logs/wt_6h-Rep2_adapterStats
-BBTools	all_sections	wt_3LW-Rep3_adapterStats	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/Logs/wt_3LW-Rep3_adapterStats
-BBTools	all_sections	wt_6h-Rep1_adapterStats	/pine/scr/m/j/mjn15/wt-FAIRE-dm6/faire-pipeline/Logs/wt_6h-Rep1_adapterStats
+Picard	DuplicationMetrics	wt_18h-Rep4_dm6_trim_q5_sorted	/work/users/m/j/mjn15/faire-pipeline/PCRdups/wt_18h-Rep4_dm6_PCR_duplicates
+Picard	DuplicationMetrics	wt_44h-Rep3_dm6_trim_q5_sorted	/work/users/m/j/mjn15/faire-pipeline/PCRdups/wt_44h-Rep3_dm6_PCR_duplicates
+Picard	DuplicationMetrics	wt_6h-Rep1_dm6_trim_q5_sorted	/work/users/m/j/mjn15/faire-pipeline/PCRdups/wt_6h-Rep1_dm6_PCR_duplicates
+Picard	DuplicationMetrics	wt_6h-Rep2_dm6_trim_q5_sorted	/work/users/m/j/mjn15/faire-pipeline/PCRdups/wt_6h-Rep2_dm6_PCR_duplicates
+Picard	DuplicationMetrics	wt_3LW-Rep3_dm6_trim_q5_sorted	/work/users/m/j/mjn15/faire-pipeline/PCRdups/wt_3LW-Rep3_dm6_PCR_duplicates
+Picard	DuplicationMetrics	wt_24h-Rep1_dm6_trim_q5_sorted	/work/users/m/j/mjn15/faire-pipeline/PCRdups/wt_24h-Rep1_dm6_PCR_duplicates
+Picard	DuplicationMetrics	wt_36h-Rep2_dm6_trim_q5_sorted	/work/users/m/j/mjn15/faire-pipeline/PCRdups/wt_36h-Rep2_dm6_PCR_duplicates
+Picard	DuplicationMetrics	wt_44h-Rep2_dm6_trim_q5_sorted	/work/users/m/j/mjn15/faire-pipeline/PCRdups/wt_44h-Rep2_dm6_PCR_duplicates
+Picard	DuplicationMetrics	wt_44h-Rep1_dm6_trim_q5_sorted	/work/users/m/j/mjn15/faire-pipeline/PCRdups/wt_44h-Rep1_dm6_PCR_duplicates
+Picard	DuplicationMetrics	wt_36h-Rep3_dm6_trim_q5_sorted	/work/users/m/j/mjn15/faire-pipeline/PCRdups/wt_36h-Rep3_dm6_PCR_duplicates
+Picard	DuplicationMetrics	wt_36h-Rep1_dm6_trim_q5_sorted	/work/users/m/j/mjn15/faire-pipeline/PCRdups/wt_36h-Rep1_dm6_PCR_duplicates
+Picard	DuplicationMetrics	wt_18h-Rep1_dm6_trim_q5_sorted	/work/users/m/j/mjn15/faire-pipeline/PCRdups/wt_18h-Rep1_dm6_PCR_duplicates
+Picard	DuplicationMetrics	wt_24h-Rep3_dm6_trim_q5_sorted	/work/users/m/j/mjn15/faire-pipeline/PCRdups/wt_24h-Rep3_dm6_PCR_duplicates
+Picard	DuplicationMetrics	wt_24h-Rep2_dm6_trim_q5_sorted	/work/users/m/j/mjn15/faire-pipeline/PCRdups/wt_24h-Rep2_dm6_PCR_duplicates
+Picard	DuplicationMetrics	wt_3LW-Rep2_dm6_trim_q5_sorted	/work/users/m/j/mjn15/faire-pipeline/PCRdups/wt_3LW-Rep2_dm6_PCR_duplicates
+Picard	DuplicationMetrics	wt_18h-Rep2_dm6_trim_q5_sorted	/work/users/m/j/mjn15/faire-pipeline/PCRdups/wt_18h-Rep2_dm6_PCR_duplicates
+Picard	DuplicationMetrics	wt_18h-Rep3_dm6_trim_q5_sorted	/work/users/m/j/mjn15/faire-pipeline/PCRdups/wt_18h-Rep3_dm6_PCR_duplicates
+Picard	DuplicationMetrics	wt_3LW-Rep1_dm6_trim_q5_sorted	/work/users/m/j/mjn15/faire-pipeline/PCRdups/wt_3LW-Rep1_dm6_PCR_duplicates
+Samtools	flagstat	wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved	/work/users/m/j/mjn15/faire-pipeline/logs/wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved.flagstat
+Samtools	flagstat	wt_36h-Rep1_dm6_trim_q5	/work/users/m/j/mjn15/faire-pipeline/logs/wt_36h-Rep1_dm6_trim_q5.flagstat
+Samtools	flagstat	wt_44h-Rep1_dm6_trim_q5	/work/users/m/j/mjn15/faire-pipeline/logs/wt_44h-Rep1_dm6_trim_q5.flagstat
+Samtools	flagstat	wt_24h-Rep2_dm6_trim_q5	/work/users/m/j/mjn15/faire-pipeline/logs/wt_24h-Rep2_dm6_trim_q5.flagstat
+Samtools	flagstat	wt_3LW-Rep3_dm6_trim	/work/users/m/j/mjn15/faire-pipeline/logs/wt_3LW-Rep3_dm6_trim.flagstat
+Samtools	flagstat	wt_36h-Rep2_dm6_trim_q5	/work/users/m/j/mjn15/faire-pipeline/logs/wt_36h-Rep2_dm6_trim_q5.flagstat
+Samtools	flagstat	wt_24h-Rep1_dm6_trim_q5	/work/users/m/j/mjn15/faire-pipeline/logs/wt_24h-Rep1_dm6_trim_q5.flagstat
+Samtools	flagstat	wt_36h-Rep3_dm6_trim_q5	/work/users/m/j/mjn15/faire-pipeline/logs/wt_36h-Rep3_dm6_trim_q5.flagstat
+Samtools	flagstat	wt_18h-Rep4_dm6_trim	/work/users/m/j/mjn15/faire-pipeline/logs/wt_18h-Rep4_dm6_trim.flagstat
+Samtools	flagstat	wt_3LW-Rep3_dm6_trim_q5	/work/users/m/j/mjn15/faire-pipeline/logs/wt_3LW-Rep3_dm6_trim_q5.flagstat
+Samtools	flagstat	wt_3LW-Rep2_dm6_trim_q5	/work/users/m/j/mjn15/faire-pipeline/logs/wt_3LW-Rep2_dm6_trim_q5.flagstat
+Samtools	flagstat	wt_44h-Rep3_dm6_trim	/work/users/m/j/mjn15/faire-pipeline/logs/wt_44h-Rep3_dm6_trim.flagstat
+Samtools	flagstat	wt_6h-Rep2_dm6_trim_q5	/work/users/m/j/mjn15/faire-pipeline/logs/wt_6h-Rep2_dm6_trim_q5.flagstat
+Samtools	flagstat	wt_36h-Rep3_dm6_trim	/work/users/m/j/mjn15/faire-pipeline/logs/wt_36h-Rep3_dm6_trim.flagstat
+Samtools	flagstat	wt_36h-Rep3_dm6_trim_q5_sorted_dupsRemoved	/work/users/m/j/mjn15/faire-pipeline/logs/wt_36h-Rep3_dm6_trim_q5_sorted_dupsRemoved.flagstat
+Samtools	flagstat	wt_3LW-Rep1_dm6_trim	/work/users/m/j/mjn15/faire-pipeline/logs/wt_3LW-Rep1_dm6_trim.flagstat
+Samtools	flagstat	wt_18h-Rep3_dm6_trim_q5_sorted_dupsRemoved	/work/users/m/j/mjn15/faire-pipeline/logs/wt_18h-Rep3_dm6_trim_q5_sorted_dupsRemoved.flagstat
+Samtools	flagstat	wt_18h-Rep4_dm6_trim_q5	/work/users/m/j/mjn15/faire-pipeline/logs/wt_18h-Rep4_dm6_trim_q5.flagstat
+Samtools	flagstat	wt_6h-Rep1_dm6_trim	/work/users/m/j/mjn15/faire-pipeline/logs/wt_6h-Rep1_dm6_trim.flagstat
+Samtools	flagstat	wt_44h-Rep2_dm6_trim	/work/users/m/j/mjn15/faire-pipeline/logs/wt_44h-Rep2_dm6_trim.flagstat
+Samtools	flagstat	wt_44h-Rep3_dm6_trim_q5	/work/users/m/j/mjn15/faire-pipeline/logs/wt_44h-Rep3_dm6_trim_q5.flagstat
+Samtools	flagstat	wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved	/work/users/m/j/mjn15/faire-pipeline/logs/wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved.flagstat
+Samtools	flagstat	wt_24h-Rep3_dm6_trim_q5	/work/users/m/j/mjn15/faire-pipeline/logs/wt_24h-Rep3_dm6_trim_q5.flagstat
+Samtools	flagstat	wt_3LW-Rep2_dm6_trim	/work/users/m/j/mjn15/faire-pipeline/logs/wt_3LW-Rep2_dm6_trim.flagstat
+Samtools	flagstat	wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved	/work/users/m/j/mjn15/faire-pipeline/logs/wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved.flagstat
+Samtools	flagstat	wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved	/work/users/m/j/mjn15/faire-pipeline/logs/wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved.flagstat
+Samtools	flagstat	wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved	/work/users/m/j/mjn15/faire-pipeline/logs/wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved.flagstat
+Samtools	flagstat	wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved	/work/users/m/j/mjn15/faire-pipeline/logs/wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved.flagstat
+Samtools	flagstat	wt_6h-Rep2_dm6_trim	/work/users/m/j/mjn15/faire-pipeline/logs/wt_6h-Rep2_dm6_trim.flagstat
+Samtools	flagstat	wt_18h-Rep4_dm6_trim_q5_sorted_dupsRemoved	/work/users/m/j/mjn15/faire-pipeline/logs/wt_18h-Rep4_dm6_trim_q5_sorted_dupsRemoved.flagstat
+Samtools	flagstat	wt_18h-Rep2_dm6_trim_q5	/work/users/m/j/mjn15/faire-pipeline/logs/wt_18h-Rep2_dm6_trim_q5.flagstat
+Samtools	flagstat	wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved	/work/users/m/j/mjn15/faire-pipeline/logs/wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved.flagstat
+Samtools	flagstat	wt_36h-Rep2_dm6_trim	/work/users/m/j/mjn15/faire-pipeline/logs/wt_36h-Rep2_dm6_trim.flagstat
+Samtools	flagstat	wt_36h-Rep1_dm6_trim	/work/users/m/j/mjn15/faire-pipeline/logs/wt_36h-Rep1_dm6_trim.flagstat
+Samtools	flagstat	wt_18h-Rep3_dm6_trim	/work/users/m/j/mjn15/faire-pipeline/logs/wt_18h-Rep3_dm6_trim.flagstat
+Samtools	flagstat	wt_44h-Rep2_dm6_trim_q5	/work/users/m/j/mjn15/faire-pipeline/logs/wt_44h-Rep2_dm6_trim_q5.flagstat
+Samtools	flagstat	wt_18h-Rep2_dm6_trim_q5_sorted_dupsRemoved	/work/users/m/j/mjn15/faire-pipeline/logs/wt_18h-Rep2_dm6_trim_q5_sorted_dupsRemoved.flagstat
+Samtools	flagstat	wt_24h-Rep2_dm6_trim	/work/users/m/j/mjn15/faire-pipeline/logs/wt_24h-Rep2_dm6_trim.flagstat
+Samtools	flagstat	wt_18h-Rep1_dm6_trim_q5	/work/users/m/j/mjn15/faire-pipeline/logs/wt_18h-Rep1_dm6_trim_q5.flagstat
+Samtools	flagstat	wt_36h-Rep2_dm6_trim_q5_sorted_dupsRemoved	/work/users/m/j/mjn15/faire-pipeline/logs/wt_36h-Rep2_dm6_trim_q5_sorted_dupsRemoved.flagstat
+Samtools	flagstat	wt_44h-Rep1_dm6_trim	/work/users/m/j/mjn15/faire-pipeline/logs/wt_44h-Rep1_dm6_trim.flagstat
+Samtools	flagstat	wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved	/work/users/m/j/mjn15/faire-pipeline/logs/wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved.flagstat
+Samtools	flagstat	wt_18h-Rep3_dm6_trim_q5	/work/users/m/j/mjn15/faire-pipeline/logs/wt_18h-Rep3_dm6_trim_q5.flagstat
+Samtools	flagstat	wt_18h-Rep1_dm6_trim_q5_sorted_dupsRemoved	/work/users/m/j/mjn15/faire-pipeline/logs/wt_18h-Rep1_dm6_trim_q5_sorted_dupsRemoved.flagstat
+Samtools	flagstat	wt_24h-Rep1_dm6_trim	/work/users/m/j/mjn15/faire-pipeline/logs/wt_24h-Rep1_dm6_trim.flagstat
+Samtools	flagstat	wt_36h-Rep1_dm6_trim_q5_sorted_dupsRemoved	/work/users/m/j/mjn15/faire-pipeline/logs/wt_36h-Rep1_dm6_trim_q5_sorted_dupsRemoved.flagstat
+Samtools	flagstat	wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved	/work/users/m/j/mjn15/faire-pipeline/logs/wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved.flagstat
+Samtools	flagstat	wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved	/work/users/m/j/mjn15/faire-pipeline/logs/wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved.flagstat
+Samtools	flagstat	wt_18h-Rep2_dm6_trim	/work/users/m/j/mjn15/faire-pipeline/logs/wt_18h-Rep2_dm6_trim.flagstat
+Samtools	flagstat	wt_18h-Rep1_dm6_trim	/work/users/m/j/mjn15/faire-pipeline/logs/wt_18h-Rep1_dm6_trim.flagstat
+Samtools	flagstat	wt_3LW-Rep1_dm6_trim_q5	/work/users/m/j/mjn15/faire-pipeline/logs/wt_3LW-Rep1_dm6_trim_q5.flagstat
+Samtools	flagstat	wt_24h-Rep3_dm6_trim	/work/users/m/j/mjn15/faire-pipeline/logs/wt_24h-Rep3_dm6_trim.flagstat
+Samtools	flagstat	wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved	/work/users/m/j/mjn15/faire-pipeline/logs/wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved.flagstat
+Samtools	flagstat	wt_6h-Rep1_dm6_trim_q5	/work/users/m/j/mjn15/faire-pipeline/logs/wt_6h-Rep1_dm6_trim_q5.flagstat
+Bowtie 2	all_sections	wt_44h-Rep3_dm6_trim_se_bowtie2	/work/users/m/j/mjn15/faire-pipeline/logs/wt_44h-Rep3_dm6_trim_se_bowtie2.txt
+Bowtie 2	all_sections	wt_6h-Rep2_dm6_trim_se_bowtie2	/work/users/m/j/mjn15/faire-pipeline/logs/wt_6h-Rep2_dm6_trim_se_bowtie2.txt
+Bowtie 2	all_sections	wt_36h-Rep3_dm6_trim_se_bowtie2	/work/users/m/j/mjn15/faire-pipeline/logs/wt_36h-Rep3_dm6_trim_se_bowtie2.txt
+Bowtie 2	all_sections	wt_24h-Rep1_dm6_trim_se_bowtie2	/work/users/m/j/mjn15/faire-pipeline/logs/wt_24h-Rep1_dm6_trim_se_bowtie2.txt
+Bowtie 2	all_sections	wt_3LW-Rep1_dm6_trim_se_bowtie2	/work/users/m/j/mjn15/faire-pipeline/logs/wt_3LW-Rep1_dm6_trim_se_bowtie2.txt
+Bowtie 2	all_sections	wt_6h-Rep1_dm6_trim_se_bowtie2	/work/users/m/j/mjn15/faire-pipeline/logs/wt_6h-Rep1_dm6_trim_se_bowtie2.txt
+Bowtie 2	all_sections	wt_44h-Rep2_dm6_trim_se_bowtie2	/work/users/m/j/mjn15/faire-pipeline/logs/wt_44h-Rep2_dm6_trim_se_bowtie2.txt
+Bowtie 2	all_sections	wt_18h-Rep2_dm6_trim_se_bowtie2	/work/users/m/j/mjn15/faire-pipeline/logs/wt_18h-Rep2_dm6_trim_se_bowtie2.txt
+Bowtie 2	all_sections	wt_36h-Rep1_dm6_trim_se_bowtie2	/work/users/m/j/mjn15/faire-pipeline/logs/wt_36h-Rep1_dm6_trim_se_bowtie2.txt
+Bowtie 2	all_sections	wt_3LW-Rep3_dm6_trim_se_bowtie2	/work/users/m/j/mjn15/faire-pipeline/logs/wt_3LW-Rep3_dm6_trim_se_bowtie2.txt
+Bowtie 2	all_sections	wt_18h-Rep3_dm6_trim_se_bowtie2	/work/users/m/j/mjn15/faire-pipeline/logs/wt_18h-Rep3_dm6_trim_se_bowtie2.txt
+Bowtie 2	all_sections	wt_3LW-Rep2_dm6_trim_se_bowtie2	/work/users/m/j/mjn15/faire-pipeline/logs/wt_3LW-Rep2_dm6_trim_se_bowtie2.txt
+Bowtie 2	all_sections	wt_24h-Rep2_dm6_trim_se_bowtie2	/work/users/m/j/mjn15/faire-pipeline/logs/wt_24h-Rep2_dm6_trim_se_bowtie2.txt
+Bowtie 2	all_sections	wt_44h-Rep1_dm6_trim_se_bowtie2	/work/users/m/j/mjn15/faire-pipeline/logs/wt_44h-Rep1_dm6_trim_se_bowtie2.txt
+Bowtie 2	all_sections	wt_18h-Rep1_dm6_trim_se_bowtie2	/work/users/m/j/mjn15/faire-pipeline/logs/wt_18h-Rep1_dm6_trim_se_bowtie2.txt
+Bowtie 2	all_sections	wt_36h-Rep2_dm6_trim_se_bowtie2	/work/users/m/j/mjn15/faire-pipeline/logs/wt_36h-Rep2_dm6_trim_se_bowtie2.txt
+Bowtie 2	all_sections	wt_18h-Rep4_dm6_trim_se_bowtie2	/work/users/m/j/mjn15/faire-pipeline/logs/wt_18h-Rep4_dm6_trim_se_bowtie2.txt
+Bowtie 2	all_sections	wt_24h-Rep3_dm6_trim_se_bowtie2	/work/users/m/j/mjn15/faire-pipeline/logs/wt_24h-Rep3_dm6_trim_se_bowtie2.txt
+BBTools	all_sections	wt_36h-Rep1_adapterStats	/work/users/m/j/mjn15/faire-pipeline/Logs/wt_36h-Rep1_adapterStats
+BBTools	all_sections	wt_44h-Rep3_adapterStats	/work/users/m/j/mjn15/faire-pipeline/Logs/wt_44h-Rep3_adapterStats
+BBTools	all_sections	wt_24h-Rep1_adapterStats	/work/users/m/j/mjn15/faire-pipeline/Logs/wt_24h-Rep1_adapterStats
+BBTools	all_sections	wt_44h-Rep2_adapterStats	/work/users/m/j/mjn15/faire-pipeline/Logs/wt_44h-Rep2_adapterStats
+BBTools	all_sections	wt_3LW-Rep1_adapterStats	/work/users/m/j/mjn15/faire-pipeline/Logs/wt_3LW-Rep1_adapterStats
+BBTools	all_sections	wt_18h-Rep1_adapterStats	/work/users/m/j/mjn15/faire-pipeline/Logs/wt_18h-Rep1_adapterStats
+BBTools	all_sections	wt_18h-Rep4_adapterStats	/work/users/m/j/mjn15/faire-pipeline/Logs/wt_18h-Rep4_adapterStats
+BBTools	all_sections	wt_24h-Rep2_adapterStats	/work/users/m/j/mjn15/faire-pipeline/Logs/wt_24h-Rep2_adapterStats
+BBTools	all_sections	wt_18h-Rep2_adapterStats	/work/users/m/j/mjn15/faire-pipeline/Logs/wt_18h-Rep2_adapterStats
+BBTools	all_sections	wt_44h-Rep1_adapterStats	/work/users/m/j/mjn15/faire-pipeline/Logs/wt_44h-Rep1_adapterStats
+BBTools	all_sections	wt_24h-Rep3_adapterStats	/work/users/m/j/mjn15/faire-pipeline/Logs/wt_24h-Rep3_adapterStats
+BBTools	all_sections	wt_36h-Rep3_adapterStats	/work/users/m/j/mjn15/faire-pipeline/Logs/wt_36h-Rep3_adapterStats
+BBTools	all_sections	wt_3LW-Rep2_adapterStats	/work/users/m/j/mjn15/faire-pipeline/Logs/wt_3LW-Rep2_adapterStats
+BBTools	all_sections	wt_36h-Rep2_adapterStats	/work/users/m/j/mjn15/faire-pipeline/Logs/wt_36h-Rep2_adapterStats
+BBTools	all_sections	wt_18h-Rep3_adapterStats	/work/users/m/j/mjn15/faire-pipeline/Logs/wt_18h-Rep3_adapterStats
+BBTools	all_sections	wt_6h-Rep2_adapterStats	/work/users/m/j/mjn15/faire-pipeline/Logs/wt_6h-Rep2_adapterStats
+BBTools	all_sections	wt_3LW-Rep3_adapterStats	/work/users/m/j/mjn15/faire-pipeline/Logs/wt_3LW-Rep3_adapterStats
+BBTools	all_sections	wt_6h-Rep1_adapterStats	/work/users/m/j/mjn15/faire-pipeline/Logs/wt_6h-Rep1_adapterStats

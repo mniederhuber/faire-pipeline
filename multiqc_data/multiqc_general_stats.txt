@@ -1,8 +1,28 @@
 Sample	Samtools Flagstat_mqc-generalstats-samtools_flagstat-mapped_passed	Picard_mqc-generalstats-picard-PERCENT_DUPLICATION	MACS2_mqc-generalstats-macs2-treatment_redundant_rate	MACS2_mqc-generalstats-macs2-d	MACS2_mqc-generalstats-macs2-control_redundant_rate	Bowtie 2_mqc-generalstats-bowtie_2-overall_alignment_rate
+wt_18h-Rep1_dm6_trim	4016023					
+wt_18h-Rep1_dm6_trim_q5	3523598					
+wt_18h-Rep1_dm6_trim_q5_sorted		0.081928				
+wt_18h-Rep1_dm6_trim_q5_sorted_dupsRemoved	3234918		0.0	125.0	0.0	
+wt_18h-Rep1_dm6_trim_se_bowtie2						36.33
+wt_18h-Rep2_dm6_trim	784529					
+wt_18h-Rep2_dm6_trim_q5	715127					
+wt_18h-Rep2_dm6_trim_q5_sorted		0.038555				
+wt_18h-Rep2_dm6_trim_q5_sorted_dupsRemoved	687555		0.0	125.0	0.0	
+wt_18h-Rep2_dm6_trim_se_bowtie2						9.27
+wt_18h-Rep3_dm6_trim	7379145					
+wt_18h-Rep3_dm6_trim_q5	6206943					
+wt_18h-Rep3_dm6_trim_q5_sorted		0.17454				
+wt_18h-Rep3_dm6_trim_q5_sorted_dupsRemoved	5123582		0.0	125.0	0.0	
+wt_18h-Rep3_dm6_trim_se_bowtie2						88.02
+wt_18h-Rep4_dm6_trim	9303513					
+wt_18h-Rep4_dm6_trim_q5	7542630					
+wt_18h-Rep4_dm6_trim_q5_sorted		0.160388				
+wt_18h-Rep4_dm6_trim_q5_sorted_dupsRemoved	6332884					
+wt_18h-Rep4_dm6_trim_se_bowtie2						89.25
 wt_24h-Rep1_dm6_trim	6966973					
 wt_24h-Rep1_dm6_trim_q5	6373406					
 wt_24h-Rep1_dm6_trim_q5_sorted		0.100538				
-wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved	5732635		0.0	125.0	0.0	
+wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved	5732635					
 wt_24h-Rep1_dm6_trim_se_bowtie2						93.38
 wt_24h-Rep2_dm6_trim	10116367					
 wt_24h-Rep2_dm6_trim_q5	9364286					
@@ -12,51 +32,60 @@ wt_24h-Rep2_dm6_trim_se_bowtie2						93.83
 wt_24h-Rep3_dm6_trim	7766573					
 wt_24h-Rep3_dm6_trim_q5	7164934					
 wt_24h-Rep3_dm6_trim_q5_sorted		0.146872				
-wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved	6112607		0.0	125.0	0.0	
+wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved	6112607					
 wt_24h-Rep3_dm6_trim_se_bowtie2						93.74
-wt_3LW-Rep1_dm6_trim	3714764					
-wt_3LW-Rep1_dm6_trim_q5	3288337					
-wt_3LW-Rep1_dm6_trim_q5_sorted		0.056598				
-wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved	3102225		0.0	125.0	0.0	
-wt_3LW-Rep1_dm6_trim_se_bowtie2						38.67
-wt_3LW-Rep2_dm6_trim	2108376					
-wt_3LW-Rep2_dm6_trim_q5	1826897					
-wt_3LW-Rep2_dm6_trim_q5_sorted		0.038338				
-wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved	1756857		0.0	125.0	0.0	
-wt_3LW-Rep2_dm6_trim_se_bowtie2						22.4
-wt_3LW-Rep3_dm6_trim	7403418					
-wt_3LW-Rep3_dm6_trim_q5	6128307					
-wt_3LW-Rep3_dm6_trim_q5_sorted		0.097555				
-wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved	5530457					
-wt_3LW-Rep3_dm6_trim_se_bowtie2						72.36
-wt_44h-Rep1_dm6_trim	1716622					
-wt_44h-Rep1_dm6_trim_q5	1574226					
-wt_44h-Rep1_dm6_trim_q5_sorted		0.047093				
-wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved	1500091		0.0	125.0	0.0	
-wt_44h-Rep1_dm6_trim_se_bowtie2						66.37
-wt_44h-Rep2_dm6_trim	2807244					
-wt_44h-Rep2_dm6_trim_q5	2575318					
-wt_44h-Rep2_dm6_trim_q5_sorted		0.058432				
-wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved	2424838		0.0	125.0	0.0	
-wt_44h-Rep2_dm6_trim_se_bowtie2						94.44
-wt_44h-Rep3_dm6_trim	2633133					
-wt_44h-Rep3_dm6_trim_q5	2403161					
-wt_44h-Rep3_dm6_trim_q5_sorted		0.055482				
-wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved	2269829		0.0	125.0	0.0	
-wt_44h-Rep3_dm6_trim_se_bowtie2						93.25
-wt_44h_dm6_trim_q5_sorted_dupsRemoved_POOLED			0.05	125.0	0.0	
-wt_6h-Rep1_dm6_trim	1760606					
-wt_6h-Rep1_dm6_trim_q5	1620914					
-wt_6h-Rep1_dm6_trim_q5_sorted		0.088657				
-wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved	1477209		0.0	125.0	0.0	
-wt_6h-Rep1_dm6_trim_se_bowtie2						17.58
-wt_6h-Rep2_dm6_trim	783735					
-wt_6h-Rep2_dm6_trim_q5	717300					
-wt_6h-Rep2_dm6_trim_q5_sorted		0.048082				
-wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved	682811		0.0	125.0	0.0	
-wt_6h-Rep2_dm6_trim_se_bowtie2						7.68
-wt_6h-Rep3_dm6_trim	7529635					
-wt_6h-Rep3_dm6_trim_q5	6752204					
-wt_6h-Rep3_dm6_trim_q5_sorted		0.245436				
-wt_6h-Rep3_dm6_trim_q5_sorted_dupsRemoved	5094970		0.0	125.0	0.0	
-wt_6h-Rep3_dm6_trim_se_bowtie2						93.78
+wt_36h-Rep1_dm6_trim	6550118					
+wt_36h-Rep1_dm6_trim_q5	5918750					
+wt_36h-Rep1_dm6_trim_q5_sorted		0.06549				
+wt_36h-Rep1_dm6_trim_q5_sorted_dupsRemoved	5531133					
+wt_36h-Rep1_dm6_trim_se_bowtie2						90.99
+wt_36h-Rep2_dm6_trim	5796966					
+wt_36h-Rep2_dm6_trim_q5	5474933					
+wt_36h-Rep2_dm6_trim_q5_sorted		0.116881				
+wt_36h-Rep2_dm6_trim_q5_sorted_dupsRemoved	4835017					
+wt_36h-Rep2_dm6_trim_se_bowtie2						75.45
+wt_36h-Rep3_dm6_trim	8418658					
+wt_36h-Rep3_dm6_trim_q5	7814304					
+wt_36h-Rep3_dm6_trim_q5_sorted		0.116075				
+wt_36h-Rep3_dm6_trim_q5_sorted_dupsRemoved	6907260					
+wt_36h-Rep3_dm6_trim_se_bowtie2						81.97
+wt_3LW-Rep1_dm6_trim	8369032					
+wt_3LW-Rep1_dm6_trim_q5	6909743					
+wt_3LW-Rep1_dm6_trim_q5_sorted		0.106508				
+wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved	6173802					
+wt_3LW-Rep1_dm6_trim_se_bowtie2						67.4
+wt_3LW-Rep2_dm6_trim	10431754					
+wt_3LW-Rep2_dm6_trim_q5	8916757					
+wt_3LW-Rep2_dm6_trim_q5_sorted		0.087009				
+wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved	8140920					
+wt_3LW-Rep2_dm6_trim_se_bowtie2						83.15
+wt_3LW-Rep3_dm6_trim	7983084					
+wt_3LW-Rep3_dm6_trim_q5	6603781					
+wt_3LW-Rep3_dm6_trim_q5_sorted		0.101464				
+wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved	5933732					
+wt_3LW-Rep3_dm6_trim_se_bowtie2						72.72
+wt_44h-Rep1_dm6_trim	4681767					
+wt_44h-Rep1_dm6_trim_q5	4329656					
+wt_44h-Rep1_dm6_trim_q5_sorted		0.084526				
+wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved	3963689		0.0	125.0	0.0	
+wt_44h-Rep1_dm6_trim_se_bowtie2						62.67
+wt_44h-Rep2_dm6_trim	7351226					
+wt_44h-Rep2_dm6_trim_q5	6792748					
+wt_44h-Rep2_dm6_trim_q5_sorted		0.111639				
+wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved	6034410					
+wt_44h-Rep2_dm6_trim_se_bowtie2						94.33
+wt_44h-Rep3_dm6_trim	7875224					
+wt_44h-Rep3_dm6_trim_q5	7248872					
+wt_44h-Rep3_dm6_trim_q5_sorted		0.114721				
+wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved	6417276					
+wt_44h-Rep3_dm6_trim_se_bowtie2						92.84
+wt_6h-Rep1_dm6_trim	5817014					
+wt_6h-Rep1_dm6_trim_q5	4728010					
+wt_6h-Rep1_dm6_trim_q5_sorted		0.116884				
+wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved	4175379		0.0	125.0	0.0	
+wt_6h-Rep1_dm6_trim_se_bowtie2						84.18
+wt_6h-Rep2_dm6_trim	9809888					
+wt_6h-Rep2_dm6_trim_q5	7954946					
+wt_6h-Rep2_dm6_trim_q5_sorted		0.066623				
+wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved	7424963					
+wt_6h-Rep2_dm6_trim_se_bowtie2						87.74

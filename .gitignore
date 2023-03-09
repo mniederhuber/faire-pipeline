@@ -5,8 +5,13 @@ slurmSub.sh
 /__pycache__/
 sampleSheet.tsv
 Fastq/
+Bam/
+BigWig/
 Sam/
 Logs/
 logs/
 slurmOut/*
 nohup.out/*
+Bed/
+PCRdups/
+Peaks/
