@@ -1,0 +1,3324 @@
+slurmSubmission.sh: line 11: snakemake: command not found
+SyntaxError in line 193 of /work/users/m/j/mjn15/faire-pipeline/Snakefile:
+invalid syntax
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 100
+Job counts:
+	count	jobs
+	6	CallPooledPeaks
+	18	CallRepPeaks
+	18	align_se
+	1	all
+	18	bamSort
+	18	bamToBed
+	18	bigWig
+	18	combine_technical_reps
+	6	mergeBams
+	6	mergeBamtoBed
+	6	mergeBigWig
+	6	mergeZNormBigWig
+	18	qFilter
+	1	qcReport
+	18	removeDups
+	18	sam2bam
+	18	trim_adapter
+	18	zNormBigWig
+	230
+
+[Wed Mar  8 21:16:44 2023]
+rule combine_technical_reps:
+    input: /proj/mckaylab/HTSF/160916_UNC18-D00493_0349_BC8BE7ANXX/DJM89_4-OR-6hAPF-Wing-FAIRE-Rep1_TGACCA_L005_R1_001.fastq.gz
+    output: Fastq/wt_6h-Rep1_R1.fastq.gz
+    jobid: 138
+    wildcards: sample=wt_6h-Rep1
+
+Submitted job 138 with external jobid 'Submitted batch job 2088577'.
+
+[Wed Mar  8 21:16:44 2023]
+rule combine_technical_reps:
+    input: /proj/mckaylab/HTSF/150902_UNC13-SN749_0496_AH5LJGBCXX/DJM83_14-24hAPFrep2FAIRE_ATCACG_L002_R1_001.fastq.gz
+    output: Fastq/wt_24h-Rep2_R1.fastq.gz
+    jobid: 150
+    wildcards: sample=wt_24h-Rep2
+
+Submitted job 150 with external jobid 'Submitted batch job 2088578'.
+
+[Wed Mar  8 21:16:44 2023]
+rule combine_technical_reps:
+    input: /proj/mckaylab/HTSF/150902_UNC13-SN749_0496_AH5LJGBCXX/DJM83_13-24hAPFrep1FAIRE_TAGCTT_L002_R1_001.fastq.gz
+    output: Fastq/wt_24h-Rep1_R1.fastq.gz
+    jobid: 124
+    wildcards: sample=wt_24h-Rep1
+
+Submitted job 124 with external jobid 'Submitted batch job 2088579'.
+
+[Wed Mar  8 21:16:44 2023]
+rule combine_technical_reps:
+    input: /proj/mckaylab/HTSF/150902_UNC13-SN749_0496_AH5LJGBCXX/DJM83_16-36hAPFrep1FAIRE_GGCTAC_L002_R1_001.fastq.gz
+    output: Fastq/wt_36h-Rep1_R1.fastq.gz
+    jobid: 116
+    wildcards: sample=wt_36h-Rep1
+
+Submitted job 116 with external jobid 'Submitted batch job 2088580'.
+
+[Wed Mar  8 21:16:44 2023]
+rule combine_technical_reps:
+    input: /proj/mckaylab/HTSF/150902_UNC13-SN749_0496_AH5LJGBCXX/DJM83_20-44hAPFrep2FAIRE_ACAGTG_L002_R1_001.fastq.gz
+    output: Fastq/wt_44h-Rep2_R1.fastq.gz
+    jobid: 151
+    wildcards: sample=wt_44h-Rep2
+
+Submitted job 151 with external jobid 'Submitted batch job 2088581'.
+
+[Wed Mar  8 21:16:44 2023]
+rule combine_technical_reps:
+    input: /proj/mckaylab/HTSF/160824_UNC18-D00493_0344_AC8C0YANXX/DJM91_1-OR-3LW-Wing-FAIRE-Rep2_CGATGT_L007_R1_001.fastq.gz
+    output: Fastq/wt_3LW-Rep2_R1.fastq.gz
+    jobid: 164
+    wildcards: sample=wt_3LW-Rep2
+
+Submitted job 164 with external jobid 'Submitted batch job 2088582'.
+
+[Wed Mar  8 21:16:44 2023]
+rule combine_technical_reps:
+    input: /proj/mckaylab/HTSF/150902_UNC13-SN749_0496_AH5LJGBCXX/DJM83_15-24hAPFrep3FAIRE_CGATGT_L002_R1_001.fastq.gz
+    output: Fastq/wt_24h-Rep3_R1.fastq.gz
+    jobid: 117
+    wildcards: sample=wt_24h-Rep3
+
+Submitted job 117 with external jobid 'Submitted batch job 2088583'.
+
+[Wed Mar  8 21:16:44 2023]
+rule combine_technical_reps:
+    input: /proj/mckaylab/HTSF/150902_UNC13-SN749_0496_AH5LJGBCXX/DJM83_18-36hAPFrep3FAIRE_TGACCA_L002_R1_001.fastq.gz
+    output: Fastq/wt_36h-Rep3_R1.fastq.gz
+    jobid: 133
+    wildcards: sample=wt_36h-Rep3
+
+Submitted job 133 with external jobid 'Submitted batch job 2088584'.
+
+[Wed Mar  8 21:16:44 2023]
+rule combine_technical_reps:
+    input: /proj/mckaylab/HTSF/160330_UNC18-D00493_0313_AHK52KBCXX/DJM87_6-wt-18hAPF-Rep2_GTGGT_L001_R1_001.fastq.gz
+    output: Fastq/wt_18h-Rep2_R1.fastq.gz
+    jobid: 131
+    wildcards: sample=wt_18h-Rep2
+
+Submitted job 131 with external jobid 'Submitted batch job 2088585'.
+
+[Wed Mar  8 21:16:44 2023]
+rule combine_technical_reps:
+    input: /proj/mckaylab/HTSF/150902_UNC13-SN749_0496_AH5LJGBCXX/DJM83_17-36hAPFrep2FAIRE_TTAGGC_L002_R1_001.fastq.gz
+    output: Fastq/wt_36h-Rep2_R1.fastq.gz
+    jobid: 132
+    wildcards: sample=wt_36h-Rep2
+
+Submitted job 132 with external jobid 'Submitted batch job 2088586'.
+
+[Wed Mar  8 21:16:45 2023]
+rule combine_technical_reps:
+    input: /proj/mckaylab/HTSF/160824_UNC18-D00493_0344_AC8C0YANXX/DJM91_6-wt-18hAPF-Rep4_GCCAAT_L007_R1_001.fastq.gz
+    output: Fastq/wt_18h-Rep4_R1.fastq.gz
+    jobid: 152
+    wildcards: sample=wt_18h-Rep4
+
+Submitted job 152 with external jobid 'Submitted batch job 2088587'.
+
+[Wed Mar  8 21:16:45 2023]
+rule combine_technical_reps:
+    input: /proj/mckaylab/HTSF/160824_UNC18-D00493_0344_AC8C0YANXX/DJM91_2-OR-6hAPF-Wing-FAIRE-Rep2_TGACCA_L007_R1_001.fastq.gz
+    output: Fastq/wt_6h-Rep2_R1.fastq.gz
+    jobid: 172
+    wildcards: sample=wt_6h-Rep2
+
+Submitted job 172 with external jobid 'Submitted batch job 2088588'.
+
+[Wed Mar  8 21:16:45 2023]
+rule combine_technical_reps:
+    input: /proj/mckaylab/HTSF/160330_UNC18-D00493_0313_AHK52KBCXX/DJM87_3-wt-18hAPF-Rep1_AGTGA_L001_R1_001.fastq.gz
+    output: Fastq/wt_18h-Rep1_R1.fastq.gz
+    jobid: 162
+    wildcards: sample=wt_18h-Rep1
+
+Submitted job 162 with external jobid 'Submitted batch job 2088589'.
+
+[Wed Mar  8 21:16:45 2023]
+rule combine_technical_reps:
+    input: /proj/mckaylab/HTSF/160916_UNC18-D00493_0349_BC8BE7ANXX/DJM89_11-18hAPF-wing-FAIRE-Rep3_GGCTAC_L005_R1_001.fastq.gz
+    output: Fastq/wt_18h-Rep3_R1.fastq.gz
+    jobid: 136
+    wildcards: sample=wt_18h-Rep3
+
+Submitted job 136 with external jobid 'Submitted batch job 2088590'.
+
+[Wed Mar  8 21:16:45 2023]
+rule combine_technical_reps:
+    input: /proj/mckaylab/HTSF/160719_UNC17-D00216_0402_BC8BVHANXX/DJM89_2-OR-3LW-Wing-FAIRE-Rep1_CGATGT_L003_R1_001.fastq.gz
+    output: Fastq/wt_3LW-Rep1_R1.fastq.gz
+    jobid: 163
+    wildcards: sample=wt_3LW-Rep1
+
+Submitted job 163 with external jobid 'Submitted batch job 2088591'.
+
+[Wed Mar  8 21:16:45 2023]
+rule combine_technical_reps:
+    input: /proj/mckaylab/HTSF/160916_UNC18-D00493_0349_BC8BE7ANXX/DJM89_9-3LW-wing-FAIRE-Rep3_GATCAG_L005_R1_001.fastq.gz
+    output: Fastq/wt_3LW-Rep3_R1.fastq.gz
+    jobid: 167
+    wildcards: sample=wt_3LW-Rep3
+
+Submitted job 167 with external jobid 'Submitted batch job 2088592'.
+
+[Wed Mar  8 21:16:45 2023]
+rule combine_technical_reps:
+    input: /proj/mckaylab/HTSF/150902_UNC13-SN749_0496_AH5LJGBCXX/DJM83_19-44hAPFrep1FAIRE_CTTGTA_L002_R1_001.fastq.gz
+    output: Fastq/wt_44h-Rep1_R1.fastq.gz
+    jobid: 173
+    wildcards: sample=wt_44h-Rep1
+
+Submitted job 173 with external jobid 'Submitted batch job 2088593'.
+
+[Wed Mar  8 21:16:45 2023]
+rule combine_technical_reps:
+    input: /proj/mckaylab/HTSF/150902_UNC13-SN749_0496_AH5LJGBCXX/DJM83_21-44hAPFrep3FAIRE_GCCAAT_L002_R1_001.fastq.gz
+    output: Fastq/wt_44h-Rep3_R1.fastq.gz
+    jobid: 175
+    wildcards: sample=wt_44h-Rep3
+
+Submitted job 175 with external jobid 'Submitted batch job 2088594'.
+[Wed Mar  8 21:17:16 2023]
+Finished job 138.
+1 of 230 steps (0.43%) done
+
+[Wed Mar  8 21:17:16 2023]
+rule trim_adapter:
+    input: Fastq/wt_6h-Rep1_R1.fastq.gz
+    output: Fastq/wt_6h-Rep1_R1_trim.fastq.gz
+    log: Logs/wt_6h-Rep1_trimStats, Logs/wt_6h-Rep1_adapterStats
+    jobid: 45
+    wildcards: sample=wt_6h-Rep1
+
+[Wed Mar  8 21:17:16 2023]
+Finished job 150.
+2 of 230 steps (0.87%) done
+[Wed Mar  8 21:17:16 2023]
+Finished job 124.
+3 of 230 steps (1%) done
+[Wed Mar  8 21:17:16 2023]
+Finished job 116.
+4 of 230 steps (2%) done
+[Wed Mar  8 21:17:16 2023]
+Finished job 151.
+5 of 230 steps (2%) done
+[Wed Mar  8 21:17:16 2023]
+Finished job 164.
+6 of 230 steps (3%) done
+[Wed Mar  8 21:17:16 2023]
+Finished job 117.
+7 of 230 steps (3%) done
+Submitted job 45 with external jobid 'Submitted batch job 2088611'.
+
+[Wed Mar  8 21:17:19 2023]
+rule trim_adapter:
+    input: Fastq/wt_24h-Rep2_R1.fastq.gz
+    output: Fastq/wt_24h-Rep2_R1_trim.fastq.gz
+    log: Logs/wt_24h-Rep2_trimStats, Logs/wt_24h-Rep2_adapterStats
+    jobid: 65
+    wildcards: sample=wt_24h-Rep2
+
+Submitted job 65 with external jobid 'Submitted batch job 2088615'.
+
+[Wed Mar  8 21:17:19 2023]
+rule trim_adapter:
+    input: Fastq/wt_24h-Rep1_R1.fastq.gz
+    output: Fastq/wt_24h-Rep1_R1_trim.fastq.gz
+    log: Logs/wt_24h-Rep1_trimStats, Logs/wt_24h-Rep1_adapterStats
+    jobid: 17
+    wildcards: sample=wt_24h-Rep1
+
+Submitted job 17 with external jobid 'Submitted batch job 2088618'.
+
+[Wed Mar  8 21:17:19 2023]
+rule trim_adapter:
+    input: Fastq/wt_36h-Rep1_R1.fastq.gz
+    output: Fastq/wt_36h-Rep1_R1_trim.fastq.gz
+    log: Logs/wt_36h-Rep1_trimStats, Logs/wt_36h-Rep1_adapterStats
+    jobid: 2
+    wildcards: sample=wt_36h-Rep1
+
+Submitted job 2 with external jobid 'Submitted batch job 2088619'.
+
+[Wed Mar  8 21:17:19 2023]
+rule trim_adapter:
+    input: Fastq/wt_44h-Rep2_R1.fastq.gz
+    output: Fastq/wt_44h-Rep2_R1_trim.fastq.gz
+    log: Logs/wt_44h-Rep2_trimStats, Logs/wt_44h-Rep2_adapterStats
+    jobid: 66
+    wildcards: sample=wt_44h-Rep2
+
+Submitted job 66 with external jobid 'Submitted batch job 2088620'.
+
+[Wed Mar  8 21:17:19 2023]
+rule trim_adapter:
+    input: Fastq/wt_3LW-Rep2_R1.fastq.gz
+    output: Fastq/wt_3LW-Rep2_R1_trim.fastq.gz
+    log: Logs/wt_3LW-Rep2_trimStats, Logs/wt_3LW-Rep2_adapterStats
+    jobid: 90
+    wildcards: sample=wt_3LW-Rep2
+
+Submitted job 90 with external jobid 'Submitted batch job 2088621'.
+
+[Wed Mar  8 21:17:19 2023]
+rule trim_adapter:
+    input: Fastq/wt_24h-Rep3_R1.fastq.gz
+    output: Fastq/wt_24h-Rep3_R1_trim.fastq.gz
+    log: Logs/wt_24h-Rep3_trimStats, Logs/wt_24h-Rep3_adapterStats
+    jobid: 4
+    wildcards: sample=wt_24h-Rep3
+
+Submitted job 4 with external jobid 'Submitted batch job 2088622'.
+[Wed Mar  8 21:18:55 2023]
+Finished job 133.
+8 of 230 steps (3%) done
+
+[Wed Mar  8 21:18:55 2023]
+rule trim_adapter:
+    input: Fastq/wt_36h-Rep3_R1.fastq.gz
+    output: Fastq/wt_36h-Rep3_R1_trim.fastq.gz
+    log: Logs/wt_36h-Rep3_trimStats, Logs/wt_36h-Rep3_adapterStats
+    jobid: 36
+    wildcards: sample=wt_36h-Rep3
+
+[Wed Mar  8 21:18:55 2023]
+Finished job 131.
+9 of 230 steps (4%) done
+[Wed Mar  8 21:18:55 2023]
+Finished job 132.
+10 of 230 steps (4%) done
+[Wed Mar  8 21:18:55 2023]
+Finished job 152.
+11 of 230 steps (5%) done
+[Wed Mar  8 21:18:55 2023]
+Finished job 172.
+12 of 230 steps (5%) done
+[Wed Mar  8 21:18:55 2023]
+Finished job 162.
+13 of 230 steps (6%) done
+[Wed Mar  8 21:18:55 2023]
+Finished job 136.
+14 of 230 steps (6%) done
+[Wed Mar  8 21:18:55 2023]
+Finished job 163.
+15 of 230 steps (7%) done
+[Wed Mar  8 21:18:55 2023]
+Finished job 167.
+16 of 230 steps (7%) done
+Submitted job 36 with external jobid 'Submitted batch job 2088658'.
+
+[Wed Mar  8 21:18:55 2023]
+rule trim_adapter:
+    input: Fastq/wt_18h-Rep2_R1.fastq.gz
+    output: Fastq/wt_18h-Rep2_R1_trim.fastq.gz
+    log: Logs/wt_18h-Rep2_trimStats, Logs/wt_18h-Rep2_adapterStats
+    jobid: 34
+    wildcards: sample=wt_18h-Rep2
+
+Submitted job 34 with external jobid 'Submitted batch job 2088659'.
+
+[Wed Mar  8 21:18:55 2023]
+rule trim_adapter:
+    input: Fastq/wt_36h-Rep2_R1.fastq.gz
+    output: Fastq/wt_36h-Rep2_R1_trim.fastq.gz
+    log: Logs/wt_36h-Rep2_trimStats, Logs/wt_36h-Rep2_adapterStats
+    jobid: 35
+    wildcards: sample=wt_36h-Rep2
+
+Submitted job 35 with external jobid 'Submitted batch job 2088660'.
+
+[Wed Mar  8 21:18:55 2023]
+rule trim_adapter:
+    input: Fastq/wt_18h-Rep4_R1.fastq.gz
+    output: Fastq/wt_18h-Rep4_R1_trim.fastq.gz
+    log: Logs/wt_18h-Rep4_trimStats, Logs/wt_18h-Rep4_adapterStats
+    jobid: 68
+    wildcards: sample=wt_18h-Rep4
+
+Submitted job 68 with external jobid 'Submitted batch job 2088661'.
+
+[Wed Mar  8 21:18:55 2023]
+rule trim_adapter:
+    input: Fastq/wt_6h-Rep2_R1.fastq.gz
+    output: Fastq/wt_6h-Rep2_R1_trim.fastq.gz
+    log: Logs/wt_6h-Rep2_trimStats, Logs/wt_6h-Rep2_adapterStats
+    jobid: 109
+    wildcards: sample=wt_6h-Rep2
+
+Submitted job 109 with external jobid 'Submitted batch job 2088662'.
+
+[Wed Mar  8 21:18:55 2023]
+rule trim_adapter:
+    input: Fastq/wt_18h-Rep1_R1.fastq.gz
+    output: Fastq/wt_18h-Rep1_R1_trim.fastq.gz
+    log: Logs/wt_18h-Rep1_trimStats, Logs/wt_18h-Rep1_adapterStats
+    jobid: 86
+    wildcards: sample=wt_18h-Rep1
+
+Submitted job 86 with external jobid 'Submitted batch job 2088663'.
+
+[Wed Mar  8 21:18:55 2023]
+rule trim_adapter:
+    input: Fastq/wt_18h-Rep3_R1.fastq.gz
+    output: Fastq/wt_18h-Rep3_R1_trim.fastq.gz
+    log: Logs/wt_18h-Rep3_trimStats, Logs/wt_18h-Rep3_adapterStats
+    jobid: 41
+    wildcards: sample=wt_18h-Rep3
+
+Submitted job 41 with external jobid 'Submitted batch job 2088664'.
+
+[Wed Mar  8 21:18:55 2023]
+rule trim_adapter:
+    input: Fastq/wt_3LW-Rep1_R1.fastq.gz
+    output: Fastq/wt_3LW-Rep1_R1_trim.fastq.gz
+    log: Logs/wt_3LW-Rep1_trimStats, Logs/wt_3LW-Rep1_adapterStats
+    jobid: 89
+    wildcards: sample=wt_3LW-Rep1
+
+Submitted job 89 with external jobid 'Submitted batch job 2088665'.
+
+[Wed Mar  8 21:18:56 2023]
+rule trim_adapter:
+    input: Fastq/wt_3LW-Rep3_R1.fastq.gz
+    output: Fastq/wt_3LW-Rep3_R1_trim.fastq.gz
+    log: Logs/wt_3LW-Rep3_trimStats, Logs/wt_3LW-Rep3_adapterStats
+    jobid: 97
+    wildcards: sample=wt_3LW-Rep3
+
+Submitted job 97 with external jobid 'Submitted batch job 2088666'.
+[Wed Mar  8 21:19:28 2023]
+Finished job 173.
+17 of 230 steps (7%) done
+
+[Wed Mar  8 21:19:28 2023]
+rule trim_adapter:
+    input: Fastq/wt_44h-Rep1_R1.fastq.gz
+    output: Fastq/wt_44h-Rep1_R1_trim.fastq.gz
+    log: Logs/wt_44h-Rep1_trimStats, Logs/wt_44h-Rep1_adapterStats
+    jobid: 111
+    wildcards: sample=wt_44h-Rep1
+
+[Wed Mar  8 21:19:28 2023]
+Finished job 175.
+18 of 230 steps (8%) done
+Submitted job 111 with external jobid 'Submitted batch job 2088707'.
+
+[Wed Mar  8 21:19:29 2023]
+rule trim_adapter:
+    input: Fastq/wt_44h-Rep3_R1.fastq.gz
+    output: Fastq/wt_44h-Rep3_R1_trim.fastq.gz
+    log: Logs/wt_44h-Rep3_trimStats, Logs/wt_44h-Rep3_adapterStats
+    jobid: 114
+    wildcards: sample=wt_44h-Rep3
+
+Submitted job 114 with external jobid 'Submitted batch job 2088708'.
+[Wed Mar  8 21:20:02 2023]
+Finished job 45.
+19 of 230 steps (8%) done
+
+[Wed Mar  8 21:20:02 2023]
+rule align_se:
+    input: Fastq/wt_6h-Rep1_R1_trim.fastq.gz
+    output: Sam/wt_6h-Rep1_dm6_trim_se.sam, logs/wt_6h-Rep1_dm6_trim_se_bowtie2.txt
+    jobid: 223
+    wildcards: sample=wt_6h-Rep1, species=dm6
+    threads: 8
+
+Submitted job 223 with external jobid 'Submitted batch job 2088734'.
+[Wed Mar  8 21:20:35 2023]
+Finished job 17.
+20 of 230 steps (9%) done
+
+[Wed Mar  8 21:20:35 2023]
+rule align_se:
+    input: Fastq/wt_24h-Rep1_R1_trim.fastq.gz
+    output: Sam/wt_24h-Rep1_dm6_trim_se.sam, logs/wt_24h-Rep1_dm6_trim_se_bowtie2.txt
+    jobid: 217
+    wildcards: sample=wt_24h-Rep1, species=dm6
+    threads: 8
+
+Submitted job 217 with external jobid 'Submitted batch job 2088914'.
+[Wed Mar  8 21:21:08 2023]
+Finished job 65.
+21 of 230 steps (9%) done
+
+[Wed Mar  8 21:21:08 2023]
+rule align_se:
+    input: Fastq/wt_24h-Rep2_R1_trim.fastq.gz
+    output: Sam/wt_24h-Rep2_dm6_trim_se.sam, logs/wt_24h-Rep2_dm6_trim_se_bowtie2.txt
+    jobid: 220
+    wildcards: sample=wt_24h-Rep2, species=dm6
+    threads: 8
+
+[Wed Mar  8 21:21:08 2023]
+Finished job 2.
+22 of 230 steps (10%) done
+Submitted job 220 with external jobid 'Submitted batch job 2088933'.
+
+[Wed Mar  8 21:21:09 2023]
+rule align_se:
+    input: Fastq/wt_36h-Rep1_R1_trim.fastq.gz
+    output: Sam/wt_36h-Rep1_dm6_trim_se.sam, logs/wt_36h-Rep1_dm6_trim_se_bowtie2.txt
+    jobid: 216
+    wildcards: sample=wt_36h-Rep1, species=dm6
+    threads: 8
+
+Submitted job 216 with external jobid 'Submitted batch job 2088934'.
+[Wed Mar  8 21:22:46 2023]
+Finished job 36.
+23 of 230 steps (10%) done
+
+[Wed Mar  8 21:22:46 2023]
+rule align_se:
+    input: Fastq/wt_36h-Rep3_R1_trim.fastq.gz
+    output: Sam/wt_36h-Rep3_dm6_trim_se.sam, logs/wt_36h-Rep3_dm6_trim_se_bowtie2.txt
+    jobid: 213
+    wildcards: sample=wt_36h-Rep3, species=dm6
+    threads: 8
+
+[Wed Mar  8 21:22:46 2023]
+Finished job 35.
+24 of 230 steps (10%) done
+[Wed Mar  8 21:22:46 2023]
+Finished job 68.
+25 of 230 steps (11%) done
+[Wed Mar  8 21:22:46 2023]
+Finished job 41.
+26 of 230 steps (11%) done
+[Wed Mar  8 21:22:46 2023]
+Finished job 89.
+27 of 230 steps (12%) done
+Submitted job 213 with external jobid 'Submitted batch job 2088964'.
+
+[Wed Mar  8 21:22:47 2023]
+rule align_se:
+    input: Fastq/wt_18h-Rep4_R1_trim.fastq.gz
+    output: Sam/wt_18h-Rep4_dm6_trim_se.sam, logs/wt_18h-Rep4_dm6_trim_se_bowtie2.txt
+    jobid: 226
+    wildcards: sample=wt_18h-Rep4, species=dm6
+    threads: 8
+
+Submitted job 226 with external jobid 'Submitted batch job 2088965'.
+
+[Wed Mar  8 21:22:47 2023]
+rule align_se:
+    input: Fastq/wt_18h-Rep3_R1_trim.fastq.gz
+    output: Sam/wt_18h-Rep3_dm6_trim_se.sam, logs/wt_18h-Rep3_dm6_trim_se_bowtie2.txt
+    jobid: 218
+    wildcards: sample=wt_18h-Rep3, species=dm6
+    threads: 8
+
+Submitted job 218 with external jobid 'Submitted batch job 2088966'.
+
+[Wed Mar  8 21:22:47 2023]
+rule align_se:
+    input: Fastq/wt_36h-Rep2_R1_trim.fastq.gz
+    output: Sam/wt_36h-Rep2_dm6_trim_se.sam, logs/wt_36h-Rep2_dm6_trim_se_bowtie2.txt
+    jobid: 219
+    wildcards: sample=wt_36h-Rep2, species=dm6
+    threads: 8
+
+Submitted job 219 with external jobid 'Submitted batch job 2088967'.
+
+[Wed Mar  8 21:22:47 2023]
+rule align_se:
+    input: Fastq/wt_3LW-Rep1_R1_trim.fastq.gz
+    output: Sam/wt_3LW-Rep1_dm6_trim_se.sam, logs/wt_3LW-Rep1_dm6_trim_se_bowtie2.txt
+    jobid: 221
+    wildcards: sample=wt_3LW-Rep1, species=dm6
+    threads: 8
+
+Submitted job 221 with external jobid 'Submitted batch job 2088968'.
+[Wed Mar  8 21:22:47 2023]
+Finished job 66.
+28 of 230 steps (12%) done
+
+[Wed Mar  8 21:22:47 2023]
+rule align_se:
+    input: Fastq/wt_44h-Rep2_R1_trim.fastq.gz
+    output: Sam/wt_44h-Rep2_dm6_trim_se.sam, logs/wt_44h-Rep2_dm6_trim_se_bowtie2.txt
+    jobid: 224
+    wildcards: sample=wt_44h-Rep2, species=dm6
+    threads: 8
+
+[Wed Mar  8 21:22:47 2023]
+Finished job 4.
+29 of 230 steps (13%) done
+Submitted job 224 with external jobid 'Submitted batch job 2088969'.
+
+[Wed Mar  8 21:22:47 2023]
+rule align_se:
+    input: Fastq/wt_24h-Rep3_R1_trim.fastq.gz
+    output: Sam/wt_24h-Rep3_dm6_trim_se.sam, logs/wt_24h-Rep3_dm6_trim_se_bowtie2.txt
+    jobid: 212
+    wildcards: sample=wt_24h-Rep3, species=dm6
+    threads: 8
+
+Submitted job 212 with external jobid 'Submitted batch job 2088970'.
+[Wed Mar  8 21:22:58 2023]
+Finished job 90.
+30 of 230 steps (13%) done
+
+[Wed Mar  8 21:22:58 2023]
+rule align_se:
+    input: Fastq/wt_3LW-Rep2_R1_trim.fastq.gz
+    output: Sam/wt_3LW-Rep2_dm6_trim_se.sam, logs/wt_3LW-Rep2_dm6_trim_se_bowtie2.txt
+    jobid: 214
+    wildcards: sample=wt_3LW-Rep2, species=dm6
+    threads: 8
+
+Submitted job 214 with external jobid 'Submitted batch job 2088977'.
+[Wed Mar  8 21:23:08 2023]
+Finished job 111.
+31 of 230 steps (13%) done
+
+[Wed Mar  8 21:23:08 2023]
+rule align_se:
+    input: Fastq/wt_44h-Rep1_R1_trim.fastq.gz
+    output: Sam/wt_44h-Rep1_dm6_trim_se.sam, logs/wt_44h-Rep1_dm6_trim_se_bowtie2.txt
+    jobid: 225
+    wildcards: sample=wt_44h-Rep1, species=dm6
+    threads: 8
+
+[Wed Mar  8 21:23:08 2023]
+Finished job 34.
+32 of 230 steps (14%) done
+[Wed Mar  8 21:23:08 2023]
+Finished job 109.
+33 of 230 steps (14%) done
+Submitted job 225 with external jobid 'Submitted batch job 2088978'.
+
+[Wed Mar  8 21:23:09 2023]
+rule align_se:
+    input: Fastq/wt_18h-Rep2_R1_trim.fastq.gz
+    output: Sam/wt_18h-Rep2_dm6_trim_se.sam, logs/wt_18h-Rep2_dm6_trim_se_bowtie2.txt
+    jobid: 215
+    wildcards: sample=wt_18h-Rep2, species=dm6
+    threads: 8
+
+Submitted job 215 with external jobid 'Submitted batch job 2088979'.
+
+[Wed Mar  8 21:23:09 2023]
+rule align_se:
+    input: Fastq/wt_6h-Rep2_R1_trim.fastq.gz
+    output: Sam/wt_6h-Rep2_dm6_trim_se.sam, logs/wt_6h-Rep2_dm6_trim_se_bowtie2.txt
+    jobid: 227
+    wildcards: sample=wt_6h-Rep2, species=dm6
+    threads: 8
+
+Submitted job 227 with external jobid 'Submitted batch job 2088980'.
+[Wed Mar  8 21:23:19 2023]
+Finished job 114.
+34 of 230 steps (15%) done
+
+[Wed Mar  8 21:23:19 2023]
+rule align_se:
+    input: Fastq/wt_44h-Rep3_R1_trim.fastq.gz
+    output: Sam/wt_44h-Rep3_dm6_trim_se.sam, logs/wt_44h-Rep3_dm6_trim_se_bowtie2.txt
+    jobid: 229
+    wildcards: sample=wt_44h-Rep3, species=dm6
+    threads: 8
+
+Submitted job 229 with external jobid 'Submitted batch job 2088985'.
+[Wed Mar  8 21:23:53 2023]
+Finished job 86.
+35 of 230 steps (15%) done
+
+[Wed Mar  8 21:23:53 2023]
+rule align_se:
+    input: Fastq/wt_18h-Rep1_R1_trim.fastq.gz
+    output: Sam/wt_18h-Rep1_dm6_trim_se.sam, logs/wt_18h-Rep1_dm6_trim_se_bowtie2.txt
+    jobid: 222
+    wildcards: sample=wt_18h-Rep1, species=dm6
+    threads: 8
+
+[Wed Mar  8 21:23:53 2023]
+Finished job 97.
+36 of 230 steps (16%) done
+Submitted job 222 with external jobid 'Submitted batch job 2088991'.
+
+[Wed Mar  8 21:23:53 2023]
+rule align_se:
+    input: Fastq/wt_3LW-Rep3_R1_trim.fastq.gz
+    output: Sam/wt_3LW-Rep3_dm6_trim_se.sam, logs/wt_3LW-Rep3_dm6_trim_se_bowtie2.txt
+    jobid: 228
+    wildcards: sample=wt_3LW-Rep3, species=dm6
+    threads: 8
+
+Submitted job 228 with external jobid 'Submitted batch job 2088992'.
+[Wed Mar  8 21:25:32 2023]
+Finished job 213.
+37 of 230 steps (16%) done
+
+[Wed Mar  8 21:25:32 2023]
+rule sam2bam:
+    input: Sam/wt_36h-Rep3_dm6_trim_se.sam
+    output: Bam/wt_36h-Rep3_dm6_trim.bam, logs/wt_36h-Rep3_dm6_trim.flagstat
+    jobid: 195
+    wildcards: sample=wt_36h-Rep3, species=dm6
+
+[Wed Mar  8 21:25:32 2023]
+Finished job 219.
+38 of 230 steps (17%) done
+Submitted job 195 with external jobid 'Submitted batch job 2089517'.
+
+[Wed Mar  8 21:25:32 2023]
+rule sam2bam:
+    input: Sam/wt_36h-Rep2_dm6_trim_se.sam
+    output: Bam/wt_36h-Rep2_dm6_trim.bam, logs/wt_36h-Rep2_dm6_trim.flagstat
+    jobid: 201
+    wildcards: sample=wt_36h-Rep2, species=dm6
+
+Submitted job 201 with external jobid 'Submitted batch job 2089518'.
+[Wed Mar  8 21:25:33 2023]
+Finished job 220.
+39 of 230 steps (17%) done
+
+[Wed Mar  8 21:25:33 2023]
+rule sam2bam:
+    input: Sam/wt_24h-Rep2_dm6_trim_se.sam
+    output: Bam/wt_24h-Rep2_dm6_trim.bam, logs/wt_24h-Rep2_dm6_trim.flagstat
+    jobid: 202
+    wildcards: sample=wt_24h-Rep2, species=dm6
+
+Submitted job 202 with external jobid 'Submitted batch job 2089519'.
+[Wed Mar  8 21:25:43 2023]
+Finished job 215.
+40 of 230 steps (17%) done
+
+[Wed Mar  8 21:25:43 2023]
+rule sam2bam:
+    input: Sam/wt_18h-Rep2_dm6_trim_se.sam
+    output: Bam/wt_18h-Rep2_dm6_trim.bam, logs/wt_18h-Rep2_dm6_trim.flagstat
+    jobid: 197
+    wildcards: sample=wt_18h-Rep2, species=dm6
+
+Submitted job 197 with external jobid 'Submitted batch job 2089521'.
+[Wed Mar  8 21:25:44 2023]
+Finished job 223.
+41 of 230 steps (18%) done
+
+[Wed Mar  8 21:25:44 2023]
+rule sam2bam:
+    input: Sam/wt_6h-Rep1_dm6_trim_se.sam
+    output: Bam/wt_6h-Rep1_dm6_trim.bam, logs/wt_6h-Rep1_dm6_trim.flagstat
+    jobid: 205
+    wildcards: sample=wt_6h-Rep1, species=dm6
+
+Submitted job 205 with external jobid 'Submitted batch job 2089522'.
+[Wed Mar  8 21:26:17 2023]
+Finished job 217.
+42 of 230 steps (18%) done
+
+[Wed Mar  8 21:26:17 2023]
+rule sam2bam:
+    input: Sam/wt_24h-Rep1_dm6_trim_se.sam
+    output: Bam/wt_24h-Rep1_dm6_trim.bam, logs/wt_24h-Rep1_dm6_trim.flagstat
+    jobid: 199
+    wildcards: sample=wt_24h-Rep1, species=dm6
+
+[Wed Mar  8 21:26:17 2023]
+Finished job 212.
+43 of 230 steps (19%) done
+[Wed Mar  8 21:26:17 2023]
+Finished job 229.
+44 of 230 steps (19%) done
+Submitted job 199 with external jobid 'Submitted batch job 2089619'.
+
+[Wed Mar  8 21:26:17 2023]
+rule sam2bam:
+    input: Sam/wt_44h-Rep3_dm6_trim_se.sam
+    output: Bam/wt_44h-Rep3_dm6_trim.bam, logs/wt_44h-Rep3_dm6_trim.flagstat
+    jobid: 211
+    wildcards: sample=wt_44h-Rep3, species=dm6
+
+Submitted job 211 with external jobid 'Submitted batch job 2089624'.
+
+[Wed Mar  8 21:26:17 2023]
+rule sam2bam:
+    input: Sam/wt_24h-Rep3_dm6_trim_se.sam
+    output: Bam/wt_24h-Rep3_dm6_trim.bam, logs/wt_24h-Rep3_dm6_trim.flagstat
+    jobid: 194
+    wildcards: sample=wt_24h-Rep3, species=dm6
+
+Submitted job 194 with external jobid 'Submitted batch job 2089628'.
+[Wed Mar  8 21:26:27 2023]
+Finished job 222.
+45 of 230 steps (20%) done
+
+[Wed Mar  8 21:26:27 2023]
+rule sam2bam:
+    input: Sam/wt_18h-Rep1_dm6_trim_se.sam
+    output: Bam/wt_18h-Rep1_dm6_trim.bam, logs/wt_18h-Rep1_dm6_trim.flagstat
+    jobid: 204
+    wildcards: sample=wt_18h-Rep1, species=dm6
+
+[Wed Mar  8 21:26:27 2023]
+Finished job 218.
+46 of 230 steps (20%) done
+[Wed Mar  8 21:26:28 2023]
+Finished job 224.
+47 of 230 steps (20%) done
+Submitted job 204 with external jobid 'Submitted batch job 2089630'.
+
+[Wed Mar  8 21:26:29 2023]
+rule sam2bam:
+    input: Sam/wt_18h-Rep3_dm6_trim_se.sam
+    output: Bam/wt_18h-Rep3_dm6_trim.bam, logs/wt_18h-Rep3_dm6_trim.flagstat
+    jobid: 200
+    wildcards: sample=wt_18h-Rep3, species=dm6
+
+Submitted job 200 with external jobid 'Submitted batch job 2089631'.
+
+[Wed Mar  8 21:26:29 2023]
+rule sam2bam:
+    input: Sam/wt_44h-Rep2_dm6_trim_se.sam
+    output: Bam/wt_44h-Rep2_dm6_trim.bam, logs/wt_44h-Rep2_dm6_trim.flagstat
+    jobid: 206
+    wildcards: sample=wt_44h-Rep2, species=dm6
+
+Submitted job 206 with external jobid 'Submitted batch job 2089632'.
+[Wed Mar  8 21:26:38 2023]
+Finished job 225.
+48 of 230 steps (21%) done
+
+[Wed Mar  8 21:26:38 2023]
+rule sam2bam:
+    input: Sam/wt_44h-Rep1_dm6_trim_se.sam
+    output: Bam/wt_44h-Rep1_dm6_trim.bam, logs/wt_44h-Rep1_dm6_trim.flagstat
+    jobid: 207
+    wildcards: sample=wt_44h-Rep1, species=dm6
+
+Submitted job 207 with external jobid 'Submitted batch job 2089637'.
+[Wed Mar  8 21:28:17 2023]
+Finished job 201.
+49 of 230 steps (21%) done
+
+[Wed Mar  8 21:28:17 2023]
+rule qFilter:
+    input: Bam/wt_36h-Rep2_dm6_trim.bam
+    output: Bam/wt_36h-Rep2_dm6_trim_q5.bam, logs/wt_36h-Rep2_dm6_trim_q5.flagstat
+    jobid: 183
+    wildcards: sample=wt_36h-Rep2, species=dm6
+
+[Wed Mar  8 21:28:17 2023]
+Finished job 228.
+50 of 230 steps (22%) done
+[Wed Mar  8 21:28:17 2023]
+Finished job 226.
+51 of 230 steps (22%) done
+Submitted job 183 with external jobid 'Submitted batch job 2089657'.
+
+[Wed Mar  8 21:28:17 2023]
+rule sam2bam:
+    input: Sam/wt_3LW-Rep3_dm6_trim_se.sam
+    output: Bam/wt_3LW-Rep3_dm6_trim.bam, logs/wt_3LW-Rep3_dm6_trim.flagstat
+    jobid: 210
+    wildcards: sample=wt_3LW-Rep3, species=dm6
+
+Submitted job 210 with external jobid 'Submitted batch job 2089658'.
+
+[Wed Mar  8 21:28:19 2023]
+rule sam2bam:
+    input: Sam/wt_18h-Rep4_dm6_trim_se.sam
+    output: Bam/wt_18h-Rep4_dm6_trim.bam, logs/wt_18h-Rep4_dm6_trim.flagstat
+    jobid: 208
+    wildcards: sample=wt_18h-Rep4, species=dm6
+
+Submitted job 208 with external jobid 'Submitted batch job 2089659'.
+[Wed Mar  8 21:28:50 2023]
+Finished job 227.
+52 of 230 steps (23%) done
+
+[Wed Mar  8 21:28:50 2023]
+rule sam2bam:
+    input: Sam/wt_6h-Rep2_dm6_trim_se.sam
+    output: Bam/wt_6h-Rep2_dm6_trim.bam, logs/wt_6h-Rep2_dm6_trim.flagstat
+    jobid: 209
+    wildcards: sample=wt_6h-Rep2, species=dm6
+
+[Wed Mar  8 21:28:50 2023]
+Finished job 221.
+53 of 230 steps (23%) done
+[Wed Mar  8 21:28:50 2023]
+Finished job 216.
+54 of 230 steps (23%) done
+[Wed Mar  8 21:28:50 2023]
+Finished job 214.
+55 of 230 steps (24%) done
+[Wed Mar  8 21:28:50 2023]
+Finished job 205.
+56 of 230 steps (24%) done
+Submitted job 209 with external jobid 'Submitted batch job 2089662'.
+
+[Wed Mar  8 21:28:50 2023]
+rule sam2bam:
+    input: Sam/wt_3LW-Rep1_dm6_trim_se.sam
+    output: Bam/wt_3LW-Rep1_dm6_trim.bam, logs/wt_3LW-Rep1_dm6_trim.flagstat
+    jobid: 203
+    wildcards: sample=wt_3LW-Rep1, species=dm6
+
+Submitted job 203 with external jobid 'Submitted batch job 2089663'.
+
+[Wed Mar  8 21:28:51 2023]
+rule sam2bam:
+    input: Sam/wt_36h-Rep1_dm6_trim_se.sam
+    output: Bam/wt_36h-Rep1_dm6_trim.bam, logs/wt_36h-Rep1_dm6_trim.flagstat
+    jobid: 198
+    wildcards: sample=wt_36h-Rep1, species=dm6
+
+Submitted job 198 with external jobid 'Submitted batch job 2089664'.
+
+[Wed Mar  8 21:28:51 2023]
+rule sam2bam:
+    input: Sam/wt_3LW-Rep2_dm6_trim_se.sam
+    output: Bam/wt_3LW-Rep2_dm6_trim.bam, logs/wt_3LW-Rep2_dm6_trim.flagstat
+    jobid: 196
+    wildcards: sample=wt_3LW-Rep2, species=dm6
+
+Submitted job 196 with external jobid 'Submitted batch job 2089665'.
+
+[Wed Mar  8 21:28:51 2023]
+rule qFilter:
+    input: Bam/wt_6h-Rep1_dm6_trim.bam
+    output: Bam/wt_6h-Rep1_dm6_trim_q5.bam, logs/wt_6h-Rep1_dm6_trim_q5.flagstat
+    jobid: 187
+    wildcards: sample=wt_6h-Rep1, species=dm6
+
+Submitted job 187 with external jobid 'Submitted batch job 2089666'.
+[Wed Mar  8 21:29:02 2023]
+Error in rule qFilter:
+    jobid: 187
+    output: Bam/wt_6h-Rep1_dm6_trim_q5.bam, logs/wt_6h-Rep1_dm6_trim_q5.flagstat
+    shell:
+        
+		samtools view -@ 4 -bq 5 Bam/wt_6h-Rep1_dm6_trim.bam > Bam/wt_6h-Rep1_dm6_trim_q5.bam &&
+		samtools flagstat Bam/wt_6h-Rep1_dm6_trim_q5.bam > logs/wt_6h-Rep1_dm6_trim_q5.flagstat
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2089666
+
+Error executing rule qFilter on cluster (jobid: 187, external: Submitted batch job 2089666, jobscript: /work/users/m/j/mjn15/faire-pipeline/.snakemake/tmp.mz5tozl_/snakejob.qFilter.187.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Wed Mar  8 21:29:12 2023]
+Error in rule qFilter:
+    jobid: 183
+    output: Bam/wt_36h-Rep2_dm6_trim_q5.bam, logs/wt_36h-Rep2_dm6_trim_q5.flagstat
+    shell:
+        
+		samtools view -@ 4 -bq 5 Bam/wt_36h-Rep2_dm6_trim.bam > Bam/wt_36h-Rep2_dm6_trim_q5.bam &&
+		samtools flagstat Bam/wt_36h-Rep2_dm6_trim_q5.bam > logs/wt_36h-Rep2_dm6_trim_q5.flagstat
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2089657
+
+Error executing rule qFilter on cluster (jobid: 183, external: Submitted batch job 2089657, jobscript: /work/users/m/j/mjn15/faire-pipeline/.snakemake/tmp.mz5tozl_/snakejob.qFilter.183.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Wed Mar  8 21:29:45 2023]
+Finished job 207.
+57 of 230 steps (25%) done
+[Wed Mar  8 21:29:46 2023]
+Finished job 206.
+58 of 230 steps (25%) done
+[Wed Mar  8 21:30:19 2023]
+Finished job 202.
+59 of 230 steps (26%) done
+[Wed Mar  8 21:31:58 2023]
+Finished job 197.
+60 of 230 steps (26%) done
+[Wed Mar  8 21:31:58 2023]
+Finished job 195.
+61 of 230 steps (27%) done
+[Wed Mar  8 21:31:58 2023]
+Finished job 199.
+62 of 230 steps (27%) done
+[Wed Mar  8 21:31:58 2023]
+Finished job 211.
+63 of 230 steps (27%) done
+[Wed Mar  8 21:31:58 2023]
+Finished job 194.
+64 of 230 steps (28%) done
+[Wed Mar  8 21:31:58 2023]
+Finished job 200.
+65 of 230 steps (28%) done
+[Wed Mar  8 21:32:29 2023]
+Finished job 198.
+66 of 230 steps (29%) done
+[Wed Mar  8 21:32:59 2023]
+Finished job 209.
+67 of 230 steps (29%) done
+[Wed Mar  8 21:32:59 2023]
+Finished job 203.
+68 of 230 steps (30%) done
+[Wed Mar  8 21:32:59 2023]
+Finished job 210.
+69 of 230 steps (30%) done
+[Wed Mar  8 21:33:29 2023]
+Finished job 196.
+70 of 230 steps (30%) done
+[Wed Mar  8 21:33:39 2023]
+Finished job 204.
+71 of 230 steps (31%) done
+[Wed Mar  8 21:35:09 2023]
+Finished job 208.
+72 of 230 steps (31%) done
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /work/users/m/j/mjn15/faire-pipeline/.snakemake/log/2023-03-08T211642.536428.snakemake.log
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 100
+Job counts:
+	count	jobs
+	6	CallPooledPeaks
+	18	CallRepPeaks
+	1	all
+	18	bamSort
+	18	bamToBed
+	18	bigWig
+	6	mergeBams
+	6	mergeBamtoBed
+	6	mergeBigWig
+	6	mergeZNormBigWig
+	18	qFilter
+	1	qcReport
+	18	removeDups
+	18	zNormBigWig
+	158
+
+[Thu Mar  9 09:21:00 2023]
+rule qFilter:
+    input: Bam/wt_18h-Rep3_dm6_trim.bam
+    output: Bam/wt_18h-Rep3_dm6_trim_q5.bam, logs/wt_18h-Rep3_dm6_trim_q5.flagstat
+    jobid: 177
+    wildcards: species=dm6, sample=wt_18h-Rep3
+
+Submitted job 177 with external jobid 'Submitted batch job 2114156'.
+
+[Thu Mar  9 09:21:00 2023]
+rule qFilter:
+    input: Bam/wt_24h-Rep3_dm6_trim.bam
+    output: Bam/wt_24h-Rep3_dm6_trim_q5.bam, logs/wt_24h-Rep3_dm6_trim_q5.flagstat
+    jobid: 191
+    wildcards: species=dm6, sample=wt_24h-Rep3
+
+Submitted job 191 with external jobid 'Submitted batch job 2114157'.
+
+[Thu Mar  9 09:21:00 2023]
+rule qFilter:
+    input: Bam/wt_36h-Rep3_dm6_trim.bam
+    output: Bam/wt_36h-Rep3_dm6_trim_q5.bam, logs/wt_36h-Rep3_dm6_trim_q5.flagstat
+    jobid: 176
+    wildcards: species=dm6, sample=wt_36h-Rep3
+
+Submitted job 176 with external jobid 'Submitted batch job 2114158'.
+
+[Thu Mar  9 09:21:00 2023]
+rule qFilter:
+    input: Bam/wt_6h-Rep1_dm6_trim.bam
+    output: Bam/wt_6h-Rep1_dm6_trim_q5.bam, logs/wt_6h-Rep1_dm6_trim_q5.flagstat
+    jobid: 181
+    wildcards: species=dm6, sample=wt_6h-Rep1
+
+Submitted job 181 with external jobid 'Submitted batch job 2114159'.
+
+[Thu Mar  9 09:21:01 2023]
+rule qFilter:
+    input: Bam/wt_24h-Rep1_dm6_trim.bam
+    output: Bam/wt_24h-Rep1_dm6_trim_q5.bam, logs/wt_24h-Rep1_dm6_trim_q5.flagstat
+    jobid: 187
+    wildcards: species=dm6, sample=wt_24h-Rep1
+
+Submitted job 187 with external jobid 'Submitted batch job 2114160'.
+
+[Thu Mar  9 09:21:01 2023]
+rule qFilter:
+    input: Bam/wt_24h-Rep2_dm6_trim.bam
+    output: Bam/wt_24h-Rep2_dm6_trim_q5.bam, logs/wt_24h-Rep2_dm6_trim_q5.flagstat
+    jobid: 190
+    wildcards: species=dm6, sample=wt_24h-Rep2
+
+Submitted job 190 with external jobid 'Submitted batch job 2114161'.
+
+[Thu Mar  9 09:21:01 2023]
+rule qFilter:
+    input: Bam/wt_18h-Rep2_dm6_trim.bam
+    output: Bam/wt_18h-Rep2_dm6_trim_q5.bam, logs/wt_18h-Rep2_dm6_trim_q5.flagstat
+    jobid: 183
+    wildcards: species=dm6, sample=wt_18h-Rep2
+
+Submitted job 183 with external jobid 'Submitted batch job 2114162'.
+
+[Thu Mar  9 09:21:01 2023]
+rule qFilter:
+    input: Bam/wt_18h-Rep1_dm6_trim.bam
+    output: Bam/wt_18h-Rep1_dm6_trim_q5.bam, logs/wt_18h-Rep1_dm6_trim_q5.flagstat
+    jobid: 179
+    wildcards: species=dm6, sample=wt_18h-Rep1
+
+Submitted job 179 with external jobid 'Submitted batch job 2114163'.
+
+[Thu Mar  9 09:21:01 2023]
+rule qFilter:
+    input: Bam/wt_36h-Rep2_dm6_trim.bam
+    output: Bam/wt_36h-Rep2_dm6_trim_q5.bam, logs/wt_36h-Rep2_dm6_trim_q5.flagstat
+    jobid: 193
+    wildcards: species=dm6, sample=wt_36h-Rep2
+
+Submitted job 193 with external jobid 'Submitted batch job 2114164'.
+
+[Thu Mar  9 09:21:01 2023]
+rule qFilter:
+    input: Bam/wt_44h-Rep1_dm6_trim.bam
+    output: Bam/wt_44h-Rep1_dm6_trim_q5.bam, logs/wt_44h-Rep1_dm6_trim_q5.flagstat
+    jobid: 186
+    wildcards: species=dm6, sample=wt_44h-Rep1
+
+Submitted job 186 with external jobid 'Submitted batch job 2114165'.
+
+[Thu Mar  9 09:21:01 2023]
+rule qFilter:
+    input: Bam/wt_18h-Rep4_dm6_trim.bam
+    output: Bam/wt_18h-Rep4_dm6_trim_q5.bam, logs/wt_18h-Rep4_dm6_trim_q5.flagstat
+    jobid: 192
+    wildcards: species=dm6, sample=wt_18h-Rep4
+
+Submitted job 192 with external jobid 'Submitted batch job 2114166'.
+
+[Thu Mar  9 09:21:01 2023]
+rule qFilter:
+    input: Bam/wt_44h-Rep3_dm6_trim.bam
+    output: Bam/wt_44h-Rep3_dm6_trim_q5.bam, logs/wt_44h-Rep3_dm6_trim_q5.flagstat
+    jobid: 185
+    wildcards: species=dm6, sample=wt_44h-Rep3
+
+Submitted job 185 with external jobid 'Submitted batch job 2114167'.
+
+[Thu Mar  9 09:21:01 2023]
+rule qFilter:
+    input: Bam/wt_36h-Rep1_dm6_trim.bam
+    output: Bam/wt_36h-Rep1_dm6_trim_q5.bam, logs/wt_36h-Rep1_dm6_trim_q5.flagstat
+    jobid: 178
+    wildcards: species=dm6, sample=wt_36h-Rep1
+
+Submitted job 178 with external jobid 'Submitted batch job 2114168'.
+
+[Thu Mar  9 09:21:02 2023]
+rule qFilter:
+    input: Bam/wt_44h-Rep2_dm6_trim.bam
+    output: Bam/wt_44h-Rep2_dm6_trim_q5.bam, logs/wt_44h-Rep2_dm6_trim_q5.flagstat
+    jobid: 189
+    wildcards: species=dm6, sample=wt_44h-Rep2
+
+Submitted job 189 with external jobid 'Submitted batch job 2114169'.
+
+[Thu Mar  9 09:21:02 2023]
+rule qFilter:
+    input: Bam/wt_6h-Rep2_dm6_trim.bam
+    output: Bam/wt_6h-Rep2_dm6_trim_q5.bam, logs/wt_6h-Rep2_dm6_trim_q5.flagstat
+    jobid: 180
+    wildcards: species=dm6, sample=wt_6h-Rep2
+
+Submitted job 180 with external jobid 'Submitted batch job 2114170'.
+
+[Thu Mar  9 09:21:02 2023]
+rule qFilter:
+    input: Bam/wt_3LW-Rep2_dm6_trim.bam
+    output: Bam/wt_3LW-Rep2_dm6_trim_q5.bam, logs/wt_3LW-Rep2_dm6_trim_q5.flagstat
+    jobid: 188
+    wildcards: species=dm6, sample=wt_3LW-Rep2
+
+Submitted job 188 with external jobid 'Submitted batch job 2114171'.
+
+[Thu Mar  9 09:21:02 2023]
+rule qFilter:
+    input: Bam/wt_3LW-Rep1_dm6_trim.bam
+    output: Bam/wt_3LW-Rep1_dm6_trim_q5.bam, logs/wt_3LW-Rep1_dm6_trim_q5.flagstat
+    jobid: 182
+    wildcards: species=dm6, sample=wt_3LW-Rep1
+
+Submitted job 182 with external jobid 'Submitted batch job 2114172'.
+
+[Thu Mar  9 09:21:02 2023]
+rule qFilter:
+    input: Bam/wt_3LW-Rep3_dm6_trim.bam
+    output: Bam/wt_3LW-Rep3_dm6_trim_q5.bam, logs/wt_3LW-Rep3_dm6_trim_q5.flagstat
+    jobid: 184
+    wildcards: species=dm6, sample=wt_3LW-Rep3
+
+Submitted job 184 with external jobid 'Submitted batch job 2114173'.
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 100
+Job counts:
+	count	jobs
+	6	CallPooledPeaks
+	18	CallRepPeaks
+	1	all
+	18	bamSort
+	18	bamToBed
+	18	bigWig
+	6	mergeBams
+	6	mergeBamtoBed
+	6	mergeBigWig
+	6	mergeZNormBigWig
+	17	qFilter
+	1	qcReport
+	18	removeDups
+	18	zNormBigWig
+	157
+
+[Thu Mar  9 09:21:54 2023]
+rule qFilter:
+    input: Bam/wt_6h-Rep1_dm6_trim.bam
+    output: Bam/wt_6h-Rep1_dm6_trim_q5.bam, logs/wt_6h-Rep1_dm6_trim_q5.flagstat
+    jobid: 188
+    wildcards: species=dm6, sample=wt_6h-Rep1
+
+[Thu Mar  9 09:21:54 2023]
+Finished job 183.
+1 of 158 steps (0.63%) done
+
+[Thu Mar  9 09:21:54 2023]
+rule bamSort:
+    input: Bam/wt_18h-Rep2_dm6_trim_q5.bam
+    output: Bam/wt_18h-Rep2_dm6_trim_q5_sorted.bam
+    jobid: 146
+    wildcards: species=dm6, sample=wt_18h-Rep2
+
+Submitted job 188 with external jobid 'Submitted batch job 2114180'.
+Submitted job 146 with external jobid 'Submitted batch job 2114181'.
+
+[Thu Mar  9 09:21:54 2023]
+rule qFilter:
+    input: Bam/wt_3LW-Rep1_dm6_trim.bam
+    output: Bam/wt_3LW-Rep1_dm6_trim_q5.bam, logs/wt_3LW-Rep1_dm6_trim_q5.flagstat
+    jobid: 192
+    wildcards: species=dm6, sample=wt_3LW-Rep1
+
+Submitted job 192 with external jobid 'Submitted batch job 2114182'.
+
+[Thu Mar  9 09:21:54 2023]
+rule qFilter:
+    input: Bam/wt_24h-Rep3_dm6_trim.bam
+    output: Bam/wt_24h-Rep3_dm6_trim_q5.bam, logs/wt_24h-Rep3_dm6_trim_q5.flagstat
+    jobid: 179
+    wildcards: species=dm6, sample=wt_24h-Rep3
+
+Submitted job 179 with external jobid 'Submitted batch job 2114183'.
+
+[Thu Mar  9 09:21:54 2023]
+rule bamSort:
+    input: Bam/wt_18h-Rep2_dm6_trim_q5.bam
+    output: Bam/wt_18h-Rep2_dm6_trim_q5_sorted.bam
+    jobid: 162
+    wildcards: species=dm6, sample=wt_18h-Rep2
+
+Submitted job 162 with external jobid 'Submitted batch job 2114184'.
+
+[Thu Mar  9 09:21:54 2023]
+rule qFilter:
+    input: Bam/wt_3LW-Rep3_dm6_trim.bam
+    output: Bam/wt_3LW-Rep3_dm6_trim_q5.bam, logs/wt_3LW-Rep3_dm6_trim_q5.flagstat
+    jobid: 183
+    wildcards: species=dm6, sample=wt_3LW-Rep3
+
+Submitted job 183 with external jobid 'Submitted batch job 2114185'.
+
+[Thu Mar  9 09:21:54 2023]
+rule qFilter:
+    input: Bam/wt_24h-Rep1_dm6_trim.bam
+    output: Bam/wt_24h-Rep1_dm6_trim_q5.bam, logs/wt_24h-Rep1_dm6_trim_q5.flagstat
+    jobid: 185
+    wildcards: species=dm6, sample=wt_24h-Rep1
+
+Submitted job 185 with external jobid 'Submitted batch job 2114186'.
+
+[Thu Mar  9 09:21:54 2023]
+rule qFilter:
+    input: Bam/wt_3LW-Rep2_dm6_trim.bam
+    output: Bam/wt_3LW-Rep2_dm6_trim_q5.bam, logs/wt_3LW-Rep2_dm6_trim_q5.flagstat
+    jobid: 190
+    wildcards: species=dm6, sample=wt_3LW-Rep2
+
+Submitted job 190 with external jobid 'Submitted batch job 2114187'.
+
+[Thu Mar  9 09:21:54 2023]
+rule qFilter:
+    input: Bam/wt_18h-Rep1_dm6_trim.bam
+    output: Bam/wt_18h-Rep1_dm6_trim_q5.bam, logs/wt_18h-Rep1_dm6_trim_q5.flagstat
+    jobid: 181
+    wildcards: species=dm6, sample=wt_18h-Rep1
+
+Submitted job 181 with external jobid 'Submitted batch job 2114188'.
+
+[Thu Mar  9 09:21:54 2023]
+rule qFilter:
+    input: Bam/wt_44h-Rep3_dm6_trim.bam
+    output: Bam/wt_44h-Rep3_dm6_trim_q5.bam, logs/wt_44h-Rep3_dm6_trim_q5.flagstat
+    jobid: 177
+    wildcards: species=dm6, sample=wt_44h-Rep3
+
+Submitted job 177 with external jobid 'Submitted batch job 2114189'.
+
+[Thu Mar  9 09:21:54 2023]
+rule qFilter:
+    input: Bam/wt_18h-Rep4_dm6_trim.bam
+    output: Bam/wt_18h-Rep4_dm6_trim_q5.bam, logs/wt_18h-Rep4_dm6_trim_q5.flagstat
+    jobid: 180
+    wildcards: species=dm6, sample=wt_18h-Rep4
+
+Submitted job 180 with external jobid 'Submitted batch job 2114190'.
+[Thu Mar  9 09:21:55 2023]
+Error in rule qFilter:
+    jobid: 185
+    output: Bam/wt_44h-Rep3_dm6_trim_q5.bam, logs/wt_44h-Rep3_dm6_trim_q5.flagstat
+    shell:
+        
+		samtools view -@ 4 -bq 5 Bam/wt_44h-Rep3_dm6_trim.bam > Bam/wt_44h-Rep3_dm6_trim_q5.bam &&
+		samtools flagstat Bam/wt_44h-Rep3_dm6_trim_q5.bam > logs/wt_44h-Rep3_dm6_trim_q5.flagstat
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2114167
+
+Error executing rule qFilter on cluster (jobid: 185, external: Submitted batch job 2114167, jobscript: /work/users/m/j/mjn15/faire-pipeline/.snakemake/tmp.kfjyyby1/snakejob.qFilter.185.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Thu Mar  9 09:21:55 2023]
+Error in rule qFilter:
+    jobid: 188
+    output: Bam/wt_3LW-Rep2_dm6_trim_q5.bam, logs/wt_3LW-Rep2_dm6_trim_q5.flagstat
+    shell:
+        
+		samtools view -@ 4 -bq 5 Bam/wt_3LW-Rep2_dm6_trim.bam > Bam/wt_3LW-Rep2_dm6_trim_q5.bam &&
+		samtools flagstat Bam/wt_3LW-Rep2_dm6_trim_q5.bam > logs/wt_3LW-Rep2_dm6_trim_q5.flagstat
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2114171
+
+Error executing rule qFilter on cluster (jobid: 188, external: Submitted batch job 2114171, jobscript: /work/users/m/j/mjn15/faire-pipeline/.snakemake/tmp.kfjyyby1/snakejob.qFilter.188.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Thu Mar  9 09:21:55 2023]
+Error in rule qFilter:
+    jobid: 182
+    output: Bam/wt_3LW-Rep1_dm6_trim_q5.bam, logs/wt_3LW-Rep1_dm6_trim_q5.flagstat
+    shell:
+        
+		samtools view -@ 4 -bq 5 Bam/wt_3LW-Rep1_dm6_trim.bam > Bam/wt_3LW-Rep1_dm6_trim_q5.bam &&
+		samtools flagstat Bam/wt_3LW-Rep1_dm6_trim_q5.bam > logs/wt_3LW-Rep1_dm6_trim_q5.flagstat
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2114172
+
+Error executing rule qFilter on cluster (jobid: 182, external: Submitted batch job 2114172, jobscript: /work/users/m/j/mjn15/faire-pipeline/.snakemake/tmp.kfjyyby1/snakejob.qFilter.182.sh). For error details see the cluster log and the log files of the involved rule(s).
+
+[Thu Mar  9 09:21:55 2023]
+rule qFilter:
+    input: Bam/wt_44h-Rep2_dm6_trim.bam
+    output: Bam/wt_44h-Rep2_dm6_trim_q5.bam, logs/wt_44h-Rep2_dm6_trim_q5.flagstat
+    jobid: 187
+    wildcards: species=dm6, sample=wt_44h-Rep2
+
+Submitted job 187 with external jobid 'Submitted batch job 2114191'.
+
+[Thu Mar  9 09:21:55 2023]
+rule qFilter:
+    input: Bam/wt_6h-Rep2_dm6_trim.bam
+    output: Bam/wt_6h-Rep2_dm6_trim_q5.bam, logs/wt_6h-Rep2_dm6_trim_q5.flagstat
+    jobid: 178
+    wildcards: species=dm6, sample=wt_6h-Rep2
+
+Submitted job 178 with external jobid 'Submitted batch job 2114192'.
+
+[Thu Mar  9 09:21:55 2023]
+rule qFilter:
+    input: Bam/wt_24h-Rep2_dm6_trim.bam
+    output: Bam/wt_24h-Rep2_dm6_trim_q5.bam, logs/wt_24h-Rep2_dm6_trim_q5.flagstat
+    jobid: 189
+    wildcards: species=dm6, sample=wt_24h-Rep2
+
+Submitted job 189 with external jobid 'Submitted batch job 2114193'.
+
+[Thu Mar  9 09:21:55 2023]
+rule qFilter:
+    input: Bam/wt_36h-Rep1_dm6_trim.bam
+    output: Bam/wt_36h-Rep1_dm6_trim_q5.bam, logs/wt_36h-Rep1_dm6_trim_q5.flagstat
+    jobid: 182
+    wildcards: species=dm6, sample=wt_36h-Rep1
+
+Submitted job 182 with external jobid 'Submitted batch job 2114194'.
+
+[Thu Mar  9 09:21:55 2023]
+rule qFilter:
+    input: Bam/wt_44h-Rep1_dm6_trim.bam
+    output: Bam/wt_44h-Rep1_dm6_trim_q5.bam, logs/wt_44h-Rep1_dm6_trim_q5.flagstat
+    jobid: 184
+    wildcards: species=dm6, sample=wt_44h-Rep1
+
+Submitted job 184 with external jobid 'Submitted batch job 2114195'.
+
+[Thu Mar  9 09:21:55 2023]
+rule qFilter:
+    input: Bam/wt_36h-Rep3_dm6_trim.bam
+    output: Bam/wt_36h-Rep3_dm6_trim_q5.bam, logs/wt_36h-Rep3_dm6_trim_q5.flagstat
+    jobid: 176
+    wildcards: species=dm6, sample=wt_36h-Rep3
+
+Submitted job 176 with external jobid 'Submitted batch job 2114196'.
+
+[Thu Mar  9 09:21:55 2023]
+rule qFilter:
+    input: Bam/wt_36h-Rep2_dm6_trim.bam
+    output: Bam/wt_36h-Rep2_dm6_trim_q5.bam, logs/wt_36h-Rep2_dm6_trim_q5.flagstat
+    jobid: 193
+    wildcards: species=dm6, sample=wt_36h-Rep2
+
+Submitted job 193 with external jobid 'Submitted batch job 2114197'.
+
+[Thu Mar  9 09:21:55 2023]
+rule qFilter:
+    input: Bam/wt_18h-Rep3_dm6_trim.bam
+    output: Bam/wt_18h-Rep3_dm6_trim_q5.bam, logs/wt_18h-Rep3_dm6_trim_q5.flagstat
+    jobid: 186
+    wildcards: species=dm6, sample=wt_18h-Rep3
+
+Submitted job 186 with external jobid 'Submitted batch job 2114198'.
+[Thu Mar  9 09:22:05 2023]
+Error in rule qFilter:
+    jobid: 177
+    output: Bam/wt_18h-Rep3_dm6_trim_q5.bam, logs/wt_18h-Rep3_dm6_trim_q5.flagstat
+    shell:
+        
+		samtools view -@ 4 -bq 5 Bam/wt_18h-Rep3_dm6_trim.bam > Bam/wt_18h-Rep3_dm6_trim_q5.bam &&
+		samtools flagstat Bam/wt_18h-Rep3_dm6_trim_q5.bam > logs/wt_18h-Rep3_dm6_trim_q5.flagstat
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2114156
+
+Error executing rule qFilter on cluster (jobid: 177, external: Submitted batch job 2114156, jobscript: /work/users/m/j/mjn15/faire-pipeline/.snakemake/tmp.kfjyyby1/snakejob.qFilter.177.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Thu Mar  9 09:22:05 2023]
+Error in rule qFilter:
+    jobid: 191
+    output: Bam/wt_24h-Rep3_dm6_trim_q5.bam, logs/wt_24h-Rep3_dm6_trim_q5.flagstat
+    shell:
+        
+		samtools view -@ 4 -bq 5 Bam/wt_24h-Rep3_dm6_trim.bam > Bam/wt_24h-Rep3_dm6_trim_q5.bam &&
+		samtools flagstat Bam/wt_24h-Rep3_dm6_trim_q5.bam > logs/wt_24h-Rep3_dm6_trim_q5.flagstat
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2114157
+
+Error executing rule qFilter on cluster (jobid: 191, external: Submitted batch job 2114157, jobscript: /work/users/m/j/mjn15/faire-pipeline/.snakemake/tmp.kfjyyby1/snakejob.qFilter.191.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Thu Mar  9 09:22:05 2023]
+Error in rule qFilter:
+    jobid: 176
+    output: Bam/wt_36h-Rep3_dm6_trim_q5.bam, logs/wt_36h-Rep3_dm6_trim_q5.flagstat
+    shell:
+        
+		samtools view -@ 4 -bq 5 Bam/wt_36h-Rep3_dm6_trim.bam > Bam/wt_36h-Rep3_dm6_trim_q5.bam &&
+		samtools flagstat Bam/wt_36h-Rep3_dm6_trim_q5.bam > logs/wt_36h-Rep3_dm6_trim_q5.flagstat
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2114158
+
+Error executing rule qFilter on cluster (jobid: 176, external: Submitted batch job 2114158, jobscript: /work/users/m/j/mjn15/faire-pipeline/.snakemake/tmp.kfjyyby1/snakejob.qFilter.176.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Thu Mar  9 09:22:05 2023]
+Error in rule qFilter:
+    jobid: 181
+    output: Bam/wt_6h-Rep1_dm6_trim_q5.bam, logs/wt_6h-Rep1_dm6_trim_q5.flagstat
+    shell:
+        
+		samtools view -@ 4 -bq 5 Bam/wt_6h-Rep1_dm6_trim.bam > Bam/wt_6h-Rep1_dm6_trim_q5.bam &&
+		samtools flagstat Bam/wt_6h-Rep1_dm6_trim_q5.bam > logs/wt_6h-Rep1_dm6_trim_q5.flagstat
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2114159
+
+Error executing rule qFilter on cluster (jobid: 181, external: Submitted batch job 2114159, jobscript: /work/users/m/j/mjn15/faire-pipeline/.snakemake/tmp.kfjyyby1/snakejob.qFilter.181.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Thu Mar  9 09:22:05 2023]
+Error in rule qFilter:
+    jobid: 187
+    output: Bam/wt_24h-Rep1_dm6_trim_q5.bam, logs/wt_24h-Rep1_dm6_trim_q5.flagstat
+    shell:
+        
+		samtools view -@ 4 -bq 5 Bam/wt_24h-Rep1_dm6_trim.bam > Bam/wt_24h-Rep1_dm6_trim_q5.bam &&
+		samtools flagstat Bam/wt_24h-Rep1_dm6_trim_q5.bam > logs/wt_24h-Rep1_dm6_trim_q5.flagstat
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2114160
+
+Error executing rule qFilter on cluster (jobid: 187, external: Submitted batch job 2114160, jobscript: /work/users/m/j/mjn15/faire-pipeline/.snakemake/tmp.kfjyyby1/snakejob.qFilter.187.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Thu Mar  9 09:22:05 2023]
+Error in rule qFilter:
+    jobid: 190
+    output: Bam/wt_24h-Rep2_dm6_trim_q5.bam, logs/wt_24h-Rep2_dm6_trim_q5.flagstat
+    shell:
+        
+		samtools view -@ 4 -bq 5 Bam/wt_24h-Rep2_dm6_trim.bam > Bam/wt_24h-Rep2_dm6_trim_q5.bam &&
+		samtools flagstat Bam/wt_24h-Rep2_dm6_trim_q5.bam > logs/wt_24h-Rep2_dm6_trim_q5.flagstat
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2114161
+
+Error executing rule qFilter on cluster (jobid: 190, external: Submitted batch job 2114161, jobscript: /work/users/m/j/mjn15/faire-pipeline/.snakemake/tmp.kfjyyby1/snakejob.qFilter.190.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Thu Mar  9 09:22:05 2023]
+Error in rule qFilter:
+    jobid: 179
+    output: Bam/wt_18h-Rep1_dm6_trim_q5.bam, logs/wt_18h-Rep1_dm6_trim_q5.flagstat
+    shell:
+        
+		samtools view -@ 4 -bq 5 Bam/wt_18h-Rep1_dm6_trim.bam > Bam/wt_18h-Rep1_dm6_trim_q5.bam &&
+		samtools flagstat Bam/wt_18h-Rep1_dm6_trim_q5.bam > logs/wt_18h-Rep1_dm6_trim_q5.flagstat
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2114163
+
+Error executing rule qFilter on cluster (jobid: 179, external: Submitted batch job 2114163, jobscript: /work/users/m/j/mjn15/faire-pipeline/.snakemake/tmp.kfjyyby1/snakejob.qFilter.179.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Thu Mar  9 09:22:05 2023]
+Error in rule qFilter:
+    jobid: 193
+    output: Bam/wt_36h-Rep2_dm6_trim_q5.bam, logs/wt_36h-Rep2_dm6_trim_q5.flagstat
+    shell:
+        
+		samtools view -@ 4 -bq 5 Bam/wt_36h-Rep2_dm6_trim.bam > Bam/wt_36h-Rep2_dm6_trim_q5.bam &&
+		samtools flagstat Bam/wt_36h-Rep2_dm6_trim_q5.bam > logs/wt_36h-Rep2_dm6_trim_q5.flagstat
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2114164
+
+Error executing rule qFilter on cluster (jobid: 193, external: Submitted batch job 2114164, jobscript: /work/users/m/j/mjn15/faire-pipeline/.snakemake/tmp.kfjyyby1/snakejob.qFilter.193.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Thu Mar  9 09:22:05 2023]
+Error in rule qFilter:
+    jobid: 186
+    output: Bam/wt_44h-Rep1_dm6_trim_q5.bam, logs/wt_44h-Rep1_dm6_trim_q5.flagstat
+    shell:
+        
+		samtools view -@ 4 -bq 5 Bam/wt_44h-Rep1_dm6_trim.bam > Bam/wt_44h-Rep1_dm6_trim_q5.bam &&
+		samtools flagstat Bam/wt_44h-Rep1_dm6_trim_q5.bam > logs/wt_44h-Rep1_dm6_trim_q5.flagstat
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2114165
+
+Error executing rule qFilter on cluster (jobid: 186, external: Submitted batch job 2114165, jobscript: /work/users/m/j/mjn15/faire-pipeline/.snakemake/tmp.kfjyyby1/snakejob.qFilter.186.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Thu Mar  9 09:22:06 2023]
+Error in rule qFilter:
+    jobid: 192
+    output: Bam/wt_18h-Rep4_dm6_trim_q5.bam, logs/wt_18h-Rep4_dm6_trim_q5.flagstat
+    shell:
+        
+		samtools view -@ 4 -bq 5 Bam/wt_18h-Rep4_dm6_trim.bam > Bam/wt_18h-Rep4_dm6_trim_q5.bam &&
+		samtools flagstat Bam/wt_18h-Rep4_dm6_trim_q5.bam > logs/wt_18h-Rep4_dm6_trim_q5.flagstat
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2114166
+
+Error executing rule qFilter on cluster (jobid: 192, external: Submitted batch job 2114166, jobscript: /work/users/m/j/mjn15/faire-pipeline/.snakemake/tmp.kfjyyby1/snakejob.qFilter.192.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Thu Mar  9 09:22:06 2023]
+Error in rule qFilter:
+    jobid: 178
+    output: Bam/wt_36h-Rep1_dm6_trim_q5.bam, logs/wt_36h-Rep1_dm6_trim_q5.flagstat
+    shell:
+        
+		samtools view -@ 4 -bq 5 Bam/wt_36h-Rep1_dm6_trim.bam > Bam/wt_36h-Rep1_dm6_trim_q5.bam &&
+		samtools flagstat Bam/wt_36h-Rep1_dm6_trim_q5.bam > logs/wt_36h-Rep1_dm6_trim_q5.flagstat
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2114168
+
+Error executing rule qFilter on cluster (jobid: 178, external: Submitted batch job 2114168, jobscript: /work/users/m/j/mjn15/faire-pipeline/.snakemake/tmp.kfjyyby1/snakejob.qFilter.178.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Thu Mar  9 09:22:06 2023]
+Error in rule qFilter:
+    jobid: 189
+    output: Bam/wt_44h-Rep2_dm6_trim_q5.bam, logs/wt_44h-Rep2_dm6_trim_q5.flagstat
+    shell:
+        
+		samtools view -@ 4 -bq 5 Bam/wt_44h-Rep2_dm6_trim.bam > Bam/wt_44h-Rep2_dm6_trim_q5.bam &&
+		samtools flagstat Bam/wt_44h-Rep2_dm6_trim_q5.bam > logs/wt_44h-Rep2_dm6_trim_q5.flagstat
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2114169
+
+Error executing rule qFilter on cluster (jobid: 189, external: Submitted batch job 2114169, jobscript: /work/users/m/j/mjn15/faire-pipeline/.snakemake/tmp.kfjyyby1/snakejob.qFilter.189.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Thu Mar  9 09:22:06 2023]
+Error in rule qFilter:
+    jobid: 180
+    output: Bam/wt_6h-Rep2_dm6_trim_q5.bam, logs/wt_6h-Rep2_dm6_trim_q5.flagstat
+    shell:
+        
+		samtools view -@ 4 -bq 5 Bam/wt_6h-Rep2_dm6_trim.bam > Bam/wt_6h-Rep2_dm6_trim_q5.bam &&
+		samtools flagstat Bam/wt_6h-Rep2_dm6_trim_q5.bam > logs/wt_6h-Rep2_dm6_trim_q5.flagstat
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2114170
+
+Error executing rule qFilter on cluster (jobid: 180, external: Submitted batch job 2114170, jobscript: /work/users/m/j/mjn15/faire-pipeline/.snakemake/tmp.kfjyyby1/snakejob.qFilter.180.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Thu Mar  9 09:22:06 2023]
+Error in rule qFilter:
+    jobid: 184
+    output: Bam/wt_3LW-Rep3_dm6_trim_q5.bam, logs/wt_3LW-Rep3_dm6_trim_q5.flagstat
+    shell:
+        
+		samtools view -@ 4 -bq 5 Bam/wt_3LW-Rep3_dm6_trim.bam > Bam/wt_3LW-Rep3_dm6_trim_q5.bam &&
+		samtools flagstat Bam/wt_3LW-Rep3_dm6_trim_q5.bam > logs/wt_3LW-Rep3_dm6_trim_q5.flagstat
+		
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2114173
+
+Error executing rule qFilter on cluster (jobid: 184, external: Submitted batch job 2114173, jobscript: /work/users/m/j/mjn15/faire-pipeline/.snakemake/tmp.kfjyyby1/snakejob.qFilter.184.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Thu Mar  9 09:22:26 2023]
+Finished job 162.
+1 of 157 steps (0.64%) done
+
+[Thu Mar  9 09:22:26 2023]
+rule removeDups:
+    input: Bam/wt_18h-Rep2_dm6_trim_q5_sorted.bam
+    output: Bam/wt_18h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_18h-Rep2_dm6_trim_q5_sorted_dupsMarked.bam, Bam/wt_18h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai, PCRdups/wt_18h-Rep2_dm6_PCR_duplicates, logs/wt_18h-Rep2_dm6_trim_q5_sorted_dupsRemoved.flagstat
+    jobid: 86
+    wildcards: species=dm6, sample=wt_18h-Rep2
+
+Submitted job 86 with external jobid 'Submitted batch job 2114203'.
+[Thu Mar  9 09:22:46 2023]
+Finished job 146.
+2 of 158 steps (1%) done
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /work/users/m/j/mjn15/faire-pipeline/.snakemake/log/2023-03-09T092057.991751.snakemake.log
+[Thu Mar  9 09:23:21 2023]
+Finished job 188.
+2 of 157 steps (1%) done
+
+[Thu Mar  9 09:23:21 2023]
+rule bamSort:
+    input: Bam/wt_6h-Rep1_dm6_trim_q5.bam
+    output: Bam/wt_6h-Rep1_dm6_trim_q5_sorted.bam
+    jobid: 148
+    wildcards: species=dm6, sample=wt_6h-Rep1
+
+[Thu Mar  9 09:23:21 2023]
+Finished job 181.
+3 of 157 steps (2%) done
+[Thu Mar  9 09:23:22 2023]
+Finished job 184.
+4 of 157 steps (3%) done
+[Thu Mar  9 09:23:22 2023]
+Finished job 186.
+5 of 157 steps (3%) done
+Submitted job 148 with external jobid 'Submitted batch job 2114211'.
+
+[Thu Mar  9 09:23:22 2023]
+rule bamSort:
+    input: Bam/wt_44h-Rep1_dm6_trim_q5.bam
+    output: Bam/wt_44h-Rep1_dm6_trim_q5_sorted.bam
+    jobid: 140
+    wildcards: species=dm6, sample=wt_44h-Rep1
+
+Submitted job 140 with external jobid 'Submitted batch job 2114212'.
+
+[Thu Mar  9 09:23:22 2023]
+rule bamSort:
+    input: Bam/wt_18h-Rep3_dm6_trim_q5.bam
+    output: Bam/wt_18h-Rep3_dm6_trim_q5_sorted.bam
+    jobid: 144
+    wildcards: species=dm6, sample=wt_18h-Rep3
+
+Submitted job 144 with external jobid 'Submitted batch job 2114213'.
+
+[Thu Mar  9 09:23:22 2023]
+rule bamSort:
+    input: Bam/wt_18h-Rep1_dm6_trim_q5.bam
+    output: Bam/wt_18h-Rep1_dm6_trim_q5_sorted.bam
+    jobid: 134
+    wildcards: species=dm6, sample=wt_18h-Rep1
+
+Submitted job 134 with external jobid 'Submitted batch job 2114214'.
+[Thu Mar  9 09:23:32 2023]
+Finished job 192.
+6 of 157 steps (4%) done
+
+[Thu Mar  9 09:23:32 2023]
+rule bamSort:
+    input: Bam/wt_3LW-Rep1_dm6_trim_q5.bam
+    output: Bam/wt_3LW-Rep1_dm6_trim_q5_sorted.bam
+    jobid: 164
+    wildcards: species=dm6, sample=wt_3LW-Rep1
+
+[Thu Mar  9 09:23:32 2023]
+Finished job 179.
+7 of 157 steps (4%) done
+[Thu Mar  9 09:23:32 2023]
+Finished job 183.
+8 of 157 steps (5%) done
+[Thu Mar  9 09:23:32 2023]
+Finished job 185.
+9 of 157 steps (6%) done
+[Thu Mar  9 09:23:32 2023]
+Finished job 177.
+10 of 157 steps (6%) done
+[Thu Mar  9 09:23:32 2023]
+Finished job 187.
+11 of 157 steps (7%) done
+Submitted job 164 with external jobid 'Submitted batch job 2114216'.
+
+[Thu Mar  9 09:23:32 2023]
+rule bamSort:
+    input: Bam/wt_24h-Rep1_dm6_trim_q5.bam
+    output: Bam/wt_24h-Rep1_dm6_trim_q5_sorted.bam
+    jobid: 142
+    wildcards: species=dm6, sample=wt_24h-Rep1
+
+Submitted job 142 with external jobid 'Submitted batch job 2114217'.
+
+[Thu Mar  9 09:23:32 2023]
+rule bamSort:
+    input: Bam/wt_44h-Rep2_dm6_trim_q5.bam
+    output: Bam/wt_44h-Rep2_dm6_trim_q5_sorted.bam
+    jobid: 145
+    wildcards: species=dm6, sample=wt_44h-Rep2
+
+Submitted job 145 with external jobid 'Submitted batch job 2114218'.
+
+[Thu Mar  9 09:23:32 2023]
+rule bamSort:
+    input: Bam/wt_3LW-Rep3_dm6_trim_q5.bam
+    output: Bam/wt_3LW-Rep3_dm6_trim_q5_sorted.bam
+    jobid: 138
+    wildcards: species=dm6, sample=wt_3LW-Rep3
+
+Submitted job 138 with external jobid 'Submitted batch job 2114219'.
+
+[Thu Mar  9 09:23:32 2023]
+rule bamSort:
+    input: Bam/wt_24h-Rep3_dm6_trim_q5.bam
+    output: Bam/wt_24h-Rep3_dm6_trim_q5_sorted.bam
+    jobid: 128
+    wildcards: species=dm6, sample=wt_24h-Rep3
+
+Submitted job 128 with external jobid 'Submitted batch job 2114220'.
+
+[Thu Mar  9 09:23:32 2023]
+rule bamSort:
+    input: Bam/wt_44h-Rep3_dm6_trim_q5.bam
+    output: Bam/wt_44h-Rep3_dm6_trim_q5_sorted.bam
+    jobid: 118
+    wildcards: species=dm6, sample=wt_44h-Rep3
+
+Submitted job 118 with external jobid 'Submitted batch job 2114221'.
+[Thu Mar  9 09:23:33 2023]
+Finished job 182.
+12 of 157 steps (8%) done
+
+[Thu Mar  9 09:23:33 2023]
+rule bamSort:
+    input: Bam/wt_36h-Rep1_dm6_trim_q5.bam
+    output: Bam/wt_36h-Rep1_dm6_trim_q5_sorted.bam
+    jobid: 136
+    wildcards: species=dm6, sample=wt_36h-Rep1
+
+Submitted job 136 with external jobid 'Submitted batch job 2114232'.
+[Thu Mar  9 09:23:33 2023]
+Finished job 193.
+13 of 157 steps (8%) done
+
+[Thu Mar  9 09:23:33 2023]
+rule bamSort:
+    input: Bam/wt_36h-Rep2_dm6_trim_q5.bam
+    output: Bam/wt_36h-Rep2_dm6_trim_q5_sorted.bam
+    jobid: 170
+    wildcards: species=dm6, sample=wt_36h-Rep2
+
+Submitted job 170 with external jobid 'Submitted batch job 2114234'.
+[Thu Mar  9 09:23:33 2023]
+Finished job 86.
+14 of 157 steps (9%) done
+
+[Thu Mar  9 09:23:33 2023]
+rule bigWig:
+    input: Bam/wt_18h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_18h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: BigWig/wt_18h-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    jobid: 147
+    wildcards: species=dm6, sample=wt_18h-Rep2
+    threads: 8
+
+Submitted job 147 with external jobid 'Submitted batch job 2114238'.
+
+[Thu Mar  9 09:23:33 2023]
+rule bamToBed:
+    input: Bam/wt_18h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_18h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: Bed/wt_18h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bed
+    jobid: 57
+    wildcards: species=dm6, sample=wt_18h-Rep2
+
+Submitted job 57 with external jobid 'Submitted batch job 2114240'.
+[Thu Mar  9 09:23:43 2023]
+Finished job 190.
+15 of 157 steps (10%) done
+
+[Thu Mar  9 09:23:43 2023]
+rule bamSort:
+    input: Bam/wt_3LW-Rep2_dm6_trim_q5.bam
+    output: Bam/wt_3LW-Rep2_dm6_trim_q5_sorted.bam
+    jobid: 157
+    wildcards: species=dm6, sample=wt_3LW-Rep2
+
+Submitted job 157 with external jobid 'Submitted batch job 2114487'.
+[Thu Mar  9 09:23:44 2023]
+Finished job 176.
+16 of 157 steps (10%) done
+
+[Thu Mar  9 09:23:44 2023]
+rule bamSort:
+    input: Bam/wt_36h-Rep3_dm6_trim_q5.bam
+    output: Bam/wt_36h-Rep3_dm6_trim_q5_sorted.bam
+    jobid: 116
+    wildcards: species=dm6, sample=wt_36h-Rep3
+
+Submitted job 116 with external jobid 'Submitted batch job 2114514'.
+[Thu Mar  9 09:23:54 2023]
+Finished job 180.
+17 of 157 steps (11%) done
+
+[Thu Mar  9 09:23:54 2023]
+rule bamSort:
+    input: Bam/wt_18h-Rep4_dm6_trim_q5.bam
+    output: Bam/wt_18h-Rep4_dm6_trim_q5_sorted.bam
+    jobid: 133
+    wildcards: species=dm6, sample=wt_18h-Rep4
+
+Submitted job 133 with external jobid 'Submitted batch job 2114747'.
+[Thu Mar  9 09:24:28 2023]
+Finished job 178.
+18 of 157 steps (11%) done
+
+[Thu Mar  9 09:24:28 2023]
+rule bamSort:
+    input: Bam/wt_6h-Rep2_dm6_trim_q5.bam
+    output: Bam/wt_6h-Rep2_dm6_trim_q5_sorted.bam
+    jobid: 126
+    wildcards: species=dm6, sample=wt_6h-Rep2
+
+[Thu Mar  9 09:24:28 2023]
+Finished job 189.
+19 of 157 steps (12%) done
+[Thu Mar  9 09:24:28 2023]
+Finished job 148.
+20 of 157 steps (13%) done
+Submitted job 126 with external jobid 'Submitted batch job 2114948'.
+[Thu Mar  9 09:24:28 2023]
+Finished job 140.
+21 of 157 steps (13%) done
+
+[Thu Mar  9 09:24:28 2023]
+rule bamSort:
+    input: Bam/wt_24h-Rep2_dm6_trim_q5.bam
+    output: Bam/wt_24h-Rep2_dm6_trim_q5_sorted.bam
+    jobid: 155
+    wildcards: species=dm6, sample=wt_24h-Rep2
+
+[Thu Mar  9 09:24:28 2023]
+Finished job 144.
+22 of 157 steps (14%) done
+Submitted job 155 with external jobid 'Submitted batch job 2114949'.
+[Thu Mar  9 09:24:28 2023]
+Finished job 134.
+23 of 157 steps (15%) done
+
+[Thu Mar  9 09:24:28 2023]
+rule removeDups:
+    input: Bam/wt_44h-Rep1_dm6_trim_q5_sorted.bam
+    output: Bam/wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_44h-Rep1_dm6_trim_q5_sorted_dupsMarked.bam, Bam/wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai, PCRdups/wt_44h-Rep1_dm6_PCR_duplicates, logs/wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved.flagstat
+    jobid: 42
+    wildcards: species=dm6, sample=wt_44h-Rep1
+
+[Thu Mar  9 09:24:28 2023]
+Finished job 147.
+24 of 157 steps (15%) done
+[Thu Mar  9 09:24:28 2023]
+Finished job 57.
+25 of 157 steps (16%) done
+Submitted job 42 with external jobid 'Submitted batch job 2114950'.
+
+[Thu Mar  9 09:24:28 2023]
+rule removeDups:
+    input: Bam/wt_6h-Rep1_dm6_trim_q5_sorted.bam
+    output: Bam/wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_6h-Rep1_dm6_trim_q5_sorted_dupsMarked.bam, Bam/wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai, PCRdups/wt_6h-Rep1_dm6_PCR_duplicates, logs/wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved.flagstat
+    jobid: 56
+    wildcards: species=dm6, sample=wt_6h-Rep1
+
+Submitted job 56 with external jobid 'Submitted batch job 2114951'.
+
+[Thu Mar  9 09:24:28 2023]
+rule removeDups:
+    input: Bam/wt_18h-Rep1_dm6_trim_q5_sorted.bam
+    output: Bam/wt_18h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_18h-Rep1_dm6_trim_q5_sorted_dupsMarked.bam, Bam/wt_18h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai, PCRdups/wt_18h-Rep1_dm6_PCR_duplicates, logs/wt_18h-Rep1_dm6_trim_q5_sorted_dupsRemoved.flagstat
+    jobid: 31
+    wildcards: species=dm6, sample=wt_18h-Rep1
+
+Submitted job 31 with external jobid 'Submitted batch job 2114952'.
+
+[Thu Mar  9 09:24:28 2023]
+rule CallRepPeaks:
+    input: Bed/wt_18h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bed
+    output: Peaks/wt_18h-Rep2_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak
+    jobid: 115
+    wildcards: species=dm6, sample=wt_18h-Rep2
+
+Submitted job 115 with external jobid 'Submitted batch job 2114953'.
+
+[Thu Mar  9 09:24:29 2023]
+rule removeDups:
+    input: Bam/wt_18h-Rep3_dm6_trim_q5_sorted.bam
+    output: Bam/wt_18h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_18h-Rep3_dm6_trim_q5_sorted_dupsMarked.bam, Bam/wt_18h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam.bai, PCRdups/wt_18h-Rep3_dm6_PCR_duplicates, logs/wt_18h-Rep3_dm6_trim_q5_sorted_dupsRemoved.flagstat
+    jobid: 47
+    wildcards: species=dm6, sample=wt_18h-Rep3
+
+Submitted job 47 with external jobid 'Submitted batch job 2114954'.
+
+[Thu Mar  9 09:24:29 2023]
+rule zNormBigWig:
+    input: BigWig/wt_18h-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    output: logs/wt_18h-Rep2_dm6.zNorm, BigWig/wt_18h-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw
+    jobid: 54
+    wildcards: species=dm6, sample=wt_18h-Rep2
+
+Submitted job 54 with external jobid 'Submitted batch job 2114955'.
+[Thu Mar  9 09:25:00 2023]
+Finished job 164.
+26 of 157 steps (17%) done
+
+[Thu Mar  9 09:25:00 2023]
+rule removeDups:
+    input: Bam/wt_3LW-Rep1_dm6_trim_q5_sorted.bam
+    output: Bam/wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_3LW-Rep1_dm6_trim_q5_sorted_dupsMarked.bam, Bam/wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai, PCRdups/wt_3LW-Rep1_dm6_PCR_duplicates, logs/wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved.flagstat
+    jobid: 89
+    wildcards: species=dm6, sample=wt_3LW-Rep1
+
+[Thu Mar  9 09:25:00 2023]
+Finished job 142.
+27 of 157 steps (17%) done
+[Thu Mar  9 09:25:00 2023]
+Finished job 145.
+28 of 157 steps (18%) done
+[Thu Mar  9 09:25:00 2023]
+Finished job 138.
+29 of 157 steps (18%) done
+Submitted job 89 with external jobid 'Submitted batch job 2114957'.
+
+[Thu Mar  9 09:25:01 2023]
+rule removeDups:
+    input: Bam/wt_3LW-Rep3_dm6_trim_q5_sorted.bam
+    output: Bam/wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_3LW-Rep3_dm6_trim_q5_sorted_dupsMarked.bam, Bam/wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam.bai, PCRdups/wt_3LW-Rep3_dm6_PCR_duplicates, logs/wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved.flagstat
+    jobid: 36
+    wildcards: species=dm6, sample=wt_3LW-Rep3
+
+Submitted job 36 with external jobid 'Submitted batch job 2114958'.
+
+[Thu Mar  9 09:25:01 2023]
+rule removeDups:
+    input: Bam/wt_24h-Rep1_dm6_trim_q5_sorted.bam
+    output: Bam/wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_24h-Rep1_dm6_trim_q5_sorted_dupsMarked.bam, Bam/wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai, PCRdups/wt_24h-Rep1_dm6_PCR_duplicates, logs/wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved.flagstat
+    jobid: 44
+    wildcards: species=dm6, sample=wt_24h-Rep1
+
+[Thu Mar  9 09:25:01 2023]
+Finished job 136.
+30 of 157 steps (19%) done
+[Thu Mar  9 09:25:01 2023]
+Finished job 170.
+31 of 157 steps (20%) done
+[Thu Mar  9 09:25:02 2023]
+Finished job 54.
+32 of 157 steps (20%) done
+Submitted job 44 with external jobid 'Submitted batch job 2114959'.
+
+[Thu Mar  9 09:25:03 2023]
+rule removeDups:
+    input: Bam/wt_44h-Rep2_dm6_trim_q5_sorted.bam
+    output: Bam/wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_44h-Rep2_dm6_trim_q5_sorted_dupsMarked.bam, Bam/wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai, PCRdups/wt_44h-Rep2_dm6_PCR_duplicates, logs/wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved.flagstat
+    jobid: 48
+    wildcards: species=dm6, sample=wt_44h-Rep2
+
+Submitted job 48 with external jobid 'Submitted batch job 2114960'.
+
+[Thu Mar  9 09:25:03 2023]
+rule removeDups:
+    input: Bam/wt_36h-Rep1_dm6_trim_q5_sorted.bam
+    output: Bam/wt_36h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_36h-Rep1_dm6_trim_q5_sorted_dupsMarked.bam, Bam/wt_36h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai, PCRdups/wt_36h-Rep1_dm6_PCR_duplicates, logs/wt_36h-Rep1_dm6_trim_q5_sorted_dupsRemoved.flagstat
+    jobid: 33
+    wildcards: species=dm6, sample=wt_36h-Rep1
+
+Submitted job 33 with external jobid 'Submitted batch job 2114961'.
+
+[Thu Mar  9 09:25:03 2023]
+rule removeDups:
+    input: Bam/wt_36h-Rep2_dm6_trim_q5_sorted.bam
+    output: Bam/wt_36h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_36h-Rep2_dm6_trim_q5_sorted_dupsMarked.bam, Bam/wt_36h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai, PCRdups/wt_36h-Rep2_dm6_PCR_duplicates, logs/wt_36h-Rep2_dm6_trim_q5_sorted_dupsRemoved.flagstat
+    jobid: 100
+    wildcards: species=dm6, sample=wt_36h-Rep2
+
+Submitted job 100 with external jobid 'Submitted batch job 2114962'.
+[Thu Mar  9 09:25:12 2023]
+Finished job 128.
+33 of 157 steps (21%) done
+
+[Thu Mar  9 09:25:12 2023]
+rule removeDups:
+    input: Bam/wt_24h-Rep3_dm6_trim_q5_sorted.bam
+    output: Bam/wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_24h-Rep3_dm6_trim_q5_sorted_dupsMarked.bam, Bam/wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam.bai, PCRdups/wt_24h-Rep3_dm6_PCR_duplicates, logs/wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved.flagstat
+    jobid: 20
+    wildcards: species=dm6, sample=wt_24h-Rep3
+
+[Thu Mar  9 09:25:12 2023]
+Finished job 118.
+34 of 157 steps (22%) done
+Submitted job 20 with external jobid 'Submitted batch job 2114963'.
+
+[Thu Mar  9 09:25:13 2023]
+rule removeDups:
+    input: Bam/wt_44h-Rep3_dm6_trim_q5_sorted.bam
+    output: Bam/wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_44h-Rep3_dm6_trim_q5_sorted_dupsMarked.bam, Bam/wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam.bai, PCRdups/wt_44h-Rep3_dm6_PCR_duplicates, logs/wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved.flagstat
+    jobid: 6
+    wildcards: species=dm6, sample=wt_44h-Rep3
+
+Submitted job 6 with external jobid 'Submitted batch job 2114964'.
+[Thu Mar  9 09:25:23 2023]
+Finished job 133.
+35 of 157 steps (22%) done
+
+[Thu Mar  9 09:25:23 2023]
+rule removeDups:
+    input: Bam/wt_18h-Rep4_dm6_trim_q5_sorted.bam
+    output: Bam/wt_18h-Rep4_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_18h-Rep4_dm6_trim_q5_sorted_dupsMarked.bam, Bam/wt_18h-Rep4_dm6_trim_q5_sorted_dupsRemoved.bam.bai, PCRdups/wt_18h-Rep4_dm6_PCR_duplicates, logs/wt_18h-Rep4_dm6_trim_q5_sorted_dupsRemoved.flagstat
+    jobid: 30
+    wildcards: species=dm6, sample=wt_18h-Rep4
+
+[Thu Mar  9 09:25:23 2023]
+Finished job 157.
+36 of 157 steps (23%) done
+[Thu Mar  9 09:25:23 2023]
+Finished job 116.
+37 of 157 steps (24%) done
+Submitted job 30 with external jobid 'Submitted batch job 2114965'.
+
+[Thu Mar  9 09:25:23 2023]
+rule removeDups:
+    input: Bam/wt_36h-Rep3_dm6_trim_q5_sorted.bam
+    output: Bam/wt_36h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_36h-Rep3_dm6_trim_q5_sorted_dupsMarked.bam, Bam/wt_36h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam.bai, PCRdups/wt_36h-Rep3_dm6_PCR_duplicates, logs/wt_36h-Rep3_dm6_trim_q5_sorted_dupsRemoved.flagstat
+    jobid: 2
+    wildcards: species=dm6, sample=wt_36h-Rep3
+
+Submitted job 2 with external jobid 'Submitted batch job 2114966'.
+
+[Thu Mar  9 09:25:23 2023]
+rule removeDups:
+    input: Bam/wt_3LW-Rep2_dm6_trim_q5_sorted.bam
+    output: Bam/wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_3LW-Rep2_dm6_trim_q5_sorted_dupsMarked.bam, Bam/wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai, PCRdups/wt_3LW-Rep2_dm6_PCR_duplicates, logs/wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved.flagstat
+    jobid: 75
+    wildcards: species=dm6, sample=wt_3LW-Rep2
+
+Submitted job 75 with external jobid 'Submitted batch job 2114967'.
+[Thu Mar  9 09:27:02 2023]
+Finished job 126.
+38 of 157 steps (24%) done
+
+[Thu Mar  9 09:27:02 2023]
+rule removeDups:
+    input: Bam/wt_6h-Rep2_dm6_trim_q5_sorted.bam
+    output: Bam/wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_6h-Rep2_dm6_trim_q5_sorted_dupsMarked.bam, Bam/wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai, PCRdups/wt_6h-Rep2_dm6_PCR_duplicates, logs/wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved.flagstat
+    jobid: 18
+    wildcards: species=dm6, sample=wt_6h-Rep2
+
+[Thu Mar  9 09:27:02 2023]
+Finished job 155.
+39 of 157 steps (25%) done
+[Thu Mar  9 09:27:02 2023]
+Finished job 42.
+40 of 157 steps (25%) done
+[Thu Mar  9 09:27:02 2023]
+Finished job 56.
+41 of 157 steps (26%) done
+Submitted job 18 with external jobid 'Submitted batch job 2114971'.
+
+[Thu Mar  9 09:27:02 2023]
+rule removeDups:
+    input: Bam/wt_24h-Rep2_dm6_trim_q5_sorted.bam
+    output: Bam/wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_24h-Rep2_dm6_trim_q5_sorted_dupsMarked.bam, Bam/wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai, PCRdups/wt_24h-Rep2_dm6_PCR_duplicates, logs/wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved.flagstat
+    jobid: 71
+    wildcards: species=dm6, sample=wt_24h-Rep2
+
+Submitted job 71 with external jobid 'Submitted batch job 2114972'.
+
+[Thu Mar  9 09:27:02 2023]
+rule bamToBed:
+    input: Bam/wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: Bed/wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bed
+    jobid: 83
+    wildcards: species=dm6, sample=wt_44h-Rep1
+
+Submitted job 83 with external jobid 'Submitted batch job 2114973'.
+
+[Thu Mar  9 09:27:02 2023]
+rule bamToBed:
+    input: Bam/wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: Bed/wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bed
+    jobid: 94
+    wildcards: species=dm6, sample=wt_6h-Rep1
+
+Submitted job 94 with external jobid 'Submitted batch job 2114974'.
+
+[Thu Mar  9 09:27:02 2023]
+rule bigWig:
+    input: Bam/wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: BigWig/wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    jobid: 163
+    wildcards: species=dm6, sample=wt_6h-Rep1
+    threads: 8
+
+Submitted job 163 with external jobid 'Submitted batch job 2114975'.
+
+[Thu Mar  9 09:27:02 2023]
+rule bigWig:
+    input: Bam/wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: BigWig/wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    jobid: 166
+    wildcards: species=dm6, sample=wt_44h-Rep1
+    threads: 8
+
+Submitted job 166 with external jobid 'Submitted batch job 2114976'.
+[Thu Mar  9 09:27:03 2023]
+Finished job 31.
+42 of 157 steps (27%) done
+
+[Thu Mar  9 09:27:03 2023]
+rule bigWig:
+    input: Bam/wt_18h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_18h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: BigWig/wt_18h-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    jobid: 174
+    wildcards: species=dm6, sample=wt_18h-Rep1
+    threads: 8
+
+Submitted job 174 with external jobid 'Submitted batch job 2114977'.
+
+[Thu Mar  9 09:27:03 2023]
+rule bamToBed:
+    input: Bam/wt_18h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_18h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: Bed/wt_18h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bed
+    jobid: 103
+    wildcards: species=dm6, sample=wt_18h-Rep1
+
+Submitted job 103 with external jobid 'Submitted batch job 2114978'.
+[Thu Mar  9 09:27:38 2023]
+Finished job 115.
+43 of 157 steps (27%) done
+[Thu Mar  9 09:27:38 2023]
+Finished job 47.
+44 of 157 steps (28%) done
+
+[Thu Mar  9 09:27:38 2023]
+rule bamToBed:
+    input: Bam/wt_18h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_18h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: Bed/wt_18h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bed
+    jobid: 68
+    wildcards: species=dm6, sample=wt_18h-Rep3
+
+Submitted job 68 with external jobid 'Submitted batch job 2114980'.
+
+[Thu Mar  9 09:27:38 2023]
+rule bigWig:
+    input: Bam/wt_18h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_18h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: BigWig/wt_18h-Rep3_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    jobid: 165
+    wildcards: species=dm6, sample=wt_18h-Rep3
+    threads: 8
+
+Submitted job 165 with external jobid 'Submitted batch job 2114981'.
+[Thu Mar  9 09:28:13 2023]
+Finished job 83.
+45 of 157 steps (29%) done
+
+[Thu Mar  9 09:28:13 2023]
+rule CallRepPeaks:
+    input: Bed/wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bed
+    output: Peaks/wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak
+    jobid: 39
+    wildcards: species=dm6, sample=wt_44h-Rep1
+
+[Thu Mar  9 09:28:13 2023]
+Finished job 166.
+46 of 157 steps (29%) done
+Submitted job 39 with external jobid 'Submitted batch job 2114982'.
+
+[Thu Mar  9 09:28:13 2023]
+rule zNormBigWig:
+    input: BigWig/wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    output: logs/wt_44h-Rep1_dm6.zNorm, BigWig/wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw
+    jobid: 92
+    wildcards: species=dm6, sample=wt_44h-Rep1
+
+Submitted job 92 with external jobid 'Submitted batch job 2114983'.
+[Thu Mar  9 09:28:15 2023]
+Finished job 103.
+47 of 157 steps (30%) done
+
+[Thu Mar  9 09:28:15 2023]
+rule CallRepPeaks:
+    input: Bed/wt_18h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bed
+    output: Peaks/wt_18h-Rep1_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak
+    jobid: 55
+    wildcards: species=dm6, sample=wt_18h-Rep1
+
+Submitted job 55 with external jobid 'Submitted batch job 2114984'.
+[Thu Mar  9 09:28:25 2023]
+Finished job 68.
+48 of 157 steps (31%) done
+
+[Thu Mar  9 09:28:25 2023]
+rule CallRepPeaks:
+    input: Bed/wt_18h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bed
+    output: Peaks/wt_18h-Rep3_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak
+    jobid: 34
+    wildcards: species=dm6, sample=wt_18h-Rep3
+
+[Thu Mar  9 09:28:25 2023]
+Finished job 94.
+49 of 157 steps (31%) done
+[Thu Mar  9 09:28:25 2023]
+Finished job 163.
+50 of 157 steps (32%) done
+Submitted job 34 with external jobid 'Submitted batch job 2114989'.
+
+[Thu Mar  9 09:28:25 2023]
+rule CallRepPeaks:
+    input: Bed/wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bed
+    output: Peaks/wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak
+    jobid: 73
+    wildcards: species=dm6, sample=wt_6h-Rep1
+
+Submitted job 73 with external jobid 'Submitted batch job 2114990'.
+
+[Thu Mar  9 09:28:25 2023]
+rule zNormBigWig:
+    input: BigWig/wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    output: logs/wt_6h-Rep1_dm6.zNorm, BigWig/wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw
+    jobid: 88
+    wildcards: species=dm6, sample=wt_6h-Rep1
+
+Submitted job 88 with external jobid 'Submitted batch job 2114991'.
+Waiting at most 60 seconds for missing files.
+[Thu Mar  9 09:29:14 2023]
+Finished job 92.
+51 of 157 steps (32%) done
+[Thu Mar  9 09:29:14 2023]
+Finished job 165.
+52 of 157 steps (33%) done
+
+[Thu Mar  9 09:29:14 2023]
+rule zNormBigWig:
+    input: BigWig/wt_18h-Rep3_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    output: logs/wt_18h-Rep3_dm6.zNorm, BigWig/wt_18h-Rep3_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw
+    jobid: 90
+    wildcards: species=dm6, sample=wt_18h-Rep3
+
+[Thu Mar  9 09:29:14 2023]
+Finished job 30.
+53 of 157 steps (34%) done
+[Thu Mar  9 09:29:14 2023]
+Finished job 2.
+54 of 157 steps (34%) done
+Submitted job 90 with external jobid 'Submitted batch job 2115004'.
+[Thu Mar  9 09:29:14 2023]
+Finished job 75.
+55 of 157 steps (35%) done
+
+[Thu Mar  9 09:29:14 2023]
+rule bigWig:
+    input: Bam/wt_36h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_36h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: BigWig/wt_36h-Rep3_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    jobid: 158
+    wildcards: species=dm6, sample=wt_36h-Rep3
+    threads: 8
+
+Submitted job 158 with external jobid 'Submitted batch job 2115005'.
+
+[Thu Mar  9 09:29:14 2023]
+rule mergeBams:
+    input: Bam/wt_18h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_18h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_18h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_18h-Rep4_dm6_trim_q5_sorted_dupsRemoved.bam
+    output: Bam/wt_18h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Bam/wt_18h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam.bai
+    jobid: 11
+    wildcards: samplePool=wt_18h, species=dm6
+
+Submitted job 11 with external jobid 'Submitted batch job 2115006'.
+[Thu Mar  9 09:29:14 2023]
+Finished job 20.
+56 of 157 steps (36%) done
+
+[Thu Mar  9 09:29:14 2023]
+rule bamToBed:
+    input: Bam/wt_36h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_36h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: Bed/wt_36h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bed
+    jobid: 85
+    wildcards: species=dm6, sample=wt_36h-Rep3
+
+Submitted job 85 with external jobid 'Submitted batch job 2115007'.
+
+[Thu Mar  9 09:29:14 2023]
+rule bigWig:
+    input: Bam/wt_18h-Rep4_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_18h-Rep4_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: BigWig/wt_18h-Rep4_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    jobid: 175
+    wildcards: species=dm6, sample=wt_18h-Rep4
+    threads: 8
+
+[Thu Mar  9 09:29:14 2023]
+Finished job 89.
+57 of 157 steps (36%) done
+Submitted job 175 with external jobid 'Submitted batch job 2115008'.
+
+[Thu Mar  9 09:29:14 2023]
+rule bamToBed:
+    input: Bam/wt_18h-Rep4_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_18h-Rep4_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: Bed/wt_18h-Rep4_dm6_trim_q5_sorted_dupsRemoved.bed
+    jobid: 104
+    wildcards: species=dm6, sample=wt_18h-Rep4
+
+[Thu Mar  9 09:29:15 2023]
+Finished job 36.
+58 of 157 steps (37%) done
+Submitted job 104 with external jobid 'Submitted batch job 2115009'.
+
+[Thu Mar  9 09:29:15 2023]
+rule bamToBed:
+    input: Bam/wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: Bed/wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bed
+    jobid: 64
+    wildcards: species=dm6, sample=wt_24h-Rep3
+
+[Thu Mar  9 09:29:15 2023]
+Finished job 44.
+59 of 157 steps (38%) done
+[Thu Mar  9 09:29:15 2023]
+Finished job 48.
+60 of 157 steps (38%) done
+[Thu Mar  9 09:29:15 2023]
+Finished job 33.
+61 of 157 steps (39%) done
+[Thu Mar  9 09:29:15 2023]
+Finished job 100.
+62 of 157 steps (39%) done
+[Thu Mar  9 09:29:15 2023]
+Finished job 174.
+63 of 157 steps (40%) done
+Submitted job 64 with external jobid 'Submitted batch job 2115010'.
+
+[Thu Mar  9 09:29:16 2023]
+rule bigWig:
+    input: Bam/wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: BigWig/wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    jobid: 150
+    wildcards: species=dm6, sample=wt_24h-Rep3
+    threads: 8
+
+Submitted job 150 with external jobid 'Submitted batch job 2115011'.
+
+[Thu Mar  9 09:29:16 2023]
+rule mergeBams:
+    input: Bam/wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam
+    output: Bam/wt_3LW_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Bam/wt_3LW_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam.bai
+    jobid: 79
+    wildcards: samplePool=wt_3LW, species=dm6
+
+Submitted job 79 with external jobid 'Submitted batch job 2115012'.
+
+[Thu Mar  9 09:29:16 2023]
+rule bigWig:
+    input: Bam/wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: BigWig/wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    jobid: 171
+    wildcards: species=dm6, sample=wt_3LW-Rep3
+    threads: 8
+
+Submitted job 171 with external jobid 'Submitted batch job 2115013'.
+
+[Thu Mar  9 09:29:16 2023]
+rule bigWig:
+    input: Bam/wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: BigWig/wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    jobid: 143
+    wildcards: species=dm6, sample=wt_3LW-Rep1
+    threads: 8
+
+Submitted job 143 with external jobid 'Submitted batch job 2115014'.
+
+[Thu Mar  9 09:29:16 2023]
+rule bigWig:
+    input: Bam/wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: BigWig/wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    jobid: 135
+    wildcards: species=dm6, sample=wt_3LW-Rep2
+    threads: 8
+
+Submitted job 135 with external jobid 'Submitted batch job 2115015'.
+
+[Thu Mar  9 09:29:16 2023]
+rule bamToBed:
+    input: Bam/wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: Bed/wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved.bed
+    jobid: 108
+    wildcards: species=dm6, sample=wt_3LW-Rep3
+
+Submitted job 108 with external jobid 'Submitted batch job 2115016'.
+
+[Thu Mar  9 09:29:16 2023]
+rule bamToBed:
+    input: Bam/wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: Bed/wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved.bed
+    jobid: 51
+    wildcards: species=dm6, sample=wt_3LW-Rep1
+
+Submitted job 51 with external jobid 'Submitted batch job 2115017'.
+
+[Thu Mar  9 09:29:17 2023]
+rule bamToBed:
+    input: Bam/wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: Bed/wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved.bed
+    jobid: 52
+    wildcards: species=dm6, sample=wt_3LW-Rep2
+
+Submitted job 52 with external jobid 'Submitted batch job 2115018'.
+
+[Thu Mar  9 09:29:18 2023]
+rule bigWig:
+    input: Bam/wt_36h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_36h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: BigWig/wt_36h-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    jobid: 137
+    wildcards: species=dm6, sample=wt_36h-Rep2
+    threads: 8
+
+Submitted job 137 with external jobid 'Submitted batch job 2115019'.
+
+[Thu Mar  9 09:29:18 2023]
+rule bamToBed:
+    input: Bam/wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: Bed/wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bed
+    jobid: 82
+    wildcards: species=dm6, sample=wt_24h-Rep1
+
+Submitted job 82 with external jobid 'Submitted batch job 2115020'.
+
+[Thu Mar  9 09:29:18 2023]
+rule bamToBed:
+    input: Bam/wt_36h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_36h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: Bed/wt_36h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bed
+    jobid: 29
+    wildcards: species=dm6, sample=wt_36h-Rep2
+
+Submitted job 29 with external jobid 'Submitted batch job 2115021'.
+
+[Thu Mar  9 09:29:18 2023]
+rule bamToBed:
+    input: Bam/wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: Bed/wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bed
+    jobid: 87
+    wildcards: species=dm6, sample=wt_44h-Rep2
+
+Submitted job 87 with external jobid 'Submitted batch job 2115022'.
+
+[Thu Mar  9 09:29:18 2023]
+rule mergeBams:
+    input: Bam/wt_36h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_36h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_36h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam
+    output: Bam/wt_36h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Bam/wt_36h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam.bai
+    jobid: 99
+    wildcards: samplePool=wt_36h, species=dm6
+
+Submitted job 99 with external jobid 'Submitted batch job 2115023'.
+
+[Thu Mar  9 09:29:18 2023]
+rule bigWig:
+    input: Bam/wt_36h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_36h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: BigWig/wt_36h-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    jobid: 173
+    wildcards: species=dm6, sample=wt_36h-Rep1
+    threads: 8
+
+Submitted job 173 with external jobid 'Submitted batch job 2115024'.
+
+[Thu Mar  9 09:29:19 2023]
+rule bamToBed:
+    input: Bam/wt_36h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_36h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: Bed/wt_36h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bed
+    jobid: 105
+    wildcards: species=dm6, sample=wt_36h-Rep1
+
+Submitted job 105 with external jobid 'Submitted batch job 2115025'.
+
+[Thu Mar  9 09:29:19 2023]
+rule bigWig:
+    input: Bam/wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: BigWig/wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    jobid: 168
+    wildcards: species=dm6, sample=wt_44h-Rep2
+    threads: 8
+
+Submitted job 168 with external jobid 'Submitted batch job 2115026'.
+
+[Thu Mar  9 09:29:19 2023]
+rule bigWig:
+    input: Bam/wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: BigWig/wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    jobid: 167
+    wildcards: species=dm6, sample=wt_24h-Rep1
+    threads: 8
+
+Submitted job 167 with external jobid 'Submitted batch job 2115027'.
+
+[Thu Mar  9 09:29:19 2023]
+rule zNormBigWig:
+    input: BigWig/wt_18h-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    output: logs/wt_18h-Rep1_dm6.zNorm, BigWig/wt_18h-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw
+    jobid: 113
+    wildcards: species=dm6, sample=wt_18h-Rep1
+
+Submitted job 113 with external jobid 'Submitted batch job 2115028'.
+[Thu Mar  9 09:29:25 2023]
+Finished job 88.
+64 of 157 steps (41%) done
+[Thu Mar  9 09:29:27 2023]
+Finished job 6.
+65 of 157 steps (41%) done
+
+[Thu Mar  9 09:29:27 2023]
+rule bigWig:
+    input: Bam/wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: BigWig/wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    jobid: 160
+    wildcards: species=dm6, sample=wt_44h-Rep3
+    threads: 8
+
+Submitted job 160 with external jobid 'Submitted batch job 2115029'.
+
+[Thu Mar  9 09:29:27 2023]
+rule bamToBed:
+    input: Bam/wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: Bed/wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bed
+    jobid: 72
+    wildcards: species=dm6, sample=wt_44h-Rep3
+
+Submitted job 72 with external jobid 'Submitted batch job 2115030'.
+
+[Thu Mar  9 09:29:27 2023]
+rule mergeBams:
+    input: Bam/wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam
+    output: Bam/wt_44h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Bam/wt_44h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam.bai
+    jobid: 25
+    wildcards: samplePool=wt_44h, species=dm6
+
+Submitted job 25 with external jobid 'Submitted batch job 2115031'.
+[Thu Mar  9 09:31:10 2023]
+Finished job 90.
+66 of 157 steps (42%) done
+[Thu Mar  9 09:31:10 2023]
+Finished job 85.
+67 of 157 steps (43%) done
+
+[Thu Mar  9 09:31:10 2023]
+rule CallRepPeaks:
+    input: Bed/wt_36h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bed
+    output: Peaks/wt_36h-Rep3_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak
+    jobid: 22
+    wildcards: species=dm6, sample=wt_36h-Rep3
+
+[Thu Mar  9 09:31:10 2023]
+Finished job 104.
+68 of 157 steps (43%) done
+Submitted job 22 with external jobid 'Submitted batch job 2115049'.
+
+[Thu Mar  9 09:31:10 2023]
+rule CallRepPeaks:
+    input: Bed/wt_18h-Rep4_dm6_trim_q5_sorted_dupsRemoved.bed
+    output: Peaks/wt_18h-Rep4_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak
+    jobid: 112
+    wildcards: species=dm6, sample=wt_18h-Rep4
+
+Waiting at most 60 seconds for missing files.
+Submitted job 112 with external jobid 'Submitted batch job 2115050'.
+[Thu Mar  9 09:31:58 2023]
+Finished job 39.
+69 of 157 steps (44%) done
+[Thu Mar  9 09:31:58 2023]
+Finished job 18.
+70 of 157 steps (45%) done
+
+[Thu Mar  9 09:31:58 2023]
+rule bamToBed:
+    input: Bam/wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: Bed/wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bed
+    jobid: 63
+    wildcards: species=dm6, sample=wt_6h-Rep2
+
+[Thu Mar  9 09:31:58 2023]
+Finished job 55.
+71 of 157 steps (45%) done
+[Thu Mar  9 09:31:58 2023]
+Finished job 64.
+72 of 157 steps (46%) done
+Submitted job 63 with external jobid 'Submitted batch job 2115053'.
+
+[Thu Mar  9 09:31:58 2023]
+rule bigWig:
+    input: Bam/wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: BigWig/wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    jobid: 153
+    wildcards: species=dm6, sample=wt_6h-Rep2
+    threads: 8
+
+[Thu Mar  9 09:31:59 2023]
+Finished job 108.
+73 of 157 steps (46%) done
+[Thu Mar  9 09:31:59 2023]
+Finished job 51.
+74 of 157 steps (47%) done
+[Thu Mar  9 09:31:59 2023]
+Finished job 52.
+75 of 157 steps (48%) done
+[Thu Mar  9 09:31:59 2023]
+Finished job 82.
+76 of 157 steps (48%) done
+[Thu Mar  9 09:31:59 2023]
+Finished job 29.
+77 of 157 steps (49%) done
+[Thu Mar  9 09:31:59 2023]
+Finished job 87.
+78 of 157 steps (50%) done
+[Thu Mar  9 09:31:59 2023]
+Finished job 105.
+79 of 157 steps (50%) done
+Submitted job 153 with external jobid 'Submitted batch job 2115054'.
+
+[Thu Mar  9 09:31:59 2023]
+rule mergeBams:
+    input: Bam/wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam
+    output: Bam/wt_6h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Bam/wt_6h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam.bai
+    jobid: 95
+    wildcards: samplePool=wt_6h, species=dm6
+
+Submitted job 95 with external jobid 'Submitted batch job 2115055'.
+
+[Thu Mar  9 09:31:59 2023]
+rule CallRepPeaks:
+    input: Bed/wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bed
+    output: Peaks/wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak
+    jobid: 4
+    wildcards: species=dm6, sample=wt_24h-Rep3
+
+Submitted job 4 with external jobid 'Submitted batch job 2115056'.
+
+[Thu Mar  9 09:31:59 2023]
+rule CallRepPeaks:
+    input: Bed/wt_36h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bed
+    output: Peaks/wt_36h-Rep2_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak
+    jobid: 91
+    wildcards: species=dm6, sample=wt_36h-Rep2
+
+Submitted job 91 with external jobid 'Submitted batch job 2115057'.
+
+[Thu Mar  9 09:31:59 2023]
+rule CallRepPeaks:
+    input: Bed/wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bed
+    output: Peaks/wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak
+    jobid: 37
+    wildcards: species=dm6, sample=wt_24h-Rep1
+
+Submitted job 37 with external jobid 'Submitted batch job 2115058'.
+
+[Thu Mar  9 09:31:59 2023]
+rule CallRepPeaks:
+    input: Bed/wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bed
+    output: Peaks/wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak
+    jobid: 41
+    wildcards: species=dm6, sample=wt_44h-Rep2
+
+Submitted job 41 with external jobid 'Submitted batch job 2115059'.
+
+[Thu Mar  9 09:31:59 2023]
+rule CallRepPeaks:
+    input: Bed/wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved.bed
+    output: Peaks/wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak
+    jobid: 98
+    wildcards: species=dm6, sample=wt_3LW-Rep2
+
+Submitted job 98 with external jobid 'Submitted batch job 2115060'.
+
+[Thu Mar  9 09:31:59 2023]
+rule CallRepPeaks:
+    input: Bed/wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved.bed
+    output: Peaks/wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak
+    jobid: 45
+    wildcards: species=dm6, sample=wt_3LW-Rep3
+
+Submitted job 45 with external jobid 'Submitted batch job 2115061'.
+
+[Thu Mar  9 09:32:00 2023]
+rule CallRepPeaks:
+    input: Bed/wt_36h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bed
+    output: Peaks/wt_36h-Rep1_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak
+    jobid: 53
+    wildcards: species=dm6, sample=wt_36h-Rep1
+
+[Thu Mar  9 09:32:00 2023]
+Finished job 113.
+80 of 157 steps (51%) done
+Submitted job 53 with external jobid 'Submitted batch job 2115062'.
+
+[Thu Mar  9 09:32:00 2023]
+rule CallRepPeaks:
+    input: Bed/wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved.bed
+    output: Peaks/wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak
+    jobid: 102
+    wildcards: species=dm6, sample=wt_3LW-Rep1
+
+Submitted job 102 with external jobid 'Submitted batch job 2115064'.
+[Thu Mar  9 09:32:11 2023]
+Finished job 72.
+81 of 157 steps (52%) done
+
+[Thu Mar  9 09:32:11 2023]
+rule CallRepPeaks:
+    input: Bed/wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bed
+    output: Peaks/wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak
+    jobid: 27
+    wildcards: species=dm6, sample=wt_44h-Rep3
+
+[Thu Mar  9 09:32:11 2023]
+Finished job 34.
+82 of 157 steps (52%) done
+[Thu Mar  9 09:32:11 2023]
+Finished job 73.
+83 of 157 steps (53%) done
+[Thu Mar  9 09:32:11 2023]
+Finished job 71.
+84 of 157 steps (54%) done
+Submitted job 27 with external jobid 'Submitted batch job 2115065'.
+
+[Thu Mar  9 09:32:12 2023]
+rule bamToBed:
+    input: Bam/wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: Bed/wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bed
+    jobid: 7
+    wildcards: species=dm6, sample=wt_24h-Rep2
+
+[Thu Mar  9 09:32:12 2023]
+Finished job 99.
+85 of 157 steps (54%) done
+Submitted job 7 with external jobid 'Submitted batch job 2115066'.
+
+[Thu Mar  9 09:32:14 2023]
+rule qcReport:
+    input: Bam/wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_18h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_18h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_18h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_18h-Rep4_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_36h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_36h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_36h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai, Bam/wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai, Bam/wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam.bai, Bam/wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai, Bam/wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai, Bam/wt_18h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai, Bam/wt_18h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai, Bam/wt_18h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam.bai, Bam/wt_18h-Rep4_dm6_trim_q5_sorted_dupsRemoved.bam.bai, Bam/wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai, Bam/wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai, Bam/wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam.bai, Bam/wt_36h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam.bai, Bam/wt_36h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai, Bam/wt_36h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai, Bam/wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam.bai, Bam/wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai, Bam/wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam.bai, PCRdups/wt_3LW-Rep1_dm6_PCR_duplicates, PCRdups/wt_3LW-Rep2_dm6_PCR_duplicates, PCRdups/wt_3LW-Rep3_dm6_PCR_duplicates, PCRdups/wt_6h-Rep1_dm6_PCR_duplicates, PCRdups/wt_6h-Rep2_dm6_PCR_duplicates, PCRdups/wt_18h-Rep1_dm6_PCR_duplicates, PCRdups/wt_18h-Rep2_dm6_PCR_duplicates, PCRdups/wt_18h-Rep3_dm6_PCR_duplicates, PCRdups/wt_18h-Rep4_dm6_PCR_duplicates, PCRdups/wt_24h-Rep1_dm6_PCR_duplicates, PCRdups/wt_24h-Rep2_dm6_PCR_duplicates, PCRdups/wt_24h-Rep3_dm6_PCR_duplicates, PCRdups/wt_36h-Rep3_dm6_PCR_duplicates, PCRdups/wt_36h-Rep2_dm6_PCR_duplicates, PCRdups/wt_36h-Rep1_dm6_PCR_duplicates, PCRdups/wt_44h-Rep1_dm6_PCR_duplicates, PCRdups/wt_44h-Rep2_dm6_PCR_duplicates, PCRdups/wt_44h-Rep3_dm6_PCR_duplicates
+    output: multiqc_report.html
+    jobid: 61
+
+Submitted job 61 with external jobid 'Submitted batch job 2115067'.
+
+[Thu Mar  9 09:32:14 2023]
+rule bigWig:
+    input: Bam/wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam.bai
+    output: BigWig/wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    jobid: 122
+    wildcards: species=dm6, sample=wt_24h-Rep2
+    threads: 8
+
+Submitted job 122 with external jobid 'Submitted batch job 2115068'.
+
+[Thu Mar  9 09:32:14 2023]
+rule mergeBams:
+    input: Bam/wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam
+    output: Bam/wt_24h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Bam/wt_24h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam.bai
+    jobid: 26
+    wildcards: samplePool=wt_24h, species=dm6
+
+Submitted job 26 with external jobid 'Submitted batch job 2115069'.
+
+[Thu Mar  9 09:32:14 2023]
+rule mergeBigWig:
+    input: Bam/wt_36h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Bam/wt_36h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam.bai
+    output: BigWig/wt_36h_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm.bw
+    jobid: 169
+    wildcards: samplePool=wt_36h, species=dm6
+    threads: 8
+
+Submitted job 169 with external jobid 'Submitted batch job 2115070'.
+
+[Thu Mar  9 09:32:15 2023]
+rule mergeBamtoBed:
+    input: Bam/wt_36h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Bam/wt_36h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam.bai
+    output: Bed/wt_36h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bed
+    jobid: 77
+    wildcards: samplePool=wt_36h, species=dm6
+
+Submitted job 77 with external jobid 'Submitted batch job 2115071'.
+[Thu Mar  9 09:32:50 2023]
+Finished job 158.
+86 of 157 steps (55%) done
+
+[Thu Mar  9 09:32:50 2023]
+rule zNormBigWig:
+    input: BigWig/wt_36h-Rep3_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    output: logs/wt_36h-Rep3_dm6.zNorm, BigWig/wt_36h-Rep3_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw
+    jobid: 76
+    wildcards: species=dm6, sample=wt_36h-Rep3
+
+[Thu Mar  9 09:32:50 2023]
+Finished job 11.
+87 of 157 steps (55%) done
+[Thu Mar  9 09:32:50 2023]
+Finished job 175.
+88 of 157 steps (56%) done
+Submitted job 76 with external jobid 'Submitted batch job 2115072'.
+
+[Thu Mar  9 09:32:50 2023]
+rule mergeBigWig:
+    input: Bam/wt_18h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Bam/wt_18h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam.bai
+    output: BigWig/wt_18h_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm.bw
+    jobid: 149
+    wildcards: samplePool=wt_18h, species=dm6
+    threads: 8
+
+Submitted job 149 with external jobid 'Submitted batch job 2115073'.
+
+[Thu Mar  9 09:32:50 2023]
+rule mergeBamtoBed:
+    input: Bam/wt_18h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Bam/wt_18h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam.bai
+    output: Bed/wt_18h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bed
+    jobid: 50
+    wildcards: samplePool=wt_18h, species=dm6
+
+Submitted job 50 with external jobid 'Submitted batch job 2115074'.
+
+[Thu Mar  9 09:32:50 2023]
+rule zNormBigWig:
+    input: BigWig/wt_18h-Rep4_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    output: logs/wt_18h-Rep4_dm6.zNorm, BigWig/wt_18h-Rep4_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw
+    jobid: 114
+    wildcards: species=dm6, sample=wt_18h-Rep4
+
+Submitted job 114 with external jobid 'Submitted batch job 2115075'.
+[Thu Mar  9 09:33:28 2023]
+Finished job 63.
+89 of 157 steps (57%) done
+
+[Thu Mar  9 09:33:28 2023]
+rule CallRepPeaks:
+    input: Bed/wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bed
+    output: Peaks/wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak
+    jobid: 12
+    wildcards: species=dm6, sample=wt_6h-Rep2
+
+Submitted job 12 with external jobid 'Submitted batch job 2115078'.
+[Thu Mar  9 09:33:29 2023]
+Finished job 150.
+90 of 157 steps (57%) done
+
+[Thu Mar  9 09:33:29 2023]
+rule zNormBigWig:
+    input: BigWig/wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    output: logs/wt_24h-Rep3_dm6.zNorm, BigWig/wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw
+    jobid: 60
+    wildcards: species=dm6, sample=wt_24h-Rep3
+
+[Thu Mar  9 09:33:29 2023]
+Finished job 79.
+91 of 157 steps (58%) done
+Submitted job 60 with external jobid 'Submitted batch job 2115079'.
+
+[Thu Mar  9 09:33:29 2023]
+rule mergeBigWig:
+    input: Bam/wt_3LW_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Bam/wt_3LW_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam.bai
+    output: BigWig/wt_3LW_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm.bw
+    jobid: 156
+    wildcards: samplePool=wt_3LW, species=dm6
+    threads: 8
+
+Submitted job 156 with external jobid 'Submitted batch job 2115080'.
+
+[Thu Mar  9 09:33:29 2023]
+rule mergeBamtoBed:
+    input: Bam/wt_3LW_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Bam/wt_3LW_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam.bai
+    output: Bed/wt_3LW_dm6_trim_q5_sorted_dupsRemoved_POOLED.bed
+    jobid: 106
+    wildcards: samplePool=wt_3LW, species=dm6
+
+Submitted job 106 with external jobid 'Submitted batch job 2115081'.
+[Thu Mar  9 09:33:30 2023]
+Finished job 171.
+92 of 157 steps (59%) done
+
+[Thu Mar  9 09:33:30 2023]
+rule zNormBigWig:
+    input: BigWig/wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    output: logs/wt_3LW-Rep3_dm6.zNorm, BigWig/wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw
+    jobid: 101
+    wildcards: species=dm6, sample=wt_3LW-Rep3
+
+Submitted job 101 with external jobid 'Submitted batch job 2115082'.
+[Thu Mar  9 09:33:30 2023]
+Finished job 7.
+93 of 157 steps (59%) done
+
+[Thu Mar  9 09:33:30 2023]
+rule CallRepPeaks:
+    input: Bed/wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bed
+    output: Peaks/wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak
+    jobid: 69
+    wildcards: species=dm6, sample=wt_24h-Rep2
+
+Submitted job 69 with external jobid 'Submitted batch job 2115083'.
+[Thu Mar  9 09:33:43 2023]
+Finished job 25.
+94 of 157 steps (60%) done
+
+[Thu Mar  9 09:33:43 2023]
+rule mergeBamtoBed:
+    input: Bam/wt_44h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Bam/wt_44h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam.bai
+    output: Bed/wt_44h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bed
+    jobid: 109
+    wildcards: samplePool=wt_44h, species=dm6
+
+Submitted job 109 with external jobid 'Submitted batch job 2115085'.
+
+[Thu Mar  9 09:33:43 2023]
+rule mergeBigWig:
+    input: Bam/wt_44h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Bam/wt_44h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam.bai
+    output: BigWig/wt_44h_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm.bw
+    jobid: 129
+    wildcards: samplePool=wt_44h, species=dm6
+    threads: 8
+
+Submitted job 129 with external jobid 'Submitted batch job 2115086'.
+[Thu Mar  9 09:34:23 2023]
+Finished job 61.
+95 of 157 steps (61%) done
+[Thu Mar  9 09:34:23 2023]
+Finished job 77.
+96 of 157 steps (61%) done
+
+[Thu Mar  9 09:34:23 2023]
+rule CallPooledPeaks:
+    input: Bed/wt_36h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bed
+    output: Peaks/wt_36h_dm6_trim_q5_sorted_dupsRemoved_POOLED_peaks.narrowPeak
+    jobid: 107
+    wildcards: samplePool=wt_36h, species=dm6
+
+Submitted job 107 with external jobid 'Submitted batch job 2115093'.
+[Thu Mar  9 09:34:33 2023]
+Finished job 101.
+97 of 157 steps (62%) done
+[Thu Mar  9 09:34:33 2023]
+Finished job 76.
+98 of 157 steps (62%) done
+[Thu Mar  9 09:34:34 2023]
+Finished job 114.
+99 of 157 steps (63%) done
+[Thu Mar  9 09:34:35 2023]
+Finished job 143.
+100 of 157 steps (64%) done
+
+[Thu Mar  9 09:34:35 2023]
+rule zNormBigWig:
+    input: BigWig/wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    output: logs/wt_3LW-Rep1_dm6.zNorm, BigWig/wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw
+    jobid: 46
+    wildcards: species=dm6, sample=wt_3LW-Rep1
+
+Submitted job 46 with external jobid 'Submitted batch job 2115094'.
+[Thu Mar  9 09:34:46 2023]
+Finished job 60.
+101 of 157 steps (64%) done
+[Thu Mar  9 09:34:46 2023]
+Finished job 106.
+102 of 157 steps (65%) done
+
+[Thu Mar  9 09:34:46 2023]
+rule CallPooledPeaks:
+    input: Bed/wt_3LW_dm6_trim_q5_sorted_dupsRemoved_POOLED.bed
+    output: Peaks/wt_3LW_dm6_trim_q5_sorted_dupsRemoved_POOLED_peaks.narrowPeak
+    jobid: 58
+    wildcards: samplePool=wt_3LW, species=dm6
+
+Submitted job 58 with external jobid 'Submitted batch job 2115095'.
+Waiting at most 60 seconds for missing files.
+[Thu Mar  9 09:35:23 2023]
+Finished job 27.
+103 of 157 steps (66%) done
+[Thu Mar  9 09:35:23 2023]
+Finished job 22.
+104 of 157 steps (66%) done
+[Thu Mar  9 09:35:23 2023]
+Finished job 112.
+105 of 157 steps (67%) done
+[Thu Mar  9 09:35:23 2023]
+Finished job 95.
+106 of 157 steps (68%) done
+
+[Thu Mar  9 09:35:23 2023]
+rule mergeBamtoBed:
+    input: Bam/wt_6h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Bam/wt_6h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam.bai
+    output: Bed/wt_6h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bed
+    jobid: 65
+    wildcards: samplePool=wt_6h, species=dm6
+
+Submitted job 65 with external jobid 'Submitted batch job 2115096'.
+
+[Thu Mar  9 09:35:24 2023]
+rule mergeBigWig:
+    input: Bam/wt_6h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Bam/wt_6h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam.bai
+    output: BigWig/wt_6h_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm.bw
+    jobid: 172
+    wildcards: samplePool=wt_6h, species=dm6
+    threads: 8
+
+[Thu Mar  9 09:35:24 2023]
+Finished job 135.
+107 of 157 steps (68%) done
+[Thu Mar  9 09:35:24 2023]
+Finished job 137.
+108 of 157 steps (69%) done
+Submitted job 172 with external jobid 'Submitted batch job 2115097'.
+
+[Thu Mar  9 09:35:24 2023]
+rule zNormBigWig:
+    input: BigWig/wt_36h-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    output: logs/wt_36h-Rep2_dm6.zNorm, BigWig/wt_36h-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw
+    jobid: 35
+    wildcards: species=dm6, sample=wt_36h-Rep2
+
+Submitted job 35 with external jobid 'Submitted batch job 2115098'.
+
+[Thu Mar  9 09:35:25 2023]
+rule zNormBigWig:
+    input: BigWig/wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    output: logs/wt_3LW-Rep2_dm6.zNorm, BigWig/wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw
+    jobid: 32
+    wildcards: species=dm6, sample=wt_3LW-Rep2
+
+Submitted job 32 with external jobid 'Submitted batch job 2115099'.
+[Thu Mar  9 09:35:25 2023]
+Finished job 26.
+109 of 157 steps (69%) done
+
+[Thu Mar  9 09:35:25 2023]
+rule mergeBamtoBed:
+    input: Bam/wt_24h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Bam/wt_24h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam.bai
+    output: Bed/wt_24h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bed
+    jobid: 38
+    wildcards: samplePool=wt_24h, species=dm6
+
+Submitted job 38 with external jobid 'Submitted batch job 2115100'.
+
+[Thu Mar  9 09:35:25 2023]
+rule mergeBigWig:
+    input: Bam/wt_24h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Bam/wt_24h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam.bai
+    output: BigWig/wt_24h_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm.bw
+    jobid: 127
+    wildcards: samplePool=wt_24h, species=dm6
+    threads: 8
+
+Submitted job 127 with external jobid 'Submitted batch job 2115101'.
+[Thu Mar  9 09:35:35 2023]
+Finished job 46.
+110 of 157 steps (70%) done
+[Thu Mar  9 09:35:36 2023]
+Finished job 109.
+111 of 157 steps (71%) done
+
+[Thu Mar  9 09:35:36 2023]
+rule CallPooledPeaks:
+    input: Bed/wt_44h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bed
+    output: Peaks/wt_44h_dm6_trim_q5_sorted_dupsRemoved_POOLED_peaks.narrowPeak
+    jobid: 5
+    wildcards: samplePool=wt_44h, species=dm6
+
+Submitted job 5 with external jobid 'Submitted batch job 2115102'.
+[Thu Mar  9 09:35:36 2023]
+Finished job 50.
+112 of 157 steps (71%) done
+
+[Thu Mar  9 09:35:36 2023]
+rule CallPooledPeaks:
+    input: Bed/wt_18h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bed
+    output: Peaks/wt_18h_dm6_trim_q5_sorted_dupsRemoved_POOLED_peaks.narrowPeak
+    jobid: 17
+    wildcards: samplePool=wt_18h, species=dm6
+
+Submitted job 17 with external jobid 'Submitted batch job 2115103'.
+[Thu Mar  9 09:36:16 2023]
+Finished job 91.
+113 of 157 steps (72%) done
+[Thu Mar  9 09:36:16 2023]
+Finished job 41.
+114 of 157 steps (73%) done
+[Thu Mar  9 09:36:16 2023]
+Finished job 98.
+115 of 157 steps (73%) done
+[Thu Mar  9 09:36:16 2023]
+Finished job 45.
+116 of 157 steps (74%) done
+[Thu Mar  9 09:36:17 2023]
+Finished job 173.
+117 of 157 steps (75%) done
+
+[Thu Mar  9 09:36:17 2023]
+rule zNormBigWig:
+    input: BigWig/wt_36h-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    output: logs/wt_36h-Rep1_dm6.zNorm, BigWig/wt_36h-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw
+    jobid: 111
+    wildcards: species=dm6, sample=wt_36h-Rep1
+
+[Thu Mar  9 09:36:17 2023]
+Finished job 53.
+118 of 157 steps (75%) done
+[Thu Mar  9 09:36:17 2023]
+Finished job 102.
+119 of 157 steps (76%) done
+Submitted job 111 with external jobid 'Submitted batch job 2115107'.
+[Thu Mar  9 09:36:28 2023]
+Finished job 35.
+120 of 157 steps (76%) done
+[Thu Mar  9 09:36:29 2023]
+Finished job 4.
+121 of 157 steps (77%) done
+[Thu Mar  9 09:36:29 2023]
+Finished job 168.
+122 of 157 steps (78%) done
+
+[Thu Mar  9 09:36:29 2023]
+rule zNormBigWig:
+    input: BigWig/wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    output: logs/wt_44h-Rep2_dm6.zNorm, BigWig/wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw
+    jobid: 96
+    wildcards: species=dm6, sample=wt_44h-Rep2
+
+[Thu Mar  9 09:36:29 2023]
+Finished job 167.
+123 of 157 steps (78%) done
+Submitted job 96 with external jobid 'Submitted batch job 2115111'.
+
+[Thu Mar  9 09:36:29 2023]
+rule zNormBigWig:
+    input: BigWig/wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    output: logs/wt_24h-Rep1_dm6.zNorm, BigWig/wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw
+    jobid: 93
+    wildcards: species=dm6, sample=wt_24h-Rep1
+
+Submitted job 93 with external jobid 'Submitted batch job 2115112'.
+[Thu Mar  9 09:36:40 2023]
+Finished job 32.
+124 of 157 steps (79%) done
+[Thu Mar  9 09:36:41 2023]
+Finished job 37.
+125 of 157 steps (80%) done
+[Thu Mar  9 09:36:41 2023]
+Finished job 160.
+126 of 157 steps (80%) done
+
+[Thu Mar  9 09:36:41 2023]
+rule zNormBigWig:
+    input: BigWig/wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    output: logs/wt_44h-Rep3_dm6.zNorm, BigWig/wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw
+    jobid: 80
+    wildcards: species=dm6, sample=wt_44h-Rep3
+
+Submitted job 80 with external jobid 'Submitted batch job 2115113'.
+[Thu Mar  9 09:36:52 2023]
+Finished job 65.
+127 of 157 steps (81%) done
+
+[Thu Mar  9 09:36:52 2023]
+rule CallPooledPeaks:
+    input: Bed/wt_6h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bed
+    output: Peaks/wt_6h_dm6_trim_q5_sorted_dupsRemoved_POOLED_peaks.narrowPeak
+    jobid: 84
+    wildcards: samplePool=wt_6h, species=dm6
+
+Submitted job 84 with external jobid 'Submitted batch job 2115119'.
+[Thu Mar  9 09:37:28 2023]
+Finished job 80.
+128 of 157 steps (82%) done
+[Thu Mar  9 09:37:28 2023]
+Finished job 96.
+129 of 157 steps (82%) done
+[Thu Mar  9 09:37:28 2023]
+Finished job 93.
+130 of 157 steps (83%) done
+[Thu Mar  9 09:37:28 2023]
+Finished job 38.
+131 of 157 steps (83%) done
+
+[Thu Mar  9 09:37:28 2023]
+rule CallPooledPeaks:
+    input: Bed/wt_24h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bed
+    output: Peaks/wt_24h_dm6_trim_q5_sorted_dupsRemoved_POOLED_peaks.narrowPeak
+    jobid: 1
+    wildcards: samplePool=wt_24h, species=dm6
+
+Submitted job 1 with external jobid 'Submitted batch job 2115121'.
+[Thu Mar  9 09:37:29 2023]
+Finished job 12.
+132 of 157 steps (84%) done
+[Thu Mar  9 09:37:29 2023]
+Finished job 69.
+133 of 157 steps (85%) done
+[Thu Mar  9 09:37:29 2023]
+Finished job 111.
+134 of 157 steps (85%) done
+[Thu Mar  9 09:37:40 2023]
+Finished job 153.
+135 of 157 steps (86%) done
+
+[Thu Mar  9 09:37:40 2023]
+rule zNormBigWig:
+    input: BigWig/wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    output: logs/wt_6h-Rep2_dm6.zNorm, BigWig/wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw
+    jobid: 67
+    wildcards: species=dm6, sample=wt_6h-Rep2
+
+Submitted job 67 with external jobid 'Submitted batch job 2115125'.
+[Thu Mar  9 09:38:13 2023]
+Finished job 149.
+136 of 157 steps (87%) done
+
+[Thu Mar  9 09:38:13 2023]
+rule mergeZNormBigWig:
+    input: BigWig/wt_18h_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm.bw
+    output: logs/wt_18h_dm6_POOLED_rpgcNorm.zNorm, BigWig/wt_18h_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm_zNorm.bw
+    jobid: 59
+    wildcards: samplePool=wt_18h, species=dm6
+
+[Thu Mar  9 09:38:14 2023]
+Finished job 122.
+137 of 157 steps (87%) done
+[Thu Mar  9 09:38:14 2023]
+Finished job 169.
+138 of 157 steps (88%) done
+Submitted job 59 with external jobid 'Submitted batch job 2115129'.
+
+[Thu Mar  9 09:38:14 2023]
+rule zNormBigWig:
+    input: BigWig/wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm.bw
+    output: logs/wt_24h-Rep2_dm6.zNorm, BigWig/wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw
+    jobid: 13
+    wildcards: species=dm6, sample=wt_24h-Rep2
+
+Submitted job 13 with external jobid 'Submitted batch job 2115130'.
+
+[Thu Mar  9 09:38:14 2023]
+rule mergeZNormBigWig:
+    input: BigWig/wt_36h_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm.bw
+    output: logs/wt_36h_dm6_POOLED_rpgcNorm.zNorm, BigWig/wt_36h_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm_zNorm.bw
+    jobid: 97
+    wildcards: samplePool=wt_36h, species=dm6
+
+Submitted job 97 with external jobid 'Submitted batch job 2115131'.
+[Thu Mar  9 09:38:46 2023]
+Finished job 67.
+139 of 157 steps (89%) done
+[Thu Mar  9 09:38:46 2023]
+Finished job 58.
+140 of 157 steps (89%) done
+[Thu Mar  9 09:39:19 2023]
+Finished job 107.
+141 of 157 steps (90%) done
+[Thu Mar  9 09:39:52 2023]
+Finished job 5.
+142 of 157 steps (90%) done
+[Thu Mar  9 09:39:52 2023]
+Finished job 17.
+143 of 157 steps (91%) done
+[Thu Mar  9 09:39:52 2023]
+Finished job 129.
+144 of 157 steps (92%) done
+
+[Thu Mar  9 09:39:52 2023]
+rule mergeZNormBigWig:
+    input: BigWig/wt_44h_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm.bw
+    output: logs/wt_44h_dm6_POOLED_rpgcNorm.zNorm, BigWig/wt_44h_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm_zNorm.bw
+    jobid: 21
+    wildcards: samplePool=wt_44h, species=dm6
+
+[Thu Mar  9 09:39:52 2023]
+Finished job 59.
+145 of 157 steps (92%) done
+Submitted job 21 with external jobid 'Submitted batch job 2115141'.
+[Thu Mar  9 09:39:52 2023]
+Finished job 13.
+146 of 157 steps (93%) done
+[Thu Mar  9 09:39:53 2023]
+Finished job 97.
+147 of 157 steps (94%) done
+[Thu Mar  9 09:40:33 2023]
+Finished job 21.
+148 of 157 steps (94%) done
+[Thu Mar  9 09:40:33 2023]
+Finished job 84.
+149 of 157 steps (95%) done
+[Thu Mar  9 09:40:33 2023]
+Finished job 172.
+150 of 157 steps (96%) done
+
+[Thu Mar  9 09:40:33 2023]
+rule mergeZNormBigWig:
+    input: BigWig/wt_6h_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm.bw
+    output: logs/wt_6h_dm6_POOLED_rpgcNorm.zNorm, BigWig/wt_6h_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm_zNorm.bw
+    jobid: 110
+    wildcards: samplePool=wt_6h, species=dm6
+
+Submitted job 110 with external jobid 'Submitted batch job 2115145'.
+[Thu Mar  9 09:41:03 2023]
+Finished job 127.
+151 of 157 steps (96%) done
+
+[Thu Mar  9 09:41:03 2023]
+rule mergeZNormBigWig:
+    input: BigWig/wt_24h_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm.bw
+    output: logs/wt_24h_dm6_POOLED_rpgcNorm.zNorm, BigWig/wt_24h_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm_zNorm.bw
+    jobid: 19
+    wildcards: samplePool=wt_24h, species=dm6
+
+Submitted job 19 with external jobid 'Submitted batch job 2115147'.
+[Thu Mar  9 09:41:33 2023]
+Finished job 110.
+152 of 157 steps (97%) done
+Waiting at most 60 seconds for missing files.
+[Thu Mar  9 09:42:33 2023]
+Finished job 19.
+153 of 157 steps (97%) done
+[Thu Mar  9 09:42:43 2023]
+Finished job 1.
+154 of 157 steps (98%) done
+[Thu Mar  9 09:43:13 2023]
+Finished job 156.
+155 of 157 steps (99%) done
+
+[Thu Mar  9 09:43:13 2023]
+rule mergeZNormBigWig:
+    input: BigWig/wt_3LW_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm.bw
+    output: logs/wt_3LW_dm6_POOLED_rpgcNorm.zNorm, BigWig/wt_3LW_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm_zNorm.bw
+    jobid: 74
+    wildcards: samplePool=wt_3LW, species=dm6
+
+Submitted job 74 with external jobid 'Submitted batch job 2115156'.
+[Thu Mar  9 09:44:43 2023]
+Finished job 74.
+156 of 157 steps (99%) done
+
+[Thu Mar  9 09:44:44 2023]
+localrule all:
+    input: Fastq/wt_3LW-Rep1_R1_trim.fastq.gz, Fastq/wt_3LW-Rep2_R1_trim.fastq.gz, Fastq/wt_3LW-Rep3_R1_trim.fastq.gz, Fastq/wt_6h-Rep1_R1_trim.fastq.gz, Fastq/wt_6h-Rep2_R1_trim.fastq.gz, Fastq/wt_18h-Rep1_R1_trim.fastq.gz, Fastq/wt_18h-Rep2_R1_trim.fastq.gz, Fastq/wt_18h-Rep3_R1_trim.fastq.gz, Fastq/wt_18h-Rep4_R1_trim.fastq.gz, Fastq/wt_24h-Rep1_R1_trim.fastq.gz, Fastq/wt_24h-Rep2_R1_trim.fastq.gz, Fastq/wt_24h-Rep3_R1_trim.fastq.gz, Fastq/wt_36h-Rep3_R1_trim.fastq.gz, Fastq/wt_36h-Rep2_R1_trim.fastq.gz, Fastq/wt_36h-Rep1_R1_trim.fastq.gz, Fastq/wt_44h-Rep1_R1_trim.fastq.gz, Fastq/wt_44h-Rep2_R1_trim.fastq.gz, Fastq/wt_44h-Rep3_R1_trim.fastq.gz, Bam/wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_18h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_18h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_18h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_18h-Rep4_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_36h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_36h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_36h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bam, Bam/wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bam, Peaks/wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak, Peaks/wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak, Peaks/wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak, Peaks/wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak, Peaks/wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak, Peaks/wt_18h-Rep1_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak, Peaks/wt_18h-Rep2_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak, Peaks/wt_18h-Rep3_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak, Peaks/wt_18h-Rep4_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak, Peaks/wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak, Peaks/wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak, Peaks/wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak, Peaks/wt_36h-Rep3_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak, Peaks/wt_36h-Rep2_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak, Peaks/wt_36h-Rep1_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak, Peaks/wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak, Peaks/wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak, Peaks/wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved_peaks.narrowPeak, Bed/wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved.bed, Bed/wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved.bed, Bed/wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved.bed, Bed/wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bed, Bed/wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bed, Bed/wt_18h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bed, Bed/wt_18h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bed, Bed/wt_18h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bed, Bed/wt_18h-Rep4_dm6_trim_q5_sorted_dupsRemoved.bed, Bed/wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bed, Bed/wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bed, Bed/wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bed, Bed/wt_36h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bed, Bed/wt_36h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bed, Bed/wt_36h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bed, Bed/wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved.bed, Bed/wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved.bed, Bed/wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved.bed, BigWig/wt_3LW-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw, BigWig/wt_3LW-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw, BigWig/wt_3LW-Rep3_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw, BigWig/wt_6h-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw, BigWig/wt_6h-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw, BigWig/wt_18h-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw, BigWig/wt_18h-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw, BigWig/wt_18h-Rep3_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw, BigWig/wt_18h-Rep4_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw, BigWig/wt_24h-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw, BigWig/wt_24h-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw, BigWig/wt_24h-Rep3_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw, BigWig/wt_36h-Rep3_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw, BigWig/wt_36h-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw, BigWig/wt_36h-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw, BigWig/wt_44h-Rep1_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw, BigWig/wt_44h-Rep2_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw, BigWig/wt_44h-Rep3_dm6_trim_q5_sorted_dupsRemoved_rpgcNorm_zNorm.bw, Bam/wt_3LW_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Bam/wt_6h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Bam/wt_18h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Bam/wt_24h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Bam/wt_36h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Bam/wt_44h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bam, Peaks/wt_3LW_dm6_trim_q5_sorted_dupsRemoved_POOLED_peaks.narrowPeak, Peaks/wt_6h_dm6_trim_q5_sorted_dupsRemoved_POOLED_peaks.narrowPeak, Peaks/wt_18h_dm6_trim_q5_sorted_dupsRemoved_POOLED_peaks.narrowPeak, Peaks/wt_24h_dm6_trim_q5_sorted_dupsRemoved_POOLED_peaks.narrowPeak, Peaks/wt_36h_dm6_trim_q5_sorted_dupsRemoved_POOLED_peaks.narrowPeak, Peaks/wt_44h_dm6_trim_q5_sorted_dupsRemoved_POOLED_peaks.narrowPeak, Bed/wt_3LW_dm6_trim_q5_sorted_dupsRemoved_POOLED.bed, Bed/wt_6h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bed, Bed/wt_18h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bed, Bed/wt_24h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bed, Bed/wt_36h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bed, Bed/wt_44h_dm6_trim_q5_sorted_dupsRemoved_POOLED.bed, BigWig/wt_3LW_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm_zNorm.bw, BigWig/wt_6h_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm_zNorm.bw, BigWig/wt_18h_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm_zNorm.bw, BigWig/wt_24h_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm_zNorm.bw, BigWig/wt_36h_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm_zNorm.bw, BigWig/wt_44h_dm6_trim_q5_sorted_dupsRemoved_POOLED_rpgcNorm_zNorm.bw, multiqc_report.html
+    jobid: 0
+
+[Thu Mar  9 09:44:44 2023]
+Finished job 0.
+157 of 157 steps (100%) done
+Complete log: /work/users/m/j/mjn15/faire-pipeline/.snakemake/log/2023-03-09T092153.194771.snakemake.log
